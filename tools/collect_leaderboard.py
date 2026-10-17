@@ -11,9 +11,11 @@ REGIONS = {  # label: (platform host, regional host, op.gg slug)
     "KR": ("kr", "asia", "kr"),
     "NA": ("na1", "americas", "na"),
 }
-MAX_PLAYERS = int(os.environ.get("LB_MAX_PLAYERS", "60"))   # best players per region that get checked
+MAX_PLAYERS = int(os.environ.get("LB_MAX_PLAYERS", "500"))  # best players per region that get looked at
+MIN_POINTS = int(os.environ.get("LB_MIN_POINTS", "20000"))  # Kayle mastery points needed to be checked closely
+RECENT_DAYS = int(os.environ.get("LB_RECENT_DAYS", "14"))   # Kayle must have been played within this many days
 MATCHES = int(os.environ.get("LB_MATCHES", "20"))           # recent ranked games checked per player
-MIN_GAMES = int(os.environ.get("LB_MIN_GAMES", "4"))        # Kayle games needed to appear
+MIN_GAMES = int(os.environ.get("LB_MIN_GAMES", "3"))        # Kayle games needed to appear
 UA = "Mozilla/5.0 (compatible; kayle1v9-leaderboard/1.0; +https://kayle1v9.com)"
 LIST_SIZE = 25                                              # players kept in the file
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -38,7 +40,7 @@ def diagnose(host):
     print("-----------------", flush=True)
 
 
-def get(host, path, params=None, tries=6):
+def get(host, path, params=None, tries=6, soft403=False):
     url = "https://%s.api.riotgames.com%s" % (host, path)
     if params:
         url += "?" + urllib.parse.urlencode(params)
@@ -53,6 +55,8 @@ def get(host, path, params=None, tries=6):
             elif e.code in (404, 400):
                 return None
             elif e.code in (401, 403):
+                if soft403:
+                    raise PermissionError(path)
                 diagnose(host)
                 sys.exit("Riot API refused the key (HTTP %d) on %s. Is RIOT_API_KEY valid and not expired?" % (e.code, path))
             else:
@@ -94,7 +98,30 @@ def main():
         pool.sort(reverse=True)
         for lp, tier, puuid in pool[:MAX_PLAYERS]:
             cand.append((label, reg, slug, lp, tier, puuid))
-    print("checking %d players" % len(cand), flush=True)
+    print("looking at %d players" % len(cand), flush=True)
+    # Cheap pre-filter: one mastery request per player tells who really plays Kayle (champion id 10).
+    now_ms = time.time() * 1000
+    keep, denied = [], False
+    for c in cand:
+        label, reg, slug, lp, tier, puuid = c
+        plat = REGIONS[label][0]
+        try:
+            m = get(plat, "/lol/champion-mastery/v4/champion-masteries/by-puuid/%s/by-champion/10" % puuid, soft403=True)
+        except PermissionError:
+            denied = True
+            break
+        if m and m.get("championPoints", 0) >= MIN_POINTS and now_ms - m.get("lastPlayTime", 0) <= RECENT_DAYS * 86400000:
+            keep.append(c)
+    if denied:
+        print("mastery endpoint not allowed for this key, falling back to checking the %d best players per region" % 60, flush=True)
+        per = collections.Counter()
+        keep = []
+        for c in cand:
+            if per[c[0]] < 60:
+                per[c[0]] += 1
+                keep.append(c)
+    cand = keep
+    print("%d Kayle players to check closely" % len(cand), flush=True)
 
     match_cache, found = {}, []
     for label, reg, slug, lp, tier, puuid in cand:
@@ -112,6 +139,7 @@ def main():
                     for i in range(6):
                         if p.get("item%d" % i) in items_ok:
                             its[p["item%d" % i]] += 1
+        print("  %s %s LP %d: %d ranked games checked, %d on Kayle" % (label, tier, lp, len(ids), games), flush=True)
         if games >= MIN_GAMES:
             acc = get(reg, "/riot/account/v1/accounts/by-puuid/%s" % puuid)
             if not acc or not acc.get("gameName"):
@@ -120,7 +148,6 @@ def main():
             url = "https://www.op.gg/summoners/%s/%s-%s" % (slug, urllib.parse.quote(acc["gameName"]), urllib.parse.quote(acc["tagLine"]))
             found.append({"n": name, "r": label, "t": tier, "lp": lp, "g": games, "w": round(100.0 * wins / games, 1),
                           "u": url, "it": [i for i, _ in its.most_common(3)], "_its": its})
-        print(label, len(found), "players so far", flush=True)
 
     found.sort(key=lambda p: -p["lp"])
     found = found[:LIST_SIZE]
