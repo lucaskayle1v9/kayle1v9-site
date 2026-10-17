@@ -1255,6 +1255,18 @@ nav .logo img{animation-duration:6.5s}
 .tcount{font-size:1.7rem;line-height:1.1;color:var(--gold);font-variant-numeric:tabular-nums}
 .tmeter{flex:1;min-width:140px;height:10px;border-radius:999px;background:rgba(255,255,255,.08);overflow:hidden}
 .tmeter i{display:block;height:100%;width:0;border-radius:inherit;background:linear-gradient(90deg,#E5A66F,#F0B94B,#FFE08A);transition:width .8s cubic-bezier(.2,.8,.2,1)}
+.tsum{cursor:pointer;transition:border-color .3s,background .3s;margin-bottom:0}
+.tsum:hover{border-color:rgba(240,185,75,.55)}
+.tsum:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.tchev{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:.85rem;color:var(--gold);white-space:nowrap}
+.tchev svg{transition:transform .5s cubic-bezier(.34,1.56,.64,1)}
+.tsum[aria-expanded="true"] .tchev svg{transform:rotate(180deg)}
+.tsum:not([aria-expanded="true"]) .tchev svg{animation:vbob 1.8s ease-in-out infinite}
+.tmore{display:grid;grid-template-rows:0fr;opacity:0;visibility:hidden;transition:grid-template-rows .65s cubic-bezier(.22,1,.36,1),opacity .35s ease,visibility 0s .65s}
+.tmore.open{grid-template-rows:1fr;opacity:1;visibility:visible;transition:grid-template-rows .65s cubic-bezier(.22,1,.36,1),opacity .45s ease .08s,visibility 0s}
+.tmin{overflow:hidden;min-height:0}
+.tmin .tbody{padding-top:22px}
+@media (prefers-reduced-motion:reduce){.tmore,.tmore.open{transition:none}.tchev svg{animation:none!important}}
 .tcat{margin:0 0 20px}
 .tcat h3{margin:0 0 10px;font-size:.78rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
 .tgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
@@ -4892,7 +4904,15 @@ var CHSTAT = {subs: 69500, goal: 100000, videos: 1292, checked: "16 Oct 2026"};
   var head = el("div", "tsum"), cnt = el("b", "tcount"), meter = el("div", "tmeter"), fill = el("i"); meter.appendChild(fill);
   var sumTx = el("div", "tsumtx"); sumTx.appendChild(el("span", "tlabel", "Trophies unlocked")); sumTx.appendChild(cnt); head.appendChild(sumTx); head.appendChild(meter);
   var body = el("div", "tbody");
-  var wrap = root.querySelector(".wrap"); wrap.appendChild(head); wrap.appendChild(body);
+  var chev = el("span", "tchev"); var chl = el("span", "", "Show trophies");
+  chev.appendChild(chl); chev.insertAdjacentHTML("beforeend", '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 9l7 7 7-7"/></svg>');
+  head.appendChild(chev);
+  head.setAttribute("role", "button"); head.setAttribute("tabindex", "0"); head.setAttribute("aria-expanded", "false"); head.setAttribute("aria-controls", "tmore");
+  var more = el("div", "tmore"); more.id = "tmore"; var tmin = el("div", "tmin"); tmin.appendChild(body); more.appendChild(tmin);
+  function setOpen(o){ head.setAttribute("aria-expanded", o ? "true" : "false"); more.classList.toggle("open", o); chl.textContent = o ? "Hide trophies" : "Show trophies"; }
+  head.addEventListener("click", function(){ setOpen(head.getAttribute("aria-expanded") !== "true"); });
+  head.addEventListener("keydown", function(e){ if(e.key === "Enter" || e.key === " "){ e.preventDefault(); head.click(); } });
+  var wrap = root.querySelector(".wrap"); wrap.appendChild(head); wrap.appendChild(more);
   var newest = null;
 
   function render(){
@@ -4935,7 +4955,7 @@ var CHSTAT = {subs: 69500, goal: 100000, videos: 1292, checked: "16 Oct 2026"};
     var t = el("button", "ttoast " + x.t); t.type = "button"; t.setAttribute("aria-label", "Trophy unlocked: " + x.nm + ". Open the trophy room.");
     t.appendChild(badge(x, false, 44));
     var tx = el("span", "ttt"); tx.appendChild(el("small", "", "Trophy unlocked")); tx.appendChild(el("b", "", x.nm)); t.appendChild(tx);
-    t.addEventListener("click", function(){ root.scrollIntoView({behavior: still ? "auto" : "smooth", block: "start"}); });
+    t.addEventListener("click", function(){ setOpen(true); root.scrollIntoView({behavior: still ? "auto" : "smooth", block: "start"}); });
     document.body.appendChild(t);
     try{ if(window.KSND && KSND.gTrophy) KSND.gTrophy(); }catch(e){}
     if(x.t === "gold" || x.t === "mythic"){ try{ if(window.KFX && !still) KFX.confetti(innerWidth / 2, innerHeight - 70, {n: x.t === "mythic" ? 120 : 70, colors: x.t === "mythic" ? ["#FF7ADB", "#8F5BFF", "#4DA3FF", "#fff"] : ["#F0B94B", "#FFD98A", "#fff"], power: .9}); }catch(e){} }
