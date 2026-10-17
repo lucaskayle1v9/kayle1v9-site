@@ -19,6 +19,24 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 
 
+def diagnose(host):
+    """Prints how Riot answers a few different endpoints, to find out why a key is refused."""
+    print("--- diagnosis ---", flush=True)
+    for h, path in ((host, "/lol/status/v4/platform-data"), (host, "/lol/platform/v3/champion-rotations"),
+                    (host, "/lol/league/v4/challengerleagues/by-queue/RANKED_SOLO_5x5"),
+                    ("europe", "/riot/account/v1/accounts/by-riot-id/Riot/EUW")):
+        req = urllib.request.Request("https://%s.api.riotgames.com%s" % (h, path),
+                                     headers={"X-Riot-Token": os.environ["RIOT_API_KEY"].strip()})
+        try:
+            with urllib.request.urlopen(req, timeout=30) as r:
+                print(h, path, "->", r.status, flush=True)
+        except urllib.error.HTTPError as e:
+            print(h, path, "->", e.code, e.read()[:160].decode("utf8", "replace"), flush=True)
+        except Exception as e:
+            print(h, path, "-> error", repr(e)[:120], flush=True)
+    print("-----------------", flush=True)
+
+
 def get(host, path, params=None, tries=6):
     url = "https://%s.api.riotgames.com%s" % (host, path)
     if params:
@@ -34,6 +52,7 @@ def get(host, path, params=None, tries=6):
             elif e.code in (404, 400):
                 return None
             elif e.code in (401, 403):
+                diagnose(host)
                 sys.exit("Riot API refused the key (HTTP %d) on %s. Is RIOT_API_KEY valid and not expired?" % (e.code, path))
             else:
                 time.sleep(3 * (n + 1))
