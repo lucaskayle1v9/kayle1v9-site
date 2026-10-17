@@ -966,7 +966,15 @@ nav .logo img{animation-duration:6.5s}
 .lbr:first-child{border-top:0}
 .lbr.hd{font-size:.7rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);background:rgba(255,255,255,.03)}
 .lbr .rk{font-weight:800;color:var(--muted)}
-.lbr:nth-child(2) .rk{color:var(--gold)}
+.lbr .rk{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%}
+.lbr.m1,.lbr.m2,.lbr.m3{position:relative}
+.lbr.m1{background:linear-gradient(90deg,rgba(240,185,75,.2),rgba(240,185,75,.04) 55%,transparent);box-shadow:inset 3px 0 0 #F0B94B}
+.lbr.m2{background:linear-gradient(90deg,rgba(201,211,227,.17),rgba(201,211,227,.03) 55%,transparent);box-shadow:inset 3px 0 0 #C9D3E3}
+.lbr.m3{background:linear-gradient(90deg,rgba(205,127,50,.2),rgba(205,127,50,.04) 55%,transparent);box-shadow:inset 3px 0 0 #CD7F32}
+.lbr.m1 .rk,.lbr.m2 .rk,.lbr.m3 .rk{color:#14203F;font-weight:800;box-shadow:0 0 12px var(--mg)}
+.lbr.m1 .rk{--mg:rgba(240,185,75,.55);background:radial-gradient(circle at 30% 25%,#FFF1BE,#F0B94B 60%,#C98F1E)}
+.lbr.m2 .rk{--mg:rgba(201,211,227,.4);background:radial-gradient(circle at 30% 25%,#FFFFFF,#C9D3E3 60%,#8E9BB3)}
+.lbr.m3 .rk{--mg:rgba(205,127,50,.45);background:radial-gradient(circle at 30% 25%,#F6C79A,#CD7F32 60%,#8F5320)}
 .lbr .pl{font-weight:700;color:var(--text);text-decoration:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .lbr a.pl:hover,.lbr a.pl:focus-visible{color:var(--gold);outline:none;text-decoration:underline}
 .lbr .tg{font-size:.76rem;font-weight:800;color:var(--muted)}
@@ -975,7 +983,9 @@ nav .logo img{animation-duration:6.5s}
 .lbr .its{display:flex;gap:4px}
 .lbr .its img{width:26px;height:26px;border-radius:6px;border:1px solid rgba(240,185,75,.4)}
 .lbme{display:inline-block;margin-left:8px;padding:2px 8px;border-radius:999px;background:var(--gold);color:#0F1A33;font-size:.66rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;vertical-align:1px}
-.lbr .pl a{color:inherit;text-decoration:none}
+.lbwrap{display:flex;align-items:center;min-width:0}
+.lbwrap .pl{min-width:0}
+.lbme{flex:none}
 .lbmore{display:block;margin:14px auto 0;font:inherit;font-weight:700;font-size:.88rem;padding:9px 20px;border-radius:999px;border:2px solid var(--gold);background:transparent;color:var(--text);cursor:pointer}
 .lbmore:hover{background:var(--gold);color:#0F1A33}
 .lbx{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin-top:22px}
@@ -994,6 +1004,9 @@ nav .logo img{animation-duration:6.5s}
 @media (max-width:720px){
   .lbr{grid-template-columns:26px minmax(0,1fr) auto;gap:4px 10px;padding:12px 14px}
   .lbr.hd{display:none}
+  .lbwrap{flex-wrap:wrap;gap:3px 0}
+  .lbwrap .pl{flex:1 1 100%}
+  .lbwrap .lbme{margin-left:0}
   .lbr .tg,.lbr .gm{display:none}
   .lbr .tr{text-align:right}
   .lbr .wr{grid-column:2;font-size:.78rem;color:var(--muted)}
@@ -5218,11 +5231,11 @@ var CHSTAT = {subs: 69500, goal: 100000, videos: 1292, checked: "16 Oct 2026"};
     tab.textContent = ""; tab.appendChild(head());
     var shown = showAll ? list : list.slice(0, LIM);
     shown.forEach(function(p, i){
-      var r = el("div", "lbr"), url = safeUrl(p.u);
+      var r = el("div", "lbr" + (i < 3 ? " m" + (i + 1) : "")), url = safeUrl(p.u);
       r.appendChild(el("span", "rk", i + 1));
       var nm = url ? el("a", "pl", p.n) : el("span", "pl", p.n);
       if(url){ nm.href = url; nm.target = "_blank"; nm.rel = "noopener"; nm.title = "Open " + p.n + " on the web"; }
-      if(p.me){ var wrap = el("span", "pl"); nm.classList.remove("pl"); nm.style.color = "inherit"; wrap.appendChild(nm); wrap.appendChild(el("span", "lbme", "Creator")); r.appendChild(wrap); }
+      if(p.me){ var wrap = el("span", "lbwrap"); wrap.appendChild(nm); wrap.appendChild(el("span", "lbme", "Creator")); r.appendChild(wrap); }
       else r.appendChild(nm);
       r.appendChild(el("span", "tg", p.r));
       var tr = el("span", "tr", p.t || ""); if(p.lp != null){ var sm = el("small", "", p.lp + " LP"); tr.appendChild(sm); } r.appendChild(tr);
