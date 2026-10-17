@@ -980,6 +980,7 @@ nav .logo img{animation-duration:6.5s}
 .lbr .tg{font-size:.76rem;font-weight:800;color:var(--muted)}
 .lbr .tr{display:flex;align-items:center;gap:9px;min-width:0}
 .lbr .trt{min-width:0}
+.lbr .rkim{width:52px;height:38px;object-fit:contain;flex:none;filter:drop-shadow(0 2px 5px rgba(0,0,0,.5))}
 .lbr .rkic{width:30px;height:30px;flex:none;filter:drop-shadow(0 1px 3px rgba(0,0,0,.45))}
 .lbr .tr small{display:block;color:var(--muted);font-weight:600;font-size:.76rem}
 .lbr .wr.hi{color:var(--up);font-weight:700}
@@ -5227,10 +5228,19 @@ var CHSTAT = {subs: 69500, goal: 100000, videos: 1292, checked: "16 Oct 2026"};
   function safeUrl(u){ return typeof u === "string" && /^https:\/\//i.test(u) ? u : ""; }
   function icon(id){ var im = new Image(); im.width = im.height = 26; im.alt = ""; im.loading = "lazy"; var u = window.K_ITI && K_ITI[id]; if(!u) return null; im.src = u; return im; }
   var RK = {iron: ["#8A8E99", "#3C3F47", 1], bronze: ["#E0A06B", "#7A4521", 1], silver: ["#E6ECF6", "#8793A8", 2], gold: ["#FFD36A", "#B5811A", 2], platinum: ["#6FE3D2", "#1E7F86", 3], emerald: ["#5CE88F", "#1B8A4A", 3], diamond: ["#8ED0FF", "#3A6DD8"], master: ["#DDA0FF", "#7A35C9"], grandmaster: ["#FF8DA0", "#B3203F"], challenger: ["#FFE79B", "#3FB6FF"]};
+  var RIMG = {master: 1, grandmaster: 1, challenger: 1, diamond: 1};  // tiers that have an official image in ranks/
   var SVGNS = "http://www.w3.org/2000/svg", rkN = 0;
   function sv(t, a, par){ var e = document.createElementNS(SVGNS, t); for(var k in a) e.setAttribute(k, a[k]); if(par) par.appendChild(e); return e; }
   function rankIcon(label){
     var key = String(label || "").toLowerCase().split(" ")[0], c = RK[key]; if(!c) return null;
+    if(RIMG[key]){
+      var im = new Image(); im.className = "rkim"; im.alt = ""; im.decoding = "async"; im.loading = "lazy"; im.src = "ranks/" + key + ".webp";
+      im.onerror = function(){ var f = rankSvg(key, c); if(f && im.parentNode) im.parentNode.replaceChild(f, im); };
+      return im;
+    }
+    return rankSvg(key, c);
+  }
+  function rankSvg(key, c){
     var id = "rk" + (rkN++), svg = sv("svg", {viewBox: "0 0 32 32", "class": "rkic", "aria-hidden": "true"});
     var df = sv("defs", {}, svg), g = sv("linearGradient", {id: id, x1: "0", y1: "0", x2: "0", y2: "1"}, df);
     sv("stop", {offset: "0", "stop-color": c[0]}, g); sv("stop", {offset: "1", "stop-color": c[1]}, g);
