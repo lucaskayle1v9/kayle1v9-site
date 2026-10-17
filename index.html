@@ -1213,12 +1213,12 @@ nav .logo img{animation-duration:6.5s}
 #gcs .rover.perfect{border-color:var(--ga);box-shadow:0 0 0 2px rgba(74,222,128,.3),0 0 34px -4px rgba(74,222,128,.6)}
 #gcs .rdots i.cur{background:rgba(74,222,128,.6)}
 /* game 5: fishing = teal */
-#gfish{--ga:#2DD4BF;border-color:rgba(45,212,191,.42);background:linear-gradient(180deg,rgba(45,212,191,.13),rgba(45,212,191,0) 48%),var(--panel)}
-#gfish::before{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:linear-gradient(90deg,#2DD4BF,#4DA3FF)}
-#gfish .gbest b{color:var(--ga)}
-#gfish .rmsg.good{color:var(--ga)}
-#gfish .gbtn{border-color:var(--ga)}
-#gfish .gbtn:hover:not(:disabled),#gfish .gbtn.pri{background:var(--ga);color:#0A1226}
+:is(#gfish,.gfc){--ga:#2DD4BF;border-color:rgba(45,212,191,.42);background:linear-gradient(180deg,rgba(45,212,191,.13),rgba(45,212,191,0) 48%),var(--panel)}
+:is(#gfish,.gfc)::before{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:linear-gradient(90deg,#2DD4BF,#4DA3FF)}
+:is(#gfish,.gfc) .gbest b{color:var(--ga)}
+:is(#gfish,.gfc) .rmsg.good{color:var(--ga)}
+:is(#gfish,.gfc) .gbtn{border-color:var(--ga)}
+:is(#gfish,.gfc) .gbtn:hover:not(:disabled),:is(#gfish,.gfc) .gbtn.pri{background:var(--ga);color:#0A1226}
 .fparena{position:relative;height:clamp(230px,calc(min(100vw,900px) * .36),330px);margin-bottom:4px;border-radius:14px;border:1.5px solid var(--line);overflow:hidden;background:linear-gradient(180deg,#223A63 0,#3B618F 42%,#1C5B7C 42.2%,#10395A 100%)}
 .fparena.flash{box-shadow:0 0 0 2px rgba(255,217,138,.8),0 0 40px -2px rgba(255,200,90,.7)}
 .fpwater{position:absolute;left:0;right:0;top:42.2%;bottom:0;overflow:hidden;background:linear-gradient(180deg,rgba(255,255,255,.2) 0,rgba(255,255,255,.07) 14%,rgba(255,255,255,0) 40%,rgba(0,4,16,.26) 100%)}
@@ -1376,12 +1376,12 @@ nav .logo img{animation-duration:6.5s}
 .fpstat .fpchip b{font-size:.98rem;letter-spacing:0;text-transform:none;font-weight:800}
 .fptabs{display:grid;grid-template-columns:repeat(auto-fit,minmax(92px,1fr));gap:8px;margin:0 0 12px;border-top:0;padding-top:0}
 .fptabs .fptab{padding:9px 8px;font-size:.88rem}
-#gfish .fpdash{grid-template-columns:minmax(0,1fr) 250px}
-#gfish .fpdash .fpgold{min-height:74px;width:250px;max-width:none;box-sizing:border-box;padding-left:16px;padding-right:16px}
-#gfish .fpdash .fpmsg{min-height:4.6em}
-#gfish .fpgold .gn.sm{font-size:1.6rem}
-#gfish .fpgold .gn.xs{font-size:1.25rem}
-@media (max-width:640px){#gfish .fpdash{grid-template-columns:1fr}#gfish .fpdash .fpgold{width:auto}}
+:is(#gfish,.gfc) .fpdash{grid-template-columns:minmax(0,1fr) 250px}
+:is(#gfish,.gfc) .fpdash .fpgold{min-height:74px;width:250px;max-width:none;box-sizing:border-box;padding-left:16px;padding-right:16px}
+:is(#gfish,.gfc) .fpdash .fpmsg{min-height:4.6em}
+:is(#gfish,.gfc) .fpgold .gn.sm{font-size:1.6rem}
+:is(#gfish,.gfc) .fpgold .gn.xs{font-size:1.25rem}
+@media (max-width:640px){:is(#gfish,.gfc) .fpdash{grid-template-columns:1fr}:is(#gfish,.gfc) .fpdash .fpgold{width:auto}}
 @media (max-width:640px){.fptabs{grid-template-columns:repeat(3,1fr)}.fptabs .fptab{padding:9px 4px;font-size:.84rem}.fpdash{grid-template-columns:1fr;gap:12px;padding:12px}.fpdash .fpgold{justify-self:stretch;width:auto;justify-content:center}}
 .fpshop{display:grid;grid-template-columns:1fr 1fr;gap:0 28px}
 .fpshop .fpgh{grid-column:1/-1;margin:14px 0 2px;padding:0 0 6px;border-bottom:1px solid var(--line);font-size:.72rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--ga,#2DD4BF)}
@@ -1391,19 +1391,19 @@ nav .logo img{animation-duration:6.5s}
 @media (max-width:760px){.fpshop{grid-template-columns:1fr}}
 /* ---- two columns on big screens ---- */
 @media (min-width:1000px){
-#gfish .fpcols{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:22px;align-items:stretch}
-#gfish .fpcl{min-width:0}
-#gfish .fparena{height:clamp(250px,calc(100vh - 440px),380px)}
-#gfish .fpcr{position:relative;min-width:0;min-height:420px}
-#gfish .fpci{position:absolute;inset:0;display:flex;flex-direction:column;min-height:0}
-#gfish .fpci .fpstat{flex:0 0 auto;grid-template-columns:repeat(auto-fit,minmax(82px,1fr));gap:6px;margin:0 0 10px}
-#gfish .fpci .fpstat .fpchip{padding:5px 4px;font-size:.58rem}
-#gfish .fpci .fpstat .fpchip b{font-size:.88rem}
-#gfish .fpci .fptabs{flex:0 0 auto;margin:0 0 8px;gap:6px;grid-template-columns:repeat(3,1fr)}
-#gfish .fpci .fptabs .fptab{padding:7px 4px;font-size:.82rem}
-#gfish .fpci .fppanel{flex:1 1 auto;min-height:0;overflow-y:auto;padding-right:6px;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.25) transparent}
-#gfish .fpshop{grid-template-columns:1fr}
-#gfish .fpdash{margin:10px 0 0}
+:is(#gfish,.gfc) .fpcols{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:22px;align-items:stretch}
+:is(#gfish,.gfc) .fpcl{min-width:0}
+:is(#gfish,.gfc) .fparena{height:clamp(250px,calc(100vh - 440px),380px)}
+:is(#gfish,.gfc) .fpcr{position:relative;min-width:0;min-height:420px}
+:is(#gfish,.gfc) .fpci{position:absolute;inset:0;display:flex;flex-direction:column;min-height:0}
+:is(#gfish,.gfc) .fpci .fpstat{flex:0 0 auto;grid-template-columns:repeat(auto-fit,minmax(82px,1fr));gap:6px;margin:0 0 10px}
+:is(#gfish,.gfc) .fpci .fpstat .fpchip{padding:5px 4px;font-size:.58rem}
+:is(#gfish,.gfc) .fpci .fpstat .fpchip b{font-size:.88rem}
+:is(#gfish,.gfc) .fpci .fptabs{flex:0 0 auto;margin:0 0 8px;gap:6px;grid-template-columns:repeat(3,1fr)}
+:is(#gfish,.gfc) .fpci .fptabs .fptab{padding:7px 4px;font-size:.82rem}
+:is(#gfish,.gfc) .fpci .fppanel{flex:1 1 auto;min-height:0;overflow-y:auto;padding-right:6px;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.25) transparent}
+:is(#gfish,.gfc) .fpshop{grid-template-columns:1fr}
+:is(#gfish,.gfc) .fpdash{margin:10px 0 0}
 }
 .fpunl{position:absolute;inset:0;z-index:12;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 45%,rgba(8,12,28,.55),rgba(8,12,28,.82));animation:fpunin .45s ease-out both}
 .fpunc{max-width:min(86%,380px);text-align:center;padding:20px 24px 18px;border-radius:18px;background:linear-gradient(180deg,rgba(26,36,66,.96),rgba(14,20,42,.96));border:1px solid rgba(240,185,75,.55);box-shadow:0 0 40px rgba(240,185,75,.22),0 14px 40px rgba(0,0,0,.5)}
@@ -1541,7 +1541,7 @@ nav .logo img{animation-duration:6.5s}
 .fprow.mx .fpl b small{color:#1A1305;background:linear-gradient(180deg,#FFE9A0,#F0B94B);padding:2px 7px;border-radius:99px;margin-left:8px;box-shadow:0 0 10px rgba(240,185,75,.45)}
 .fprow.mx .fpl span{color:rgba(255,226,150,.72)}
 .fprow.mx{background:linear-gradient(90deg,rgba(240,185,75,.10),rgba(240,185,75,0) 70%);box-shadow:inset 3px 0 0 #F0B94B;padding-left:10px;margin-left:-10px;border-radius:6px}
-#gfish .fprow.mx .fpbuy,#gfish .fprow.mx .fpbuy:disabled{opacity:1;color:#FFD76A;border-color:rgba(240,185,75,.75);background:rgba(240,185,75,.14);box-shadow:none;cursor:default}
+:is(#gfish,.gfc) .fprow.mx .fpbuy,:is(#gfish,.gfc) .fprow.mx .fpbuy:disabled{opacity:1;color:#FFD76A;border-color:rgba(240,185,75,.75);background:rgba(240,185,75,.14);box-shadow:none;cursor:default}
 .fpreset{display:block;margin:10px auto 0;font:inherit;font-size:.74rem;color:var(--muted);background:none;border:0;text-decoration:underline;cursor:pointer}
 .fpgrid{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
 .fpcell{position:relative;display:flex;align-items:center;justify-content:center;width:52px;height:52px;border-radius:10px;border:1.5px solid var(--line);background:rgba(255,255,255,.03)}
@@ -6238,7 +6238,7 @@ var CHSTAT = {subs: 69500, goal: 100000, videos: 1292, checked: "16 Oct 2026"};
     function copy(src){
       var c = src.cloneNode(true);
       c.removeAttribute("id"); c.removeAttribute("aria-label"); [].forEach.call(c.querySelectorAll("[id]"), function(x){ x.removeAttribute("id"); });
-      c.setAttribute("inert", ""); c.setAttribute("aria-hidden", "true"); c.classList.remove("act"); c.classList.add("gclone");
+      c.setAttribute("inert", ""); c.setAttribute("aria-hidden", "true"); c.classList.remove("act"); c.classList.add("gclone"); if(src.id === "gfish") c.classList.add("gfc");
       var a = src.querySelectorAll("canvas"), b = c.querySelectorAll("canvas");
       [].forEach.call(a, function(cv, i){ try{ b[i].width = cv.width; b[i].height = cv.height; b[i].getContext("2d").drawImage(cv, 0, 0); }catch(e){} });
       return c;
