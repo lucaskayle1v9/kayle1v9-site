@@ -5274,7 +5274,7 @@ var CHSTAT = {subs: 69500, goal: 100000, videos: 1292, checked: "16 Oct 2026"};
     c.appendChild(svg); c.appendChild(leg); ext.appendChild(c);
   }
   function render(d){
-    if(!d || !Array.isArray(d.players) || !d.players.length) return;
+    if(!d || !Array.isArray(d.players) || d.players.length < 3) return;
     D = d; filters(); rows(); ext.textContent = ""; items(); trend();
     note.textContent = (d.updated ? "Updated " + d.updated + ". " : "") + "Data from the official Riot Games API, refreshed every night. Win rate and games count ranked solo games on Kayle in the recent sample. kayle1v9.com isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing Riot Games properties. Riot Games, and all associated properties are trademarks or registered trademarks of Riot Games, Inc.";
     sec.hidden = false;

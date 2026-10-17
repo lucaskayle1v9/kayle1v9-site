@@ -11,11 +11,11 @@ REGIONS = {  # label: (platform host, regional host, op.gg slug)
     "KR": ("kr", "asia", "kr"),
     "NA": ("na1", "americas", "na"),
 }
-MAX_PLAYERS = int(os.environ.get("LB_MAX_PLAYERS", "500"))  # best players per region that get looked at
-MIN_POINTS = int(os.environ.get("LB_MIN_POINTS", "20000"))  # Kayle mastery points needed to be checked closely
-RECENT_DAYS = int(os.environ.get("LB_RECENT_DAYS", "14"))   # Kayle must have been played within this many days
-MATCHES = int(os.environ.get("LB_MATCHES", "20"))           # recent ranked games checked per player
-MIN_GAMES = int(os.environ.get("LB_MIN_GAMES", "3"))        # Kayle games needed to appear
+MAX_PLAYERS = int(os.environ.get("LB_MAX_PLAYERS", "1500"))  # best players per region that get looked at
+MIN_POINTS = int(os.environ.get("LB_MIN_POINTS", "10000"))  # Kayle mastery points needed to be checked closely
+RECENT_DAYS = int(os.environ.get("LB_RECENT_DAYS", "21"))   # Kayle must have been played within this many days
+MATCHES = int(os.environ.get("LB_MATCHES", "30"))           # recent ranked games checked per player
+MIN_GAMES = int(os.environ.get("LB_MIN_GAMES", "2"))        # Kayle games needed to appear
 UA = "Mozilla/5.0 (compatible; kayle1v9-leaderboard/1.0; +https://kayle1v9.com)"
 LIST_SIZE = 25                                              # players kept in the file
 HERE = os.path.dirname(os.path.abspath(__file__))
