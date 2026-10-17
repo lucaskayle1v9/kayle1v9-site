@@ -1,0 +1,54 @@
+{
+ "updated": "2026-10-17",
+ "players": [
+  {
+   "n": "죽기 아니면 살기#0305",
+   "r": "KR",
+   "t": "Challenger",
+   "lp": 2284,
+   "g": 13,
+   "w": 53.8,
+   "u": "https://www.op.gg/summoners/kr/%EC%A3%BD%EA%B8%B0%20%EC%95%84%EB%8B%88%EB%A9%B4%20%EC%82%B4%EA%B8%B0-0305",
+   "it": [
+    3115,
+    2510,
+    3089
+   ]
+  }
+ ],
+ "items": [
+  {
+   "id": 3115,
+   "n": "Nashor's Tooth",
+   "p": 100
+  },
+  {
+   "id": 2510,
+   "n": "Dusk and Dawn",
+   "p": 100
+  },
+  {
+   "id": 3089,
+   "n": "Rabadon's Deathcap",
+   "p": 31
+  },
+  {
+   "id": 3135,
+   "n": "Void Staff",
+   "p": 15
+  }
+ ],
+ "history": {
+  "dates": [
+   "2026-10-17"
+  ],
+  "series": [
+   {
+    "n": "죽기 아니면 살기#0305",
+    "lp": [
+     2284
+    ]
+   }
+  ]
+ }
+}
