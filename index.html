@@ -974,6 +974,8 @@ nav .logo img{animation-duration:6.5s}
 .lbr .wr.hi{color:var(--up);font-weight:700}
 .lbr .its{display:flex;gap:4px}
 .lbr .its img{width:26px;height:26px;border-radius:6px;border:1px solid rgba(240,185,75,.4)}
+.lbme{display:inline-block;margin-left:8px;padding:2px 8px;border-radius:999px;background:var(--gold);color:#0F1A33;font-size:.66rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;vertical-align:1px}
+.lbr .pl a{color:inherit;text-decoration:none}
 .lbmore{display:block;margin:14px auto 0;font:inherit;font-weight:700;font-size:.88rem;padding:9px 20px;border-radius:999px;border:2px solid var(--gold);background:transparent;color:var(--text);cursor:pointer}
 .lbmore:hover{background:var(--gold);color:#0F1A33}
 .lbx{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin-top:22px}
@@ -5220,7 +5222,8 @@ var CHSTAT = {subs: 69500, goal: 100000, videos: 1292, checked: "16 Oct 2026"};
       r.appendChild(el("span", "rk", i + 1));
       var nm = url ? el("a", "pl", p.n) : el("span", "pl", p.n);
       if(url){ nm.href = url; nm.target = "_blank"; nm.rel = "noopener"; nm.title = "Open " + p.n + " on the web"; }
-      r.appendChild(nm);
+      if(p.me){ var wrap = el("span", "pl"); nm.classList.remove("pl"); nm.style.color = "inherit"; wrap.appendChild(nm); wrap.appendChild(el("span", "lbme", "Creator")); r.appendChild(wrap); }
+      else r.appendChild(nm);
       r.appendChild(el("span", "tg", p.r));
       var tr = el("span", "tr", p.t || ""); if(p.lp != null){ var sm = el("small", "", p.lp + " LP"); tr.appendChild(sm); } r.appendChild(tr);
       r.appendChild(el("span", "gm", p.g != null ? p.g : ""));
@@ -5276,7 +5279,7 @@ var CHSTAT = {subs: 69500, goal: 100000, videos: 1292, checked: "16 Oct 2026"};
   function render(d){
     if(!d || !Array.isArray(d.players) || d.players.length < 3) return;
     D = d; filters(); rows(); ext.textContent = ""; items(); trend();
-    note.textContent = (d.updated ? "Updated " + d.updated + ". " : "") + "Data from the official Riot Games API, refreshed every night. Win rate and games count ranked solo games on Kayle in the recent sample. kayle1v9.com isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing Riot Games properties. Riot Games, and all associated properties are trademarks or registered trademarks of Riot Games, Inc.";
+    note.textContent = (d.updated ? "Updated " + d.updated + ". " : "") + "Data from the official Riot Games API, refreshed every night. A few players are added by hand. Win rate and games count ranked solo games on Kayle in the recent sample. kayle1v9.com isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing Riot Games properties. Riot Games, and all associated properties are trademarks or registered trademarks of Riot Games, Inc.";
     sec.hidden = false;
     var nv = document.getElementById("tnav"); if(nv){ var la = nv.querySelectorAll("a"); for(var i = 0; i < la.length; i++) if(la[i].getAttribute("href") == "#leaderboard") la[i].hidden = false; }
   }
