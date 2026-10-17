@@ -3234,12 +3234,12 @@ document.querySelectorAll(".tw").forEach(function(tw, i){ setTimeout(function(){
       spells:"Flash + Teleport", src:"OP.GG", url:"https://op.gg/lol/champions/kayle/build/top?region=kr&tier=emerald_plus"}
   };
   // === LIVE DATA START (rewritten by the daily update task) ===
-  var PATCH = "16.20", PREV = "16.19", CHECKED = "17 Oct 2026";
+  var PATCH = "16.20", PREV = "16.19", CHECKED = "18 Oct 2026";
   // Top lane win / pick / ban rate per rank filter: [win, pick, ban] on PATCH, then [win, pick, ban] on PREV.
   var TD = {
-    eu:{emerald:[53.26,2.89,1.97, 53.43,3.1,2.18], diamond:[53.69,2.63,1.74, 54.42,2.85,2.07], master:[52.8,2.3,1.23, 54.99,2.33,1.54], all:[50.97,3.03,1.77, 51.23,3.17,1.83]},
+    eu:{emerald:[53.25,2.89,1.97, 53.43,3.1,2.18], diamond:[53.26,2.58,1.73, 54.42,2.85,2.07], master:[52.93,2.21,1.23, 54.99,2.33,1.54], all:[51.07,3.03,1.78, 51.23,3.17,1.83]},
     china:{emerald:[51.7,1.13,0.29, 51.89,1.11,0.28], diamond:[52.14,0.95,0.24, 52.48,0.94,0.24], master:[51.92,0.8,0.2, 52.21,0.75,0.21], all:[50.58,1.67,0.42, 50.67,1.62,0.42]},
-    korea:{emerald:[51.05,0.94,0.15, 49.42,0.96,0.14], diamond:[51.02,0.95,0.19, 49.11,0.86,0.16], master:[50.76,1.11,0.31, 50.32,0.92,0.23], all:[50.26,1.08,0.18, 50.26,1.13,0.19]}
+    korea:{emerald:[50.32,0.93,0.15, 49.42,0.96,0.14], diamond:[51.02,0.95,0.19, 49.11,0.86,0.16], master:[50.76,1.11,0.31, 50.32,0.92,0.23], all:[50.26,1.08,0.18, 50.26,1.13,0.19]}
   };
   // === LIVE DATA END ===
   // === LIVE DATA MID START (rewritten by the daily update task) ===
@@ -3405,7 +3405,7 @@ var TDM = {
     eu:{patch:"16.20", chk:"16 Oct 2026",
       common:{key:8005, main:[9101, 9104, 8299], tree:8200, sec:[8234, 8236], shards:[5005, 5008, 5001]},
       best:{key:8005, main:[9111, 9104, 8014], tree:8200, sec:[8234, 8236], shards:[5008, 5008, 5013]}},
-    china:{patch:"16.20", chk:"16 Oct 2026",
+    china:{patch:"16.20", chk:"18 Oct 2026",
       common:{key:8008, main:[9101, 9104, 8299], tree:8200, sec:[8234, 8236], shards:[5005, 5008, 5001], win:48.43, games:3407, pick:23.79},
       best:{key:8008, main:[9101, 9104, 8299], tree:8400, sec:[8242, 8473], shards:[5005, 5008, 5011], win:55.79, games:328, pick:2.29}},
     korea:{patch:"16.20", chk:"16 Oct 2026",
@@ -3545,7 +3545,7 @@ var TDM = {
     eu:{patch:"16.20", chk:"16 Oct 2026",
       start:[["1083_2003", 59.07, 1.88, 215], ["1120_2003", 56.02, 1.67, 191], ["1056_2003_2003", 54.68, 2.9, 331], ["1055_2003", 53.94, 49.42, 5649]],
       boots:[[3008, 56.25, 1.26, 144], [3047, 56.11, 1.57, 180], [3009, 54.17, 81.43, 9308], [3006, 50.41, 12.95, 1480]]},
-    china:{patch:"16.20", chk:"16 Oct 2026",
+    china:{patch:"16.20", chk:"18 Oct 2026",
       start:[["1083_2003", 56.88, 1.57, null], ["1055_2003", 53.56, 40.14, null], ["1086_2003_2003", 50.33, 40.35, null], ["1054_2003", 50.19, 11.41, null]],
       boots:[[3009, 52.77, 51.79, null], [3047, 52.17, 9.79, null], [3006, 51.01, 36.13, null], [3111, 50.0, 4.32, null]]},
     korea:{patch:"16.20", chk:"16 Oct 2026",
@@ -3572,7 +3572,7 @@ var TDM = {
       core:{ids:[3115,2510,3089], win:62.75, pick:48.18, games:2639},
       fifth:[[4645, 66.49, null, 922], [3135, 60.2, null, 397], [3116, 64.5, null, 200]],
       sixth:[[3135, 66.36, null, 217], [3157, 64.38, null, 160], [4645, 69.57, null, 92]]},
-    china:{patch:"16.20", chk:"16 Oct 2026",
+    china:{patch:"16.20", chk:"18 Oct 2026",
       core:{ids:[3115,2510,3089], win:64.92, pick:16.71, games:null},
       fifth:[[3157, 64.06, 11.76, null], [4645, 63.3, 10.02, null], [3135, 70.45, 8.09, null]],
       sixth:[[3157, 53.13, 10.53, null], [4645, 72.0, 8.22, null], [3135, 55.0, 6.58, null]]},
@@ -3601,7 +3601,7 @@ var TDM = {
   // Per server: summoner spell pairs, the 4 best by win rate among options with enough games (Emerald+). Rows: ["id_id" (smaller id first), win, pick, games]. games may be null (China).
   var SPLIVE = {
     eu:{patch:"16.20", chk:"16 Oct 2026", rows:[["4_6", 54.32, 17.59, 2062], ["4_14", 53.52, 6.54, 766], ["4_12", 52.87, 60.36, 7074], ["3_4", 52.22, 14.04, 1645]]},
-    china:{patch:"16.20", chk:"17 Oct 2026", rows:[["4_14", 53.48, 16.22, null], ["3_4", 52.29, 40.48, null], ["4_6", 52.09, 10.62, null], ["4_12", 49.6, 29.19, null]]},
+    china:{patch:"16.20", chk:"18 Oct 2026", rows:[["4_14", 53.48, 16.22, null], ["3_4", 52.29, 40.48, null], ["4_6", 52.09, 10.62, null], ["4_12", 49.6, 29.19, null]]},
     korea:{patch:"16.20", chk:"16 Oct 2026", rows:[["3_4", 55.15, 20.62, 660], ["4_6", 52.84, 9.34, 299], ["4_12", 52.05, 61.7, 1975], ["4_14", 47.59, 5.84, 187]]}
   };
   // === SPELLS LIVE END ===
