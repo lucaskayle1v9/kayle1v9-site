@@ -193,6 +193,7 @@ footer a{margin:0 10px}
 .mtrack::-webkit-scrollbar{display:none}
 .mtrack:focus-visible{outline:2px solid var(--gold);outline-offset:-2px;border-radius:20px}
 .mcard{flex:0 0 min(400px,80vw);scroll-snap-align:start;position:relative;display:flex;flex-direction:column;border-radius:20px;overflow:hidden;background:linear-gradient(180deg,#18274D,#111C38);border:1px solid rgba(240,185,75,.3);text-decoration:none;color:var(--text);box-shadow:var(--drop);transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .55s cubic-bezier(.2,.8,.2,1),border-color .3s,box-shadow .3s}
+.mcard:last-child{scroll-snap-align:end}
 .mcard:hover,.mcard:focus-visible{border-color:var(--gold);box-shadow:var(--drop),0 0 0 1px rgba(240,185,75,.5),0 18px 44px -14px rgba(240,185,75,.45)}
 .mcard:focus-visible{outline:2px solid #fff;outline-offset:2px}
 .mcard.tilting{transition:transform .12s linear,border-color .3s,box-shadow .3s}
@@ -4113,7 +4114,7 @@ var CHSTAT = {subs: 69500, goal: 100000, videos: 1292, checked: "16 Oct 2026"};
   var car = document.getElementById("mcar"); if(!car) return;
   var tr = car.querySelector(".mtrack"), cards = [].slice.call(tr.children), prev = car.querySelector(".prev"), next = car.querySelector(".next"), dots = document.getElementById("mdots"), cur = 0, tick = false;
   function pos(i){ return cards[i].offsetLeft - cards[0].offsetLeft; }
-  function go(i){ i = Math.max(0, Math.min(cards.length - 1, i)); tr.scrollTo({left: pos(i), behavior: still ? "auto" : "smooth"}); }
+  function go(i){ i = Math.max(0, Math.min(cards.length - 1, i)); tr.scrollTo({left: Math.min(pos(i), tr.scrollWidth - tr.clientWidth), behavior: still ? "auto" : "smooth"}); }
   cards.forEach(function(c, i){ var d = document.createElement("button"); d.type = "button"; d.setAttribute("aria-label", "Show product " + (i + 1)); d.addEventListener("click", function(){ go(i); }); dots.appendChild(d); });
   function upd(){
     tick = false;
@@ -4129,8 +4130,8 @@ var CHSTAT = {subs: 69500, goal: 100000, videos: 1292, checked: "16 Oct 2026"};
   function sched(){ if(!tick){ tick = true; requestAnimationFrame(upd); } }
   tr.addEventListener("scroll", sched, {passive: true});
   window.addEventListener("resize", sched);
-  prev.addEventListener("click", function(){ go(cur - 1); });
-  next.addEventListener("click", function(){ go(cur + 1); });
+  prev.addEventListener("click", function(){ var x = tr.scrollLeft, t = 0; cards.forEach(function(c, i){ if(pos(i) < x - 16) t = i; }); go(t); });
+  next.addEventListener("click", function(){ var x = tr.scrollLeft, t = cards.length - 1; for(var i = cards.length - 1; i >= 0; i--){ if(pos(i) > x + 16) t = i; } go(t); });
   upd();
   /* 3D tilt with glare (mouse only) */
   if(!still && window.matchMedia("(hover:hover) and (pointer:fine)").matches){
