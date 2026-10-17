@@ -24,7 +24,7 @@ def get(host, path, params=None, tries=6):
     if params:
         url += "?" + urllib.parse.urlencode(params)
     for n in range(tries):
-        req = urllib.request.Request(url, headers={"X-Riot-Token": os.environ["RIOT_API_KEY"]})
+        req = urllib.request.Request(url, headers={"X-Riot-Token": os.environ["RIOT_API_KEY"].strip()})
         try:
             with urllib.request.urlopen(req, timeout=30) as r:
                 return json.load(r)
@@ -34,7 +34,7 @@ def get(host, path, params=None, tries=6):
             elif e.code in (404, 400):
                 return None
             elif e.code in (401, 403):
-                sys.exit("Riot API refused the key (HTTP %d). Is RIOT_API_KEY valid and not expired?" % e.code)
+                sys.exit("Riot API refused the key (HTTP %d) on %s. Is RIOT_API_KEY valid and not expired?" % (e.code, path))
             else:
                 time.sleep(3 * (n + 1))
         except Exception:
@@ -53,13 +53,19 @@ def final_items():
 
 
 def main():
+    k = os.environ.get("RIOT_API_KEY", "").strip()
+    print("key check: length %d, starts with RGAPI-: %s" % (len(k), k.startswith("RGAPI-")), flush=True)
+    if not k:
+        sys.exit("RIOT_API_KEY is empty. Add it as a repository secret named RIOT_API_KEY.")
     items_ok = final_items()
+    print("item list: %d completed items" % len(items_ok), flush=True)
     today = datetime.date.today().isoformat()
     cand = []
     for label, (plat, reg, slug) in REGIONS.items():
         pool = []
         for lg in ("challengerleagues", "grandmasterleagues", "masterleagues"):
             d = get(plat, "/lol/league/v4/%s/by-queue/RANKED_SOLO_5x5" % lg)
+            print(plat, lg, "->", "no answer" if not d else "%d entries, first keys: %s" % (len(d.get("entries", [])), sorted((d.get("entries") or [{}])[0].keys())), flush=True)
             if not d:
                 continue
             for e in d.get("entries", []):
