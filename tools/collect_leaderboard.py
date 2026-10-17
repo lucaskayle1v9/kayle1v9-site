@@ -14,6 +14,7 @@ REGIONS = {  # label: (platform host, regional host, op.gg slug)
 MAX_PLAYERS = int(os.environ.get("LB_MAX_PLAYERS", "60"))   # best players per region that get checked
 MATCHES = int(os.environ.get("LB_MATCHES", "20"))           # recent ranked games checked per player
 MIN_GAMES = int(os.environ.get("LB_MIN_GAMES", "4"))        # Kayle games needed to appear
+UA = "Mozilla/5.0 (compatible; kayle1v9-leaderboard/1.0; +https://kayle1v9.com)"
 LIST_SIZE = 25                                              # players kept in the file
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
@@ -26,7 +27,7 @@ def diagnose(host):
                     (host, "/lol/league/v4/challengerleagues/by-queue/RANKED_SOLO_5x5"),
                     ("europe", "/riot/account/v1/accounts/by-riot-id/Riot/EUW")):
         req = urllib.request.Request("https://%s.api.riotgames.com%s" % (h, path),
-                                     headers={"X-Riot-Token": os.environ["RIOT_API_KEY"].strip()})
+                                     headers={"X-Riot-Token": os.environ["RIOT_API_KEY"].strip(), "User-Agent": UA, "Accept": "application/json"})
         try:
             with urllib.request.urlopen(req, timeout=30) as r:
                 print(h, path, "->", r.status, flush=True)
@@ -42,7 +43,7 @@ def get(host, path, params=None, tries=6):
     if params:
         url += "?" + urllib.parse.urlencode(params)
     for n in range(tries):
-        req = urllib.request.Request(url, headers={"X-Riot-Token": os.environ["RIOT_API_KEY"].strip()})
+        req = urllib.request.Request(url, headers={"X-Riot-Token": os.environ["RIOT_API_KEY"].strip(), "User-Agent": UA, "Accept": "application/json"})
         try:
             with urllib.request.urlopen(req, timeout=30) as r:
                 return json.load(r)
