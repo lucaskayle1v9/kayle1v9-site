@@ -1321,15 +1321,17 @@ nav .logo img{animation-duration:6.5s}
 .fbob{position:absolute;left:-7px;top:-7px;width:14px;height:14px;border-radius:50%;background:linear-gradient(180deg,#fff 0 48%,#E5484D 48%);box-shadow:0 2px 4px rgba(0,0,0,.4);transition:opacity .25s,transform .2s}
 .fspot[data-s="idle"] .fbob{opacity:0;transform:scale(.4)}
 .fspot[data-s="wait"] .fbob{animation:fpfloat 2.6s ease-in-out infinite}
-.fspot[data-s="bite"] .fbob{animation:fpdip .38s ease-in-out infinite}
+.fspot[data-s="bite"] .fbob,.fspot[data-s="boss"] .fbob{animation:fpdip .38s ease-in-out infinite}
 @keyframes fpfloat{0%,100%{transform:translateY(0)}50%{transform:translateY(2.5px)}}
 @keyframes fpdip{0%,100%{transform:translateY(0)}50%{transform:translateY(9px)}}
 .fspot::before,.fspot::after{content:"";position:absolute;left:-16px;top:3px;width:32px;height:10px;border-radius:50%;border:1.5px solid rgba(255,255,255,.55);opacity:0}
-.fspot[data-s="bite"]::before{animation:fpring .8s ease-out infinite}
-.fspot[data-s="bite"]::after{animation:fpring .8s ease-out .4s infinite}
+.fspot[data-s="bite"]::before,.fspot[data-s="boss"]::before{animation:fpring .8s ease-out infinite}
+.fspot[data-s="bite"]::after,.fspot[data-s="boss"]::after{animation:fpring .8s ease-out .4s infinite}
 @keyframes fpring{0%{opacity:.9;transform:scale(.3)}100%{opacity:0;transform:scale(1.6)}}
 .fbub{position:absolute;left:-12px;top:-34px;width:24px;height:24px;line-height:24px;text-align:center;border-radius:50%;background:#FFD98A;color:#3A2400;font-size:.9rem;font-weight:900;opacity:0;transform:scale(.4);transition:opacity .15s,transform .2s cubic-bezier(.34,1.56,.64,1)}
-.fspot[data-s="bite"] .fbub{opacity:1;transform:scale(1)}
+.fspot[data-s="bite"] .fbub,.fspot[data-s="boss"] .fbub{opacity:1;transform:scale(1)}
+.fspot[data-s="boss"] .fbub{background:#FF4D7D;color:#fff}
+.fspot[data-s="boss"]::before,.fspot[data-s="boss"]::after{border-color:#FF4D7D}
 .fcatch{position:absolute;z-index:6;transform:translate(-50%,0);display:flex;align-items:center;gap:6px;padding:4px 10px 4px 5px;border-radius:999px;background:rgba(10,18,38,.88);border:1px solid rgba(45,212,191,.6);font-weight:800;font-size:.8rem;color:#E9FFFB;white-space:nowrap;animation:fpup 1.2s ease-out forwards;pointer-events:none}
 @keyframes fpup{0%{opacity:0;transform:translate(-50%,16px) scale(.7)}18%{opacity:1;transform:translate(-50%,-4px) scale(1)}100%{opacity:0;transform:translate(-50%,-52px)}}
 .fi{display:inline-flex;align-items:center;justify-content:center;flex:none}
@@ -1374,6 +1376,12 @@ nav .logo img{animation-duration:6.5s}
 .fpstat .fpchip b{font-size:.98rem;letter-spacing:0;text-transform:none;font-weight:800}
 .fptabs{display:grid;grid-template-columns:repeat(auto-fit,minmax(92px,1fr));gap:8px;margin:0 0 12px;border-top:0;padding-top:0}
 .fptabs .fptab{padding:9px 8px;font-size:.88rem}
+#gfish .fpdash{grid-template-columns:minmax(0,1fr) 250px}
+#gfish .fpdash .fpgold{min-height:74px;width:250px;max-width:none;box-sizing:border-box;padding-left:16px;padding-right:16px}
+#gfish .fpdash .fpmsg{min-height:4.6em}
+#gfish .fpgold .gn.sm{font-size:1.6rem}
+#gfish .fpgold .gn.xs{font-size:1.25rem}
+@media (max-width:640px){#gfish .fpdash{grid-template-columns:1fr}#gfish .fpdash .fpgold{width:auto}}
 @media (max-width:640px){.fptabs{grid-template-columns:repeat(3,1fr)}.fptabs .fptab{padding:9px 4px;font-size:.84rem}.fpdash{grid-template-columns:1fr;gap:12px;padding:12px}.fpdash .fpgold{justify-self:stretch;width:auto;justify-content:center}}
 .fpshop{display:grid;grid-template-columns:1fr 1fr;gap:0 28px}
 .fpshop .fpgh{grid-column:1/-1;margin:14px 0 2px;padding:0 0 6px;border-bottom:1px solid var(--line);font-size:.72rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--ga,#2DD4BF)}
@@ -1411,6 +1419,33 @@ nav .logo img{animation-duration:6.5s}
 .fpadv{margin-bottom:10px}
 @media (max-width:600px){.fpunc{padding:14px 16px 12px}.fpunc ul,.fpunc p{display:none}.fpunc h4{font-size:1.1rem}.fpunc ul{margin-bottom:10px}}
 @media (prefers-reduced-motion:reduce){.fpuns{animation:none}.fpunl{animation:none}}
+.fpbtn.boss{background:#FF4D7D;border-color:#FF4D7D;color:#fff;animation:fppulse .35s ease-in-out infinite alternate}
+.fpboss{position:absolute;inset:0;z-index:21;display:none;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:14px 18px;border-radius:14px;background:radial-gradient(circle at 50% 20%,color-mix(in srgb,var(--bc,#FF4D7D) 30%,transparent),rgba(6,10,24,0) 70%),#070b1a;border:1.5px solid var(--bc,#FF4D7D);box-shadow:0 0 30px color-mix(in srgb,var(--bc,#FF4D7D) 40%,transparent);overflow:hidden;touch-action:none;user-select:none;-webkit-user-select:none}
+.fpboss.on{display:flex}
+.fpboss h4{margin:0;font-size:.95rem;letter-spacing:.16em;text-transform:uppercase;color:var(--bc,#FF9DBA);text-shadow:0 0 12px var(--bc,#FF4D7D)}
+.fpbl{position:relative;width:min(100%,640px);height:58px;border-radius:12px;background:rgba(4,8,18,.95);border:1.5px solid rgba(255,255,255,.14);overflow:hidden}
+.fpbl::before{content:"";position:absolute;left:0;right:0;top:50%;height:1px;background:repeating-linear-gradient(90deg,rgba(255,255,255,.18) 0 6px,transparent 6px 14px)}
+.fpbz{position:absolute;top:4px;bottom:4px;border-radius:9px;background:rgba(45,212,191,.22);border:2px solid rgba(45,212,191,.8);box-shadow:0 0 14px rgba(45,212,191,.35)}
+.fpbl.in .fpbz{background:rgba(111,214,123,.38);border-color:#6FD67B;box-shadow:0 0 20px rgba(111,214,123,.7)}
+.fpbf{position:absolute;top:50%;width:40px;height:22px;margin-top:-11px;filter:drop-shadow(0 2px 6px rgba(0,0,0,.6))}
+.fpbf svg{display:block;width:100%;height:100%}
+.fpbp{width:min(100%,640px);height:12px;border-radius:99px;background:rgba(255,255,255,.1);overflow:hidden}
+.fpbp i{display:block;height:100%;width:30%;border-radius:99px;background:linear-gradient(90deg,var(--bc,#FF4D7D),#fff)}
+.fpbi{max-width:520px;text-align:center;font-size:.82rem;line-height:1.45;color:var(--muted)}
+.fpbtr{display:flex;align-items:center;gap:10px;padding:8px 12px;border-radius:12px;background:rgba(255,255,255,.06);border:1px solid var(--line);text-align:left}
+.fpbtr b{display:block;font-size:.92rem}.fpbtr small{display:block;font-size:.76rem;color:var(--muted)}
+.fpmwt{flex:0 0 60px;height:84px;display:flex;align-items:center;justify-content:center;border-radius:9px;border:1.5px solid rgba(240,185,75,.7);background:linear-gradient(160deg,rgba(255,226,150,.22),rgba(240,185,75,.06));box-shadow:inset 0 0 12px rgba(240,185,75,.18);position:relative}
+.fpmwt::before{content:"\2605";position:absolute;top:2px;right:5px;font-size:.62rem;color:#FFD76A}
+.fpmwt.win{border-color:#FFD76A;box-shadow:0 0 20px rgba(255,215,106,.7),inset 0 0 14px rgba(240,185,75,.3)}
+.fpboss .fpmyres{width:min(100%,560px);display:flex;flex-direction:column;align-items:center;gap:8px}
+.fpbreel{width:100%;max-width:520px;height:96px;border:1px solid rgba(240,185,75,.4)}
+.fpbreel .fpmystrip{align-items:center}
+.fpmwr{border-color:rgba(240,185,75,.55);background:linear-gradient(135deg,rgba(240,185,75,.16),rgba(255,255,255,.04))}
+.fpmwr .fpmwt{flex:none;width:68px;height:68px}
+.fpmwr .mwl{display:block;color:#FFD76A;font-weight:800;letter-spacing:.14em;text-transform:uppercase;font-size:.64rem}
+.fpcell.mw{border-color:rgba(240,185,75,.4);border-style:dashed}
+.fpcell.mw.own{border-style:solid;border-color:#F0B94B;background:linear-gradient(160deg,rgba(255,226,150,.2),rgba(240,185,75,.06));box-shadow:0 0 12px rgba(240,185,75,.4)}
+.fpcell.mw.own::before{content:"\2605";position:absolute;top:1px;right:4px;font-size:.62rem;color:#FFD76A}
 /* ---- info tip ---- */
 .fpact{display:flex;align-items:center;gap:8px;flex:none}
 .fpmaxb{flex:none;font:inherit;font-weight:800;font-size:.72rem;letter-spacing:.02em;padding:6px 10px;border-radius:99px;border:1.5px solid rgba(240,185,75,.7);background:rgba(240,185,75,.14);color:#FFD76A;cursor:pointer;white-space:nowrap}
@@ -1446,6 +1481,9 @@ nav .logo img{animation-duration:6.5s}
 .fpaur{position:absolute;inset:-10% -20%;opacity:var(--au,0);transition:opacity 2.5s;filter:blur(9px);mix-blend-mode:screen;background:linear-gradient(100deg,transparent 8%,rgba(90,255,190,.5) 28%,rgba(130,120,255,.45) 50%,rgba(120,220,255,.4) 70%,transparent 92%);animation:fpaur 16s ease-in-out infinite alternate}
 .fparena[data-st="3"] .fpaur{background:linear-gradient(100deg,transparent 8%,rgba(255,200,90,.5) 26%,rgba(255,120,200,.45) 50%,rgba(150,120,255,.5) 72%,transparent 92%)}
 @keyframes fpaur{from{transform:translateX(-7%) skewX(-9deg)}to{transform:translateX(7%) skewX(9deg)}}
+.fpstchip .pr{color:#F0B94B}
+.fppr .sw{background:radial-gradient(circle at 50% 40%,#FFE08A,#F0B94B 45%,#8a5a10);display:flex;align-items:center;justify-content:center;font-size:2rem;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.45)}
+.fppr.nxt{box-shadow:0 0 22px rgba(240,185,75,.25)}
 .fpstchip{position:absolute;top:8px;right:10px;z-index:6;max-width:70%;padding:3px 10px;border-radius:99px;background:rgba(6,12,26,.5);border:1px solid rgba(255,255,255,.26);color:#fff;font-size:.66rem;font-weight:800;letter-spacing:.09em;text-transform:uppercase;pointer-events:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;backdrop-filter:blur(2px)}
 @media (max-width:520px){.fpstchip .nm{display:none}}
 .fparena[data-st="1"] .fpdock{background:linear-gradient(180deg,#E6F1F8,#9FB8CC)}
@@ -2661,6 +2699,9 @@ if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches){
         } else if(kind === "thunder"){
           whoosh(t, 1.6, 900, 70, 0.22); tone(55, t, 1.5, "sine", 0.3, 28); tone(41, t + 0.1, 1.3, "sine", 0.22, 24);
           for(i = 0; i < 6; i++){ whoosh(t + 0.05 + i * 0.07, 0.1, 5000, 900, 0.06); }
+        } else if(kind === "boss"){
+          tone(98, t, 0.6, "sawtooth", 0.07, 130); tone(147, t + 0.05, 0.55, "sawtooth", 0.05, 196); tone(55, t, 0.7, "sine", 0.22, 40);
+          whoosh(t, 0.5, 300, 2400, 0.14); chime(t + 0.3, 880, 0.5, 0.07); chime(t + 0.42, 1175, 0.6, 0.07);
         } else if(kind === "stagedone"){
           [659.25, 830.6, 987.8].forEach(function(f, k){ chime(t + k * 0.13, f, 0.8, 0.08); });                // soft rising "ding ding ding"
           whoosh(t, 0.5, 700, 4200, 0.06);
@@ -5292,7 +5333,7 @@ var CHSTAT = {subs: 69500, goal: 100000, videos: 1292, checked: "16 Oct 2026"};
     var RAINP = [{k:"pearl", n:"Rain Pearl", v:80, c:"#7CC7FF", g:"pearl", r:1, sp:"rain"}, {k:"cmp", n:"Drowned Compass", v:95, c:"#C9A25A", g:"compass", r:1, sp:"rain"}];
     var STORMP = [{k:"scale", n:"Thunder Scale", v:120, c:"#7DF59A", g:"scale", r:1, sp:"storm"}, {k:"core", n:"Storm Core", v:145, c:"#9D8CFF", g:"core", r:1, sp:"storm"}];
     /* ---- stages: placeholder numbers, to be tuned ---- */
-    var STM = [1, 5, 25, 125], STCOST = [0, 15000, 70000, 350000];
+    var STM = [1, 5, 25, 125], SCM = [1, 60, 350, 22000], STCOST = [0, 30000, 3000000, 120000000];
     function I(id, n, v, r){ var o = {k: "i" + id, n: n, v: v, id: id}; if(r) o.r = 1; return o; }
     function Gj(k, n, v, c, g){ return {k: k, n: n, v: v, c: c, g: g}; }
     function Gx(k, n, v, c, g, sp){ var o = {k: k, n: n, v: v, c: c, g: g, r: 1}; if(sp) o.sp = sp; return o; }
@@ -5363,6 +5404,14 @@ var CHSTAT = {subs: 69500, goal: 100000, videos: 1292, checked: "16 Oct 2026"};
       return p;
     });
     var ALLT = []; STP.forEach(function(p){ ALLT = ALLT.concat(p.trea); });
+    // Ornn's Masterwork items: upgraded Legendary items that only boss fish drop. Much stronger than the normal treasures.
+    var MWD = [
+      [[3115, {spd: .29}], [3087, {chain: .14}], [3116, {win: .7, zone: .01}], [3100, {val: .29, spd: .12}], [3135, {luck: .06}]],
+      [[3124, {spd: .33}], [3165, {val: .33}], [3102, {win: .6, zone: .01}], [3139, {win: .5, spd: .14}], [2510, {luck: .05, spd: .14}]],
+      [[3089, {val: .52}], [4645, {val: .39}], [3091, {win: .5, chain: .07, zone: .01}], [3302, {luck: .07}], [3072, {spd: .18, val: .16}]],
+      [[3031, {val: .72}], [3078, {spd: .42}], [3003, {win: 1.2, zone: .01}], [6657, {luck: .08, val: .29}], [3084, {spd: .36, chain: .13}]]
+    ], MWP = [], MWALL = [];
+    MWD.forEach(function(L, k){ var a = []; L.forEach(function(d){ var base = ALLT.filter(function(t){ return t.id === d[0]; })[0], m = {id: "m" + d[0], b: d[0], n: base.n + " (Masterwork)", fx: d[1], st: k}; a.push(m); MWALL.push(m); }); MWP.push(a); });
     var SHOPB = [
       {k: "rod", d: "+8% faster fishing", b: 30, g: 1.45, max: 15, grp: 0},
       {k: "luck", d: "+1.2% treasure chance", b: 45, g: 1.5, max: 12, grp: 0},
@@ -5384,8 +5433,9 @@ var CHSTAT = {subs: 69500, goal: 100000, videos: 1292, checked: "16 Oct 2026"};
       ["Bog Reel", "Glow Bait", "Mud Grips", "Marsh Deal", "Marsh Sense", "Swamp Bonus", "Rusty Gears", "Spare Hooks", "Wisp Radar", "Murk Lure", "Firefly Bait", "Voodoo Charm"],
       ["Starline Reel", "Cosmic Bait", "Void Grip", "Sky Contract", "Star Sight", "Nova Bonus", "Cosmic Gears", "Orbit Hooks", "Pulsar Radar", "Comet Lure", "Eclipse Bait", "Mythic Star"]
     ];
-    function shopList(i){ return SHOPB.map(function(s, j){ return {k: s.k, n: SHN[i][j], d: s.d, b: s.b * STM[i], g: s.g, max: s.max, grp: s.grp, auto: s.auto}; }); }
-    var AUTOCOST = 500;
+    function shopList(i){ return SHOPB.map(function(s, j){ return {k: s.k, n: SHN[i][j], d: s.d, b: s.b * SCM[i], g: s.g, max: s.max, grp: s.grp, auto: s.auto}; }); }
+    var AUTOCOST = 500, ABCOST = 3000, TCAP = 3, PRG = .25, PRS = .05;
+    function prTxt(n){ n = Math.min(n, 20); return "+" + Math.round(n * PRG * 100) + "% gold, +" + Math.round(n * PRS * 100) + "% speed"; }
     function fxText(fx){
       var o = [];
       if(fx.spd) o.push("+" + Math.round(fx.spd * 100) + "% speed");
@@ -5394,10 +5444,11 @@ var CHSTAT = {subs: 69500, goal: 100000, videos: 1292, checked: "16 Oct 2026"};
       if(fx.win) o.push("+" + fx.win.toFixed(1) + " s to reel in");
       if(fx.chain) o.push("+" + Math.round(fx.chain * 100) + "% bonus catch");
       if(fx.rods) o.push("+" + fx.rods + " fishing rod");
+      if(fx.zone) o.push("+" + Math.round(fx.zone * 100) + "% boss zone");
       return o.join(", ");
     }
     /* state */
-    function blank(){ return {g: 0, lg: 0, ups: [0, 1, 2, 3].map(function(){ var o = {}; SHOPB.forEach(function(x){ o[x.k] = 0; }); return o; }), auto: 0, autoOn: 1, tr: {}, disc: {}, casts: 0, catches: 0, pity: 0, skin: -1, mc: 0, ski: 0, sk: [], n: {tr: [], sk: [], st: []}, stage: 0, unlocked: 1, stn: 0, sadv: 1, smx: 0, sdone: 0, fsk: [], fi: 0, pt: 0, pf: 0, bv: 0, bn: "", og: 0, ra: 0, ts: 0}; }
+    function blank(){ return {g: 0, lg: 0, ups: [0, 1, 2, 3].map(function(){ var o = {}; SHOPB.forEach(function(x){ o[x.k] = 0; }); return o; }), auto: 0, autoOn: 1, tr: {}, disc: {}, casts: 0, catches: 0, pity: 0, skin: -1, mc: 0, ski: 0, sk: [], n: {tr: [], sk: [], st: []}, stage: 0, unlocked: 1, stn: 0, sadv: 1, smx: 0, sdone: 0, fsk: [], fi: 0, pt: 0, pf: 0, bv: 0, bn: "", og: 0, ra: 0, ts: 0, bk: [0, 0, 0, 0], bf: 0, lb: 0, mw: {}, ab: 0, abOn: 1, pr: 0}; }
     var S = blank();
     try{ var raw = JSON.parse(localStorage.getItem(KEY)); if(raw && typeof raw === "object"){ var b = blank(); Object.keys(b).forEach(function(k){ if(raw[k] != null && typeof raw[k] === typeof b[k]) b[k] = raw[k]; }); var src = Array.isArray(raw.ups) ? raw.ups : [raw.up || {}]; b.ups = blank().ups.map(function(u, i){ return Object.assign(u, (src[i] && typeof src[i] === "object") ? src[i] : {}); }); delete b.up; b.unlocked = Math.max(1, Math.min(4, b.unlocked | 0)); b.stage = Math.max(0, Math.min(b.unlocked - 1, b.stage | 0)); S = b; } }catch(e){}
     // The fishing game keeps its own skin collection. Old saves start with whatever the page had collected at that moment, then the two never sync again.
@@ -5405,6 +5456,7 @@ var CHSTAT = {subs: 69500, goal: 100000, videos: 1292, checked: "16 Oct 2026"};
     // Offline earnings: with the Auto-Fisher on, half of the usual gold rate keeps coming in while the page is closed, for up to 1 hour.
     var OFFEFF = .5, OFFCAP = 3600, offl = null;
     if(S.ts && S.auto && S.autoOn && S.ra > 0){ var away = (Date.now() - S.ts) / 1000; if(away >= 120){ var osec = Math.min(away, OFFCAP), og = Math.floor(S.ra * osec * OFFEFF); if(og > 0){ S.g += og; S.lg += og; S.og += og; offl = {away: away, og: og, capped: away > OFFCAP}; } } }
+    Object.keys(S.tr).forEach(function(k){ if(S.tr[k] > TCAP) S.tr[k] = TCAP; });
     S.ts = Date.now();
     var gCatch = 0, tAcc = 0, lastTk = 0, saveAt = 0;
     var ST = STP[S.stage];
@@ -5413,8 +5465,11 @@ var CHSTAT = {subs: 69500, goal: 100000, videos: 1292, checked: "16 Oct 2026"};
     function stats(){
       var s = {spd: 0, luck: 0, val: 0, win: 1.6, chain: 0, rods: 1, perf: .45, pay: 1.5, pity: 45, rare: 0, spec: 0, autoD: .8, myth: 0}, i;
       for(i = 0; i < 4; i++){ var u = S.ups[i]; s.spd += u.rod * .08; s.luck += u.luck * .012; s.val += u.val * .1; s.win += u.hand * .15; s.perf += u.perf * .05; s.pay += u.pay * .1; s.autoD -= u.autot * .06; s.chain += u.chain * .02; s.pity -= u.radar * 2; s.rare += u.rare * .01; s.spec += u.spec * .01; s.myth += u.myth * .0005; }
-      ALLT.forEach(function(t){ var c = S.tr[t.id] || 0; if(!c) return; var f = t.fx; s.spd += (f.spd || 0) * c; s.luck += (f.luck || 0) * c; s.val += (f.val || 0) * c; s.win += (f.win || 0) * c; s.chain += (f.chain || 0) * c; s.rods += (f.rods || 0) * c; });
-      s.spd = Math.min(s.spd, 5); s.win = Math.min(s.win, 6); s.chain = Math.min(s.chain, .75); s.perf = Math.min(s.perf, 1.2); s.pay = Math.min(s.pay, 3.5); s.pity = Math.max(s.pity, 20); s.rare = Math.min(s.rare, .15); s.spec = Math.min(s.spec, .25); s.autoD = Math.max(s.autoD, .3); s.myth = Math.min(s.myth, .01); s.rods = Math.min(3, s.rods); s.tc = Math.min(.4, .03 + s.luck);
+      ALLT.forEach(function(t){ var c = Math.min(S.tr[t.id] || 0, TCAP); if(!c) return; var f = t.fx; s.spd += (f.spd || 0) * c; s.luck += (f.luck || 0) * c; s.val += (f.val || 0) * c; s.win += (f.win || 0) * c; s.chain += (f.chain || 0) * c; s.rods += (f.rods || 0) * c; });
+      s.spd = Math.min(s.spd, 5); s.win = Math.min(s.win, 6); s.chain = Math.min(s.chain, .75); s.perf = Math.min(s.perf, 1.2); s.pay = Math.min(s.pay, 3.5); s.pity = Math.max(s.pity, 20); s.rare = Math.min(s.rare, .15); s.spec = Math.min(s.spec, .25); s.autoD = Math.max(s.autoD, .3); s.myth = Math.min(s.myth, .01); s.rods = Math.min(3, s.rods); var mw = {spd: 0, luck: 0, val: 0, win: 0, chain: 0, zone: 0};
+      MWALL.forEach(function(t){ var c = Math.min(S.mw[t.id] || 0, 3); if(!c) return; for(var k in t.fx){ if(mw[k] !== undefined) mw[k] += t.fx[k] * c; } });
+      s.spd += Math.min(mw.spd, 3); s.win += Math.min(mw.win, 5); s.chain = Math.min(s.chain + mw.chain, .9); s.val += mw.val; s.zone = Math.min(mw.zone, .12); var pl = Math.min(S.pr || 0, 20); s.spd += pl * PRS; s.val += pl * PRG;
+      s.tc = Math.min(.4 + Math.min(mw.luck, .15), .03 + s.luck + mw.luck);
       return s;
     }
     /* icons */
@@ -5480,7 +5535,7 @@ var CHSTAT = {subs: 69500, goal: 100000, videos: 1292, checked: "16 Oct 2026"};
     var fresh = {tr: [], sk: []};
     if(!S.n || typeof S.n !== "object") S.n = {tr: [], sk: []};
     S.n.tr = Array.isArray(S.n.tr) ? S.n.tr : []; S.n.sk = Array.isArray(S.n.sk) ? S.n.sk : []; S.n.st = Array.isArray(S.n.st) ? S.n.st : []; var stReady = null;
-    function updBadges(){ [["tr", S.n.tr.length], ["skins", S.n.sk.length], ["st", S.n.st.length]].forEach(function(x){ var b = tabBtns[x[0]]; if(b) b.classList.toggle("has", x[1] > 0 && tab !== x[0]); }); }
+    function updBadges(){ [["tr", S.n.tr.length], ["skins", S.n.sk.length], ["st", S.n.st.length + (S.sdone ? 1 : 0)]].forEach(function(x){ var b = tabBtns[x[0]]; if(b) b.classList.toggle("has", x[1] > 0 && tab !== x[0]); }); }
     function noteNew(kind, id){
       if((kind === "tr" && tab === "tr") || (kind === "sk" && tab === "skins")){ fresh[kind].push(id); }
       else if(S.n[kind].indexOf(id) < 0){ S.n[kind].push(id); }
@@ -5508,10 +5563,10 @@ var CHSTAT = {subs: 69500, goal: 100000, videos: 1292, checked: "16 Oct 2026"};
       var f = el("div", "fcatch"); f.style.left = (POS[i][0] * 100) + "%"; f.style.top = (POS[i][1] * SF - 18) + "px";
       f.appendChild(icon(e, 30)); f.appendChild(el("span", "", txt)); arena.appendChild(f); setTimeout(function(){ if(f.parentNode) f.parentNode.removeChild(f); }, 1300);
     }
-    function showChest(t){
+    function showChest(t, gold){
       chest.textContent = ""; chest.classList.add("on");
       var ic = icon({id: t.id, g: "gem", c: "#FFD98A"}, 64); chest.appendChild(ic);
-      chest.appendChild(el("b", "", "Treasure!")); chest.appendChild(el("span", "", t.n)); chest.appendChild(el("small", "", fxText(t.fx)));
+      chest.appendChild(el("b", "", gold ? "Already maxed" : "Treasure!")); chest.appendChild(el("span", "", t.n)); chest.appendChild(el("small", "", gold ? "You own " + TCAP + " copies, so you get +" + nf(gold) + " gold instead" : fxText(t.fx)));
       clearTimeout(chest._t); chest._t = setTimeout(function(){ chest.classList.remove("on"); }, 3600);
     }
     chest.addEventListener("click", function(){ chest.classList.remove("on"); });
@@ -5645,11 +5700,11 @@ var CHSTAT = {subs: 69500, goal: 100000, videos: 1292, checked: "16 Oct 2026"};
       var dev = el("div", "fpdev");
       dev.appendChild(el("b", "", "Test controls (dev only)"));
       [["Dawn", function(){ setPhase(.03); }], ["Day", function(){ setPhase(.28); }], ["Dusk", function(){ setPhase(.55); }], ["Night", function(){ setPhase(.75); }], ["Auto time", function(){ devPhase = null; envUpdate(); }],
-       ["Clear", function(){ setWeather("clear"); }], ["Rain", function(){ setWeather("rain"); }], ["Storm", function(){ setWeather("storm"); }], ["Auto weather", function(){ setWeather(null); }], ["Skin chest", function(){ openMythic(true); }],
+       ["Clear", function(){ setWeather("clear"); }], ["Rain", function(){ setWeather("rain"); }], ["Storm", function(){ setWeather("storm"); }], ["Auto weather", function(){ setWeather(null); }], ["Masterwork reel", function(){ if(!bf && !paused && R[0]){ R[0].s = "idle"; startBoss(0); endBoss(true); } }], ["Boss fish", function(){ var i = 0; if(bossRod() < 0 && !bf && !paused && R[i]){ spawnBoss(i); } }], ["Skin chest", function(){ openMythic(true); }],
        ["Stage 1", function(){ setStage(0); }], ["Stage 2", function(){ S.unlocked = Math.max(S.unlocked, 2); setStage(1); }], ["Stage 3", function(){ S.unlocked = Math.max(S.unlocked, 3); setStage(2); }], ["Stage 4", function(){ S.unlocked = 4; setStage(3); }],
        ["+100k gold", function(){ S.g += 100000; S.lg += 100000; save(true); render(); upd(); }], ["+10M gold", function(){ S.g += 10000000; S.lg += 10000000; save(true); render(); upd(); }],
        ["Max this stage", function(){ var U = S.ups[S.stage]; SHOPB.forEach(function(x){ U[x.k] = x.max; }); ST.trea.forEach(function(t){ if(!S.tr[t.id]){ S.tr[t.id] = 1; } }); save(true); checkStages(); render(); upd(); }],
-       ["Max everything", function(){ S.sadv = 0; S.unlocked = 4; S.sdone = 1; S.smx = 4; STP.forEach(function(p, i){ SHOPB.forEach(function(x){ S.ups[i][x.k] = x.max; }); p.trea.forEach(function(t){ if(!S.tr[t.id]) S.tr[t.id] = 1; }); }); S.n.st = []; applyStage(); save(true); render(); upd(); }]].forEach(function(d){
+       ["Max everything", function(){ S.sadv = 0; S.unlocked = 4; S.sdone = 1; S.smx = 4; STP.forEach(function(p, i){ SHOPB.forEach(function(x){ S.ups[i][x.k] = x.max; }); p.trea.forEach(function(t){ if(!S.tr[t.id]) S.tr[t.id] = 1; }); }); S.n.st = []; applyStage(); save(true); render(); upd(); updBadges(); }]].forEach(function(d){
         var b = el("button", "", d[0]); b.type = "button"; b.addEventListener("click", function(){ d[1](); }); dev.appendChild(b);
       });
       host.appendChild(dev);
@@ -5679,6 +5734,7 @@ var CHSTAT = {subs: 69500, goal: 100000, videos: 1292, checked: "16 Oct 2026"};
     }
     function myFiller(){ var pool = []; SKS.forEach(function(sk, i){ if(sk.ti >= 1) pool.push(i); }); return pool[Math.floor(Math.random() * pool.length)]; }
     function mythicChance(){ return (.012 + stats().myth) * (WX.k === "storm" ? 2 : 1) * (isNight(phase()) ? 1.5 : 1); }
+    var myTok = 0, AUTOCLOSE = 10000;
     function closeMythic(){ if(!myOpen || myBusy) return; myOpen = false; my.classList.remove("on"); setPaused(false); }
     function openMythic(force){
       if(myOpen) return; myOpen = true; myBusy = true; S.mc++; save(true);
@@ -5704,6 +5760,7 @@ var CHSTAT = {subs: 69500, goal: 100000, videos: 1292, checked: "16 Oct 2026"};
         eq.addEventListener("click", function(){ S.skin = sk.id; setSkin(); save(true); if(tab === "skins") render(); closeMythic(); say(sk.nm, "Kayle is wearing it now", "good"); });
         cl.addEventListener("click", closeMythic); myBtns.appendChild(eq); myBtns.appendChild(cl);
         myBusy = false;
+        if(S.auto && S.autoOn){ var mtk = ++myTok; myRes.appendChild(el("small", "", "Auto-Fisher is on: this closes by itself in a few seconds")); setTimeout(function(){ if(myOpen && !myBusy && mtk === myTok && S.auto && S.autoOn) closeMythic(); }, AUTOCLOSE); }
         try{ if(window.KSND && KSND.land) KSND.land(sk.ti); }catch(e){}
         if(window.KFX){ var b = my.getBoundingClientRect(); KFX.confetti(b.left + b.width / 2, b.top + b.height * .4, {n: sk.ti === 4 ? 200 : 110, colors: sk.ti === 4 ? ["#FF4D7D", "#FFB02E", "#6BFFB8", "#4DA3FF", "#B66DFF", "#fff"] : [sk.tier.c, "#fff", "#F0B94B"], power: sk.ti === 4 ? 1.25 : 1}); }
         if(window.KT){ KT.award("fish_mythic"); KT.check(); }
@@ -5720,6 +5777,112 @@ var CHSTAT = {subs: 69500, goal: 100000, videos: 1292, checked: "16 Oct 2026"};
       })(performance.now());
     }
     document.addEventListener("keydown", function(e){ if(e.key === "Escape" && myOpen && !myBusy) closeMythic(); });
+    /* boss fish: a short tug-of-war minigame */
+    var BOSS = [{n: "Baron Bass", c: "#FF9E4A"}, {n: "Elder Frostjaw", c: "#7FD3FF"}, {n: "Gloomwood Leviathan", c: "#6FD67B"}, {n: "Celestial Kraken", c: "#C79BFF"}], BOSSP = .03, BOSSWAIT = 25000;
+    function fishSvg(c){ return '<svg viewBox="0 0 48 24" aria-hidden="true"><path d="M2 12C10 2 24 1 33 8l12-6v20l-12-6C24 23 10 22 2 12z" fill="' + c + '"/><path d="M10 12c6-5 14-5 20 0-6 5-14 5-20 0z" fill="rgba(255,255,255,.22)"/><circle cx="9" cy="10" r="1.8" fill="#0A1226"/></svg>'; }
+    var bs = el("div", "fpboss"), bsT = el("h4", "", ""), bsLane = el("div", "fpbl"), bsZone = el("i", "fpbz"), bsFish = el("i", "fpbf"), bsProg = el("div", "fpbp"), bsFill = el("i", ""), bsInfo = el("div", "fpbi"), bsBtns = el("div", "fpmybtns"), bsRes = el("div", "fpmyres");
+    bsLane.appendChild(bsZone); bsLane.appendChild(bsFish); bsProg.appendChild(bsFill);
+    [bsT, bsLane, bsProg, bsInfo, bsRes, bsBtns].forEach(function(x){ bs.appendChild(x); }); stage.appendChild(bs);
+    var bf = null;
+    function bossRod(){ for(var i = 0; i < R.length; i++){ if(R[i].s === "boss") return i; } return -1; }
+    function spawnBoss(i){
+      var r = R[i], n = nowMs(); r.s = "boss"; r.bt = n; r.at = n + BOSSWAIT; S.lb = S.catches;
+      sfx("boss"); say("A boss is on the line!", "Press the button or the space bar to fight it within " + Math.round(BOSSWAIT / 1000) + " seconds.", "good"); banner("Boss!", BOSS[S.stage].n); upd();
+    }
+    function startBoss(i){
+      if(bf || paused) return; var k = S.stage, B = BOSS[k], st = stats();
+      R[i].s = "fight"; R[i].at = R[i].bt = R[i].ct = nowMs() + 1e9;
+      bf = {rod: i, k: k, st: "intro", hold: false, x: .3, v: 0, f: .5, tg: .5, tt: 0, p: .3, t: 0, last: 0,
+        w: Math.max(.16, Math.min(.46, .25 - .02 * k + (st.win - 1.6) * .012 + (st.zone || 0))), gain: .2 + Math.min(5, st.spd) * .02, loss: .13 + .03 * k, kf: 2.3 + .6 * k, lim: 40, raf: 0, tin: 0};
+      bs.style.setProperty("--bc", B.c); bsFish.innerHTML = fishSvg(B.c); bsRes.textContent = ""; bsBtns.textContent = ""; bsProg.style.display = bsLane.style.display = "";
+      bsT.textContent = "Boss: " + B.n; bsInfo.textContent = "Hold the mouse, a finger or the space bar to move the green zone right. Let go and it drifts left. Keep the fish inside the zone to wear it down.";
+      bsZone.style.width = (bf.w * 100) + "%"; bsFill.style.width = "30%"; bsLane.classList.remove("in");
+      var go = el("button", "gbtn pri", "Fight!"); go.type = "button"; go.addEventListener("click", beginFight); bsBtns.appendChild(go); bs.classList.add("on"); setPaused(true); setTimeout(function(){ try{ go.focus(); }catch(e){} }, 30);
+      bossPos();
+    }
+    function bossPos(){ if(!bf) return; bsZone.style.left = (bf.x * 100) + "%"; bsFish.style.left = "calc(" + (bf.f * 100) + "% - 20px)"; }
+    function beginFight(){
+      if(!bf || bf.st !== "intro") return; bf.st = "run"; bsBtns.textContent = ""; bsInfo.textContent = "Hold to move right. Let go to drift left.";
+      var gv = el("button", "gbtn", "Give up"); gv.type = "button"; gv.addEventListener("click", function(e){ e.stopPropagation(); endBoss(false); }); bsBtns.appendChild(gv);
+      bf.last = performance.now(); bf.raf = requestAnimationFrame(bossFrame);
+    }
+    function bossFrame(now){
+      if(!bf || bf.st !== "run") return;
+      var dt = Math.min(.05, (now - bf.last) / 1000); bf.last = now; bf.t += dt;
+      var acc = bf.hold ? 2.7 : -2.2; bf.v += acc * dt; bf.v *= Math.max(0, 1 - 1.7 * dt); bf.x += bf.v * dt;
+      var mx = 1 - bf.w; if(bf.x < 0){ bf.x = 0; bf.v = Math.abs(bf.v) * .25; } if(bf.x > mx){ bf.x = mx; bf.v = -Math.abs(bf.v) * .25; }
+      bf.tt -= dt; if(bf.tt <= 0){ bf.tg = .05 + Math.random() * .9; bf.tt = (.45 + Math.random() * .8) / (1 + .12 * bf.k); }
+      bf.f += (bf.tg - bf.f) * Math.min(1, dt * bf.kf);
+      var inz = bf.f >= bf.x && bf.f <= bf.x + bf.w; bf.p += (inz ? bf.gain : -bf.loss) * dt; bf.tin += inz ? dt : 0;
+      bsLane.classList.toggle("in", inz); bsFill.style.width = Math.max(0, Math.min(100, bf.p * 100)) + "%"; bossPos();
+      if(bf.p >= 1){ endBoss(true); return; } if(bf.p <= 0 || bf.t >= bf.lim){ endBoss(false); return; }
+      bf.raf = requestAnimationFrame(bossFrame);
+    }
+    function bossHold(on){ if(bf && bf.st === "run") bf.hold = on; }
+    bs.addEventListener("pointerdown", function(e){ if(e.target.closest && e.target.closest("button")) return; if(bf && bf.st === "run"){ e.preventDefault(); bossHold(true); } });
+    document.addEventListener("pointerup", function(){ bossHold(false); }); document.addEventListener("pointercancel", function(){ bossHold(false); });
+    document.addEventListener("keydown", function(e){
+      if(!bf || (e.code !== "Space" && e.key !== " ")) return; e.preventDefault();
+      if(bf.st === "run") bossHold(true); else if(bf.st === "intro" && !e.repeat) beginFight();
+    });
+    document.addEventListener("keyup", function(e){ if(bf && (e.code === "Space" || e.key === " ")) bossHold(false); });
+    function mwPick(k){
+      var L = MWP[k], tot = 0, ws = L.map(function(m){ var c = S.mw[m.id] || 0; var w = c === 0 ? 3 : c < 3 ? 1 : .3; tot += w; return w; }), x = Math.random() * tot, i;
+      for(i = 0; i < L.length; i++){ x -= ws[i]; if(x <= 0) return L[i]; }
+      return L[L.length - 1];
+    }
+    function mwTile(m){ var t = el("div", "fpmwt"); t.appendChild(icon({id: m.b}, 44)); return t; }
+    function endBoss(win){
+      if(!bf) return; cancelAnimationFrame(bf.raf); var b = bf, B = BOSS[b.k], st = stats(); b.st = "end"; bsLane.classList.remove("in"); bsBtns.textContent = ""; bsRes.textContent = "";
+      bsProg.style.display = bsLane.style.display = "none";
+      var chestPull = false, cl = el("button", "gbtn pri", win ? "Collect" : "Close"); cl.type = "button";
+      var lvd = false;
+      function autoLeave(){ if(!(S.auto && S.autoOn)) return; setTimeout(function(){ if(!lvd && S.auto && S.autoOn) leave(); }, AUTOCLOSE); }
+      function leave(){
+        if(lvd) return; lvd = true;
+        bs.classList.remove("on"); bf = null; setPaused(false); var r = R[b.rod]; r.s = "idle"; r.at = nowMs() + 900; r.bt = r.ct = nowMs();
+        checkStages(); render(); upd(); if(win) say("Boss defeated", B.n, "good"); else say("The boss got away", "", "bad");
+        if(chestPull) setTimeout(function(){ openMythic(); }, 350);
+      }
+      cl.addEventListener("click", leave);
+      if(!win){
+        S.bf++; bsT.textContent = b.t >= b.lim ? "Out of time" : "It got away"; bsInfo.textContent = B.n + " snapped the line. It will be back."; sfx("miss"); save(true);
+        bsBtns.appendChild(cl); autoLeave(); setTimeout(function(){ try{ cl.focus({preventScroll: true}); }catch(e){} }, 30); return;
+      }
+      var g = Math.round((300 + S.ra * 45) * STM[b.k] * (1 + st.val * .5)); S.g += g; S.lg += g; if(g > S.bv){ S.bv = g; S.bn = B.n; }
+      S.bk[b.k] = (S.bk[b.k] || 0) + 1; chestPull = Math.random() < .15;
+      var m = mwPick(b.k), had = S.mw[m.id] || 0, dup = had >= 3, bonus = 0;
+      if(!dup){ S.mw[m.id] = had + 1; if(!had) noteNew("tr", m.id); } else { bonus = Math.round(g * .5); S.g += bonus; S.lg += bonus; }
+      bsT.textContent = "Boss defeated!"; bsInfo.textContent = B.n + " is yours: +" + nf(g) + " gold. Ornn is forging your reward...";
+      if(window.KT){ KT.award("fish_boss"); if(!dup) KT.award("fish_mw"); if(MWALL.every(function(x){ return (S.mw[x.id] || 0) > 0; })) KT.award("fish_mwall"); KT.check(); }
+      save(true); sfx("stageup");
+      var reel = el("div", "fpmyreel fpbreel"), strip = el("div", "fpmystrip"), N = 32, W = 25, tw = 66, i, tiles = [];
+      reel.appendChild(strip); reel.appendChild(el("i", "fpmymark")); bsRes.appendChild(reel);
+      for(i = 0; i < N; i++){ var mm = i === W ? m : MWALL[Math.floor(Math.random() * MWALL.length)], t = mwTile(mm); strip.appendChild(t); tiles.push(t); }
+      function reveal(){
+        strip.style.transform = "translate3d(" + endX + "px,0,0)"; tiles[W].classList.add("win");
+        setTimeout(function(){
+          bsRes.textContent = ""; bsInfo.textContent = B.n + " is yours: +" + nf(g) + " gold.";
+          var card = el("div", "fpbtr fpmwr"), big = el("div", "fpmwt win"); big.appendChild(icon({id: m.b}, 52)); card.appendChild(big);
+          var tx = el("div"); tx.appendChild(el("small", "mwl", "Masterwork")); tx.appendChild(el("b", "", m.n)); tx.appendChild(el("small", "", fxText(m.fx)));
+          tx.appendChild(el("small", "", dup ? "Max copies already: +" + nf(bonus) + " bonus gold" : (had ? "Copy " + (had + 1) + " of 3, effect stacks" : "New Masterwork item"))); card.appendChild(tx); bsRes.appendChild(card);
+          if(chestPull) bsRes.appendChild(el("small", "", "A Skin Chest floated up too"));
+          sfx("chest"); setTimeout(function(){ sfx("special"); }, 300);
+          if(window.KFX){ var bb = bs.getBoundingClientRect(); KFX.confetti(bb.left + bb.width / 2, bb.top + bb.height * .4, {n: 130, colors: ["#F0B94B", "#FFD76A", "#fff", B.c]}); }
+          bsBtns.appendChild(cl); autoLeave(); setTimeout(function(){ try{ cl.focus({preventScroll: true}); }catch(e){} }, 30);
+        }, RM ? 0 : 450);
+        if(tab === "tr") render();
+      }
+      var vw = reel.clientWidth || 360, startX = vw / 2 - (3 * tw + 30), endX = vw / 2 - (W * tw + 30) + (Math.random() - .5) * 26, dur = RM ? 50 : 3800, t0 = 0, lastIdx = -1;
+      strip.style.transform = "translate3d(" + startX + "px,0,0)";
+      if(RM){ reveal(); return; }
+      (function frame(now){
+        if(!t0) t0 = now; var q = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - q, 4), x = startX + (endX - startX) * e;
+        strip.style.transform = "translate3d(" + x.toFixed(1) + "px,0,0)";
+        var idx = Math.round((vw / 2 - x - 30) / tw); if(idx !== lastIdx){ lastIdx = idx; try{ if(window.KSND && KSND.tick) KSND.tick(Math.min(13, 1 + Math.floor(e * 13)), 14); }catch(er){} }
+        if(q < 1) requestAnimationFrame(frame); else reveal();
+      })(performance.now());
+    }
     /* fishing logic */
     function waitTime(){ return Math.max(.6, rnd(3, 6) / (1 + stats().spd) * env().wait) * 1000; }
     function pickFrom(list){ return list[Math.floor(Math.random() * list.length)]; }
@@ -5746,8 +5909,9 @@ var CHSTAT = {subs: 69500, goal: 100000, videos: 1292, checked: "16 Oct 2026"};
       var st = stats(), perfect = R[i].perfect; S.catches++; S.pity++; if(perfect) S.pf++;
       if(Math.random() < mythicChance()){ save(true); openMythic(); return; }
       if(S.pity >= st.pity || Math.random() < Math.min(.6, st.tc * env().tc)){
-        S.pity = 0; var t = pickTreasure(), firstT = !S.tr[t.id]; S.tr[t.id] = (S.tr[t.id] || 0) + 1; if(firstT) noteNew("tr", t.id);
-        showChest(t); setTimeout(function(){ sfx("chest"); }, 650); say("Treasure! " + t.n, fxText(t.fx), "good"); flyUp(i, {id: t.id}, "Chest!"); arena.classList.add("flash"); setTimeout(function(){ arena.classList.remove("flash"); }, 700);
+        S.pity = 0; var t = pickTreasure(), firstT = !S.tr[t.id], capped = (S.tr[t.id] || 0) >= TCAP, cg = 0;
+        if(capped){ cg = Math.round(400 * STM[S.stage] * (1 + st.val * .5)); S.g += cg; S.lg += cg; gCatch += cg; if(cg > S.bv){ S.bv = cg; S.bn = t.n; } } else { S.tr[t.id] = (S.tr[t.id] || 0) + 1; if(firstT) noteNew("tr", t.id); }
+        showChest(t, cg); setTimeout(function(){ sfx("chest"); }, 650); say(capped ? "Treasure already maxed: " + t.n : "Treasure! " + t.n, capped ? "+" + nf(cg) + " gold instead" : fxText(t.fx), "good"); flyUp(i, {id: t.id}, capped ? "+" + fmt(cg) + "g" : "Chest!"); arena.classList.add("flash"); setTimeout(function(){ arena.classList.remove("flash"); }, 700);
         save(true); checkStages(); render();
         if(window.KT){ KT.award("fish_chest"); if(stats().rods >= 2) KT.award("fish_rods"); KT.check(); }
         return;
@@ -5768,19 +5932,22 @@ var CHSTAT = {subs: 69500, goal: 100000, videos: 1292, checked: "16 Oct 2026"};
       if(r.s === "bite"){ r.perfect = n - r.bt <= stats().perf * 1000; r.s = "idle"; r.at = n + 450; sfx("reel", r.perfect); award(i); }
       else if(r.s === "wait" && !auto && n - r.ct > 350){ r.s = "idle"; r.at = n + 600; sfx("miss"); say("Too early!", "You scared the fish. Wait for the splash.", "bad"); }
     }
-    function act(i){ var r = R[i], n = nowMs(); if(paused || i >= stats().rods) return; if(r.s === "bite") reel(i, false); else if(r.s === "wait") reel(i, false); else if(r.s === "idle" && n >= r.at) cast(i); upd(); }
-    function actAll(){ if(paused) return; var n = nowMs(), rods = stats().rods, did = false, i; for(i = 0; i < rods; i++){ if(R[i].s === "bite"){ reel(i, false); did = true; } } if(did){ upd(); return; } for(i = 0; i < rods; i++){ if(R[i].s === "idle" && n >= R[i].at){ cast(i); did = true; } } upd(); }
+    function act(i){ var r = R[i], n = nowMs(); if(paused || i >= stats().rods) return; if(r.s === "boss"){ startBoss(i); return; } if(r.s === "bite") reel(i, false); else if(r.s === "wait") reel(i, false); else if(r.s === "idle" && n >= r.at) cast(i); upd(); }
+    function actAll(){ if(paused) return; var n = nowMs(), rods = stats().rods, did = false, i; var br = bossRod(); if(br >= 0){ startBoss(br); return; } for(i = 0; i < rods; i++){ if(R[i].s === "bite"){ reel(i, false); did = true; } } if(did){ upd(); return; } for(i = 0; i < rods; i++){ if(R[i].s === "idle" && n >= R[i].at){ cast(i); did = true; } } upd(); }
     function tick(){
       if(paused){ lastTk = 0; return; }
       var n = nowMs(), st = stats(), rods = st.rods, dtk = lastTk ? Math.min(2, (n - lastTk) / 1000) : 0; lastTk = n; S.pt += dtk;
       if(S.auto && S.autoOn){ tAcc += dtk; if(tAcc >= 30){ var rr = gCatch / tAcc; S.ra = S.ra ? S.ra * .6 + rr * .4 : rr; tAcc = 0; gCatch = 0; } }
       if(n - saveAt > 15000){ saveAt = n; save(); }
       if(tab === "stats" && n - lastSt > 1000){ lastSt = n; render(); }
-      if(n >= envNext){ envNext = n + 1000; envUpdate(); checkSkins(); checkStages(); }
+      if(n >= envNext){ envNext = n + 1000; envUpdate(); checkSkins(); checkStages(); autoBuy(); }
       if(WX.k === "storm" && ST.bolt && n >= boltAt){ boltAt = n + rnd(3.5, 9) * 1000; if(host.classList.contains("act") && !document.hidden) lightning(); }
       for(var i = 0; i < rods; i++){
         var r = R[i];
-        if(r.s === "wait" && n >= r.at){ r.s = "bite"; r.bt = n; r.at = n + Math.max(1, st.win + env().win) * 1000; sfx("bite"); }
+        if(r.s === "wait" && n >= r.at){
+          if(bossRod() < 0 && S.catches >= 8 && S.catches - S.lb >= 20 && Math.random() < BOSSP){ spawnBoss(i); continue; }
+          r.s = "bite"; r.bt = n; r.at = n + Math.max(1, st.win + env().win) * 1000; sfx("bite"); }
+        else if(r.s === "boss"){ if(n >= r.at){ r.s = "idle"; r.at = n + 800; S.bf++; sfx("miss"); say("The boss swam away", "It will be back.", "bad"); } }
         else if(r.s === "bite"){
           if(S.auto && S.autoOn && n >= r.bt + st.autoD * 1000) reel(i, true);
           else if(n >= r.at){ r.s = "idle"; r.at = n + 600; sfx("miss"); say("It got away!", "Reel in faster, or buy Steady Hands.", "bad"); }
@@ -5796,7 +5963,7 @@ var CHSTAT = {subs: 69500, goal: 100000, videos: 1292, checked: "16 Oct 2026"};
         gNum = goldBox.querySelector(".gn");
       }
       if(v === gShown) return;
-      var up = gShown >= 0 && v > gShown; gShown = v; gNum.textContent = v.toLocaleString("en-US");
+      var up = gShown >= 0 && v > gShown; gShown = v; gNum.textContent = v.toLocaleString("en-US"); gNum.className = "gn" + (gNum.textContent.length >= 13 ? " xs" : gNum.textContent.length >= 9 ? " sm" : "");
       if(up && !RM){ goldBox.classList.remove("pop"); void goldBox.offsetWidth; goldBox.classList.add("pop"); }
     }
     function upd(){
@@ -5806,10 +5973,10 @@ var CHSTAT = {subs: 69500, goal: 100000, videos: 1292, checked: "16 Oct 2026"};
         var on = i < st.rods, r = R[i], b = btns[i], sp = spots[i], ln = lns[i];
         b.hidden = !on; b.disabled = paused; sp.hidden = !on; ln.style.display = on ? "" : "none";
         if(!on) continue;
-        var lbl = r.s === "bite" ? "Reel in!" : r.s === "wait" ? "Waiting" : (n >= r.at ? "Cast" : "…");
+        var lbl = r.s === "boss" ? "Boss! " + Math.max(0, Math.ceil((r.at - n) / 1000)) + "s" : r.s === "fight" ? "Fighting" : r.s === "bite" ? "Reel in!" : r.s === "wait" ? "Waiting" : (n >= r.at ? "Cast" : "…");
         if(st.rods > 1) lbl = "Rod " + (i + 1) + ": " + lbl;
         if(b.textContent !== lbl) b.textContent = lbl;
-        b.classList.toggle("bite", r.s === "bite"); b.classList.toggle("pri", r.s === "idle" && n >= r.at);
+        b.classList.toggle("bite", r.s === "bite" || r.s === "boss"); b.classList.toggle("pri", r.s === "idle" && n >= r.at); b.classList.toggle("boss", r.s === "boss");
         if(sp.dataset.s !== r.s) sp.dataset.s = r.s;
         ln.style.opacity = r.s === "idle" ? 0 : 1;
       }
@@ -5841,7 +6008,7 @@ var CHSTAT = {subs: 69500, goal: 100000, videos: 1292, checked: "16 Oct 2026"};
     }
     function applyStage(){
       ST = STP[S.stage]; WHERE = ST.wh; arena.dataset.st = S.stage;
-      stchip.textContent = "Stage " + (S.stage + 1); stchip.appendChild(el("span", "nm", " · " + ST.nm)); deco.innerHTML = ST.deco || ""; deco2.innerHTML = ST.deco2 || "";
+      stchip.textContent = "Stage " + (S.stage + 1); stchip.appendChild(el("span", "nm", " · " + ST.nm)); if(S.pr) stchip.appendChild(el("span", "pr", " \u2605" + S.pr)); deco.innerHTML = ST.deco || ""; deco2.innerHTML = ST.deco2 || "";
       rainDrops = []; lastBg = ""; envUpdate(true);
     }
     function setStage(k, quiet){
@@ -5858,11 +6025,22 @@ var CHSTAT = {subs: 69500, goal: 100000, videos: 1292, checked: "16 Oct 2026"};
       if(window.KFX){ var bb = arena.getBoundingClientRect(); KFX.confetti(bb.left + bb.width / 2, bb.top + bb.height * .4, {n: 140, colors: ["#2DD4BF", "#F0B94B", "#fff", "#B66DFF"], power: 1.1}); }
       if(window.KT){ KT.award("fish_st" + (k + 1)); KT.check(); }
     }
+    var prArm = 0;
+    function ascend(){
+      if(!S.sdone) return;
+      S.pr = (S.pr || 0) + 1; S.g = 0; S.ups = blank().ups; S.tr = {}; S.pity = 0; S.stage = 0; S.unlocked = 1; S.stn = 0; S.smx = 0; S.sdone = 0; S.n.st = []; S.n.tr = []; S.ra = 0; fresh = {tr: [], sk: []}; prArm = 0;
+      R.forEach(function(r){ r.s = "idle"; r.at = 0; });
+      applyStage(); save(true); tab = "shop"; Object.keys(tabBtns).forEach(function(k){ tabBtns[k].classList.toggle("on", k === "shop"); }); render(); upd();
+      showUnl("Prestige " + S.pr, "Ascended", "You start again in Stage 1, stronger than before. Your Masterwork items, skins, catch log and trophies stay.", ["Permanent bonus: " + prTxt(S.pr), "Auto-Fisher and Auto-Buyer stay unlocked", "Shop upgrades and treasures start fresh"]);
+      say("Prestige " + S.pr, prTxt(S.pr), "good"); sfx("finale");
+      if(window.KFX){ var bb = arena.getBoundingClientRect(); KFX.confetti(bb.left + bb.width / 2, bb.top + bb.height * .4, {n: 200, colors: ["#F0B94B", "#FFE08A", "#fff", "#2DD4BF"], power: 1.25}); }
+      if(window.KT){ KT.award("fish_pr1"); if(S.pr >= 3) KT.award("fish_pr3"); KT.check(); }
+    }
     function stDone(i){ return trCount(i) >= STP[i].trea.length && shopLv(i)[0] >= shopLv(i)[1]; }
     function checkStages(){
       var k = S.unlocked;
       if(k > 3){
-        if(!S.sdone && stDone(3)){ S.sdone = 1; save(true); showUnl("All stages complete", "Legendary Angler", "Every treasure found and every upgrade maxed in all four stages.", ["Thanks for playing, keep fishing for fun"]); say("All stages complete", "You maxed out the whole Fishing Hole.", "good"); sfx("finale"); }
+        if(!S.sdone && stDone(3)){ S.sdone = 1; if(tab !== "st" && S.n.st.indexOf(4) < 0) S.n.st.push(4); save(true); updBadges(); if(tab === "st") render(); showUnl("All stages complete", "Legendary Angler", "Every treasure found and every upgrade maxed in all four stages.", ["Prestige is open in the Stages tab", "Start over with permanent bonuses, and keep your Masterwork items"]); say("All stages complete", "You maxed out the whole Fishing Hole.", "good"); sfx("finale"); }
         return;
       }
       var q = reqOk(k), rdy = !!(q.tr && q.shop && q.gold);
@@ -5903,10 +6081,28 @@ var CHSTAT = {subs: 69500, goal: 100000, videos: 1292, checked: "16 Oct 2026"};
         card.appendChild(tx); if(bt){ ac.appendChild(bt); card.appendChild(ac); }
         panel.appendChild(card);
       });
+      var pc = el("div", "fpst fppr" + (S.sdone ? " nxt" : " lock")), psw = el("div", "sw", "\u2605"), ptx = el("div", "tx"), ph = el("h5", "", "Prestige"), pa = el("div", "ac");
+      if(S.pr) ph.appendChild(el("small", "", "Level " + S.pr));
+      ptx.appendChild(ph); ptx.appendChild(el("p", "", "Start over from Stage 1 for a permanent bonus: +" + Math.round(PRG * 100) + "% gold and +" + Math.round(PRS * 100) + "% speed for every level. Masterwork items, skins, catch log and trophies stay. Gold, shop upgrades and treasures reset."));
+      ptx.appendChild(reqRow(!!S.sdone, "All four stages complete"));
+      if(S.pr) ptx.appendChild(reqRow(true, "Now: " + prTxt(S.pr)));
+      var pb = el("button", "gbtn" + (S.sdone ? " pri" : ""), prArm ? "Click again to ascend" : "Ascend \u00b7 Prestige " + ((S.pr || 0) + 1)); pb.type = "button"; pb.disabled = !S.sdone;
+      pb.addEventListener("click", function(){ if(!prArm){ prArm = 1; render(); setTimeout(function(){ if(prArm){ prArm = 0; if(tab === "st") render(); } }, 4000); return; } ascend(); });
+      pc.appendChild(psw); pc.appendChild(ptx); pa.appendChild(pb); pc.appendChild(pa); if(S.sdone) panel.insertBefore(pc, panel.firstChild); else panel.appendChild(pc);
       panel.appendChild(el("p", "fpnote", "Stage shop upgrades and every treasure keep working in all stages. Higher stages pay out more gold per catch."));
     }
     var lastSt = 0, resetArm = 0;
     function buyLv(s){ var c = cost(s); if(S.ups[S.stage][s.k] >= s.max || S.g < c || (s.auto && !S.auto)) return false; S.g -= c; S.ups[S.stage][s.k]++; return true; }
+    function autoBuy(){
+      if(!S.ab || !S.abOn || holdS) return;
+      var got = 0, i, best, c, bc;
+      for(i = 0; i < 12; i++){
+        best = null; bc = 0;
+        shopList(S.stage).forEach(function(s){ if(S.ups[S.stage][s.k] >= s.max || (s.auto && !S.auto)) return; c = cost(s); if(c <= S.g && (!best || c < bc)){ best = s; bc = c; } });
+        if(!best || !buyLv(best)) break; got++;
+      }
+      if(got){ save(true); checkStages(); if(tab === "shop" || tab === "st") render(); upd(); }
+    }
     function afterBuy(){ save(true); checkStages(); render(); upd(); }
     var holdT = 0, holdS = null;
     function holdStop(){ clearTimeout(holdT); holdS = null; }
@@ -5922,8 +6118,13 @@ var CHSTAT = {subs: 69500, goal: 100000, videos: 1292, checked: "16 Oct 2026"};
           var ab = el("button", "gbtn fpbuy", S.auto ? (S.autoOn ? "On" : "Off") : fmt(AUTOCOST) + " gold"); ab.type = "button"; ab.disabled = !S.auto && S.g < AUTOCOST;
           ab.addEventListener("click", function(){ if(S.auto){ S.autoOn = S.autoOn ? 0 : 1; } else if(S.g >= AUTOCOST){ S.g -= AUTOCOST; S.auto = 1; S.autoOn = 1; } save(true); render(); upd(); }); ar.appendChild(ab); return ar;
         }
+        function abRow(){
+          var ar = el("div", "fprow"), al = el("div", "fpl"); al.appendChild(el("b", "", "Auto-Buyer")); al.appendChild(el("span", "", S.ab ? "Buys the cheapest affordable upgrade of this stage for you. Stages are still unlocked by hand." : "Buys shop upgrades for you while you play. It always picks the cheapest one first.")); ar.appendChild(al);
+          var ab = el("button", "gbtn fpbuy", S.ab ? (S.abOn ? "On" : "Off") : fmt(ABCOST) + " gold"); ab.type = "button"; ab.disabled = !S.ab && S.g < ABCOST;
+          ab.addEventListener("click", function(){ if(S.ab){ S.abOn = S.abOn ? 0 : 1; } else if(S.g >= ABCOST){ S.g -= ABCOST; S.ab = 1; S.abOn = 1; } save(true); render(); upd(); }); ar.appendChild(ab); return ar;
+        }
         shopList(S.stage).forEach(function(s){
-          if(s.grp !== lastG){ lastG = s.grp; sh.appendChild(el("h6", "fpgh", GRPN[s.grp])); if(s.grp === 1) sh.appendChild(autoRow()); }
+          if(s.grp !== lastG){ lastG = s.grp; sh.appendChild(el("h6", "fpgh", GRPN[s.grp])); if(s.grp === 1){ sh.appendChild(autoRow()); sh.appendChild(abRow()); } }
           var lv = U[s.k], mx = lv >= s.max, row = el("div", "fprow" + (mx ? " mx" : "")), c = cost(s), left = el("div", "fpl"), lock = s.auto && !S.auto;
           left.appendChild(el("b", "", s.n + "  ")); left.lastChild.appendChild(el("small", "", mx ? "MAX" : "Lv " + lv + "/" + s.max)); left.appendChild(el("span", "", s.d)); row.appendChild(left);
           var b = el("button", "gbtn fpbuy", mx ? "\u2713 Maxed" : lock ? "Needs Auto-Fisher" : fmt(c) + " gold"); b.type = "button"; b.disabled = mx || lock || S.g < c;
@@ -5945,7 +6146,15 @@ var CHSTAT = {subs: 69500, goal: 100000, videos: 1292, checked: "16 Oct 2026"};
           var ic = icon({id: t.id}, 40); cell.appendChild(ic); if(c > 1) cell.appendChild(el("em", "", "×" + c));
           cell.title = c ? t.n + ": " + fxText(t.fx) : "Not found yet"; cell.setAttribute("aria-label", cell.title); grid.appendChild(cell);
         });
-        panel.appendChild(grid); panel.appendChild(el("p", "fpnote", have + " of " + ST.trea.length + " treasures found in " + ST.nm + ". Hover or press a slot to see what it does. Copies stack, and every treasure keeps working in all stages."));
+        panel.appendChild(grid); panel.appendChild(el("p", "fpnote", have + " of " + ST.trea.length + " treasures found in " + ST.nm + ". Hover or press a slot to see what it does. Up to " + TCAP + " copies of each treasure stack. Any further copy turns into gold. Every treasure keeps working in all stages."));
+        var mwh = el("h6", "fpgh", "Ornn's Masterwork"), mg = el("div", "fpgrid"), mwn = 0;
+        panel.appendChild(mwh);
+        MWP[S.stage].forEach(function(m){
+          var c = S.mw[m.id] || 0, cell = el("div", "fpcell mw" + (c ? " own" : "") + (fresh.tr.indexOf(m.id) >= 0 ? " new" : "")); if(c) mwn++;
+          cell.appendChild(icon({id: m.b}, 40)); if(c > 1) cell.appendChild(el("em", "", "\u00d7" + c));
+          cell.title = c ? m.n + ": " + fxText(m.fx) : "Dropped by " + BOSS[S.stage].n; cell.setAttribute("aria-label", cell.title); mg.appendChild(cell);
+        });
+        panel.appendChild(mg); panel.appendChild(el("p", "fpnote", mwn + " of " + MWP[S.stage].length + " Masterwork items from " + BOSS[S.stage].n + ". Only boss fish drop them, and each one is far stronger than a normal treasure. Up to 3 copies stack."));
       } else if(tab === "st"){
         renderStages();
       } else if(tab === "stats"){
@@ -5958,6 +6167,7 @@ var CHSTAT = {subs: 69500, goal: 100000, videos: 1292, checked: "16 Oct 2026"};
         tile("Treasures", Object.keys(S.tr).filter(function(k){ return S.tr[k]; }).length + " / " + ALLT.length, "found in all stages");
         tile("Catch log", Object.keys(S.disc).length + " / " + tot, "different catches");
         tile("Skins", S.fsk.length + " / " + SKS.length, nf(S.mc) + " Skin Chests opened"); tile("Stages", S.unlocked + " / 4", "unlocked");
+        tile("Boss fish", String(S.bk.reduce(function(a, c){ return a + (c || 0); }, 0)), nf(S.bf) + " got away"); tile("Masterwork", MWALL.filter(function(x){ return (S.mw[x.id] || 0) > 0; }).length + " / " + MWALL.length, "from Ornn\u2019s forge", 1); tile("Prestige", S.pr ? "\u2605 " + S.pr : "-", S.pr ? prTxt(S.pr) : "after all 4 stages", 1);
         tile("Gold per second", S.ra ? S.ra.toFixed(S.ra < 10 ? 1 : 0) : "-", "Auto-Fisher average");
         panel.appendChild(gt);
         panel.appendChild(el("p", "fpnote", S.auto ? "Offline earnings: while the page is closed the Auto-Fisher keeps paying half of its usual rate, for up to 1 hour." : "Buy the Auto-Fisher and it keeps earning gold at half speed for up to 1 hour while the page is closed."));
@@ -5983,12 +6193,20 @@ var CHSTAT = {subs: 69500, goal: 100000, videos: 1292, checked: "16 Oct 2026"};
         panel.appendChild(g2); panel.appendChild(el("p", "fpnote", found + " of " + ST.all.length + " different catches in " + ST.nm + ". Casts so far: " + S.casts + ". Lifetime gold: " + fmt(S.lg) + "."));
       }
     }
+    var ptrFocus = false;
+    document.addEventListener("pointerdown", function(){ ptrFocus = true; }, true);
+    document.addEventListener("keydown", function(e){ if(e.code !== "Space" && e.key !== " ") ptrFocus = false; }, true);
     document.addEventListener("keydown", function(e){
       if((e.code !== "Space" && e.key !== " ") || !host.classList.contains("act")) return;
       var t = e.target, tn = t && t.tagName; if(tn === "INPUT" || tn === "TEXTAREA" || tn === "SELECT" || (t && t.isContentEditable)) return;
       if(t !== document.body && !host.contains(t)) return;
-      if(tn === "BUTTON" && host.contains(t)) return;
-      e.preventDefault(); actAll();
+      if(tn === "BUTTON" && host.contains(t)){ if(!ptrFocus) return; t.blur(); }
+      e.preventDefault(); var y0 = window.pageYOffset; actAll();
+      requestAnimationFrame(function(){ if(Math.abs(window.pageYOffset - y0) > 2) window.scrollTo(window.pageXOffset, y0); });
+    });
+    document.addEventListener("keyup", function(e){
+      if((e.code !== "Space" && e.key !== " ") || !host.classList.contains("act")) return;
+      var t = e.target; if(t && t.tagName === "BUTTON" && host.contains(t) && ptrFocus) e.preventDefault();
     });
     window.addEventListener("resize", layout);
     var started = false;
@@ -6140,6 +6358,11 @@ var CHSTAT = {subs: 69500, goal: 100000, videos: 1292, checked: "16 Oct 2026"};
     {id: "fish_rods", c: "Minigames", nm: "Double Trouble", ds: "Fish with two rods at once.", t: "gold", g: "gem"},
     {id: "fish_night", c: "Minigames", nm: "Moonlight Angler", ds: "Catch something that only bites at night in the Fishing Hole.", t: "bronze", g: "star"},
     {id: "fish_storm", c: "Minigames", nm: "Eye of the Storm", ds: "Catch something that only shows up in a thunderstorm.", t: "silver", g: "bolt"},
+    {id: "fish_mw", c: "Minigames", nm: "Forged by Ornn", ds: "Win a Masterwork item from a boss fish.", t: "gold", g: "gem"},
+    {id: "fish_mwall", c: "Minigames", nm: "Master Smith", ds: "Collect every Masterwork item.", t: "mythic", g: "star"},
+    {id: "fish_pr1", c: "Minigames", nm: "Ascended", ds: "Prestige for the first time in the Fishing Hole.", t: "gold", g: "star"},
+    {id: "fish_pr3", c: "Minigames", nm: "Eternal Angler", ds: "Reach Prestige 3 in the Fishing Hole.", t: "mythic", g: "star"},
+    {id: "fish_boss", c: "Minigames", nm: "Boss Hunter", ds: "Defeat a boss fish while fishing.", t: "silver", g: "star"},
     {id: "fish_mythic", c: "Minigames", nm: "Skin Chest", ds: "Pull a Skin Chest while fishing and win a skin.", t: "mythic", g: "star"},
     {id: "fish_st2", c: "Minigames", nm: "Cold Water", ds: "Unlock Stage 2 in the Fishing Hole: Frostpeak Lake.", t: "silver", g: "gem"},
     {id: "fish_st3", c: "Minigames", nm: "Into the Fog", ds: "Unlock Stage 3 in the Fishing Hole: Gloomwood Marsh.", t: "gold", g: "chest"},
