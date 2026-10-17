@@ -978,6 +978,9 @@ nav .logo img{animation-duration:6.5s}
 .lbr .pl{font-weight:700;color:var(--text);text-decoration:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .lbr a.pl:hover,.lbr a.pl:focus-visible{color:var(--gold);outline:none;text-decoration:underline}
 .lbr .tg{font-size:.76rem;font-weight:800;color:var(--muted)}
+.lbr .tr{display:flex;align-items:center;gap:9px;min-width:0}
+.lbr .trt{min-width:0}
+.lbr .rkic{width:30px;height:30px;flex:none;filter:drop-shadow(0 1px 3px rgba(0,0,0,.45))}
 .lbr .tr small{display:block;color:var(--muted);font-weight:600;font-size:.76rem}
 .lbr .wr.hi{color:var(--up);font-weight:700}
 .lbr .its{display:flex;gap:4px}
@@ -1008,7 +1011,7 @@ nav .logo img{animation-duration:6.5s}
   .lbwrap .pl{flex:1 1 100%}
   .lbwrap .lbme{margin-left:0}
   .lbr .tg,.lbr .gm{display:none}
-  .lbr .tr{text-align:right}
+  .lbr .tr{justify-content:flex-end;text-align:right}
   .lbr .wr{grid-column:2;font-size:.78rem;color:var(--muted)}
   .lbr .its{grid-column:3;justify-content:flex-end}
 }
@@ -5223,6 +5226,32 @@ var CHSTAT = {subs: 69500, goal: 100000, videos: 1292, checked: "16 Oct 2026"};
   function el(t, c, x){ var n = document.createElement(t); if(c) n.className = c; if(x != null) n.textContent = x; return n; }
   function safeUrl(u){ return typeof u === "string" && /^https:\/\//i.test(u) ? u : ""; }
   function icon(id){ var im = new Image(); im.width = im.height = 26; im.alt = ""; im.loading = "lazy"; var u = window.K_ITI && K_ITI[id]; if(!u) return null; im.src = u; return im; }
+  var RK = {iron: ["#8A8E99", "#3C3F47", 1], bronze: ["#E0A06B", "#7A4521", 1], silver: ["#E6ECF6", "#8793A8", 2], gold: ["#FFD36A", "#B5811A", 2], platinum: ["#6FE3D2", "#1E7F86", 3], emerald: ["#5CE88F", "#1B8A4A", 3], diamond: ["#8ED0FF", "#3A6DD8"], master: ["#DDA0FF", "#7A35C9"], grandmaster: ["#FF8DA0", "#B3203F"], challenger: ["#FFE79B", "#3FB6FF"]};
+  var SVGNS = "http://www.w3.org/2000/svg", rkN = 0;
+  function sv(t, a, par){ var e = document.createElementNS(SVGNS, t); for(var k in a) e.setAttribute(k, a[k]); if(par) par.appendChild(e); return e; }
+  function rankIcon(label){
+    var key = String(label || "").toLowerCase().split(" ")[0], c = RK[key]; if(!c) return null;
+    var id = "rk" + (rkN++), svg = sv("svg", {viewBox: "0 0 32 32", "class": "rkic", "aria-hidden": "true"});
+    var df = sv("defs", {}, svg), g = sv("linearGradient", {id: id, x1: "0", y1: "0", x2: "0", y2: "1"}, df);
+    sv("stop", {offset: "0", "stop-color": c[0]}, g); sv("stop", {offset: "1", "stop-color": c[1]}, g);
+    if(key == "grandmaster" || key == "challenger"){
+      var w = "M7.5 8 L1.2 4.6 L3 11 L1 14.2 L4.2 16.2 L7.5 15.4 Z";
+      sv("path", {d: w, fill: "url(#" + id + ")", opacity: ".9"}, svg);
+      sv("path", {d: w, fill: "url(#" + id + ")", opacity: ".9", transform: "translate(32 0) scale(-1 1)"}, svg);
+    }
+    sv("path", {d: "M16 3 L25 6.5 V15 C25 21 21 25 16 29 C11 25 7 21 7 15 V6.5 Z", fill: "url(#" + id + ")", stroke: "rgba(255,255,255,.55)", "stroke-width": "1", "stroke-linejoin": "round"}, svg);
+    var W = {fill: "rgba(255,255,255,.92)"};
+    if(c[2]){
+      for(var i = 0; i < c[2]; i++) sv("path", {d: "M11.5 " + (11.5 + i * 3.6) + " L16 " + (15.2 + i * 3.6) + " L20.5 " + (11.5 + i * 3.6), fill: "none", stroke: "rgba(255,255,255,.92)", "stroke-width": "1.9", "stroke-linecap": "round", "stroke-linejoin": "round", transform: c[2] == 1 ? "translate(0 3)" : c[2] == 2 ? "translate(0 1.5)" : ""}, svg);
+    } else if(key == "diamond"){
+      sv("polygon", {points: "16,9 21,14 16,22 11,14", fill: "rgba(255,255,255,.9)"}, svg);
+      sv("polygon", {points: "16,9 21,14 11,14", fill: "rgba(255,255,255,.55)"}, svg);
+    } else {
+      sv("polygon", {points: "16.0,8.0 17.8,12.8 22.8,13.0 18.9,16.1 20.2,21.0 16.0,18.2 11.8,21.0 13.1,16.1 9.2,13.0 14.2,12.8", fill: W.fill}, svg);
+      if(key != "master") sv("circle", {cx: "16", cy: "15.2", r: "8", fill: "none", stroke: "rgba(255,255,255,.7)", "stroke-width": "1"}, svg);
+    }
+    return svg;
+  }
   function head(){
     var r = el("div", "lbr hd"); ["#", "Player", "Region", "Rank", "Games", "Win rate", "Core items"].forEach(function(h, i){ r.appendChild(el("span", i == 2 ? "tg" : i == 4 ? "gm" : "", h)); }); return r;
   }
@@ -5238,7 +5267,7 @@ var CHSTAT = {subs: 69500, goal: 100000, videos: 1292, checked: "16 Oct 2026"};
       if(p.me){ var wrap = el("span", "lbwrap"); wrap.appendChild(nm); wrap.appendChild(el("span", "lbme", "Creator")); r.appendChild(wrap); }
       else r.appendChild(nm);
       r.appendChild(el("span", "tg", p.r));
-      var tr = el("span", "tr", p.t || ""); if(p.lp != null){ var sm = el("small", "", p.lp + " LP"); tr.appendChild(sm); } r.appendChild(tr);
+      var tr = el("span", "tr"), ic = rankIcon(p.t), tt2 = el("span", "trt", p.t || ""); if(ic) tr.appendChild(ic); if(p.lp != null) tt2.appendChild(el("small", "", p.lp + " LP")); tr.appendChild(tt2); r.appendChild(tr);
       r.appendChild(el("span", "gm", p.g != null ? p.g : ""));
       var wr = el("span", "wr" + (p.w >= 55 ? " hi" : ""), p.w != null ? p.w + "%" : ""); r.appendChild(wr);
       var its = el("span", "its"); (p.it || []).slice(0, 3).forEach(function(id){ var ic = icon(id); if(ic) its.appendChild(ic); }); r.appendChild(its);
