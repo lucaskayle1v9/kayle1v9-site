@@ -1633,6 +1633,16 @@ nav .logo img{animation-duration:6.5s}
 .gtab:hover{color:var(--text);border-color:var(--c)}
 .gtab.on{color:var(--text);border-color:var(--c);background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,0)),var(--panel);box-shadow:0 0 0 1px var(--c) inset}
 .gtab:focus-visible{outline:2px solid var(--c);outline-offset:2px}
+.gtab.fav{border-color:rgba(240,185,75,.75);box-shadow:0 0 16px rgba(240,185,75,.28),0 0 0 1px rgba(240,185,75,.35) inset;animation:fvglow 3.2s ease-in-out infinite}
+.gtab .fvb{margin-left:2px;padding:2px 8px;border-radius:99px;font-size:.62rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:#2a1a00;background:linear-gradient(100deg,#FFD66B 0%,#F0A93B 40%,#FFF1B8 55%,#F0A93B 70%,#FFD66B 100%);background-size:220% 100%;animation:fvsh 3.4s linear infinite}
+#gfish.act{border-color:rgba(240,185,75,.6);box-shadow:var(--drop),0 0 0 1px rgba(240,185,75,.4),0 0 44px rgba(240,185,75,.16)}
+.fpttl{flex-wrap:wrap}
+.fpfav{display:inline-flex;align-items:center;padding:3px 11px;border-radius:99px;font-size:.68rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;color:#2a1a00;background:linear-gradient(100deg,#FFD66B 0%,#F0A93B 40%,#FFF1B8 55%,#F0A93B 70%,#FFD66B 100%);background-size:220% 100%;animation:fvsh 3.4s linear infinite;box-shadow:0 0 14px rgba(240,185,75,.4)}
+.fpfav.nw{color:#fff;background:linear-gradient(100deg,#FF4D7D,#B66DFF);background-size:100% 100%;animation:none;box-shadow:0 0 14px rgba(182,109,255,.4)}
+@media (max-width:640px){.fpfav.nw{display:none}}
+@keyframes fvsh{to{background-position:-220% 0}}
+@keyframes fvglow{50%{box-shadow:0 0 24px rgba(240,185,75,.45),0 0 0 1px rgba(240,185,75,.5) inset}}
+@media (prefers-reduced-motion:reduce){.gtab.fav,.gtab .fvb,.fpfav{animation:none}}
 @media (prefers-reduced-motion:reduce){#games .gtrack>.gcard{transition:none}}
 #games .gtrack{align-items:flex-start}
 #gcs .csarena{flex:none;height:210px;max-height:none}
@@ -2037,7 +2047,7 @@ nav .logo img{animation-duration:6.5s}
     <h2>Minigames</h2>
     <p class="lead">Short breaks between the builds. Swipe or use the arrows to pick a game. Your best scores are saved in your browser, and what you unlock lands in the <a href="#trophies">trophy room</a>.</p>
     <div class="gtabs" id="gtabs" role="tablist" aria-label="Choose a minigame">
-      <button type="button" class="gtab on" role="tab" aria-selected="true" style="--c:#2DD4BF"><i></i>Fishing</button>
+      <button type="button" class="gtab on fav" role="tab" aria-selected="true" style="--c:#2DD4BF"><i></i>Fishing<span class="fvb">Fan favorite</span></button>
       <button type="button" class="gtab" role="tab" aria-selected="false" style="--c:#4DA3FF"><i></i>Higher or Lower</button>
       <button type="button" class="gtab" role="tab" aria-selected="false" style="--c:#FF7A45"><i></i>Ult Timing</button>
       <button type="button" class="gtab" role="tab" aria-selected="false" style="--c:#4ADE80"><i></i>CS Challenge</button>
@@ -5485,7 +5495,7 @@ var CHSTAT = {subs: 69500, goal: 100000, videos: 1292, checked: "16 Oct 2026"};
     /* layout */
     host.innerHTML = "";
     var head = el("div", "ghead fphead"), ht = el("div", "fpttl"), goldBox = el("div", "gbest");
-    ht.appendChild(el("h3", "", "Kayle's Fishing Hole")); head.appendChild(ht); host.appendChild(head);
+    ht.appendChild(el("h3", "", "Kayle's Fishing Hole")); var fvc = el("span", "fpfav"); fvc.appendChild(el("b", "", "\u2605 Fan favorite")); ht.appendChild(fvc); var fvn = el("span", "fpfav nw"); fvn.appendChild(el("b", "", "New: Boss fish and Prestige")); ht.appendChild(fvn); head.appendChild(ht); host.appendChild(head);
     var vbox = el("div", "fpvol"), vbtn = el("button", "fpvb"), vrg = document.createElement("input"), vout = el("output", "", "50"), vt = 0;
     vbtn.type = "button"; vbtn.title = "Mute"; vbtn.setAttribute("aria-label", "Mute sounds");
     vbtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5v5h4l5 4v-13l-5 4z" fill="currentColor"/><g class="skw"><path d="M16.5 9a4.2 4.2 0 0 1 0 6"/><path d="M19 6.5a8 8 0 0 1 0 11"/></g><path class="skxx" d="M17 9.5l5 5M22 9.5l-5 5"/></svg>';
