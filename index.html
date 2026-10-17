@@ -1212,6 +1212,84 @@ nav .logo img{animation-duration:6.5s}
 #gsil .rover{border-color:var(--ga);background:rgba(182,109,255,.1)}
 #gcs .rover.perfect{border-color:var(--ga);box-shadow:0 0 0 2px rgba(74,222,128,.3),0 0 34px -4px rgba(74,222,128,.6)}
 #gcs .rdots i.cur{background:rgba(74,222,128,.6)}
+/* game 5: fishing = teal */
+#gfish{--ga:#2DD4BF;border-color:rgba(45,212,191,.42);background:linear-gradient(180deg,rgba(45,212,191,.13),rgba(45,212,191,0) 48%),var(--panel)}
+#gfish::before{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:linear-gradient(90deg,#2DD4BF,#4DA3FF)}
+#gfish .gbest b{color:var(--ga)}
+#gfish .rmsg.good{color:var(--ga)}
+#gfish .gbtn{border-color:var(--ga)}
+#gfish .gbtn:hover:not(:disabled),#gfish .gbtn.pri{background:var(--ga);color:#0A1226}
+.fparena{position:relative;height:190px;margin-bottom:4px;border-radius:14px;border:1.5px solid var(--line);overflow:hidden;background:linear-gradient(180deg,#223A63 0,#3B618F 42%,#1C5B7C 42.2%,#10395A 100%)}
+.fparena.flash{box-shadow:0 0 0 2px rgba(255,217,138,.8),0 0 40px -2px rgba(255,200,90,.7)}
+.fpwater{position:absolute;left:0;right:0;top:42.2%;bottom:0;background:repeating-linear-gradient(100deg,rgba(255,255,255,.07) 0 14px,rgba(255,255,255,0) 14px 38px);background-size:76px 100%;animation:fpwave 6s linear infinite}
+@keyframes fpwave{to{background-position:-76px 0}}
+.fpsun{position:absolute;right:34px;top:14px;width:46px;height:46px;border-radius:50%;background:radial-gradient(circle,#FFF3C4 0 38%,rgba(255,217,138,.45) 60%,rgba(255,217,138,0) 72%)}
+.fpcloud{position:absolute;height:14px;border-radius:99px;background:rgba(255,255,255,.14);filter:blur(1px);animation:fpcl 40s linear infinite}
+.fpcloud.c1{width:80px;top:30px;left:46%}
+.fpcloud.c2{width:54px;top:52px;left:70%;animation-duration:55s;animation-delay:-20s}
+@media (prefers-reduced-motion:reduce){.fpcloud{animation:none}}
+@keyframes fpcl{0%{transform:translateX(-30px)}50%{transform:translateX(40px)}100%{transform:translateX(-30px)}}
+.fspot[data-s="idle"]::before{opacity:.35;transform:none}
+.fpdock{position:absolute;left:0;top:70px;width:118px;height:14px;border-radius:0 7px 7px 0;background:linear-gradient(180deg,#9A6A3C,#6B4524);box-shadow:0 4px 8px rgba(0,0,0,.4)}
+.fpkay{position:absolute;left:30px;top:10px;z-index:3}
+.fpkay img{display:block;width:58px;height:58px;border-radius:50%;object-fit:cover;object-position:50% 12%;border:2px solid #2DD4BF;box-shadow:0 4px 14px rgba(0,0,0,.45)}
+.fplines{position:absolute;left:0;top:0;z-index:2;pointer-events:none}
+.fplines line{transition:opacity .25s}
+.fspot{position:absolute;z-index:3;width:0;height:0}
+.fbob{position:absolute;left:-7px;top:-7px;width:14px;height:14px;border-radius:50%;background:linear-gradient(180deg,#fff 0 48%,#E5484D 48%);box-shadow:0 2px 4px rgba(0,0,0,.4);transition:opacity .25s,transform .2s}
+.fspot[data-s="idle"] .fbob{opacity:0;transform:scale(.4)}
+.fspot[data-s="wait"] .fbob{animation:fpfloat 2.6s ease-in-out infinite}
+.fspot[data-s="bite"] .fbob{animation:fpdip .38s ease-in-out infinite}
+@keyframes fpfloat{0%,100%{transform:translateY(0)}50%{transform:translateY(2.5px)}}
+@keyframes fpdip{0%,100%{transform:translateY(0)}50%{transform:translateY(9px)}}
+.fspot::before,.fspot::after{content:"";position:absolute;left:-16px;top:3px;width:32px;height:10px;border-radius:50%;border:1.5px solid rgba(255,255,255,.55);opacity:0}
+.fspot[data-s="bite"]::before{animation:fpring .8s ease-out infinite}
+.fspot[data-s="bite"]::after{animation:fpring .8s ease-out .4s infinite}
+@keyframes fpring{0%{opacity:.9;transform:scale(.3)}100%{opacity:0;transform:scale(1.6)}}
+.fbub{position:absolute;left:-12px;top:-34px;width:24px;height:24px;line-height:24px;text-align:center;border-radius:50%;background:#FFD98A;color:#3A2400;font-size:.9rem;font-weight:900;opacity:0;transform:scale(.4);transition:opacity .15s,transform .2s cubic-bezier(.34,1.56,.64,1)}
+.fspot[data-s="bite"] .fbub{opacity:1;transform:scale(1)}
+.fcatch{position:absolute;z-index:6;transform:translate(-50%,0);display:flex;align-items:center;gap:6px;padding:4px 10px 4px 5px;border-radius:999px;background:rgba(10,18,38,.88);border:1px solid rgba(45,212,191,.6);font-weight:800;font-size:.8rem;color:#E9FFFB;white-space:nowrap;animation:fpup 1.2s ease-out forwards;pointer-events:none}
+@keyframes fpup{0%{opacity:0;transform:translate(-50%,16px) scale(.7)}18%{opacity:1;transform:translate(-50%,-4px) scale(1)}100%{opacity:0;transform:translate(-50%,-52px)}}
+.fi{display:inline-flex;align-items:center;justify-content:center;flex:none}
+.fi img,.fi svg{width:100%;height:100%;display:block;object-fit:contain;border-radius:6px}
+.fpchest{position:absolute;inset:0;z-index:8;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;text-align:center;background:radial-gradient(circle at 50% 45%,rgba(255,217,138,.34),rgba(8,14,30,.9) 70%);opacity:0;pointer-events:none;transition:opacity .25s;cursor:pointer}
+.fpchest.on{opacity:1;pointer-events:auto}
+.fpchest .fi{margin-bottom:4px;filter:drop-shadow(0 0 14px rgba(255,200,90,.8))}
+.fpchest.on .fi{animation:fpchestpop .7s cubic-bezier(.34,1.56,.64,1)}
+@keyframes fpchestpop{0%{transform:scale(.2) rotate(-12deg)}100%{transform:none}}
+.fpchest b{font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;color:#FFD98A}
+.fpchest span{font-weight:800;font-size:1.1rem}
+.fpchest small{color:#BFEDE6;font-size:.82rem}
+.fpmsg{min-height:3em;margin:8px 0 6px}
+.fpbtns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.fpbtn{min-width:128px}
+.fpbtn[hidden]{display:none}
+.fpbtn.bite{background:#FFD98A;border-color:#FFD98A;color:#3A2400;animation:fppulse .5s ease-in-out infinite alternate}
+@keyframes fppulse{to{transform:scale(1.06)}}
+.fpstat{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:14px 0 4px}
+.fpchip{padding:3px 10px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.04);font-size:.72rem;font-weight:600;color:var(--muted)}
+.fpchip b{color:var(--ga)}
+.fptabs{display:flex;gap:6px;justify-content:center;margin:12px 0 10px;border-top:1px solid var(--line);padding-top:12px}
+.fptab{white-space:nowrap;font:inherit;font-weight:700;font-size:.82rem;padding:6px 12px;border-radius:999px;border:1.5px solid var(--line);background:transparent;color:var(--muted);cursor:pointer}
+.fptab.on{border-color:var(--ga);color:var(--ga);background:rgba(45,212,191,.1)}
+.fptab:focus-visible{outline:2px solid var(--ga);outline-offset:2px}
+.fprow{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:9px 0;border-top:1px solid rgba(255,255,255,.07)}
+.fprow:first-child{border-top:0}
+.fpl{min-width:0;font-size:.82rem;color:var(--muted);line-height:1.35}
+.fpl b{display:block;color:var(--text);font-size:.92rem}
+.fpl b small{font-size:.68rem;color:var(--ga);font-weight:800;letter-spacing:.06em;margin-left:4px}
+.fpl span{display:block}
+.fpbuy{flex:none;min-width:104px;padding:8px 14px;font-size:.82rem}
+.fpreset{display:block;margin:10px auto 0;font:inherit;font-size:.74rem;color:var(--muted);background:none;border:0;text-decoration:underline;cursor:pointer}
+.fpgrid{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.fpcell{position:relative;display:flex;align-items:center;justify-content:center;width:52px;height:52px;border-radius:10px;border:1.5px solid var(--line);background:rgba(255,255,255,.03)}
+.fpcell .fi{filter:brightness(0) opacity(.28)}
+.fpcell.own{border-color:rgba(45,212,191,.55);background:rgba(45,212,191,.08)}
+.fpcell.own.rare{border-color:rgba(182,109,255,.7);background:rgba(182,109,255,.1)}
+.fpcell.own .fi{filter:none}
+.fpcell em{position:absolute;right:2px;bottom:1px;font-style:normal;font-size:.66rem;font-weight:800;color:#fff;text-shadow:0 1px 2px #000}
+.fpnote{margin:10px 0 0;text-align:center;font-size:.76rem;color:var(--muted);line-height:1.45}
+@media (prefers-reduced-motion:reduce){.fpwater,.fspot .fbob,.fspot::before,.fspot::after,.fpbtn.bite{animation:none}.fcatch{animation:none;transform:translate(-50%,-30px)}}
 /* cs challenge */
 .csarena{position:relative;height:170px;margin-bottom:6px;border-radius:14px;border:1.5px solid var(--line);background:radial-gradient(120% 140% at 50% 0%,rgba(74,222,128,.12),transparent 60%),var(--bg);overflow:hidden}
 .csground{position:absolute;left:0;right:0;bottom:0;height:34px;background:linear-gradient(180deg,rgba(74,222,128,.14),rgba(74,222,128,.04));border-top:1px solid rgba(74,222,128,.3)}
@@ -1698,6 +1776,7 @@ nav .logo img{animation-duration:6.5s}
       <button type="button" class="gtab" role="tab" aria-selected="false" style="--c:#FF7A45"><i></i>Ult Timing</button>
       <button type="button" class="gtab" role="tab" aria-selected="false" style="--c:#4ADE80"><i></i>CS Challenge</button>
       <button type="button" class="gtab" role="tab" aria-selected="false" style="--c:#B66DFF"><i></i>Silhouette</button>
+      <button type="button" class="gtab" role="tab" aria-selected="false" style="--c:#2DD4BF"><i></i>Fishing</button>
     </div>
     <div class="gcar">
       <button type="button" class="gnav prev" aria-label="Previous game"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
@@ -1706,6 +1785,7 @@ nav .logo img{animation-duration:6.5s}
       <article class="gcard" id="gri" aria-label="Ult Timing: save your ally with Kayle's ultimate"></article>
       <article class="gcard" id="gcs" aria-label="CS Challenge"></article>
       <article class="gcard" id="gsil" aria-label="Silhouette: guess the skin or item"></article>
+      <article class="gcard" id="gfish" aria-label="Fishing: catch components and treasure"></article>
     </div>
       <button type="button" class="gnav next" aria-label="Next game"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
     </div>
@@ -4858,6 +4938,263 @@ var CHSTAT = {subs: 69500, goal: 100000, videos: 1292, checked: "16 Oct 2026"};
     newRound();
   })();
 
+  /* ---------- 5. Fishing: incremental ---------- */
+  (function(){
+    var host = document.getElementById("gfish"); if(!host) return;
+    var KEY = "k1v9-fish", SKS = window.KSKINS && KSKINS.list || [], IT = window.K_ITI || {};
+    function rnd(a, b){ return a + Math.random() * (b - a); }
+    function fmt(n){ n = Math.floor(n); return n >= 10000 ? (n / 1000).toFixed(n >= 100000 ? 0 : 1) + "k" : String(n); }
+    var GL = {
+      sword: function(c){ return '<polygon points="14,4 20,4 20,10 10,20 6,16" fill="' + c + '"/><path d="M5 14l5 5M3 21l3-3" stroke="#C9A25A" stroke-width="2.2" stroke-linecap="round" fill="none"/>'; },
+      dagger: function(c){ return '<polygon points="15,6 19,6 19,10 12,17 8,13" fill="' + c + '"/><path d="M7 12l5 5M5 19l3-3" stroke="#B88A4A" stroke-width="2.2" stroke-linecap="round" fill="none"/>'; },
+      tome: function(c){ return '<rect x="5" y="3.5" width="14" height="17" rx="2" fill="' + c + '"/><path d="M8.5 3.5v17" stroke="rgba(0,0,0,.35)" stroke-width="1.5"/><circle cx="13.8" cy="11" r="2.6" fill="rgba(255,255,255,.85)"/>'; },
+      armor: function(c){ return '<path d="M8 4L3 7l2 4 2-1v10h10V10l2 1 2-4-5-3c-1 2-3 3-4 3S9 6 8 4z" fill="' + c + '"/>'; },
+      mantle: function(c){ return '<path d="M12 3c4 0 7 2 7 6 0 6-3 10-7 12-4-2-7-6-7-12 0-4 3-6 7-6z" fill="' + c + '"/><path d="M12 6v12" stroke="rgba(255,255,255,.5)" stroke-width="1.5"/>'; },
+      ruby: function(c){ return '<polygon points="12,3 20,9 12,21 4,9" fill="' + c + '"/><polygon points="12,3 20,9 4,9" fill="rgba(255,255,255,.35)"/>'; },
+      bow: function(c){ return '<path d="M7 3c9 3 9 15 0 18" stroke="' + c + '" stroke-width="2.6" fill="none" stroke-linecap="round"/><path d="M7 3v18" stroke="#DDD" stroke-width="1"/><path d="M5 12h15m-3-3l3 3-3 3" stroke="#E7DDC8" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>'; },
+      bf: function(c){ return '<polygon points="14,2 22,2 22,10 10,22 5,17" fill="' + c + '"/><path d="M4 14l6 6M2 22l4-4" stroke="#C9A25A" stroke-width="2.6" stroke-linecap="round" fill="none"/>'; },
+      rod: function(c){ return '<path d="M4 21L16 9" stroke="#8B5A2B" stroke-width="2.8" stroke-linecap="round"/><circle cx="18" cy="7" r="4.4" fill="' + c + '"/><circle cx="18" cy="7" r="1.7" fill="rgba(255,255,255,.85)"/>'; },
+      belt: function(c){ return '<ellipse cx="12" cy="12" rx="8" ry="6" fill="none" stroke="' + c + '" stroke-width="3.8"/><rect x="10" y="9" width="4" height="6" rx="1" fill="#F3D27A"/>'; },
+      vamp: function(c){ return '<path d="M12 21V10" stroke="#8A6A3A" stroke-width="2.8" stroke-linecap="round"/><path d="M12 10C7 7 5 4 7.6 2.4c2-1.2 4.4.6 4.4 2 0-1.4 2.4-3.2 4.4-2C19 4 17 7 12 10z" fill="' + c + '"/>'; },
+      chain: function(c){ return '<path d="M8 4L3 7l2 4 2-1v10h10V10l2 1 2-4-5-3c-1 2-3 3-4 3S9 6 8 4z" fill="' + c + '"/><path d="M9 11h6M9 14h6M9 17h6M12 8v12" stroke="rgba(0,0,0,.3)" stroke-width="1"/>'; },
+      boot: function(c){ return '<path d="M7 4h6v8l7 3v5H5V13z" fill="' + c + '"/><path d="M5 18h15" stroke="rgba(0,0,0,.35)" stroke-width="1.5"/>'; },
+      weeds: function(c){ return '<path d="M6 21c0-6 3-9 1-14M12 21c0-7 3-10 0-17M18 21c0-5-3-8-1-12" stroke="' + c + '" stroke-width="2.4" fill="none" stroke-linecap="round"/>'; },
+      gem: function(c){ return '<polygon points="12,3 20,9 12,21 4,9" fill="' + c + '"/>'; }
+    };
+    var JUNK = [{k:"boot", n:"Old Boot", v:3, c:"#7A5A3A", g:"boot"}, {k:"weeds", n:"Tangled Weeds", v:2, c:"#4F9E5A", g:"weeds"}];
+    var COMP = [
+      {k:"sword", n:"Long Sword", v:14, c:"#D2D8E4", g:"sword"}, {k:"dagger", n:"Dagger", v:13, c:"#C7D4E8", g:"dagger"},
+      {k:"tome", n:"Amplifying Tome", v:15, c:"#8E6BD8", g:"tome"}, {k:"armor", n:"Cloth Armor", v:12, c:"#C9B38A", g:"armor"},
+      {k:"mantle", n:"Null-Magic Mantle", v:13, c:"#6FB5E8", g:"mantle"}, {k:"ruby", n:"Ruby Crystal", v:20, c:"#E5484D", g:"ruby"},
+      {k:"sapph", n:"Sapphire Crystal", v:20, c:"#3F7BEA", g:"ruby"}, {k:"bow", n:"Recurve Bow", v:18, c:"#C58B4A", g:"bow"}
+    ];
+    var START = [
+      {k:"s1055", n:"Doran's Blade", v:22, id:1055}, {k:"s1056", n:"Doran's Ring", v:22, id:1056}, {k:"s1054", n:"Doran's Shield", v:22, id:1054},
+      {k:"s1083", n:"Cull", v:24, id:1083}, {k:"s1001", n:"Boots", v:18, id:1001}
+    ];
+    var RARE = [
+      {k:"bf", n:"B. F. Sword", v:55, c:"#E86F4D", g:"bf", r:1}, {k:"nlr", n:"Needlessly Large Rod", v:60, c:"#B66DFF", g:"rod", r:1},
+      {k:"belt", n:"Giant's Belt", v:50, c:"#E0A53C", g:"belt", r:1}, {k:"vamp", n:"Vampiric Scepter", v:58, c:"#E5484D", g:"vamp", r:1},
+      {k:"cv", n:"Chain Vest", v:48, c:"#9AA6B8", g:"chain", r:1}
+    ];
+    var ALL = JUNK.concat(COMP, START, RARE);
+    var TREA = [
+      {id:3115, n:"Nashor's Tooth", w:10, fx:{spd:.18}}, {id:3124, n:"Guinsoo's Rageblade", w:9, fx:{spd:.22}},
+      {id:3087, n:"Statikk Shiv", w:8, fx:{chain:.12}}, {id:3089, n:"Rabadon's Deathcap", w:6, fx:{val:.35}},
+      {id:3100, n:"Lich Bane", w:8, fx:{val:.2, spd:.08}}, {id:3165, n:"Morellonomicon", w:8, fx:{val:.22}},
+      {id:4645, n:"Shadowflame", w:7, fx:{val:.25}}, {id:3116, n:"Rylai's Crystal Scepter", w:8, fx:{win:.5}},
+      {id:3157, n:"Zhonya's Hourglass", w:6, fx:{win:.6}}, {id:3102, n:"Banshee's Veil", w:7, fx:{win:.4}},
+      {id:3139, n:"Mercurial Scimitar", w:7, fx:{win:.3, spd:.1}}, {id:3091, n:"Wit's End", w:7, fx:{win:.35, chain:.05}},
+      {id:3135, n:"Void Staff", w:6, fx:{luck:.04}}, {id:3302, n:"Terminus", w:6, fx:{luck:.05}},
+      {id:6676, n:"The Collector", w:5, fx:{luck:.03, val:.15}}, {id:2510, n:"Dusk and Dawn", w:6, fx:{luck:.03, spd:.1}},
+      {id:3072, n:"Bloodthirster", w:5, fx:{spd:.12, val:.1}}, {id:3146, n:"Hextech Gunblade", w:6, fx:{val:.15, spd:.05}},
+      {id:6672, n:"Kraken Slayer", w:2.5, fx:{rods:1, spd:.05}}, {id:3153, n:"Blade of the Ruined King", w:2.5, fx:{rods:1, val:.1}}
+    ];
+    var SHOP = [
+      {k:"rod", n:"Rod Tuning", d:"+8% faster fishing", b:30, g:1.45, max:15},
+      {k:"luck", n:"Lucky Bait", d:"+1.2% treasure chance", b:45, g:1.5, max:12},
+      {k:"hand", n:"Steady Hands", d:"+0.15 s to reel in", b:25, g:1.45, max:8},
+      {k:"val", n:"Sell Contract", d:"+10% gold per catch", b:40, g:1.5, max:12}
+    ];
+    var AUTOCOST = 250;
+    function fxText(fx){
+      var o = [];
+      if(fx.spd) o.push("+" + Math.round(fx.spd * 100) + "% speed");
+      if(fx.luck) o.push("+" + Math.round(fx.luck * 100) + "% treasure chance");
+      if(fx.val) o.push("+" + Math.round(fx.val * 100) + "% gold");
+      if(fx.win) o.push("+" + fx.win.toFixed(1) + " s to reel in");
+      if(fx.chain) o.push("+" + Math.round(fx.chain * 100) + "% bonus catch");
+      if(fx.rods) o.push("+" + fx.rods + " fishing rod");
+      return o.join(", ");
+    }
+    /* state */
+    function blank(){ return {g: 0, lg: 0, up: {rod: 0, luck: 0, hand: 0, val: 0}, auto: 0, autoOn: 1, tr: {}, disc: {}, casts: 0, catches: 0, pity: 0}; }
+    var S = blank();
+    try{ var raw = JSON.parse(localStorage.getItem(KEY)); if(raw && typeof raw === "object"){ var b = blank(); Object.keys(b).forEach(function(k){ if(raw[k] != null && typeof raw[k] === typeof b[k]) b[k] = raw[k]; }); b.up = Object.assign(blank().up, raw.up || {}); S = b; } }catch(e){}
+    var saveT = 0;
+    function save(now){ if(now){ clearTimeout(saveT); saveT = 0; try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){} return; } if(!saveT) saveT = setTimeout(function(){ saveT = 0; try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){} }, 1500); }
+    function stats(){
+      var s = {spd: S.up.rod * .08, luck: S.up.luck * .012, val: S.up.val * .1, win: 1.6 + S.up.hand * .15, chain: 0, rods: 1};
+      TREA.forEach(function(t){ var c = S.tr[t.id] || 0; if(!c) return; var f = t.fx; s.spd += (f.spd || 0) * c; s.luck += (f.luck || 0) * c; s.val += (f.val || 0) * c; s.win += (f.win || 0) * c; s.chain += (f.chain || 0) * c; s.rods += (f.rods || 0) * c; });
+      s.spd = Math.min(s.spd, 3.5); s.win = Math.min(s.win, 4.5); s.chain = Math.min(s.chain, .5); s.rods = Math.min(3, s.rods); s.tc = Math.min(.35, .03 + s.luck);
+      return s;
+    }
+    /* icons */
+    function icon(e, size){
+      var box = el("span", "fi"); box.style.width = box.style.height = size + "px";
+      if(e.id){
+        if(IT[e.id]){ var im = new Image(); im.alt = ""; im.decoding = "async"; im.src = IT[e.id]; box.appendChild(im); return box; }
+        e = {g: "gem", c: "#8CC4FF"};
+      }
+      box.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true">' + GL[e.g](e.c) + '</svg>';
+      return box;
+    }
+    /* layout */
+    host.innerHTML = "";
+    var head = el("div", "ghead"), ht = el("div"), goldBox = el("div", "gbest");
+    ht.appendChild(el("h3", "", "Kayle's Fishing Hole")); head.appendChild(ht); head.appendChild(goldBox); host.appendChild(head);
+    host.appendChild(el("p", "gdesc", "Cast, wait for the bite and reel it in. Catch item components, sell them for gold and spend it on upgrades. Now and then a chest pops up with a full item, and every treasure gives a permanent bonus."));
+    var arena = el("div", "fparena"), water = el("div", "fpwater"), dock = el("div", "fpdock"), kay = el("div", "fpkay"), kimg = new Image();
+    kimg.alt = ""; kimg.width = kimg.height = 58; if(SKS[0]) kimg.src = SKS[0].img; kay.appendChild(kimg);
+    var NS = "http://www.w3.org/2000/svg", lines = document.createElementNS(NS, "svg"); lines.setAttribute("class", "fplines"); lines.setAttribute("aria-hidden", "true");
+    arena.appendChild(el("div", "fpsun")); arena.appendChild(el("div", "fpcloud c1")); arena.appendChild(el("div", "fpcloud c2")); arena.appendChild(water); arena.appendChild(dock); arena.appendChild(lines); arena.appendChild(kay);
+    var POS = [[.4, 104], [.6, 124], [.8, 108]], spots = [], lns = [], R = [];
+    POS.forEach(function(p, i){
+      var sp = el("div", "fspot"), bob = el("i", "fbob"), bub = el("b", "fbub", "!");
+      sp.appendChild(bob); sp.appendChild(bub); sp.dataset.s = "idle"; arena.appendChild(sp); spots.push(sp);
+      var ln = document.createElementNS(NS, "line"); ln.setAttribute("stroke", "rgba(255,255,255,.75)"); ln.setAttribute("stroke-width", "1.2"); lines.appendChild(ln); lns.push(ln);
+      R.push({s: "idle", at: 0, bt: 0, ct: 0});
+    });
+    var pop = el("div", "fppop"), chest = el("div", "fpchest"); arena.appendChild(pop); arena.appendChild(chest);
+    host.appendChild(arena);
+    var msg = el("div", "rmsg fpmsg"); host.appendChild(msg);
+    var btnRow = el("div", "fpbtns"), btns = []; host.appendChild(btnRow);
+    POS.forEach(function(p, i){ var b = el("button", "gbtn fpbtn", "Cast"); b.type = "button"; b.addEventListener("click", function(){ act(i); }); btnRow.appendChild(b); btns.push(b); });
+    var stat = el("div", "fpstat"); host.appendChild(stat);
+    var tabs = el("div", "fptabs"), panel = el("div", "fppanel"), tab = "shop", tabBtns = {};
+    [["shop", "Shop"], ["tr", "Treasures"], ["log", "Catch log"]].forEach(function(t){ var b = el("button", "fptab" + (t[0] === tab ? " on" : ""), t[1]); b.type = "button"; b.addEventListener("click", function(){ tab = t[0]; Object.keys(tabBtns).forEach(function(k){ tabBtns[k].classList.toggle("on", k === tab); }); render(); }); tabs.appendChild(b); tabBtns[t[0]] = b; });
+    host.appendChild(tabs); host.appendChild(panel);
+    function layout(){
+      var w = arena.clientWidth || 520, h = arena.clientHeight || 190;
+      lines.setAttribute("width", w); lines.setAttribute("height", h); lines.setAttribute("viewBox", "0 0 " + w + " " + h);
+      POS.forEach(function(p, i){ spots[i].style.left = (p[0] * 100) + "%"; spots[i].style.top = p[1] + "px"; var l = lns[i]; l.setAttribute("x1", 78); l.setAttribute("y1", 26); l.setAttribute("x2", p[0] * w); l.setAttribute("y2", p[1] - 2); });
+    }
+    /* messages and effects */
+    var msgT = 0;
+    function say(t, sub, cls){ msg.className = "rmsg fpmsg" + (cls ? " " + cls : ""); msg.textContent = ""; msg.appendChild(document.createTextNode(t)); if(sub){ msg.appendChild(el("small", "", sub)); } clearTimeout(msgT); }
+    function flyUp(i, e, txt){
+      var f = el("div", "fcatch"); f.style.left = (POS[i][0] * 100) + "%"; f.style.top = (POS[i][1] - 18) + "px";
+      f.appendChild(icon(e, 30)); f.appendChild(el("span", "", txt)); arena.appendChild(f); setTimeout(function(){ if(f.parentNode) f.parentNode.removeChild(f); }, 1300);
+    }
+    function showChest(t){
+      chest.textContent = ""; chest.classList.add("on");
+      var ic = icon({id: t.id, g: "gem", c: "#FFD98A"}, 64); chest.appendChild(ic);
+      chest.appendChild(el("b", "", "Treasure!")); chest.appendChild(el("span", "", t.n)); chest.appendChild(el("small", "", fxText(t.fx)));
+      clearTimeout(chest._t); chest._t = setTimeout(function(){ chest.classList.remove("on"); }, 3600);
+    }
+    chest.addEventListener("click", function(){ chest.classList.remove("on"); });
+    /* fishing logic */
+    function waitTime(){ return Math.max(.7, rnd(3, 6) / (1 + stats().spd)) * 1000; }
+    function pickFrom(list){ return list[Math.floor(Math.random() * list.length)]; }
+    function rollItem(luck){
+      var r = Math.random() * 100, rareFrom = 86 - Math.min(12, luck * 60);
+      if(r < 8) return pickFrom(JUNK); if(r < 28) return pickFrom(START); if(r < rareFrom) return pickFrom(COMP); return pickFrom(RARE);
+    }
+    function pickTreasure(){
+      var tot = 0; TREA.forEach(function(t){ tot += t.w; }); var x = Math.random() * tot;
+      for(var i = 0; i < TREA.length; i++){ x -= TREA[i].w; if(x <= 0) return TREA[i]; }
+      return TREA[0];
+    }
+    function sell(e, mult){ var v = Math.max(1, Math.round(e.v * (1 + stats().val) * mult)); S.g += v; S.lg += v; return v; }
+    function award(i){
+      var st = stats(), perfect = R[i].perfect; S.catches++; S.pity++;
+      if(S.pity >= 45 || Math.random() < st.tc){
+        S.pity = 0; var t = pickTreasure(); S.tr[t.id] = (S.tr[t.id] || 0) + 1;
+        showChest(t); say("Treasure! " + t.n, fxText(t.fx), "good"); flyUp(i, {id: t.id}, "Chest!"); arena.classList.add("flash"); setTimeout(function(){ arena.classList.remove("flash"); }, 700);
+        save(true); render();
+        if(window.KT){ KT.award("fish_chest"); if(stats().rods >= 2) KT.award("fish_rods"); KT.check(); }
+        return;
+      }
+      var e = rollItem(st.luck), v = sell(e, perfect ? 1.5 : 1), isNew = !S.disc[e.k]; S.disc[e.k] = (S.disc[e.k] || 0) + 1;
+      flyUp(i, e, "+" + v + "g");
+      say((perfect ? "Perfect reel! " : "") + e.n + " +" + v + " gold", isNew ? "New in your catch log" : "", "good");
+      if(st.chain && Math.random() < st.chain){ var e2 = rollItem(st.luck), v2 = sell(e2, 1); S.disc[e2.k] = (S.disc[e2.k] || 0) + 1; msg.appendChild(el("small", "", "Chain: bonus catch " + e2.n + " +" + v2 + " gold")); }
+      if(window.KT){ if(S.catches === 1) KT.award("fish_first"); if(S.catches % 20 === 0 || isNew) KT.check(); }
+      save(); if(isNew || tab === "shop" || tab === "log") render(); else renderStat();
+    }
+    function nowMs(){ return performance.now(); }
+    function cast(i){ var r = R[i]; r.s = "wait"; r.at = nowMs() + waitTime(); r.ct = nowMs(); S.casts++; if(window.KT && S.casts === 1) KT.play("fish"); }
+    function reel(i, auto){
+      var r = R[i], n = nowMs();
+      if(r.s === "bite"){ r.perfect = !auto && n - r.bt <= 450; r.s = "idle"; r.at = n + 450; award(i); }
+      else if(r.s === "wait" && !auto && n - r.ct > 350){ r.s = "idle"; r.at = n + 600; say("Too early!", "You scared the fish. Wait for the splash.", "bad"); }
+    }
+    function act(i){ var r = R[i], n = nowMs(); if(i >= stats().rods) return; if(r.s === "bite") reel(i, false); else if(r.s === "wait") reel(i, false); else if(r.s === "idle" && n >= r.at) cast(i); upd(); }
+    function actAll(){ var n = nowMs(), rods = stats().rods, did = false, i; for(i = 0; i < rods; i++){ if(R[i].s === "bite"){ reel(i, false); did = true; } } if(did){ upd(); return; } for(i = 0; i < rods; i++){ if(R[i].s === "idle" && n >= R[i].at){ cast(i); did = true; } } upd(); }
+    function tick(){
+      var n = nowMs(), st = stats(), rods = st.rods;
+      for(var i = 0; i < rods; i++){
+        var r = R[i];
+        if(r.s === "wait" && n >= r.at){ r.s = "bite"; r.bt = n; r.at = n + st.win * 1000; }
+        else if(r.s === "bite"){
+          if(S.auto && S.autoOn && n >= r.bt + 800) reel(i, true);
+          else if(n >= r.at){ r.s = "idle"; r.at = n + 600; say("It got away!", "Reel in faster, or buy Steady Hands.", "bad"); }
+        } else if(r.s === "idle" && S.auto && S.autoOn && n >= r.at) cast(i);
+      }
+      upd();
+    }
+    function upd(){
+      var st = stats(), n = nowMs();
+      goldBox.textContent = ""; goldBox.appendChild(document.createTextNode("Gold")); goldBox.appendChild(el("b", "", fmt(S.g)));
+      for(var i = 0; i < 3; i++){
+        var on = i < st.rods, r = R[i], b = btns[i], sp = spots[i], ln = lns[i];
+        b.hidden = !on; sp.hidden = !on; ln.style.display = on ? "" : "none";
+        if(!on) continue;
+        var lbl = r.s === "bite" ? "Reel in!" : r.s === "wait" ? "Waiting" : (n >= r.at ? "Cast" : "…");
+        if(st.rods > 1) lbl = "Rod " + (i + 1) + ": " + lbl;
+        if(b.textContent !== lbl) b.textContent = lbl;
+        b.classList.toggle("bite", r.s === "bite"); b.classList.toggle("pri", r.s === "idle" && n >= r.at);
+        if(sp.dataset.s !== r.s) sp.dataset.s = r.s;
+        ln.style.opacity = r.s === "idle" ? 0 : 1;
+      }
+    }
+    function renderStat(){
+      var st = stats(); stat.textContent = "";
+      [["Speed", "+" + Math.round(st.spd * 100) + "%"], ["Treasure", Math.round(st.tc * 1000) / 10 + "%"], ["Gold", "+" + Math.round(st.val * 100) + "%"], ["Reel time", st.win.toFixed(1) + " s"], ["Bonus catch", Math.round(st.chain * 100) + "%"], ["Rods", st.rods + "/3"]].forEach(function(x){
+        var c = el("span", "fpchip"); c.appendChild(document.createTextNode(x[0] + " ")); c.appendChild(el("b", "", x[1])); stat.appendChild(c);
+      });
+    }
+    function cost(s){ return Math.round(s.b * Math.pow(s.g, S.up[s.k])); }
+    var resetArm = 0;
+    function render(){
+      renderStat(); panel.textContent = "";
+      if(tab === "shop"){
+        SHOP.forEach(function(s){
+          var row = el("div", "fprow"), lv = S.up[s.k], mx = lv >= s.max, c = cost(s), left = el("div", "fpl");
+          left.appendChild(el("b", "", s.n + "  ")); left.lastChild.appendChild(el("small", "", mx ? "MAX" : "Lv " + lv + "/" + s.max)); left.appendChild(el("span", "", s.d)); row.appendChild(left);
+          var b = el("button", "gbtn fpbuy", mx ? "Maxed" : fmt(c) + " gold"); b.type = "button"; b.disabled = mx || S.g < c;
+          b.addEventListener("click", function(){ if(S.up[s.k] >= s.max) return; var cc = cost(s); if(S.g < cc) return; S.g -= cc; S.up[s.k]++; save(true); render(); upd(); }); row.appendChild(b); panel.appendChild(row);
+        });
+        var ar = el("div", "fprow"), al = el("div", "fpl"); al.appendChild(el("b", "", "Auto-Fisher")); al.appendChild(el("span", "", S.auto ? "Casts and reels in by itself. Reel in yourself within a split second for a Perfect bonus." : "Casts and reels in by itself, even while you do something else on this page.")); ar.appendChild(al);
+        var ab = el("button", "gbtn fpbuy", S.auto ? (S.autoOn ? "On" : "Off") : fmt(AUTOCOST) + " gold"); ab.type = "button"; ab.disabled = !S.auto && S.g < AUTOCOST;
+        ab.addEventListener("click", function(){ if(S.auto){ S.autoOn = S.autoOn ? 0 : 1; } else if(S.g >= AUTOCOST){ S.g -= AUTOCOST; S.auto = 1; S.autoOn = 1; } save(true); render(); upd(); }); ar.appendChild(ab); panel.appendChild(ar);
+        var rs = el("button", "fpreset", resetArm ? "Click again to erase all progress" : "Start over"); rs.type = "button";
+        rs.addEventListener("click", function(){ if(!resetArm){ resetArm = 1; render(); setTimeout(function(){ if(resetArm){ resetArm = 0; if(tab === "shop") render(); } }, 4000); return; } resetArm = 0; S = blank(); R.forEach(function(r){ r.s = "idle"; r.at = 0; }); save(true); render(); upd(); say("Fresh start", "", ""); });
+        panel.appendChild(rs);
+      } else if(tab === "tr"){
+        var grid = el("div", "fpgrid"), have = 0;
+        TREA.forEach(function(t){
+          var c = S.tr[t.id] || 0, cell = el("div", "fpcell" + (c ? " own" : "")); if(c) have++;
+          var ic = icon({id: t.id}, 40); cell.appendChild(ic); if(c > 1) cell.appendChild(el("em", "", "×" + c));
+          cell.title = c ? t.n + ": " + fxText(t.fx) : "Not found yet"; cell.setAttribute("aria-label", cell.title); grid.appendChild(cell);
+        });
+        panel.appendChild(grid); panel.appendChild(el("p", "fpnote", have + " of " + TREA.length + " treasures found. Hover or press a slot to see what it does. Copies stack."));
+      } else {
+        var g2 = el("div", "fpgrid"), found = 0;
+        ALL.forEach(function(e){
+          var c = S.disc[e.k] || 0, cell = el("div", "fpcell" + (c ? " own" : "") + (e.r ? " rare" : "")); if(c) found++;
+          cell.appendChild(icon(e, 34)); if(c > 1) cell.appendChild(el("em", "", "×" + c));
+          cell.title = c ? e.n + " (" + e.v + " gold)" : "Not caught yet"; cell.setAttribute("aria-label", cell.title); g2.appendChild(cell);
+        });
+        panel.appendChild(g2); panel.appendChild(el("p", "fpnote", found + " of " + ALL.length + " different catches. Casts so far: " + S.casts + ". Lifetime gold: " + fmt(S.lg) + "."));
+      }
+    }
+    document.addEventListener("keydown", function(e){
+      if((e.code !== "Space" && e.key !== " ") || !host.classList.contains("act")) return;
+      var t = e.target, tn = t && t.tagName; if(tn === "INPUT" || tn === "TEXTAREA" || tn === "SELECT" || (t && t.isContentEditable)) return;
+      if(t !== document.body && !host.contains(t)) return;
+      if(tn === "BUTTON" && host.contains(t)) return;
+      e.preventDefault(); actAll();
+    });
+    window.addEventListener("resize", layout);
+    var started = false;
+    function begin(){ if(started) return; started = true; layout(); setInterval(tick, 90); }
+    layout(); render(); upd(); say("Ready to fish?", "Press Cast, or the space bar while this game is in the middle.", ""); begin();
+    document.addEventListener("k1v9slide", function(e){ if(e.detail && e.detail.id === "gfish"){ layout(); } });
+    window.addEventListener("beforeunload", function(){ save(true); });
+    document.addEventListener("visibilitychange", function(){ if(document.hidden) save(true); });
+  })();
+
   /* ---------- carousel (endless loop) ---------- */
   (function(){
     var track = document.getElementById("gtrack"), tabsBox = document.getElementById("gtabs"); if(!track || !tabsBox) return;
@@ -4992,7 +5329,11 @@ var CHSTAT = {subs: 69500, goal: 100000, videos: 1292, checked: "16 Oct 2026"};
     {id: "sil_first", c: "Minigames", nm: "Shadow Hunter", ds: "Solve your first silhouette.", t: "bronze", g: "eye"},
     {id: "sil1", c: "Minigames", nm: "Sharp Eyes", ds: "Solve a silhouette on the very first guess.", t: "silver", g: "target"},
     {id: "sil5", c: "Minigames", nm: "Eagle Eye", ds: "Reach a silhouette streak of 5.", t: "gold", g: "eye", p: function(){ return [silBest(), 5]; }},
-    {id: "arcade", c: "Minigames", nm: "Arcade Regular", ds: "Play all four minigames.", t: "silver", g: "pad", p: function(){ return [Object.keys(st.played).length, 4]; }},
+    {id: "arcade", c: "Minigames", nm: "Arcade Regular", ds: "Play all five minigames.", t: "silver", g: "pad", p: function(){ return [Object.keys(st.played).length, 5]; }},
+    {id: "fish_first", c: "Minigames", nm: "First Bite", ds: "Catch your first item in the Fishing Hole.", t: "bronze", g: "target"},
+    {id: "fish_chest", c: "Minigames", nm: "Lucky Pull", ds: "Pull a treasure chest out of the Fishing Hole.", t: "silver", g: "chest"},
+    {id: "fish_rods", c: "Minigames", nm: "Double Trouble", ds: "Fish with two rods at once.", t: "gold", g: "gem"},
+    {id: "fish_gold", c: "Minigames", nm: "Gold Digger", ds: "Earn 2000 gold in total while fishing.", t: "silver", g: "crown", p: function(){ var f = jr("k1v9-fish", {}); return [f.lg || 0, 2000]; }},
     {id: "daily1", c: "Daily", nm: "Daily Habit", ds: "Solve a Daily Silhouette.", t: "bronze", g: "cal"},
     {id: "daily3", c: "Daily", nm: "Three in a Row", ds: "Solve the Daily Silhouette 3 days in a row.", t: "silver", g: "cal", p: function(){ return [num("k1v9-daily-best"), 3]; }},
     {id: "daily7", c: "Daily", nm: "Week of Justice", ds: "Solve the Daily Silhouette 7 days in a row.", t: "gold", g: "crown", p: function(){ return [num("k1v9-daily-best"), 7]; }},
