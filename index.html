@@ -1619,6 +1619,8 @@ nav .logo img{animation-duration:6.5s}
 #games .gtrack>.gcard:first-child{margin-left:calc((100% - min(88%,580px)) / 2)}
 #games .gtrack>.gcard:last-child{margin-right:calc((100% - min(88%,580px)) / 2)}
 #games .gtrack>.gcard:not(.act){opacity:.5;filter:saturate(.7)}
+#games .gtrack>.gcard:not(.act) *{animation-play-state:paused!important}
+section[data-off] *{animation-play-state:paused!important}
 .gcar{position:relative}
 .gnav{position:absolute;top:50%;z-index:5;width:46px;height:46px;margin-top:-23px;display:none;place-items:center;border-radius:50%;border:2px solid var(--gold);background:rgba(11,18,38,.88);color:var(--gold);cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,.5);transition:background .25s,color .25s,transform .3s cubic-bezier(.34,1.56,.64,1),opacity .25s}
 .gnav:hover:not(:disabled){background:var(--gold);color:#0F1A33;transform:scale(1.08)}
@@ -3123,22 +3125,27 @@ if(!still){
 if(!still){
   var cv = document.createElement("canvas"); cv.id = "fx"; cv.setAttribute("aria-hidden","true");
   document.body.insertBefore(cv, document.body.firstChild);
-  var cx = cv.getContext("2d"), W = 0, H = 0, dpr = Math.min(window.devicePixelRatio || 1, 2), ps = [];
-  function fit(){ W = window.innerWidth; H = window.innerHeight; cv.width = W*dpr; cv.height = H*dpr; cx.setTransform(dpr,0,0,dpr,0,0); }
-  fit(); window.addEventListener("resize", fit);
-  var N = W < 700 ? 45 : 90;
+  var cx = cv.getContext("2d"), W = 0, H = 0, small = window.innerWidth < 700 || (window.matchMedia && matchMedia("(pointer: coarse)").matches), dpr = Math.min(window.devicePixelRatio || 1, small ? 1.5 : 2), ps = [], FXMH = 0, fxLast = 0, fxCleared = false, fxStep = small ? 2 : 1;
+  function fxMeasure(){ FXMH = Math.max(0, document.documentElement.scrollHeight - H); }
+  function fit(){ W = window.innerWidth; H = window.innerHeight; cv.width = W*dpr; cv.height = H*dpr; cx.setTransform(dpr,0,0,dpr,0,0); fxMeasure(); }
+  fit(); window.addEventListener("resize", fit); setInterval(fxMeasure, 1500);
+  var N = W < 700 ? 30 : 90;
   for(var k = 0; k < N; k++){
     ps.push({x:Math.random(), y:Math.random(), r:1+Math.random()*2.2, d:.08+Math.random()*.3, s:.12+Math.random()*.35, w:Math.random()*6.28, c:Math.random()<.65 ? "240,185,75" : "110,160,235", f:0});
   }
   function loop(t){
-    var sy = sp, mh = document.documentElement.scrollHeight - H, pg = mh > 0 ? Math.min(sy/mh, 1) : 0;
+    if(window.K_FXOFF){ if(!fxCleared){ cx.clearRect(0,0,W,H); fxCleared = true; } requestAnimationFrame(loop); return; }
+    fxCleared = false;
+    if(small && t - fxLast < 29){ requestAnimationFrame(loop); return; }
+    fxLast = t;
+    var sy = sp, mh = FXMH, pg = mh > 0 ? Math.min(sy/mh, 1) : 0;
     var tgt = Math.floor(N*(.1 + .9*pg));
     cx.clearRect(0,0,W,H);
     for(var i = 0; i < N; i++){
       var p = ps[i];
-      p.f += ((i < tgt ? 1 : 0) - p.f)*.05;
+      p.f += ((i < tgt ? 1 : 0) - p.f)*.05*fxStep;
       if(p.f < .01) continue;
-      p.w += .011;
+      p.w += .011*fxStep;
       var yy = (((p.y*H - t*p.s*.014 - sy*p.d) % H) + H) % H;
       var xx = p.x*W + Math.sin(p.w)*14;
       var a = p.f*(.35 + .3*Math.sin(p.w*1.7));
@@ -3152,10 +3159,15 @@ if(!still){
   requestAnimationFrame(loop);
 }
 if(!still){
+  if("IntersectionObserver" in window){ var offIO = new IntersectionObserver(function(es){ es.forEach(function(e){ e.target.toggleAttribute("data-off", !e.isIntersecting); }); }, {rootMargin: "160px 0px"}); document.querySelectorAll("section").forEach(function(sc){ offIO.observe(sc); }); }
   var fo = document.querySelectorAll("section h2, section .lead, .tier, .tz, .video, .item, .mcode, .mcar, .mtrust, .btn.shop, .gear, .btabs, .btiers, .bjump, .bpanel"), ft = false;
   var fcur = [], sp = window.scrollY, lastY = sp, up = false;
   for(var q = 0; q < fo.length; q++) fcur.push(1);
+  var fRun = true, fMoving = false;
+  function fkick(){ if(!fRun){ fRun = true; requestAnimationFrame(fadeOut); } }
+  window.addEventListener("scroll", fkick, {passive:true}); window.addEventListener("resize", fkick); window.addEventListener("load", fkick); setInterval(fkick, 1000);
   function fadeOut(){
+    fMoving = false;
     sp += (window.scrollY - sp)*.1;
     if(Math.abs(window.scrollY - sp) < .3) sp = window.scrollY;
     var smh = document.documentElement.scrollHeight - window.innerHeight;
@@ -3168,6 +3180,7 @@ if(!still){
       var tg = (up ? b > 0 : b >= zone) ? 1 : Math.max(b/zone, 0); tg = tg*tg*(3 - 2*tg);
       fcur[i] += (tg - fcur[i])*(tg > fcur[i] ? .6 : .1);
       if(Math.abs(tg - fcur[i]) < .002) fcur[i] = tg;
+      if(fcur[i] !== tg) fMoving = true;
       var f = fcur[i];
       if(f >= .999){
         if(el.dataset.fo){ el.style.opacity = ""; el.style.removeProperty("--fy"); el.style.scale = ""; el.dataset.fo = ""; }
@@ -3175,7 +3188,8 @@ if(!still){
       }
       el.style.opacity = f; el.style.setProperty("--fy", (-(1 - f)*32) + "px"); el.style.scale = .94 + .06*f; el.dataset.fo = "1";
     }
-    requestAnimationFrame(fadeOut);
+    if(sp !== window.scrollY) fMoving = true;
+    if(fMoving) requestAnimationFrame(fadeOut); else fRun = false;
   }
   requestAnimationFrame(fadeOut);
 }
@@ -5642,13 +5656,14 @@ var CHSTAT = {subs: 69500, goal: 100000, videos: 1292, checked: "16 Oct 2026"};
       ic2.classList.add("ei"); et.appendChild(el("b", "", nm)); et.appendChild(el("small", "", parts.length ? parts.join(" · ") : "Calm waters, normal fishing"));
       envBox.textContent = ""; envBox.appendChild(ic2); envBox.appendChild(et);
     }
-    var rainDrops = [], rainLast = 0, stormI = 0, rainI = 0, rainTarget = 0, rainRun = false, paused = false, pausedAt = 0, pShift = 0, RM = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var gVis = true, coarseP = window.matchMedia && matchMedia("(pointer: coarse)").matches, rainDrops = [], rainLast = 0, stormI = 0, rainI = 0, rainTarget = 0, rainRun = false, paused = false, pausedAt = 0, pShift = 0, RM = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
     function rainFrame(){
+      if(coarseP && rainLast && performance.now() - rainLast < 28){ requestAnimationFrame(rainFrame); return; }
       var W = rain.width, H = rain.height, c = rain.getContext("2d"), pre = ST.pre, storm = rainTarget > .6, tn = performance.now(), dt = rainLast ? Math.min(3, Math.max(.2, (tn - rainLast) / 16.667)) : 1;
       rainLast = tn; stormI += ((storm ? 1 : 0) - stormI) * Math.min(1, .03 * dt); if(Math.abs((storm ? 1 : 0) - stormI) < .004) stormI = storm ? 1 : 0;
       rainI += (rainTarget - rainI) * (1 - Math.pow(.94, dt)); if(Math.abs(rainTarget - rainI) < .01) rainI = rainTarget;
       if(rainTarget === 0 && rainI === 0){ c.clearRect(0, 0, W, H); rainRun = false; rainLast = 0; return; }
-      if(!paused && host.classList.contains("act") && !document.hidden){
+      if(!paused && gVis && host.classList.contains("act") && !document.hidden){
         var cn = pre === "snow" ? [70, 190] : pre === "star" ? [26, 60] : [80, 150], want = Math.round(W / 520 * (cn[0] + (cn[1] - cn[0]) * stormI) * (ST.pd || 1)), i, d, pal = ["255,226,140", "190,210,255", "255,170,225"];
         while(rainDrops.length < want) rainDrops.push({x: Math.random() * (W + 60), y: Math.random() * H, l: 9 + Math.random() * 11, v: 9 + Math.random() * 7, a: .3 + Math.random() * .4, r: 1 + Math.random() * 1.7, ph: Math.random() * 6.3, cl: Math.floor(Math.random() * 3)});
         if(rainDrops.length > want) rainDrops.length = want;
@@ -5719,12 +5734,14 @@ var CHSTAT = {subs: 69500, goal: 100000, videos: 1292, checked: "16 Oct 2026"};
       });
       host.appendChild(dev);
     }
+    if("IntersectionObserver" in window){ new IntersectionObserver(function(es){ var e = es[es.length - 1]; gVis = e.isIntersecting; window.K_FXOFF = e.intersectionRatio > .35; }, {threshold: [0, .35]}).observe(host); }
     /* kayle floats */
     var fT = 0, fLast = 0;
     function floatLoop(now){
       requestAnimationFrame(floatLoop);
-      if(RM || paused || document.hidden || !host.classList.contains("act")){ fLast = 0; return; }
+      if(RM || paused || document.hidden || !gVis || !host.classList.contains("act")){ fLast = 0; return; }
       if(!fLast){ fLast = now; return; }
+      if(coarseP && now - fLast < 30) return;
       fT += Math.min(.1, (now - fLast) / 1000); fLast = now;
       var dx = Math.sin(fT * .85) * 3.2, dy = Math.sin(fT * 1.7) * 4.6 + Math.sin(fT * .6) * 1.4, rot = Math.sin(fT * 1.1) * 2.4;
       kay.style.transform = "translate(" + dx.toFixed(2) + "px," + dy.toFixed(2) + "px) rotate(" + rot.toFixed(2) + "deg)";
