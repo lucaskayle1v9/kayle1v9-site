@@ -16,5 +16,53 @@ extra = ('<link rel="canonical" href="%s">\n<meta property="og:url" content="%s"
 s = s.replace('<meta name="twitter:card" content="summary_large_image">', '<meta name="twitter:card" content="summary_large_image">\n' + extra, 1)
 assert 'og-image.png' in s, 'meta anchor not found'
 os.makedirs(out, exist_ok=True)
+
+# --- Move big inline images (jpeg/webp/png data URIs) into files under a/ -------------------------
+# The artifact keeps every image inline (one file). For the real site the big ones become separate,
+# cacheable files with content-hash names, so the HTML is much smaller and parses faster.
+# Audio (read with atob() by the page) and small icons stay inline.
+import hashlib, base64
+MIN_CHARS = 4000
+adir = os.path.join(out, 'a')
+os.makedirs(adir, exist_ok=True)
+for old_f in os.listdir(adir):
+    os.remove(os.path.join(adir, old_f))
+files = {}  # name -> position of first use (so we can tell hero images from the rest)
+def _extract(m):
+    kind, b64 = m.group(1), m.group(2)
+    if len(m.group(0)) < MIN_CHARS:
+        return m.group(0)
+    raw = base64.b64decode(b64)
+    name = hashlib.sha1(raw).hexdigest()[:12] + ('.jpg' if kind == 'jpeg' else '.' + kind)
+    path = os.path.join(adir, name)
+    if not os.path.exists(path):
+        open(path, 'wb').write(raw)
+    files.setdefault(name, m.start())
+    return 'a/' + name
+s = re.sub(r'data:image/(jpeg|webp|png);base64,([A-Za-z0-9+/=]+)', _extract, s)
+# Preload the images the first screen needs (hero background in the CSS and images inside <header class="hero">)
+hero_end = s.find('</header>')
+hero_start = s.find('<header class="hero"')
+first = []
+for m in re.finditer(r'<style[^>]*>(.*?)</style>', s, re.S):
+    # the largest image referenced from CSS is the hero background
+    refs = re.findall(r'url\((?:&quot;|["\']?)(a/[0-9a-f]{12}\.[a-z]+)', m.group(1))
+    sizes = [(os.path.getsize(os.path.join(adir, r[2:])), r) for r in refs]
+    if sizes:
+        first.append(max(sizes)[1]); break
+if hero_start >= 0 and hero_end > hero_start:
+    for r in re.findall(r'src="(a/[0-9a-f]{12}\.[a-z]+)"', s[hero_start:hero_end]):
+        if r not in first: first.append(r)
+pre = ''.join('<link rel="preload" as="image" href="%s"%s>\n' % (r, ' fetchpriority="high"' if i == 0 else '') for i, r in enumerate(first[:4]))
+s = s.replace('</head>', pre + '</head>', 1)
+# After the page has loaded and the browser is idle, fetch the remaining images quietly so reels and panels never wait for them
+rest = [('a/' + n) for n in files if ('a/' + n) not in first]
+loader = ('<script>(function(){var u=%s;function go(){var i=0;(function n(){if(i>=u.length)return;var im=new Image();im.decoding="async";im.onload=im.onerror=function(){setTimeout(n,60)};im.src=u[i++]})()}'
+          'function idle(){(window.requestIdleCallback||function(f){setTimeout(f,400)})(go,{timeout:4000})}'
+          'if(document.readyState==="complete")setTimeout(idle,1200);else addEventListener("load",function(){setTimeout(idle,1200)})})();</script>\n') % __import__('json').dumps(rest)
+i = s.rfind('</body>')
+s = s[:i] + loader + s[i:] if i >= 0 else s + loader
+print('images moved to a/:', len(files), 'preloaded:', first[:4])
+
 open(os.path.join(out, 'index.html'), 'w', encoding='utf-8').write(s)
 print('index.html', len(s))
