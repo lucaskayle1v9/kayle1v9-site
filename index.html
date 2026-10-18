@@ -1901,6 +1901,12 @@ section[data-off] *{animation-play-state:paused!important}
         <li><a href="#videos">Videos</a></li>
         <li><a href="#merch">Merch</a></li>
       </ul>
+      <form class="srch" id="srch" role="search" autocomplete="off" action="javascript:void(0)">
+        <svg class="sri" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/></svg>
+        <input id="srq" type="search" role="combobox" aria-expanded="false" aria-controls="srlist" aria-autocomplete="list" placeholder="Search items, matchups, videos…" aria-label="Search the site" enterkeyhint="search" spellcheck="false" autocapitalize="off" autocomplete="off">
+        <kbd class="srk" aria-hidden="true">/</kbd>
+        <div class="srdd" id="srlist" role="listbox" aria-label="Search results" hidden></div>
+      </form>
 </nav>
     <div class="lvrow"><div class="lvwrap" id="lvwrap"><div class="level" id="level" aria-label="Level 16"><span id="lt">Level 16</span></div><div class="lvtip" id="lvtip" aria-hidden="true"><svg viewBox="0 0 38 26" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M36 20C26 22 12 18 5 6"/><path d="M4 14L5 5l9 2"/></svg><span id="lvtxt">Hover me!</span></div></div><div class="skinwrap" id="skinwrap"><button type="button" class="skinbtn" id="skinbtn" aria-expanded="false" aria-controls="skincard"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4.5" fill="none" stroke="currentColor" stroke-width="2"/><g fill="currentColor"><circle cx="8.2" cy="8.2" r="1.6"/><circle cx="15.8" cy="8.2" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="8.2" cy="15.8" r="1.6"/><circle cx="15.8" cy="15.8" r="1.6"/></g></svg><span>Pick me a skin</span></button><div class="sndbox" id="sndbox"><button type="button" class="sndbtn" id="sndbtn" aria-label="Sound settings" aria-expanded="false" aria-controls="sndpanel" title="Sound settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5v5h4l5 4v-13l-5 4z" fill="currentColor"/><g class="skw"><path d="M16.5 9a4.2 4.2 0 0 1 0 6"/><path d="M19 6.5a8 8 0 0 1 0 11"/></g><path class="skxx" d="M17 9.5l5 5M22 9.5l-5 5"/></svg></button><div class="sndpanel" id="sndpanel"><button type="button" class="sndmute" id="sndmute" aria-label="Mute sounds" aria-pressed="false" title="Mute"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5v5h4l5 4v-13l-5 4z" fill="currentColor"/><g class="skw"><path d="M16.5 9a4.2 4.2 0 0 1 0 6"/><path d="M19 6.5a8 8 0 0 1 0 11"/></g><path class="skxx" d="M17 9.5l5 5M22 9.5l-5 5"/></svg></button><input type="range" id="sndrange" class="sndrange" min="0" max="100" step="1" value="50" aria-label="Volume"><output id="sndval" for="sndrange">50</output></div></div><div class="skincard" id="skincard" role="dialog" aria-label="Your skin for the next game" hidden><button type="button" class="skm" id="skm" aria-label="Mute sounds" aria-pressed="false" title="Sound on/off"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5v5h4l5 4v-13l-5 4z" fill="currentColor"/><g class="skw"><path d="M16.5 9a4.2 4.2 0 0 1 0 6"/><path d="M19 6.5a8 8 0 0 1 0 11"/></g><path class="skxx" d="M17 9.5l5 5M22 9.5l-5 5"/></svg></button><button type="button" class="skx" id="skx" aria-label="Close">&times;</button><div class="skreel" id="skreel" aria-hidden="true"><div class="skstrip" id="skstrip"></div><i class="skmark"></i></div><div class="skart"><img id="skimg" alt="" width="120" height="218"></div><div class="skbody"><span class="skkick">Your next game</span><b id="skname">Kayle</b><span class="sksub" id="sksub"></span><button type="button" class="skagain" id="skagain">Roll again</button></div></div></div><a class="gamesbtn" id="gamesbtn" href="#games" title="Jump to the minigames"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="7" width="19" height="11" rx="5.5"/><path d="M8 10.5v4M6 12.5h4"/><circle cx="15.5" cy="11.5" r=".9" fill="currentColor"/><circle cx="18" cy="13.7" r=".9" fill="currentColor"/></svg><span>More minigames</span></a></div>
     <h1 id="top">Kayle 1v9</h1>
@@ -3326,6 +3332,7 @@ document.querySelectorAll(".tw").forEach(function(tw, i){ setTimeout(function(){
       items:["Doran's Blade","Boots of Swiftness","Nashor's Tooth","Dusk and Dawn","Rabadon's Deathcap","Shadowflame"],
       spells:"Flash + Teleport", src:"OP.GG", url:"https://op.gg/lol/champions/kayle/build/top?region=kr&tier=emerald_plus"}
   };
+  window.K_BUILDS = DATA;
   // === LIVE DATA START (rewritten by the daily update task) ===
   var PATCH = "16.20", PREV = "16.19", CHECKED = "18 Oct 2026";
   // Top lane win / pick / ban rate per rank filter: [win, pick, ban] on PATCH, then [win, pick, ban] on PREV.
@@ -6915,5 +6922,249 @@ var CHSTAT = {subs: 69500, goal: 100000, videos: 1292, checked: "16 Oct 2026"};
   else if(window.fetch && location.protocol.indexOf("http") == 0){
     fetch("leaderboard.json", {cache: "no-cache"}).then(function(r){ return r.ok ? r.json() : null; }).then(render).catch(function(){});
   }
+})();
+</script>
+
+
+<style>
+.srch{position:relative;flex:0 1 250px;min-width:0}
+.srch .sri{position:absolute;left:13px;top:50%;width:17px;height:17px;margin-top:-8.5px;color:var(--muted);pointer-events:none;transition:color .2s}
+.srch:focus-within .sri{color:var(--gold)}
+.srch input{width:100%;font:inherit;font-size:.92rem;color:var(--text);background:rgba(20,32,63,.72);border:1.5px solid var(--line);border-radius:999px;padding:9px 40px 9px 38px;outline:none;-webkit-appearance:none;appearance:none;transition:border-color .2s,box-shadow .2s,background .2s}
+.srch input::placeholder{color:var(--muted);opacity:.9}
+.srch input::-webkit-search-cancel-button{-webkit-appearance:none;appearance:none;height:16px;width:16px;cursor:pointer;opacity:.7;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%239FB0CC' stroke-width='3' stroke-linecap='round'><path d='M6 6l12 12M18 6L6 18'/></svg>") center/contain no-repeat}
+.srch input:hover{border-color:rgba(240,185,75,.55)}
+.srch input:focus{border-color:var(--gold);background:rgba(20,32,63,.95);box-shadow:0 0 0 3px rgba(240,185,75,.18)}
+.srk{position:absolute;right:12px;top:50%;transform:translateY(-50%);font:700 .72rem/1 inherit;font-family:inherit;color:var(--muted);border:1px solid var(--line);border-radius:6px;padding:3px 6px;pointer-events:none}
+.srch:focus-within .srk,.srch input:not(:placeholder-shown)~.srk{opacity:0}
+@media (hover:none){.srk{display:none}}
+.srdd{position:absolute;right:0;top:calc(100% + 10px);width:min(430px,calc(100vw - 32px));max-height:min(70vh,520px);overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;z-index:60;padding:8px;border-radius:18px;border:1.5px solid rgba(240,185,75,.55);background:#080E1E;box-shadow:0 18px 50px rgba(0,0,0,.55);text-align:left}
+.srdd[hidden]{display:none}
+.srg{font-size:.68rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:rgba(245,248,253,.55);padding:8px 10px 4px}
+.srr{display:flex;align-items:center;gap:11px;padding:7px 10px;border-radius:12px;cursor:pointer;color:var(--text);-webkit-tap-highlight-color:transparent}
+.srr.on{background:rgba(240,185,75,.16)}
+.srr .sic{flex:none;width:34px;height:34px;border-radius:9px;display:grid;place-items:center;overflow:hidden;background:rgba(255,255,255,.06);border:1px solid var(--line);color:var(--gold);font-size:.9rem;font-weight:800}
+.srr .sic img{width:100%;height:100%;object-fit:cover;display:block}
+.srr .stx{min-width:0;flex:1}
+.srr .stx b{display:block;font-size:.92rem;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.srr .stx span{display:block;font-size:.76rem;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.srr .sgo{flex:none;color:var(--muted);font-size:1rem;opacity:0;transition:opacity .15s}
+.srr.on .sgo{opacity:1;color:var(--gold)}
+.srn{padding:14px 12px;color:var(--muted);font-size:.9rem}
+.srt{display:flex;flex-wrap:wrap;gap:8px;padding:2px 10px 10px}
+.srt button{font:inherit;font-size:.82rem;font-weight:700;color:var(--text);background:var(--panel);border:1.5px solid var(--line);border-radius:999px;padding:6px 12px;cursor:pointer}
+.srt button:hover,.srt button:focus-visible{border-color:var(--gold);color:var(--gold);outline:none}
+.srflash{animation:srf 2.1s ease-out;border-radius:12px}
+@keyframes srf{0%,55%{box-shadow:0 0 0 3px var(--gold),0 0 30px 8px rgba(240,185,75,.6)}100%{box-shadow:0 0 0 3px rgba(240,185,75,0),0 0 0 0 rgba(240,185,75,0)}}
+@media (max-width:1100px){.srch{order:3;flex:1 1 100%;max-width:460px}}
+@media (max-width:760px){nav{row-gap:14px}.srch{order:2;max-width:none}nav>ul:not(.social){order:3;flex-basis:100%}.srch input{font-size:16px;padding:10px 14px 10px 38px}.srdd{left:0;right:0;width:auto}}
+@media (prefers-reduced-motion:reduce){.srflash{animation:none;box-shadow:0 0 0 3px var(--gold)}.srch input{transition:none}}
+</style>
+<script>
+(function(){
+  var form = document.getElementById("srch"), inp = document.getElementById("srq"), dd = document.getElementById("srlist");
+  if(!form || !inp || !dd) return;
+  var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var ORDER = ["Sections", "Items", "Matchups", "Minigames", "Videos", "Merch", "Trophies"];
+  var KW = {coaching: "book session coach lesson price discord", builds: "build items runes lolalytics win rate", finder: "find quiz champion pick", matchups: "champion counter vs guide runes spells", leaderboard: "ranking top players ladder", games: "minigames games play arcade", trophies: "achievements trophy room unlocks skins", videos: "youtube watch channel", about: "bio story rank kayle", merch: "shop store cap mug hat", gear: "setup mouse keyboard monitor equipment", reviews: "testimonials students"};
+  var GAMEKW = {fishing: "fish angeln rod bait idle boss prestige shop", "higher or lower": "hol guess win rate streak", "ult timing": "ultimate r reaction", "cs challenge": "farm minions last hit", silhouette: "guess champion skin"};
+  var idx = [], cur = [], act = -1, open = false;
+  function norm(s){ return String(s || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/['’`´.]/g, "").replace(/[^a-z0-9]+/g, " ").replace(/\s+/g, " ").trim(); }
+  function $(id){ return document.getElementById(id); }
+  function scrollTo(n, blk){ if(n) n.scrollIntoView({behavior: reduce ? "auto" : "smooth", block: blk || "center", inline: "center"}); }
+  function flash(n){ if(!n) return; n.classList.remove("srflash"); void n.offsetWidth; n.classList.add("srflash"); setTimeout(function(){ n.classList.remove("srflash"); }, 2300); }
+  function later(fn, ms){ setTimeout(fn, reduce ? Math.min(ms, 60) : ms); }
+  function add(g, t, s, kw, ic, go){ idx.push({g: g, t: t, s: s, nt: norm(t), nk: norm(kw || ""), ic: ic, go: go}); }
+  function textOnly(n){ return Array.prototype.filter.call(n.childNodes, function(c){ return c.nodeType === 3; }).map(function(c){ return c.textContent; }).join("").trim(); }
+  function itemIds(d){
+    var o = {};
+    function arr(a){ (a || []).forEach(function(x){ if(x && x.i != null) o[x.i] = 1; }); }
+    [d.it, d.iw].forEach(function(g){ if(g) ["c", "f", "x"].forEach(function(k){ arr(g[k]); }); });
+    [d.bt, d.bw].forEach(function(a){ (a || []).forEach(function(x){ o[x[0]] = 1; }); });
+    [d.st, d.sw].forEach(function(s){ if(s && s.s) s.s.forEach(function(i){ o[i] = 1; }); });
+    return o;
+  }
+  function build(){
+    idx = [];
+    var D = window.KDATA, B = window.K_BUILDS || {}, L = {};
+    try{ L = D && D.list ? D.list() : {}; }catch(e){}
+    // Sections
+    Array.prototype.forEach.call(document.querySelectorAll("section[id]"), function(s){
+      if(s.hidden || s.id === "top") return;
+      var h = s.querySelector("h2"); if(!h) return;
+      var t = h.textContent.replace(/\s+/g, " ").trim(); if(!t) return;
+      add("Sections", t, "Jump to this section", KW[s.id], "↗", function(){ scrollTo(s, "start"); });
+    });
+    // Matchups + which guides recommend which item
+    var mcount = {}, mbest = {};
+    Object.keys(L).forEach(function(slug){
+      var d = L[slug], ids = itemIds(d);
+      Object.keys(ids).forEach(function(i){ mcount[i] = (mcount[i] || 0) + 1; if(!mbest[i] || d.n > L[mbest[i]].n) mbest[i] = slug; });
+      add("Matchups", d.nm, "Kayle vs " + d.nm + " · " + d.w.toFixed(1) + "% win rate · " + d.n.toLocaleString("en-US") + " games", slug, {img: D.icon(d.c)}, function(){
+        scrollTo($("matchups"), "start");
+        later(function(){ if(window.KMU) KMU.choose(slug); }, 380);
+      });
+    });
+    // Items
+    var its = []; try{ its = D && D.items ? D.items() : []; }catch(e){}
+    its.forEach(function(it){
+      var nm = it.nm, nn = norm(nm), regs = [];
+      ["eu", "china", "korea"].forEach(function(r){
+        var d = B[r]; if(!d || !d.items) return;
+        if(d.items.some(function(x){ return x.split(" or ").some(function(p){ return norm(p) === nn; }); })) regs.push(r);
+      });
+      var CODE = {eu: "EU", china: "CN", korea: "KR"}, mc = mcount[it.id] || 0, parts = [];
+      if(regs.length) parts.push("In the builds: " + regs.map(function(r){ return CODE[r]; }).join(", "));
+      if(mc) parts.push("Recommended in " + mc + " matchup guide" + (mc > 1 ? "s" : ""));
+      if(!parts.length) parts.push("Item \u00b7 not in the current builds or guides");
+      add("Items", nm, parts.join(" · "), "item build", {img: it.img}, function(){
+        if(regs.length){
+          var bs = $("bsecbtn"); if(bs && bs.getAttribute("aria-expanded") === "false") bs.click();
+          var tab = document.querySelector('.btab[data-r="' + regs[0] + '"]');
+          if(tab && !tab.classList.contains("on")) tab.click();
+          scrollTo($("builds"), "start");
+          later(function(){
+            var pn = $("bpanel"), hit = null;
+            if(pn) Array.prototype.forEach.call(pn.querySelectorAll("img,.bor"), function(n){
+              if(!hit && norm(n.alt || n.title || n.textContent).indexOf(nn) >= 0) hit = n;
+            });
+            if(hit){ scrollTo(hit, "center"); flash(hit.closest(".item,.bitem,.bcell") || hit); } else if(pn) scrollTo(pn, "start");
+          }, 700);
+        } else if(mbest[it.id]){
+          scrollTo($("matchups"), "start");
+          later(function(){ if(window.KMU) KMU.choose(mbest[it.id]); }, 380);
+        } else scrollTo($("builds"), "start");
+      });
+    });
+    // Minigames
+    Array.prototype.forEach.call(document.querySelectorAll("#gtabs .gtab"), function(b){
+      var t = textOnly(b), fav = b.querySelector(".fvb");
+      add("Minigames", t, "Minigame" + (fav ? " · " + fav.textContent : ""), (GAMEKW[t.toLowerCase()] || "") + " game play", "●", function(){
+        scrollTo($("games"), "start"); later(function(){ b.click(); flash(b); }, 450);
+      });
+    });
+    // Videos
+    var vs = document.querySelectorAll("#videos .video"), vl = window.vids || [];
+    Array.prototype.forEach.call(vs, function(v, i){
+      var t = (vl[i] && vl[i].title) || (v.innerText || "").split("\n")[0]; if(!t) return;
+      add("Videos", t, "Video · " + ((vl[i] && vl[i].note) || "Watch on YouTube"), "youtube video", "▶", function(){
+        var more = $("vmore"), tg = $("vtbtn");
+        if(more && more.contains(v) && tg && tg.getAttribute("aria-expanded") === "false") tg.click();
+        later(function(){ scrollTo(v, "center"); flash(v); }, 300);
+      });
+    });
+    // Merch
+    Array.prototype.forEach.call(document.querySelectorAll("#merch .mcard"), function(c){
+      var b = c.querySelector("b"), p = c.querySelector("p"); if(!b) return;
+      add("Merch", b.textContent.trim(), "Merch" + (p ? " · " + p.textContent.trim() : ""), "shop merch store", "◆", function(){
+        scrollTo($("merch"), "start"); later(function(){ scrollTo(c, "center"); flash(c); }, 450);
+      });
+    });
+    // Trophies (hidden ones stay secret)
+    Array.prototype.forEach.call(document.querySelectorAll("#trophies .tcard"), function(c){
+      var b = c.querySelector(".ttx b"), p = c.querySelector(".ttx p"); if(!b || b.textContent === "Hidden trophy") return;
+      var got = c.classList.contains("got");
+      add("Trophies", b.textContent.trim(), (got ? "Unlocked" : "Locked") + (p ? " · " + p.textContent.trim() : ""), "trophy achievement", got ? "★" : "☆", function(){
+        var sm = document.querySelector("#trophies .tsum");
+        if(sm && sm.getAttribute("aria-expanded") === "false") sm.click();
+        scrollTo($("trophies"), "start"); later(function(){ scrollTo(c, "center"); flash(c); }, 550);
+      });
+    });
+  }
+  function score(e, toks, nq){
+    var sc = 0;
+    for(var i = 0; i < toks.length; i++){
+      var t = toks[i];
+      if(e.nt.indexOf(t) === 0) sc += 0;
+      else if(e.nt.indexOf(" " + t) >= 0) sc += 1;
+      else if(e.nt.indexOf(t) >= 0) sc += 2;
+      else if((" " + e.nk).indexOf(" " + t) >= 0) sc += 3;
+      else if(e.nk.indexOf(t) >= 0) sc += 4;
+      else return null;
+    }
+    sc /= toks.length;
+    return e.nt === nq ? sc - 1 : sc;
+  }
+  function row(e, i){
+    var r = document.createElement("div"); r.className = "srr"; r.setAttribute("role", "option"); r.id = "sro" + i; r.dataset.i = i;
+    var ic = document.createElement("span"); ic.className = "sic";
+    if(e.ic && e.ic.img){ var im = new Image(); im.alt = ""; im.decoding = "async"; im.src = e.ic.img; ic.appendChild(im); } else ic.textContent = e.ic || "•";
+    var tx = document.createElement("span"); tx.className = "stx";
+    var b = document.createElement("b"); b.textContent = e.t; var s = document.createElement("span"); s.textContent = e.s;
+    tx.appendChild(b); tx.appendChild(s);
+    var go = document.createElement("span"); go.className = "sgo"; go.textContent = "›"; go.setAttribute("aria-hidden", "true");
+    r.appendChild(ic); r.appendChild(tx); r.appendChild(go);
+    return r;
+  }
+  function setOpen(v){
+    open = v; dd.hidden = !v; inp.setAttribute("aria-expanded", v ? "true" : "false");
+    if(!v){ act = -1; inp.removeAttribute("aria-activedescendant"); }
+  }
+  function setAct(n, scroll){
+    var rows = dd.querySelectorAll(".srr"); if(!rows.length){ act = -1; return; }
+    act = (n + rows.length) % rows.length;
+    Array.prototype.forEach.call(rows, function(r, i){ r.classList.toggle("on", i === act); });
+    inp.setAttribute("aria-activedescendant", rows[act].id);
+    if(scroll) rows[act].scrollIntoView({block: "nearest"});
+  }
+  function hint(){
+    dd.innerHTML = ""; cur = []; act = -1;
+    var g = document.createElement("div"); g.className = "srg"; g.textContent = "Try searching for"; dd.appendChild(g);
+    var w = document.createElement("div"); w.className = "srt";
+    ["Nashor's Tooth", "Aatrox", "Fishing", "Merch", "Trophies", "Videos"].forEach(function(t){
+      var b = document.createElement("button"); b.type = "button"; b.textContent = t;
+      b.addEventListener("click", function(){ inp.value = t; render(); inp.focus(); });
+      w.appendChild(b);
+    });
+    dd.appendChild(w);
+  }
+  function render(){
+    var nq = norm(inp.value);
+    if(!nq){ hint(); return; }
+    var toks = nq.split(" "), groups = {};
+    idx.forEach(function(e){ var s = score(e, toks, nq); if(s == null) return; (groups[e.g] = groups[e.g] || []).push({e: e, s: s}); });
+    var names = Object.keys(groups);
+    names.forEach(function(n){ groups[n].sort(function(a, b){ return a.s - b.s || a.e.t.length - b.e.t.length; }); });
+    names.sort(function(a, b){ return (groups[a][0].s - groups[b][0].s) || (ORDER.indexOf(a) - ORDER.indexOf(b)); });
+    dd.innerHTML = ""; cur = [];
+    if(!names.length){ var n = document.createElement("div"); n.className = "srn"; n.textContent = "Nothing found for “" + inp.value.trim() + "”. Try an item, a champion, or a section name."; dd.appendChild(n); return; }
+    names.forEach(function(g){
+      var h = document.createElement("div"); h.className = "srg"; h.textContent = g; dd.appendChild(h);
+      groups[g].slice(0, g === "Items" || g === "Matchups" ? 6 : 4).forEach(function(x){
+        var r = row(x.e, cur.length); cur.push(x.e); dd.appendChild(r);
+      });
+    });
+    setAct(0, false);
+  }
+  function pick(i){
+    var e = cur[i]; if(!e) return;
+    setOpen(false); inp.blur();
+    later(function(){ try{ e.go(); }catch(err){} }, 40);
+  }
+  function show(){ build(); setOpen(true); render(); }
+  inp.addEventListener("focus", function(){ if(!open) show(); });
+  inp.addEventListener("click", function(){ if(!open) show(); });
+  inp.addEventListener("input", function(){ if(!open){ build(); setOpen(true); } render(); });
+  inp.addEventListener("keydown", function(e){
+    if(e.key === "ArrowDown"){ e.preventDefault(); if(!open) show(); else setAct(act + 1, true); }
+    else if(e.key === "ArrowUp"){ e.preventDefault(); if(open) setAct(act - 1, true); }
+    else if(e.key === "Enter"){ e.preventDefault(); if(open && cur.length) pick(act < 0 ? 0 : act); }
+    else if(e.key === "Escape"){ if(inp.value){ inp.value = ""; render(); } else { setOpen(false); inp.blur(); } }
+    e.stopPropagation();
+  });
+  inp.addEventListener("keyup", function(e){ e.stopPropagation(); });
+  inp.addEventListener("keypress", function(e){ e.stopPropagation(); });
+  dd.addEventListener("mousedown", function(e){ e.preventDefault(); });
+  dd.addEventListener("click", function(e){ var r = e.target.closest(".srr"); if(r) pick(+r.dataset.i); });
+  dd.addEventListener("mousemove", function(e){ var r = e.target.closest(".srr"); if(r && +r.dataset.i !== act) setAct(+r.dataset.i, false); });
+  document.addEventListener("pointerdown", function(e){ if(open && !form.contains(e.target)) setOpen(false); }, true);
+  document.addEventListener("keydown", function(e){
+    var t = e.target, typing = t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA" || t.tagName === "SELECT" || t.isContentEditable);
+    var k = (e.key === "/" && !e.ctrlKey && !e.metaKey && !e.altKey && !typing) || ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k");
+    if(!k) return;
+    e.preventDefault();
+    window.scrollTo({top: 0, behavior: reduce ? "auto" : "smooth"});
+    inp.focus({preventScroll: true});
+  });
 })();
 </script>
