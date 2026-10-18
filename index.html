@@ -5891,7 +5891,7 @@ var CHSTAT = {subs: 69500, goal: 100000, videos: 1292, checked: "16 Oct 2026"};
       return o.join(", ");
     }
     /* state */
-    function blank(){ return {g: 0, lg: 0, ups: [0, 1, 2, 3].map(function(){ var o = {}; SHOPB.forEach(function(x){ o[x.k] = 0; }); return o; }), auto: 0, autoOn: 1, tr: {}, disc: {}, casts: 0, catches: 0, pity: 0, skin: -1, mc: 0, ski: 0, sk: [], n: {tr: [], sk: [], st: []}, stage: 0, unlocked: 1, stn: 0, sadv: 1, smx: 0, sdone: 0, fsk: [], fi: 0, pt: 0, pf: 0, bv: 0, bn: "", og: 0, ra: 0, ts: 0, bk: [0, 0, 0, 0], bf: 0, lb: 0, mw: {}, ab: 0, abOn: 1, pr: 0, cb: 0, q: [], qd: 0, bt: {}, bu: {}, mag: 0, bb: 0, qs: {}, s5: 0, fz: 0, gpm: 0, gpms: [0, 0, 0, 0]}; }
+    function blank(){ return {g: 0, lg: 0, ups: [0, 1, 2, 3].map(function(){ var o = {}; SHOPB.forEach(function(x){ o[x.k] = 0; }); return o; }), auto: 0, autoOn: 1, tr: {}, disc: {}, casts: 0, catches: 0, pity: 0, skin: -1, mc: 0, ski: 0, sk: [], n: {tr: [], sk: [], st: []}, stage: 0, unlocked: 1, stn: 0, sadv: 1, smx: 0, sdone: 0, fsk: [], fi: 0, pt: 0, pf: 0, bv: 0, bn: "", og: 0, ra: 0, ts: 0, bk: [0, 0, 0, 0], bf: 0, lb: 0, mw: {}, ab: 0, abOn: 1, pr: 0, cb: 0, q: [], qd: 0, bt: {}, bu: {}, mag: 0, bb: 0, qs: {}, s5: 0, fz: 0, gpm: 0, gpms: [0, 0, 0, 0], lmc: -999}; }
     var S = blank();
     try{ var raw = JSON.parse(localStorage.getItem(KEY)); if(raw && typeof raw === "object"){ var b = blank(); Object.keys(b).forEach(function(k){ if(raw[k] != null && typeof raw[k] === typeof b[k]) b[k] = raw[k]; }); var src = Array.isArray(raw.ups) ? raw.ups : [raw.up || {}]; b.ups = blank().ups.map(function(u, i){ return Object.assign(u, (src[i] && typeof src[i] === "object") ? src[i] : {}); }); delete b.up; b.unlocked = Math.max(1, Math.min(4, b.unlocked | 0)); b.stage = Math.max(0, Math.min(b.unlocked - 1, b.stage | 0)); S = b; } }catch(e){}
     // The fishing game keeps its own skin collection. Old saves start with whatever the page had collected at that moment, then the two never sync again.
@@ -6182,11 +6182,12 @@ var CHSTAT = {subs: 69500, goal: 100000, videos: 1292, checked: "16 Oct 2026"};
       return pool[Math.floor(Math.random() * pool.length)];
     }
     function myFiller(){ var pool = []; SKS.forEach(function(sk, i){ if(sk.ti >= 1) pool.push(i); }); return pool[Math.floor(Math.random() * pool.length)]; }
-    function mythicChance(){ return (.012 + stats().myth) * (WX.k === "storm" ? 2 : 1) * (isNight(phase()) ? 1.5 : 1); }
+    var MYGAP = 40;
+    function mythicChance(){ if(S.catches - S.lmc < MYGAP) return 0; return (.006 + stats().myth) * (WX.k === "storm" ? 1.5 : 1) * (isNight(phase()) ? 1.25 : 1); }
     var myTok = 0, AUTOCLOSE = 10000;
     function closeMythic(){ if(!myOpen || myBusy) return; myOpen = false; my.classList.remove("on"); setPaused(false); }
     function openMythic(force){
-      if(myOpen) return; myOpen = true; myBusy = true; S.mc++; save(true);
+      if(myOpen) return; myOpen = true; myBusy = true; S.mc++; S.lmc = S.catches; save(true);
       setPaused(true); my.classList.add("on"); myRes.textContent = ""; myBtns.textContent = ""; myT.textContent = "Skin Chest";
       sfx("chest"); setTimeout(function(){ sfx("special"); }, 400);
       var pick = myPick(), N = 34, W = 27, tw = 66, i, tiles = [];
@@ -6299,7 +6300,7 @@ var CHSTAT = {subs: 69500, goal: 100000, videos: 1292, checked: "16 Oct 2026"};
         bsBtns.appendChild(cl); autoLeave(); setTimeout(function(){ try{ cl.focus({preventScroll: true}); }catch(e){} }, 30); return;
       }
       var g = Math.round((300 + S.ra * 45) * STM[b.k] * (1 + st.val * .5)); S.g += g; S.lg += g; if(g > S.bv){ S.bv = g; S.bn = B.n; }
-      S.bk[b.k] = (S.bk[b.k] || 0) + 1; qProg("boss", 1); chestPull = Math.random() < .15;
+      S.bk[b.k] = (S.bk[b.k] || 0) + 1; qProg("boss", 1); chestPull = S.catches - S.lmc >= MYGAP && Math.random() < .08;
       var m = mwPick(b.k), had = S.mw[m.id] || 0, dup = had >= 3, bonus = 0;
       if(!dup){ S.mw[m.id] = had + 1; if(!had) noteNew("tr", m.id); } else { bonus = Math.round(g * .5); S.g += bonus; S.lg += bonus; }
       bsT.textContent = "Boss defeated!"; bsInfo.textContent = B.n + " is yours: +" + nf(g) + " gold. Ornn is forging your reward...";
