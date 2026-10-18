@@ -5751,7 +5751,10 @@ var CHSTAT = {subs: 69500, goal: 100000, videos: 1292, checked: "16 Oct 2026"};
     function starStr(q){ var s = ""; for(var i = 0; i < q; i++) s += "★"; return s; }
     function nice(n){ n = Math.max(1, Math.round(n)); var p = Math.pow(10, Math.max(0, String(n).length - 2)); return Math.round(n / p) * p; }
     function income(){ return Math.max(S.gpms[S.stage] || 0, 120 * STM[S.stage] * (1 + stats().val)); }
-    function goldCap(){ return STCOST[Math.min(Math.max(S.unlocked, 1), 3)] * .12; }
+    var SHT = SCM.map(function(m){ var t = 0; SHOPB.forEach(function(x){ for(var l = 0; l < x.max; l++) t += x.b * m * Math.pow(x.g, l); }); return t; });
+    function goldCap(){ return SHT[S.stage] * pcm() * .025; }
+    function pcm(){ return 1 + Math.min(S.pr || 0, 20) * .6; }
+    function stCost(k){ return Math.round(STCOST[k] * pcm()); }
     function comboMult(){ return 1 + Math.min(combo, 20) * .05; }
     function buffMult(){ return (S.bu.gold > 0 ? 2 : 1) * (frz ? 1.5 : 1); }
     function rollQ(st){ var l = Math.min(.1, st.luck * .25), r = Math.random(); if(r < .01 + l * .1) return 5; if(r < .05 + l * .3) return 4; if(r < .15 + l * .6) return 3; if(r < .4 + l) return 2; return 1; }
@@ -5802,7 +5805,7 @@ var CHSTAT = {subs: 69500, goal: 100000, videos: 1292, checked: "16 Oct 2026"};
     }
     function ensureQuests(){ var ch = false; while(S.q.length < 3){ S.q.push(newQuest()); ch = true; } if(ch) save(true); }
     function qText(q){ return qT(q.k).t.replace("{n}", q.k === "gold" ? fmt(q.n) : String(q.n)); }
-    function qReward(q){ var f = 120 * STM[S.stage] * (2 + q.lv * 1.5); return nice(Math.max(f, Math.min(income() * (2 + q.lv * 1.5), goldCap()))); }
+    function qReward(q){ var f = 120 * STM[S.stage] * (1.5 + q.lv); return nice(Math.max(f, Math.min(income() * (1.5 + q.lv), goldCap()))); }
     function qReady(){ return S.q.filter(function(q){ return q.p >= q.n; }).length; }
     function qProg(ev, amt, val){
       var hit = false;
@@ -6447,11 +6450,11 @@ var CHSTAT = {subs: 69500, goal: 100000, videos: 1292, checked: "16 Oct 2026"};
         var c = el("span", "fpchip"); c.appendChild(document.createTextNode(x[0] + " ")); c.appendChild(el("b", "", x[1])); stat.appendChild(c);
       });
     }
-    function cost(s){ return Math.round(s.b * Math.pow(s.g, S.ups[S.stage][s.k])); }
+    function cost(s){ return Math.round(s.b * Math.pow(s.g, S.ups[S.stage][s.k]) * pcm()); }
     /* stages */
     function trCount(i){ var c = 0; STP[i].trea.forEach(function(t){ if(S.tr[t.id]) c++; }); return c; }
     function shopLv(i){ var l = 0, m = 0; SHOPB.forEach(function(x){ l += Math.min(S.ups[i][x.k], x.max); m += x.max; }); return [l, m]; }
-    function reqOk(k){ var p = k - 1, sl = shopLv(p); return {tr: trCount(p) >= STP[p].trea.length, shop: sl[0] >= sl[1], gold: S.g >= STCOST[k]}; }
+    function reqOk(k){ var p = k - 1, sl = shopLv(p); return {tr: trCount(p) >= STP[p].trea.length, shop: sl[0] >= sl[1], gold: S.g >= stCost(k)}; }
     function banner(t, sub){
       var b = el("div", "fpbanner", t); if(sub) b.appendChild(el("small", "", sub)); arena.appendChild(b);
       setTimeout(function(){ if(b.parentNode) b.parentNode.removeChild(b); }, 3300);
@@ -6480,7 +6483,7 @@ var CHSTAT = {subs: 69500, goal: 100000, videos: 1292, checked: "16 Oct 2026"};
     }
     function unlockStage(k){
       if(k !== S.unlocked || k > 3) return; var q = reqOk(k); if(!(q.tr && q.shop && q.gold)) return;
-      S.g -= STCOST[k]; S.unlocked = k + 1; S.n.st = []; save(true);
+      S.g -= stCost(k); S.unlocked = k + 1; S.n.st = []; save(true);
       setStage(k, true); showUnl("Stage " + (k + 1) + " unlocked", ST.nm, "You moved on automatically. Switch stages any time in the Stages tab.", ["Gold per catch x" + STM[k], "New shop upgrades and new treasures", k < 3 ? "Max everything here to reach Stage " + (k + 2) : "The final stage. Find every treasure to finish the game"]); say("Stage " + (k + 1) + " unlocked: " + ST.nm, ST.sub, "good"); sfx("stageup");
       if(window.KFX){ var bb = arena.getBoundingClientRect(); KFX.confetti(bb.left + bb.width / 2, bb.top + bb.height * .4, {n: 140, colors: ["#2DD4BF", "#F0B94B", "#fff", "#B66DFF"], power: 1.1}); }
       if(window.KT){ KT.award("fish_st" + (k + 1)); KT.check(); }
@@ -6506,7 +6509,7 @@ var CHSTAT = {subs: 69500, goal: 100000, videos: 1292, checked: "16 Oct 2026"};
       var q = reqOk(k), rdy = !!(q.tr && q.shop && q.gold);
       if(q.tr && q.shop && !q.gold && S.smx < k){
         S.smx = k; save(true); sfx("stagedone");
-        showUnl("Stage " + k + " complete", STP[k - 1].nm, "Everything is maxed here. The next stage costs " + fmt(STCOST[k]) + " gold.", [fmt(Math.max(0, STCOST[k] - S.g)) + " gold still to earn", S.sadv ? "It unlocks by itself as soon as you have the gold" : "Unlock it in the Stages tab"]);
+        showUnl("Stage " + k + " complete", STP[k - 1].nm, "Everything is maxed here. The next stage costs " + fmt(stCost(k)) + " gold.", [fmt(Math.max(0, stCost(k) - S.g)) + " gold still to earn", S.sadv ? "It unlocks by itself as soon as you have the gold" : "Unlock it in the Stages tab"]);
       }
       if(rdy && S.sadv){ unlockStage(k); return; }
       if(rdy && S.stn < k){
@@ -6533,8 +6536,8 @@ var CHSTAT = {subs: 69500, goal: 100000, videos: 1292, checked: "16 Oct 2026"};
           var q = reqOk(i), pp = STP[i - 1], sl2 = shopLv(i - 1), all = q.tr && q.shop && q.gold;
           tx.appendChild(reqRow(q.tr, "All treasures of " + pp.nm + ": " + trCount(i - 1) + "/" + pp.trea.length));
           tx.appendChild(reqRow(q.shop, "Shop of " + pp.nm + " maxed: " + sl2[0] + "/" + sl2[1]));
-          tx.appendChild(reqRow(q.gold, "Gold: " + fmt(S.g) + " / " + fmt(STCOST[i])));
-          bt = el("button", "gbtn" + (all ? " pri" : ""), "Unlock · " + fmt(STCOST[i]) + " gold"); bt.type = "button"; bt.disabled = !all; bt.addEventListener("click", function(){ unlockStage(i); });
+          tx.appendChild(reqRow(q.gold, "Gold: " + fmt(S.g) + " / " + fmt(stCost(i))));
+          bt = el("button", "gbtn" + (all ? " pri" : ""), "Unlock · " + fmt(stCost(i)) + " gold"); bt.type = "button"; bt.disabled = !all; bt.addEventListener("click", function(){ unlockStage(i); });
         } else {
           tx.appendChild(el("p", "", "Unlock Stage " + i + " first."));
         }
@@ -6543,7 +6546,7 @@ var CHSTAT = {subs: 69500, goal: 100000, videos: 1292, checked: "16 Oct 2026"};
       });
       var pc = el("div", "fpst fppr" + (S.sdone ? " nxt" : " lock")), psw = el("div", "sw", "\u2605"), ptx = el("div", "tx"), ph = el("h5", "", "Prestige"), pa = el("div", "ac");
       if(S.pr) ph.appendChild(el("small", "", "Level " + S.pr));
-      ptx.appendChild(ph); ptx.appendChild(el("p", "", "Start over from Stage 1 for a permanent bonus: +" + Math.round(PRG * 100) + "% gold and +" + Math.round(PRS * 100) + "% speed for every level. Masterwork items, skins, catch log and trophies stay. Gold, shop upgrades and treasures reset."));
+      ptx.appendChild(ph); ptx.appendChild(el("p", "", "Start over from Stage 1 for a permanent bonus: +" + Math.round(PRG * 100) + "% gold and +" + Math.round(PRS * 100) + "% speed for every level. Shop and stage prices rise by 60% per level, so every run stays a challenge. Masterwork items, skins, catch log and trophies stay. Gold, shop upgrades and treasures reset."));
       ptx.appendChild(reqRow(!!S.sdone, "All four stages complete"));
       if(S.pr) ptx.appendChild(reqRow(true, "Now: " + prTxt(S.pr)));
       var pb = el("button", "gbtn" + (S.sdone ? " pri" : ""), prArm ? "Click again to ascend" : "Ascend \u00b7 Prestige " + ((S.pr || 0) + 1)); pb.type = "button"; pb.disabled = !S.sdone;
@@ -6591,7 +6594,7 @@ var CHSTAT = {subs: 69500, goal: 100000, videos: 1292, checked: "16 Oct 2026"};
           b.addEventListener("pointerdown", function(e){ b._pm = false; if(e.pointerType !== "mouse" || e.button > 0 || b.disabled) return; b._pm = true; if(buyLv(s)){ afterBuy(); holdStart(s); } });
           b.addEventListener("click", function(e){ if(b._pm){ b._pm = false; return; } if(buyLv(s)) afterBuy(); });
           var actw = el("div", "fpact"), nb = 0, gg = S.g, lv2 = lv;
-          while(!mx && !lock && lv2 < s.max){ var cc2 = Math.round(s.b * Math.pow(s.g, lv2)); if(gg < cc2) break; gg -= cc2; lv2++; nb++; }
+          while(!mx && !lock && lv2 < s.max){ var cc2 = Math.round(s.b * Math.pow(s.g, lv2) * pcm()); if(gg < cc2) break; gg -= cc2; lv2++; nb++; }
           if(nb >= 2){ var mb = el("button", "fpmaxb", "Max +" + nb); mb.type = "button"; mb.title = "Buy " + nb + " levels"; mb.setAttribute("aria-label", "Buy " + nb + " levels of " + s.n); mb.addEventListener("click", function(){ var got = 0; while(buyLv(s)) got++; if(got) afterBuy(); }); actw.appendChild(mb); }
           actw.appendChild(b); row.appendChild(actw); sh.appendChild(row);
         });
