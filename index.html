@@ -1262,6 +1262,7 @@ nav .logo img{animation-duration:6.5s}
 .fppov{position:absolute;inset:0;z-index:8;display:none;align-items:center;justify-content:center;flex-direction:column;gap:4px;background:rgba(6,12,26,.55);backdrop-filter:blur(1.5px);color:#fff;font-weight:800;letter-spacing:.14em;text-transform:uppercase;font-size:1.1rem;pointer-events:none}
 .fppov small{font-size:.76rem;letter-spacing:.04em;text-transform:none;font-weight:600;opacity:.85}
 .fparena.paused .fppov{display:flex}
+.fparena.paused.hold .fppov{pointer-events:auto;cursor:pointer}
 .fparena.paused .fpcloud{animation-play-state:paused}
 .fparena.paused .fpstars,.fparena.paused .wv,.fparena.paused .wsp{animation-play-state:paused}
 .fparena.paused .fspot *{animation-play-state:paused}
@@ -5836,7 +5837,7 @@ var CHSTAT = {subs: 69500, goal: 100000, videos: 1292, checked: "16 Oct 2026"};
       ic2.classList.add("ei"); et.appendChild(el("b", "", nm)); et.appendChild(el("small", "", parts.length ? parts.join(" · ") : "Calm waters, normal fishing"));
       envBox.textContent = ""; envBox.appendChild(ic2); envBox.appendChild(et);
     }
-    var gVis = true, coarseP = window.matchMedia && matchMedia("(pointer: coarse)").matches, rainDrops = [], rainLast = 0, stormI = 0, rainI = 0, rainTarget = 0, rainRun = false, paused = false, pausedAt = 0, pShift = 0, RM = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var gVis = true, coarseP = window.matchMedia && matchMedia("(pointer: coarse)").matches, rainDrops = [], rainLast = 0, stormI = 0, rainI = 0, rainTarget = 0, rainRun = false, paused = false, holdStart = false, pausedAt = 0, pShift = 0, RM = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
     function rainFrame(){
       if(coarseP && rainLast && performance.now() - rainLast < 28){ requestAnimationFrame(rainFrame); return; }
       var W = rain.width, H = rain.height, c = rain.getContext("2d"), pre = ST.pre, storm = rainTarget > .6, tn = performance.now(), dt = rainLast ? Math.min(3, Math.max(.2, (tn - rainLast) / 16.667)) : 1;
@@ -5876,15 +5877,16 @@ var CHSTAT = {subs: 69500, goal: 100000, videos: 1292, checked: "16 Oct 2026"};
       if(on === paused) return;
       if(on){ paused = true; pausedAt = Date.now(); pausedPerf = nowMs(); }
       else {
-        var d = Date.now() - pausedAt, dp = nowMs() - pausedPerf; paused = false; pShift += d;
+        var d = Date.now() - pausedAt, dp = nowMs() - pausedPerf; paused = false; holdStart = false; pShift += d;
         R.forEach(function(r){ r.at += dp; r.bt += dp; r.ct += dp; });
         if(WX.until !== Infinity) WX.until += d; boltAt += dp;
       }
       arena.classList.toggle("paused", paused); drawPause(); upd();
     }
     var pausedPerf = 0, PI = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">', PP = PI + '<rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>', PL = PI + '<polygon points="7,4 20,12 7,20"/></svg>';
-    function drawPause(){ pauseBtn.innerHTML = (paused ? PL : PP) + "<span>" + (paused ? "Resume" : "Pause") + "</span>"; pauseBtn.classList.toggle("on", paused); pauseBtn.setAttribute("aria-pressed", paused ? "true" : "false"); }
+    function drawPause(){ pauseBtn.innerHTML = (paused ? PL : PP) + "<span>" + (paused ? (holdStart ? "Start" : "Resume") : "Pause") + "</span>"; arena.classList.toggle("hold", holdStart); pov.firstChild.nodeValue = holdStart ? "Ready?" : "Paused"; pov.lastChild.textContent = holdStart ? "Tap here or press the space bar to start fishing" : "Nothing moves until you press Resume"; pauseBtn.classList.toggle("on", paused); pauseBtn.setAttribute("aria-pressed", paused ? "true" : "false"); }
     pauseBtn.addEventListener("click", function(){ setPaused(!paused); });
+    pov.addEventListener("click", function(){ if(holdStart) setPaused(false); });
     drawPause();
     function lightning(){
       flash.style.background = ST.fl || "#fff"; flash.classList.remove("on"); void flash.offsetWidth; flash.classList.add("on");
@@ -6140,7 +6142,7 @@ var CHSTAT = {subs: 69500, goal: 100000, videos: 1292, checked: "16 Oct 2026"};
       else if(r.s === "wait" && !auto && n - r.ct > 350){ r.s = "idle"; r.at = n + 600; sfx("miss"); say("Too early!", "You scared the fish. Wait for the splash.", "bad"); }
     }
     function act(i){ var r = R[i], n = nowMs(); if(paused || i >= stats().rods) return; if(r.s === "boss"){ startBoss(i); return; } if(r.s === "bite") reel(i, false); else if(r.s === "wait") reel(i, false); else if(r.s === "idle" && n >= r.at) cast(i); upd(); }
-    function actAll(){ if(paused) return; var n = nowMs(), rods = stats().rods, did = false, i; var br = bossRod(); if(br >= 0){ startBoss(br); return; } for(i = 0; i < rods; i++){ if(R[i].s === "bite"){ reel(i, false); did = true; } } if(did){ upd(); return; } for(i = 0; i < rods; i++){ if(R[i].s === "idle" && n >= R[i].at){ cast(i); did = true; } } upd(); }
+    function actAll(){ if(paused){ if(holdStart) setPaused(false); return; } var n = nowMs(), rods = stats().rods, did = false, i; var br = bossRod(); if(br >= 0){ startBoss(br); return; } for(i = 0; i < rods; i++){ if(R[i].s === "bite"){ reel(i, false); did = true; } } if(did){ upd(); return; } for(i = 0; i < rods; i++){ if(R[i].s === "idle" && n >= R[i].at){ cast(i); did = true; } } upd(); }
     function tick(){
       if(paused){ lastTk = 0; return; }
       var n = nowMs(), st = stats(), rods = st.rods, dtk = lastTk ? Math.min(2, (n - lastTk) / 1000) : 0; lastTk = n; S.pt += dtk;
@@ -6417,7 +6419,7 @@ var CHSTAT = {subs: 69500, goal: 100000, videos: 1292, checked: "16 Oct 2026"};
     });
     window.addEventListener("resize", layout);
     var started = false;
-    function begin(){ if(started) return; started = true; layout(); envUpdate(); setInterval(tick, 90); }
+    function begin(){ if(started) return; started = true; layout(); envUpdate(); holdStart = true; setPaused(true); setInterval(tick, 90); }
     setSkin(); checkSkins(); updBadges(); layout(); applyStage(); checkStages(); render(); upd(); say("Ready to fish?", "Press Cast, or the space bar while this game is in the middle. Sound on? Use the volume control at the top right.", ""); begin();
     if(offl){ showUnl("Welcome back", "+" + nf(offl.og) + " gold", "Your Auto-Fisher kept fishing while you were away.", ["Away for " + fmtT(offl.away), offl.capped ? "Offline earnings stop after 1 hour" : "Offline earnings are half of your normal rate", "Stay on the page to earn at full speed"]); say("Welcome back", "+" + nf(offl.og) + " gold earned while you were away.", "good"); }
     document.addEventListener("k1v9slide", function(e){ if(e.detail && e.detail.id === "gfish"){ layout(); envUpdate(); } });
