@@ -1620,8 +1620,8 @@ nav .logo img{animation-duration:6.5s}
 #games .gtrack>.gcard:first-child{margin-left:calc((100% - min(88%,580px)) / 2)}
 #games .gtrack>.gcard:last-child{margin-right:calc((100% - min(88%,580px)) / 2)}
 #games .gtrack>.gcard:not(.act){opacity:.5;filter:saturate(.7)}
-#games .gtrack>.gcard:not(.act) *{animation-play-state:paused!important}
-section[data-off] *{animation-play-state:paused!important}
+#games .gtrack>.gcard:not(.act) *,#games .gtrack>.gcard:not(.act) *::before,#games .gtrack>.gcard:not(.act) *::after{animation-play-state:paused!important}
+section[data-off] *,section[data-off] *::before,section[data-off] *::after,.hero[data-off] *,.hero[data-off] *::before,.hero[data-off] *::after{animation-play-state:paused!important}
 .gcar{position:relative}
 .gnav{position:absolute;top:50%;z-index:5;width:46px;height:46px;margin-top:-23px;display:none;place-items:center;border-radius:50%;border:2px solid var(--gold);background:rgba(11,18,38,.88);color:var(--gold);cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,.5);transition:background .25s,color .25s,transform .3s cubic-bezier(.34,1.56,.64,1),opacity .25s}
 .gnav:hover:not(:disabled){background:var(--gold);color:#0F1A33;transform:scale(1.08)}
@@ -3195,34 +3195,40 @@ if(!still){
   requestAnimationFrame(loop);
 }
 if(!still){
-  if("IntersectionObserver" in window){ var offIO = new IntersectionObserver(function(es){ es.forEach(function(e){ e.target.toggleAttribute("data-off", !e.isIntersecting); }); }, {rootMargin: "160px 0px"}); document.querySelectorAll("section").forEach(function(sc){ offIO.observe(sc); }); }
+  if("IntersectionObserver" in window){ var offIO = new IntersectionObserver(function(es){ es.forEach(function(e){ e.target.toggleAttribute("data-off", !e.isIntersecting); }); }, {rootMargin: "160px 0px"}); document.querySelectorAll("section, .hero").forEach(function(sc){ offIO.observe(sc); }); }
   var fo = document.querySelectorAll("section h2, section .lead, .tier, .tz, .video, .item, .mcode, .mcar, .mtrust, .btn.shop, .gear, .btabs, .btiers, .bjump, .bpanel"), ft = false;
   var fcur = [], sp = window.scrollY, lastY = sp, up = false;
   for(var q = 0; q < fo.length; q++) fcur.push(1);
   var fRun = true, fMoving = false;
   function fkick(){ if(!fRun){ fRun = true; requestAnimationFrame(fadeOut); } }
   window.addEventListener("scroll", fkick, {passive:true}); window.addEventListener("resize", fkick); window.addEventListener("load", fkick); setInterval(fkick, 1000);
+  var fb = new Array(fo.length), fwr = [], fmode = [], lastP = -1, lastB = -1;
+  /* how each element takes the slide: 2 = via --fy (its float animation reads it), 1 = translate directly, 0 = no slide. Setting --fy on big blocks made every descendant recalculate its style. */
+  for(var q2 = 0; q2 < fo.length; q2++){ fwr.push(-1); fmode.push(fo[q2].matches(".video,.item,.gear") ? 2 : (fo[q2].matches("section h2,section .lead,.tier,.tz,.btn.shop,.mcode,.mcar,.mtrust,.bpanel") ? 1 : 0)); }
   function fadeOut(){
     fMoving = false;
     sp += (window.scrollY - sp)*.1;
     if(Math.abs(window.scrollY - sp) < .3) sp = window.scrollY;
-    var smh = document.documentElement.scrollHeight - window.innerHeight;
-    hero.style.setProperty("--p", Math.min(sp, 1000));
-    bar.style.transform = "scaleX(" + (smh > 0 ? Math.min(sp/smh, 1) : 0) + ")";
+    var ih = window.innerHeight, smh = document.documentElement.scrollHeight - ih, i;
     var cy = window.scrollY; if(cy < lastY - .5) up = true; else if(cy > lastY + .5) up = false; lastY = cy;
-    var zone = window.innerHeight*.34;
-    for(var i = 0; i < fo.length; i++){
-      var el = fo[i], b = el.getBoundingClientRect().bottom;
+    var zone = ih*.34;
+    /* read everything first, then write: no forced style recalculation between elements */
+    for(i = 0; i < fo.length; i++) fb[i] = fo[i].getBoundingClientRect().bottom;
+    var pv = Math.min(sp, 1000); if(pv !== lastP){ lastP = pv; hero.style.setProperty("--p", pv); }
+    var bv = smh > 0 ? Math.min(sp/smh, 1) : 0; if(bv !== lastB){ lastB = bv; bar.style.transform = "scaleX(" + bv + ")"; }
+    for(i = 0; i < fo.length; i++){
+      var el = fo[i], b = fb[i];
       var tg = (up ? b > 0 : b >= zone) ? 1 : Math.max(b/zone, 0); tg = tg*tg*(3 - 2*tg);
       fcur[i] += (tg - fcur[i])*(tg > fcur[i] ? .6 : .1);
       if(Math.abs(tg - fcur[i]) < .002) fcur[i] = tg;
       if(fcur[i] !== tg) fMoving = true;
       var f = fcur[i];
       if(f >= .999){
-        if(el.dataset.fo){ el.style.opacity = ""; el.style.removeProperty("--fy"); el.style.scale = ""; el.dataset.fo = ""; }
-        continue;
+        if(el.dataset.fo){ el.style.opacity = ""; if(fmode[i] === 2) el.style.removeProperty("--fy"); else if(fmode[i] === 1) el.style.translate = ""; el.style.scale = ""; el.dataset.fo = ""; }
+        fwr[i] = -1; continue;
       }
-      el.style.opacity = f; el.style.setProperty("--fy", (-(1 - f)*32) + "px"); el.style.scale = .94 + .06*f; el.dataset.fo = "1";
+      if(fwr[i] === f) continue;
+      fwr[i] = f; el.style.opacity = f; if(fmode[i] === 2) el.style.setProperty("--fy", (-(1 - f)*32) + "px"); else if(fmode[i] === 1) el.style.translate = "0 " + (-(1 - f)*32) + "px"; el.style.scale = .94 + .06*f; el.dataset.fo = "1";
     }
     if(sp !== window.scrollY) fMoving = true;
     if(fMoving) requestAnimationFrame(fadeOut); else fRun = false;
