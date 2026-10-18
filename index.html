@@ -6138,8 +6138,8 @@ var CHSTAT = {subs: 69500, goal: 100000, videos: 1292, checked: "16 Oct 2026"};
           var lv = U[s.k], mx = lv >= s.max, row = el("div", "fprow" + (mx ? " mx" : "")), c = cost(s), left = el("div", "fpl"), lock = s.auto && !S.auto;
           left.appendChild(el("b", "", s.n + "  ")); left.lastChild.appendChild(el("small", "", mx ? "MAX" : "Lv " + lv + "/" + s.max)); left.appendChild(el("span", "", s.d)); row.appendChild(left);
           var b = el("button", "gbtn fpbuy", mx ? "\u2713 Maxed" : lock ? "Needs Auto-Fisher" : fmt(c) + " gold"); b.type = "button"; b.disabled = mx || lock || S.g < c;
-          b.addEventListener("pointerdown", function(e){ if(e.pointerType !== "mouse" || e.button > 0 || b.disabled) return; if(buyLv(s)){ afterBuy(); holdStart(s); } });
-          b.addEventListener("click", function(e){ if(e.detail !== 0) return; if(buyLv(s)) afterBuy(); });
+          b.addEventListener("pointerdown", function(e){ b._pm = false; if(e.pointerType !== "mouse" || e.button > 0 || b.disabled) return; b._pm = true; if(buyLv(s)){ afterBuy(); holdStart(s); } });
+          b.addEventListener("click", function(e){ if(b._pm){ b._pm = false; return; } if(buyLv(s)) afterBuy(); });
           var actw = el("div", "fpact"), nb = 0, gg = S.g, lv2 = lv;
           while(!mx && !lock && lv2 < s.max){ var cc2 = Math.round(s.b * Math.pow(s.g, lv2)); if(gg < cc2) break; gg -= cc2; lv2++; nb++; }
           if(nb >= 2){ var mb = el("button", "fpmaxb", "Max +" + nb); mb.type = "button"; mb.title = "Buy " + nb + " levels"; mb.setAttribute("aria-label", "Buy " + nb + " levels of " + s.n); mb.addEventListener("click", function(){ var got = 0; while(buyLv(s)) got++; if(got) afterBuy(); }); actw.appendChild(mb); }
