@@ -1902,9 +1902,10 @@ section[data-off] *{animation-play-state:paused!important}
         <li><a href="#videos">Videos</a></li>
         <li><a href="#merch">Merch</a></li>
       </ul>
+      <span class="srbr" aria-hidden="true"></span>
       <form class="srch" id="srch" role="search" autocomplete="off" action="javascript:void(0)">
         <svg class="sri" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/></svg>
-        <input id="srq" type="search" role="combobox" aria-expanded="false" aria-controls="srlist" aria-autocomplete="list" placeholder="Search items, matchups, videos…" aria-label="Search the site" enterkeyhint="search" spellcheck="false" autocapitalize="off" autocomplete="off">
+        <input id="srq" type="search" role="combobox" aria-expanded="false" aria-controls="srlist" aria-autocomplete="list" placeholder="Search items, matchups…" aria-label="Search the site" enterkeyhint="search" spellcheck="false" autocapitalize="off" autocomplete="off">
         <kbd class="srk" aria-hidden="true">/</kbd>
         <div class="srdd" id="srlist" role="listbox" aria-label="Search results" hidden></div>
       </form>
@@ -6929,7 +6930,10 @@ var CHSTAT = {subs: 69500, goal: 100000, videos: 1292, checked: "16 Oct 2026"};
 
 
 <style>
-.srch{position:relative;flex:0 1 250px;min-width:0}
+.srch{position:relative;flex:0 1 300px;min-width:0;order:3;margin-left:auto}
+.srbr{order:2;flex:0 0 100%;height:0;margin-top:-8px}
+@media (min-width:761px){nav{margin-bottom:34px}}
+@media (min-width:761px) and (max-width:860px){.brandtip{display:none}}
 .srch .sri{position:absolute;left:13px;top:50%;width:17px;height:17px;margin-top:-8.5px;color:var(--muted);pointer-events:none;transition:color .2s}
 .srch:focus-within .sri{color:var(--gold)}
 .srch input{width:100%;font:inherit;font-size:.92rem;color:var(--text);background:rgba(20,32,63,.72);border:1.5px solid var(--line);border-radius:999px;padding:9px 40px 9px 38px;outline:none;-webkit-appearance:none;appearance:none;transition:border-color .2s,box-shadow .2s,background .2s}
@@ -6958,8 +6962,7 @@ var CHSTAT = {subs: 69500, goal: 100000, videos: 1292, checked: "16 Oct 2026"};
 .srt button:hover,.srt button:focus-visible{border-color:var(--gold);color:var(--gold);outline:none}
 .srflash{animation:srf 2.1s ease-out;border-radius:12px}
 @keyframes srf{0%,55%{box-shadow:0 0 0 3px var(--gold),0 0 30px 8px rgba(240,185,75,.6)}100%{box-shadow:0 0 0 3px rgba(240,185,75,0),0 0 0 0 rgba(240,185,75,0)}}
-@media (max-width:1100px){.srch{order:3;flex:1 1 100%;max-width:460px}}
-@media (max-width:760px){nav{row-gap:14px}.srch{order:2;max-width:none}nav>ul:not(.social){order:3;flex-basis:100%}.srch input{font-size:16px;padding:10px 14px 10px 38px}.srdd{left:0;right:0;width:auto}}
+@media (max-width:760px){nav{row-gap:14px}.srbr{display:none}.srch{order:2;flex:1 1 100%;max-width:none;margin-left:0}nav>ul:not(.social){order:3;flex-basis:100%}.srch input{font-size:16px;padding:10px 14px 10px 38px}.srdd{left:0;right:0;width:auto}}
 @media (prefers-reduced-motion:reduce){.srflash{animation:none;box-shadow:0 0 0 3px var(--gold)}.srch input{transition:none}}
 </style>
 <script>
