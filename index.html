@@ -2028,6 +2028,34 @@ section[data-off] *{animation-play-state:paused!important}
     <h2>Matchups</h2>
     <div class="lanes lanes2" role="group" aria-label="Lane"><button type="button" class="lnb on" data-l="top" aria-pressed="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3.5" stroke-width="1.6" opacity=".38"/><path d="M4.5 19.5L19.5 4.5" stroke-width="1.6" opacity=".38"/><path d="M6.5 18V6.5H18" stroke-width="3.2"/></svg><span>Top lane</span></button><button type="button" class="lnb" data-l="mid" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3.5" stroke-width="1.6" opacity=".38"/><path d="M4.5 19.5L19.5 4.5" stroke-width="1.6" opacity=".38"/><path d="M8 16L16 8" stroke-width="3.4"/></svg><span>Mid lane</span></button></div>
     <p class="lead" id="mulead">Pick a top lane opponent to see how Kayle does against them, plus the statistically best summoner spells, runes and items for that matchup.</p>
+    <div class="isr" id="isr" hidden></div>
+    <style>
+    .isr{margin:0 0 22px}
+    .isr .isrh{margin:0 0 8px;font-weight:700;font-size:1rem}
+    .isr .isrbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+    .isr .musearch{flex:1 1 240px;min-height:44px}
+    .isr .isrchips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+    .isr .isrchip{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:4px 14px 4px 6px;border-radius:999px;border:1.5px solid var(--line);background:var(--panel);color:var(--text);font:inherit;font-size:.9rem;cursor:pointer}
+    .isr .isrchip img{width:32px;height:32px;border-radius:8px;display:block}
+    .isr .isrchip small{color:var(--muted);font-size:.78rem}
+    .isr .isrchip:hover,.isr .isrchip.on{border-color:var(--gold)}
+    .isr .isrchip.on{background:rgba(240,185,75,.14)}
+    .isr .isrst{margin:12px 0 8px;color:var(--muted);font-size:.9rem;min-height:1.2em}
+    .isr .isrst b{color:var(--text)}
+    .isr .isrsort{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 10px}
+    .isr .isrlist{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:8px}
+    .isr .isrrow{display:flex;align-items:center;gap:12px;width:100%;min-height:56px;padding:8px 14px 8px 10px;border-radius:14px;border:1.5px solid var(--line);background:var(--panel);color:var(--text);font:inherit;text-align:left;cursor:pointer;transition:border-color .2s,transform .3s cubic-bezier(.34,1.56,.64,1)}
+    .isr .isrrow:hover{border-color:var(--gold);transform:translateY(-2px)}
+    .isr .isrrow img{width:40px;height:40px;border-radius:50%;flex:none}
+    .isr .isrt{display:flex;flex-direction:column;min-width:0;flex:1}
+    .isr .isrt b{font-size:.95rem;line-height:1.25}
+    .isr .isrt span{color:var(--muted);font-size:.8rem;line-height:1.35}
+    .isr .isrln{flex:none;font-size:.68rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
+    .isr .isrmore{margin-top:10px}
+    @keyframes isrp{0%,100%{box-shadow:0 0 0 0 rgba(240,185,75,.0)}50%{box-shadow:0 0 0 6px rgba(240,185,75,.35)}}
+    .isrhl{outline:2px solid var(--gold);outline-offset:3px;border-radius:10px;animation:isrp 1.4s ease-in-out 3}
+    @media (prefers-reduced-motion:reduce){.isrhl{animation:none}.isr .isrrow{transition:none}.isr .isrrow:hover{transform:none}}
+    </style>
     <div class="mu" id="mu"></div>
   </div>
 </section>
@@ -4585,6 +4613,151 @@ var TDM = {
   window.KDATA = {lane: function(){ return LANE; }, list: function(){ return MULIVE.list; }, both: function(){ return {top: LANES.top.MULIVE.list, mid: LANES.mid.MULIVE.list}; }, icon: function(c){ return CHI[c] || ""; }, keys: function(){ return Object.keys(CHI); }, items: function(){ var o = []; Object.keys(ITN).forEach(function(id){ if(ITI[id]) o.push({id: id, nm: ITN[id], img: ITI[id]}); }); return o; }};
   initMu();
 })();
+</script>
+<script>
+// === ITEM SEARCH START (own block, not touched by the daily update task) ===
+// Search an item, get the matchups (top and mid) where it is part of the build, jump to the matchup and mark the item.
+(function(){
+  var host = document.getElementById("isr");
+  if(!host || !window.KDATA || !window.KMU) return;
+  var calm = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var byId = {}, idx = {}, loaded = false;
+  function el(t, c, x){ var e = document.createElement(t); if(c) e.className = c; if(x != null) e.textContent = x; return e; }
+  function norm(s){ return String(s).toLowerCase().replace(/[^a-z0-9]/g, ""); }
+  function build(){
+    KDATA.items().forEach(function(x){ byId[x.id] = x; x.key = norm(x.nm); });
+    var both = KDATA.both();
+    ["top", "mid"].forEach(function(l){
+      var L = both[l] || {};
+      Object.keys(L).forEach(function(k){
+        var d = L[k], found = {};
+        function put(id, label, w, n, mode){
+          id = String(id); if(!byId[id] || w == null || n == null) return;
+          var o = found[id];
+          if(!o || (mode === "common" && o.mode !== "common") || (mode === o.mode && n > o.n)) found[id] = {lane: l, slug: k, d: d, label: label, w: w, n: n, mode: mode, id: id};
+        }
+        [["it", "common"], ["iw", "best"]].forEach(function(p){
+          var g = d[p[0]]; if(!g) return;
+          (g.c || []).forEach(function(x, i){ put(x.i, "Core build, item " + (i + 1), x.w, x.n, p[1]); });
+          (g.f || []).forEach(function(x){ put(x.i, "Fifth item option", x.w, x.n, p[1]); });
+          (g.x || []).forEach(function(x){ put(x.i, "Sixth item option", x.w, x.n, p[1]); });
+        });
+        [["bt", "common"], ["bw", "best"]].forEach(function(p){ (d[p[0]] || []).forEach(function(b){ put(b[0], "Boots", b[1], b[3], p[1]); }); });
+        [["st", "common"], ["sw", "best"]].forEach(function(p){ var g = d[p[0]]; if(g && g.s) g.s.forEach(function(id){ put(id, "Starting item", g.w, g.n, p[1]); }); });
+        Object.keys(found).forEach(function(id){ (idx[id] = idx[id] || []).push(found[id]); });
+      });
+    });
+    loaded = true;
+  }
+  try{ build(); }catch(e){ return; }
+  if(!Object.keys(idx).length) return;
+
+  var sel = null, sort = "games", showAll = false, LIM = 8;
+  var h = el("p", "isrh", "Search by item"), bar = el("div", "isrbar");
+  var inp = el("input", "musearch"); inp.type = "search"; inp.placeholder = "Search an item, for example Collector"; inp.setAttribute("aria-label", "Search an item and find matchups that build it"); inp.autocomplete = "off"; inp.spellcheck = false;
+  bar.appendChild(inp);
+  var chips = el("div", "isrchips"), st = el("p", "isrst"); st.setAttribute("aria-live", "polite");
+  var sortRow = el("div", "isrsort"), list = el("ul", "isrlist"), more = el("button", "bcchip isrmore", ""); more.type = "button"; more.hidden = true;
+  var sortChips = [];
+  [["games", "Most games"], ["win", "Best win rate"]].forEach(function(o){
+    var b = el("button", "bcchip" + (o[0] === sort ? " on" : ""), o[1]); b.type = "button";
+    b.addEventListener("click", function(){ sort = o[0]; showAll = false; sortChips.forEach(function(x){ x.classList.toggle("on", x === b); }); drawRes(); });
+    sortChips.push(b); sortRow.appendChild(b);
+  });
+  sortRow.hidden = true;
+  host.appendChild(h); host.appendChild(bar); host.appendChild(chips); host.appendChild(st); host.appendChild(sortRow); host.appendChild(list); host.appendChild(more);
+  host.hidden = false;
+
+  function matches(q){
+    var k = norm(q); if(!k) return [];
+    var out = [];
+    Object.keys(idx).forEach(function(id){
+      var it = byId[id], key = it.key, p = key.indexOf(k);
+      if(p < 0) return;
+      var bare = key.replace(/^the/, "");
+      out.push({it: it, rank: (key === k || bare === k) ? 0 : (key.indexOf(k) === 0 || bare.indexOf(k) === 0 ? 1 : 2), n: idx[id].length});
+    });
+    out.sort(function(a, b){ return a.rank - b.rank || b.n - a.n || a.it.nm.localeCompare(b.it.nm); });
+    return out.map(function(x){ return x.it; });
+  }
+  function icon(src, size, alt){ var im = new Image(); im.width = im.height = size; im.alt = alt || ""; im.decoding = "async"; if(src) im.src = src; return im; }
+  function clearRes(){ sel = null; sortRow.hidden = true; list.innerHTML = ""; more.hidden = true; }
+  function onType(){
+    var q = inp.value.trim(); chips.innerHTML = "";
+    if(!q){ clearRes(); st.textContent = ""; return; }
+    var m = matches(q);
+    if(!m.length){ clearRes(); st.textContent = "No matchup uses an item called “" + q + "”. Try another name."; return; }
+    m.slice(0, 8).forEach(function(it){
+      var b = el("button", "isrchip" + (sel === it ? " on" : "")); b.type = "button";
+      b.appendChild(icon(it.img, 32, "")); b.appendChild(document.createTextNode(it.nm));
+      b.appendChild(el("small", "", idx[it.id].length + (idx[it.id].length === 1 ? " matchup" : " matchups")));
+      b.addEventListener("click", function(){ pick(it, true); });
+      chips.appendChild(b);
+    });
+    if(m.length > 8) chips.appendChild(el("span", "isrst", "and " + (m.length - 8) + " more, keep typing to narrow it down"));
+    if(m.length === 1 || norm(m[0].nm) === norm(q)) pick(m[0], false); else { clearRes(); st.textContent = "Pick an item to see where it is built."; }
+  }
+  function pick(it, fill){
+    sel = it; showAll = false; if(fill) inp.value = it.nm;
+    [].forEach.call(chips.children, function(c){ c.classList.toggle("on", c.textContent.indexOf(it.nm) === 0); });
+    drawRes();
+  }
+  function drawRes(){
+    if(!sel) return;
+    var rows = idx[sel.id].filter(function(r){ return sort === "win" ? r.n >= 10 : true; });
+    rows.sort(function(a, b){ return sort === "win" ? (b.w - a.w || b.n - a.n) : (b.n - a.n || b.w - a.w); });
+    list.innerHTML = ""; sortRow.hidden = false;
+    st.textContent = "";
+    var b = el("b", "", sel.nm); st.appendChild(b);
+    st.appendChild(document.createTextNode(" shows up in " + rows.length + (rows.length === 1 ? " matchup" : " matchups") + ". Tap one to open its build."));
+    var shown = showAll ? rows : rows.slice(0, LIM);
+    shown.forEach(function(r){
+      var li = el("li"), btn = el("button", "isrrow"); btn.type = "button";
+      btn.appendChild(icon(KDATA.icon(r.d.c), 40, ""));
+      var t = el("span", "isrt"); t.appendChild(el("b", "", "Kayle vs " + r.d.nm));
+      var sub = r.label + " · " + r.w.toFixed(1) + "% win rate · " + r.n.toLocaleString("en-US") + (r.n === 1 ? " game" : " games");
+      if(r.mode === "best") sub += " · best win rate path";
+      if(r.n < 30) sub += " · small sample";
+      t.appendChild(el("span", "", sub)); btn.appendChild(t);
+      btn.appendChild(el("span", "isrln", r.lane === "mid" ? "Mid" : "Top"));
+      btn.addEventListener("click", function(){ go(r); });
+      li.appendChild(btn); list.appendChild(li);
+    });
+    if(rows.length > LIM){ more.hidden = false; more.textContent = showAll ? "Show fewer" : "Show all " + rows.length; } else more.hidden = true;
+  }
+  more.addEventListener("click", function(){ showAll = !showAll; drawRes(); });
+  inp.addEventListener("input", onType);
+  inp.addEventListener("keydown", function(e){
+    if(e.key === "Enter"){ var m = matches(inp.value.trim()); if(m.length){ e.preventDefault(); pick(m[0], true); } }
+  });
+  function mark(name, fallback){
+    [].forEach.call(document.querySelectorAll("#mu .isrhl"), function(x){ x.classList.remove("isrhl"); });
+    var nm = norm(name), hit = null;
+    [].forEach.call(document.querySelectorAll("#mu .sbname"), function(s){
+      if(hit) return;
+      var li = s.closest("li"); if(li && norm(s.textContent).indexOf(nm) >= 0) hit = li;
+    });
+    if(hit){
+      hit.classList.add("isrhl");
+      hit.scrollIntoView({behavior: calm ? "auto" : "smooth", block: "center"});
+      setTimeout(function(){ hit.classList.remove("isrhl"); }, 5200);
+    } else if(fallback){ fallback.scrollIntoView({behavior: calm ? "auto" : "smooth", block: "start"}); }
+  }
+  function go(r){
+    function fin(){
+      KMU.choose(r.slug, r.mode);
+      var m = document.getElementById("mu");
+      if(m) m.scrollIntoView({behavior: "auto", block: "start"});
+      setTimeout(function(){ mark(byId[r.id].nm, m); }, 160);
+    }
+    if(KDATA.lane() !== r.lane){
+      var b = document.querySelector('.lnb[data-l="' + r.lane + '"]');
+      if(b){ b.click(); setTimeout(fin, 560); return; }
+    }
+    fin();
+  }
+})();
+// === ITEM SEARCH END ===
 </script>
 <script>
 // === CHANNEL STATS START (update these numbers by hand or in the daily task) ===
