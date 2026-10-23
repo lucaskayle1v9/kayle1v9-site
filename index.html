@@ -730,8 +730,16 @@ nav .logo img{animation-duration:6.5s}
 .rqok .btn[hidden]{display:none}
 .tbtn{cursor:pointer;border:0;font:inherit;font-weight:700}
 .tbtn[aria-expanded="true"]{box-shadow:0 0 0 3px rgba(240,185,75,.35)}
-@media (max-width:620px){.rqg{grid-template-columns:1fr}.rqf,.rqok{padding:18px}}
-@media (prefers-reduced-motion:reduce){.tier .rq,.rqf,.rqok{transition:none}.rqf input.bad{animation:none}}
+.rqt{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 16px;margin-top:14px}
+.rqt>label{min-width:0}
+.rqf select{width:100%;min-width:0;box-sizing:border-box;font:inherit;font-weight:400;font-size:.95rem;padding:11px 14px;border-radius:12px;border:2px solid var(--line);background:var(--bg);color:var(--text);transition:border-color .2s,box-shadow .3s}
+.rqf select:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 4px rgba(240,185,75,.25)}
+.rqf select.bad{border-color:#E5484D;animation:rqshake .4s}
+.rqtz{grid-column:1/-1;margin:0;padding:10px 14px;border-left:4px solid var(--gold);border-radius:8px;background:var(--bg);font-size:.9rem;max-width:none}
+.rqtz:empty{display:none}
+.rqpn{margin:14px 0 8px}
+@media (max-width:620px){.rqg,.rqt{grid-template-columns:1fr}.rqf,.rqok{padding:18px}}
+@media (prefers-reduced-motion:reduce){.tier .rq,.rqf,.rqok{transition:none}.rqf input.bad,.rqf select.bad{animation:none}}
 .skinbtn,.sndbox{box-shadow:var(--lift)}
 @media (prefers-reduced-motion:no-preference){
 .skinbtn:not(:hover):not([aria-expanded="true"]):not(:active){animation:skglow 2.6s ease-in-out .5s infinite,skwig 4.8s ease-in-out 2.4s infinite}
@@ -2009,10 +2017,11 @@ section[data-off] *,section[data-off] *::before,section[data-off] *::after,.hero
           <label>Email address<input name="email" type="email" autocomplete="email" placeholder="you@example.com" required></label>
           <label>OP.GG link<input name="opgg" type="url" inputmode="url" autocomplete="off" placeholder="https://op.gg/lol/summoners/euw/Name-EUW" required></label>
         </div>
+        <div class="rqt"><label>Day<select name="day" required></select></label><label>Start time (your time)<select name="slot" required></select></label><p class="rqtz" aria-live="polite"></p></div>
         <label class="rqhp" aria-hidden="true">Leave empty<input name="website" tabindex="-1" autocomplete="off"></label>
         <p class="rqe" role="alert" hidden></p>
         <div class="rqa"><button type="submit" class="btn rqs">Send request</button><button type="button" class="rqc">Cancel</button></div>
-      </form><div class="rqok" hidden><h4>Request received</h4><p class="rqm"></p><a class="btn rqb" hidden>Pick a time</a><a class="btn rqg2" hidden target="_blank" rel="noopener">Open form and send</a></div></div></div>
+      </form><div class="rqok" hidden><h4>Request received</h4><p class="rqm"></p><a class="btn rqb" hidden>Pick a time</a><a class="btn rqg2" hidden target="_blank" rel="noopener">Open form and send</a><p class="rqpn" hidden>Payment: once I have confirmed your time, you can pay here. Please add your Discord name to the message.</p><a class="btn rqpay" hidden target="_blank" rel="noopener">Pay with StreamElements</a></div></div></div>
     </div>
     <div class="tier">
       <div><h3>Level 11 Session</h3><p>Ninety minutes live. We play or review together and fix your laning, your build path and your fight timing as they come up.</p></div>
@@ -2026,10 +2035,11 @@ section[data-off] *,section[data-off] *::before,section[data-off] *::after,.hero
           <label>Email address<input name="email" type="email" autocomplete="email" placeholder="you@example.com" required></label>
           <label>OP.GG link<input name="opgg" type="url" inputmode="url" autocomplete="off" placeholder="https://op.gg/lol/summoners/euw/Name-EUW" required></label>
         </div>
+        <div class="rqt"><label>Day<select name="day" required></select></label><label>Start time (your time)<select name="slot" required></select></label><p class="rqtz" aria-live="polite"></p></div>
         <label class="rqhp" aria-hidden="true">Leave empty<input name="website" tabindex="-1" autocomplete="off"></label>
         <p class="rqe" role="alert" hidden></p>
         <div class="rqa"><button type="submit" class="btn rqs">Send request</button><button type="button" class="rqc">Cancel</button></div>
-      </form><div class="rqok" hidden><h4>Request received</h4><p class="rqm"></p><a class="btn rqb" hidden>Pick a time</a><a class="btn rqg2" hidden target="_blank" rel="noopener">Open form and send</a></div></div></div>
+      </form><div class="rqok" hidden><h4>Request received</h4><p class="rqm"></p><a class="btn rqb" hidden>Pick a time</a><a class="btn rqg2" hidden target="_blank" rel="noopener">Open form and send</a><p class="rqpn" hidden>Payment: once I have confirmed your time, you can pay here. Please add your Discord name to the message.</p><a class="btn rqpay" hidden target="_blank" rel="noopener">Pay with StreamElements</a></div></div></div>
     </div>
     <div class="tier">
       <div><h3>Level 16 Program</h3><p>Four weekly sessions with homework and a written plan. Built for players who want a rank climb, not a single tip.</p></div>
@@ -2043,12 +2053,13 @@ section[data-off] *,section[data-off] *::before,section[data-off] *::after,.hero
           <label>Email address<input name="email" type="email" autocomplete="email" placeholder="you@example.com" required></label>
           <label>OP.GG link<input name="opgg" type="url" inputmode="url" autocomplete="off" placeholder="https://op.gg/lol/summoners/euw/Name-EUW" required></label>
         </div>
+        <div class="rqt"><label>Day<select name="day" required></select></label><label>Start time (your time)<select name="slot" required></select></label><p class="rqtz" aria-live="polite"></p></div>
         <label class="rqhp" aria-hidden="true">Leave empty<input name="website" tabindex="-1" autocomplete="off"></label>
         <p class="rqe" role="alert" hidden></p>
         <div class="rqa"><button type="submit" class="btn rqs">Send request</button><button type="button" class="rqc">Cancel</button></div>
-      </form><div class="rqok" hidden><h4>Request received</h4><p class="rqm"></p><a class="btn rqb" hidden>Pick a time</a><a class="btn rqg2" hidden target="_blank" rel="noopener">Open form and send</a></div></div></div>
+      </form><div class="rqok" hidden><h4>Request received</h4><p class="rqm"></p><a class="btn rqb" hidden>Pick a time</a><a class="btn rqg2" hidden target="_blank" rel="noopener">Open form and send</a><p class="rqpn" hidden>Payment: once I have confirmed your time, you can pay here. Please add your Discord name to the message.</p><a class="btn rqpay" hidden target="_blank" rel="noopener">Pay with StreamElements</a></div></div></div>
     </div>
-    <p class="tz">Your time zone is <b id="tz">detecting</b>. Open slots are listed in UTC on the booking page, so convert them with your offset: <b id="off"></b>.</p>
+    <p class="tz">Your time zone is <b id="tz">detecting</b>. The times in the picker are already converted to your time zone (<b id="off"></b>). Sessions can start any day between 11:00 and 23:00 Berlin time.</p>
   </div>
 </section>
 
@@ -2288,6 +2299,7 @@ section[data-off] *,section[data-off] *::before,section[data-off] *::after,.hero
 // Edit these four settings, then republish.
 var CONFIG = {
   bookingUrl: "",   // your Cal.com or Calendly link (shown after a request is sent)
+  payUrl: "",       // your StreamElements tip page, shown after a request is sent (stays hidden while empty)
   requestEndpoint: "", // optional: a form backend URL (for example a Formspree link) that receives the request as JSON
   requestEmail: "kayle1v9business@gmail.com",    // used when no endpoint is set: the request opens in the visitor's email app addressed to this address
   googleForm: {url:"https://docs.google.com/forms/d/e/1FAIpQLSe9CDU_MBwuhrwRGiZARWvGgnbRz074OdEu3C6JeaIFlNSr4Q/formResponse", discord:"entry.2005620554", email:"entry.1045781291", league:"entry.1065046570", opgg:"entry.1166974658", tier:"entry.839337160"}, // requests go to this Google Form (answers land in its sheet), the visitor stays on the page
@@ -2310,6 +2322,63 @@ setLinks(".book", CONFIG.bookingUrl);
 setLinks(".shop", CONFIG.shopUrl);
 setLinks(".yt", CONFIG.channelUrl);
 
+// Time picker: slots are fixed in Berlin time and shown in the visitor's own time zone.
+var AV = {tz:"Europe/Berlin", from:11, last:23, step:30, days:14, lead:12};
+(function(){
+  var DF = {};
+  function fmt(tz, o){ var k = tz + JSON.stringify(o); return DF[k] || (DF[k] = new Intl.DateTimeFormat("en-GB", Object.assign({timeZone: tz}, o))); }
+  function parts(tz, ms){ var o = {}; fmt(tz, {hourCycle:"h23", year:"numeric", month:"2-digit", day:"2-digit", hour:"2-digit", minute:"2-digit", second:"2-digit"}).formatToParts(new Date(ms)).forEach(function(x){ o[x.type] = x.value; }); return o; }
+  function off(ms){ var o = parts(AV.tz, ms); return (Date.UTC(+o.year, +o.month - 1, +o.day, +o.hour, +o.minute, +o.second) - Math.floor(ms / 1000) * 1000) / 60000; }
+  function wall(y, m, d, h, mi){ var g = Date.UTC(y, m, d, h, mi), t = g - off(g) * 60000; return g - off(t) * 60000; }
+  var myTz = ""; try{ myTz = Intl.DateTimeFormat().resolvedOptions().timeZone || ""; }catch(e){}
+  function dayLbl(ms){ return new Date(ms).toLocaleDateString(undefined, {weekday:"short", day:"numeric", month:"short"}); }
+  function timeLbl(ms){ return new Date(ms).toLocaleTimeString(undefined, {hour:"2-digit", minute:"2-digit"}); }
+  function berlinLbl(ms){ return fmt(AV.tz, {weekday:"short", day:"numeric", month:"short", hour:"2-digit", minute:"2-digit", hourCycle:"h23"}).format(new Date(ms)).replace(",", ""); }
+  function slots(){
+    var now = Date.now(), b = parts(AV.tz, now), out = [];
+    for(var i = 0; i <= AV.days; i++){
+      var dd = new Date(Date.UTC(+b.year, +b.month - 1, +b.day + i));
+      for(var m = AV.from * 60; m <= AV.last * 60; m += AV.step){
+        var t = wall(dd.getUTCFullYear(), dd.getUTCMonth(), dd.getUTCDate(), Math.floor(m / 60), m % 60);
+        if(t >= now + AV.lead * 3600000 && t <= now + AV.days * 86400000) out.push(t);
+      }
+    }
+    return out;
+  }
+  function key(ms){ var d = new Date(ms); return d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate(); }
+  function summary(ms){
+    var mine = dayLbl(ms) + ", " + timeLbl(ms), bl = berlinLbl(ms);
+    if(myTz === AV.tz) return "That is " + bl + " Berlin time.";
+    return "Your time: " + mine + (myTz ? " (" + myTz.replace(/_/g, " ") + ")" : "") + " = my time: " + bl + " (Berlin).";
+  }
+  window.KPICK = {
+    init: function(f){
+      var dsel = f.elements.day, ssel = f.elements.slot, note = f.querySelector(".rqtz"); if(!dsel || !ssel) return;
+      var all = slots(), groups = {}, order = [];
+      all.forEach(function(t){ var k = key(t); if(!groups[k]){ groups[k] = []; order.push(k); } groups[k].push(t); });
+      function opt(sel, v, txt){ var o = document.createElement("option"); o.value = v; o.textContent = txt; sel.appendChild(o); }
+      opt(dsel, "", "Choose a day");
+      order.forEach(function(k){ opt(dsel, k, dayLbl(groups[k][0])); });
+      function fillSlots(){
+        ssel.innerHTML = ""; note.textContent = "";
+        var g = groups[dsel.value];
+        if(!g){ opt(ssel, "", "Choose a day first"); return; }
+        opt(ssel, "", "Choose a time");
+        g.forEach(function(t){ opt(ssel, String(t), timeLbl(t)); });
+      }
+      dsel.addEventListener("change", fillSlots);
+      ssel.addEventListener("change", function(){ note.textContent = ssel.value ? summary(+ssel.value) : ""; });
+      fillSlots();
+      f.addEventListener("input", function(e){ if(e.target.classList) e.target.classList.remove("bad"); });
+    },
+    pick: function(f){
+      if(!f.elements.slot) return null;
+      var t = +f.elements.slot.value; if(!t) return null;
+      return {t:t, iso:new Date(t).toISOString(), berlin:berlinLbl(t), mine:dayLbl(t) + " " + timeLbl(t), tz:myTz.replace(/_/g, " ")};
+    }
+  };
+})();
+
 // Coaching request form: one panel per level.
 (function(){
   var btns = document.querySelectorAll(".tbtn");
@@ -2318,11 +2387,13 @@ setLinks(".yt", CONFIG.channelUrl);
   function done(t, f, msg){
     var ok = t.querySelector(".rqok"); f.hidden = true; ok.hidden = false; ok.querySelector(".rqm").textContent = msg;
     var a = ok.querySelector(".rqb");
+    if(CONFIG.payUrl){ var pa = ok.querySelector(".rqpay"), pn = ok.querySelector(".rqpn"); pa.hidden = false; pn.hidden = false; pa.href = CONFIG.payUrl; }
     if(CONFIG.bookingUrl){ a.hidden = false; a.href = CONFIG.bookingUrl; a.target = "_blank"; a.rel = "noopener"; }
     requestAnimationFrame(function(){ t.querySelector(".rq").classList.add("open"); });
   }
   btns.forEach(function(b){
     var t = b.closest(".tier"), rq = t.querySelector(".rq"), f = t.querySelector("form");
+    if(window.KPICK) KPICK.init(f);
     b.addEventListener("click", function(){
       var open = b.getAttribute("aria-expanded") === "true";
       document.querySelectorAll(".tier").forEach(function(o){ if(o !== t) close(o); });
@@ -2342,13 +2413,20 @@ setLinks(".yt", CONFIG.channelUrl);
       if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.email)){ setErr(f, "Enter a valid email address.", els.email); return; }
       var host = ""; try{ host = new URL(v.opgg).hostname.toLowerCase(); }catch(x){}
       if(!(host === "op.gg" || host.slice(-6) === ".op.gg")){ setErr(f, "Paste the link to your OP.GG profile, it starts with https://op.gg/", els.opgg); return; }
+      var pk = null;
+      if(els.day){
+        if(!els.day.value){ setErr(f, "Choose a day for our call.", els.day); return; }
+        pk = KPICK.pick(f);
+        if(!pk){ setErr(f, "Choose a start time.", els.slot); return; }
+      }
       var pe = t.querySelector(".price"), tier = t.querySelector("h3").textContent, price = pe.firstChild.textContent.trim() + " " + pe.querySelector("small").textContent.trim();
       var lines = ["Coaching request: " + tier + " (" + price + ")", "", "Discord: " + v.discord, "League name: " + v.league, "Email: " + v.email, "OP.GG: " + v.opgg];
+      if(pk){ lines.push("Wanted start: " + pk.berlin + " Berlin time (" + pk.mine + (pk.tz ? ", " + pk.tz : "") + "), " + pk.iso); }
       setErr(f, "");
       if(CONFIG.googleForm){
         // The page sandbox blocks every direct request to Google, so the details are handed to the Google Form through a prefilled link.
         // Nothing is sent until the visitor presses Send in that form, so the page says exactly that.
-        var G = CONFIG.googleForm, pre = {}; pre[G.tier] = tier + ", " + price; pre[G.discord] = v.discord; pre[G.league] = v.league; pre[G.email] = v.email; pre[G.opgg] = v.opgg;
+        var G = CONFIG.googleForm, pre = {}; pre[G.tier] = tier + ", " + price + (pk ? " | Wanted start: " + pk.berlin + " Berlin time (" + pk.mine + (pk.tz ? ", " + pk.tz : "") + ") " + pk.iso : ""); pre[G.discord] = v.discord; pre[G.league] = v.league; pre[G.email] = v.email; pre[G.opgg] = v.opgg;
         var pq = new URLSearchParams(pre); pq.append("usp", "pp_url");
         done(t, f, "Your details are ready. Press the button, check them and press Send in the form that opens. I only get your request once you press Send there.");
         t.querySelector(".rqok h4").textContent = "One last step";
@@ -3420,12 +3498,12 @@ document.querySelectorAll(".tw").forEach(function(tw, i){ setTimeout(function(){
   };
   window.K_BUILDS = DATA;
   // === LIVE DATA START (rewritten by the daily update task) ===
-  var PATCH = "16.20", PREV = "16.19", CHECKED = "22 Oct 2026";
+  var PATCH = "16.21", PREV = "16.20", CHECKED = "23 Oct 2026";
   // Top lane win / pick / ban rate per rank filter: [win, pick, ban] on PATCH, then [win, pick, ban] on PREV.
   var TD = {
-    eu:{emerald:[53.07,2.83,1.93, 53.43,3.1,2.18], diamond:[53.01,2.53,1.71, 54.42,2.85,2.07], master:[52.93,2.21,1.23, 54.99,2.33,1.54], all:[51.06,3.01,1.77, 51.23,3.17,1.83]},
-    china:{emerald:[51.49,1.11,0.29, 51.89,1.11,0.28], diamond:[51.94,0.91,0.24, 52.48,0.94,0.24], master:[50.81,0.77,0.2, 52.21,0.75,0.21], all:[50.63,1.64,0.41, 50.67,1.62,0.42]},
-    korea:{emerald:[50.76,0.95,0.14, 49.42,0.96,0.14], diamond:[50.59,0.94,0.18, 49.11,0.86,0.16], master:[51.06,1.1,0.3, 50.32,0.92,0.23], all:[50.26,1.08,0.18, 50.26,1.13,0.19]}
+    eu:{emerald:[52.49,2.64,1.86, 53.07,2.83,1.93], diamond:[53.4,2.39,1.54, 53.01,2.53,1.71], master:[57.97,2.09,1.14, 52.93,2.21,1.23], all:[52.13,2.79,1.68, 51.06,3.01,1.77]},
+    china:{emerald:[52.35,1.11,0.26, 51.49,1.11,0.29], diamond:[52.51,0.95,0.22, 51.94,0.91,0.24], master:[53.6,0.76,0.19, 50.81,0.77,0.2], all:[50.45,1.61,0.37, 50.63,1.64,0.41]},
+    korea:{emerald:[50.2,0.83,0.15, 50.76,0.95,0.14], diamond:[48.96,0.71,0.12, 50.59,0.94,0.18], master:[47.47,0.8,0.14, 51.06,1.1,0.3], all:[49.43,1.04,0.18, 50.26,1.08,0.18]}
   };
   // === LIVE DATA END ===
   // === LIVE DATA MID START (rewritten by the daily update task) ===
@@ -3591,9 +3669,9 @@ var TDM = {
     eu:{patch:"16.20", chk:"16 Oct 2026",
       common:{key:8005, main:[9101, 9104, 8299], tree:8200, sec:[8234, 8236], shards:[5005, 5008, 5001]},
       best:{key:8005, main:[9111, 9104, 8014], tree:8200, sec:[8234, 8236], shards:[5008, 5008, 5013]}},
-    china:{patch:"16.20", chk:"22 Oct 2026",
-      common:{key:8008, main:[9101, 9104, 8299], tree:8200, sec:[8234, 8236], shards:[5005, 5008, 5001], win:48.69, games:6317, pick:23.73},
-      best:{key:8008, main:[9111, 9104, 8299], tree:8400, sec:[8242, 8473], shards:[5005, 5008, 5011], win:57.06, games:340, pick:1.28}},
+    china:{patch:"16.21", chk:"23 Oct 2026",
+      common:{key:8008, main:[9101, 9104, 8299], tree:8200, sec:[8234, 8236], shards:[5005, 5008, 5001], win:50.27, games:374, pick:23.73},
+      best:{key:8008, main:[9101, 9104, 8299], tree:8200, sec:[8234, 8236], shards:[5005, 5008, 5001], win:50.27, games:374, pick:23.73}},
     korea:{patch:"16.20", chk:"16 Oct 2026",
       common:{key:8008, main:[9101, 9104, 8299], tree:8200, sec:[8234, 8236], shards:[5005, 5008, 5001], win:51.87, games:723, pick:26.44},
       best:{key:8005, main:[9101, 9104, 8017], tree:8400, sec:[8444, 8453], shards:[5008, 5010, 5013]}}
@@ -3731,9 +3809,9 @@ var TDM = {
     eu:{patch:"16.20", chk:"16 Oct 2026",
       start:[["1083_2003", 59.07, 1.88, 215], ["1120_2003", 56.02, 1.67, 191], ["1056_2003_2003", 54.68, 2.9, 331], ["1055_2003", 53.94, 49.42, 5649]],
       boots:[[3008, 56.25, 1.26, 144], [3047, 56.11, 1.57, 180], [3009, 54.17, 81.43, 9308], [3006, 50.41, 12.95, 1480]]},
-    china:{patch:"16.20", chk:"22 Oct 2026",
-      start:[["1083_2003", 56.88, 1.57, null], ["1055_2003", 53.56, 40.14, null], ["1086_2003_2003", 50.33, 40.35, null], ["1054_2003", 50.19, 11.41, null]],
-      boots:[[3009, 52.77, 51.79, null], [3047, 52.17, 9.79, null], [3006, 51.01, 36.13, null], [3111, 50.0, 4.32, null]]},
+    china:{patch:"16.21", chk:"23 Oct 2026",
+      start:[["1086_2003_2003", 54.03, 40.63, null], ["1055_2003", 52.12, 38.73, null], ["1054_2003", 51.7, 11.53, null], ["1056_2003_2003", 47.62, 1.38, null]],
+      boots:[[3047, 58.6, 10.51, null], [3009, 52.81, 50.07, null], [3006, 51.69, 35.61, null], [3111, 49.44, 5.96, null]]},
     korea:{patch:"16.20", chk:"16 Oct 2026",
       start:[["1056_2003_2003", 56.31, 3.31, 103], ["1086_2003_2003", 53.13, 27.73, 864], ["1055_2003", 52.59, 38.99, 1215], ["1054_2003", 51.76, 14.57, 454]],
       boots:[[3009, 56, 55.58, 1732], [3006, 50.06, 29.17, 909], [3008, 47.12, 3.34, 104], [3047, 45.6, 6.19, 193]]}
@@ -3758,9 +3836,9 @@ var TDM = {
       core:{ids:[3115,2510,3089], win:62.75, pick:48.18, games:2639},
       fifth:[[4645, 66.49, null, 922], [3135, 60.2, null, 397], [3116, 64.5, null, 200]],
       sixth:[[3135, 66.36, null, 217], [3157, 64.38, null, 160], [4645, 69.57, null, 92]]},
-    china:{patch:"16.20", chk:"22 Oct 2026",
-      core:{ids:[3115,2510,3089], win:64.92, pick:16.71, games:null},
-      fifth:[[3157, 64.06, 11.76, null], [4645, 63.3, 10.02, null], [3135, 70.45, 8.09, null]],
+    china:{patch:"16.21", chk:"23 Oct 2026",
+      core:{ids:[3115,2510,3089], win:78.29, pick:18.93, games:null},
+      fifth:[[3157, 75.0, 10.91, null], [3135, 58.33, 10.91, null], [4645, 36.36, 10.0, null]],
       sixth:[[3157, 53.13, 10.53, null], [4645, 72.0, 8.22, null], [3135, 55.0, 6.58, null]]},
     korea:{patch:"16.20", chk:"16 Oct 2026",
       core:{ids:[3115,2510,3089], win:68.13, pick:28.45, games:386},
@@ -3787,7 +3865,7 @@ var TDM = {
   // Per server: summoner spell pairs, the 4 best by win rate among options with enough games (Emerald+). Rows: ["id_id" (smaller id first), win, pick, games]. games may be null (China).
   var SPLIVE = {
     eu:{patch:"16.20", chk:"16 Oct 2026", rows:[["4_6", 54.32, 17.59, 2062], ["4_14", 53.52, 6.54, 766], ["4_12", 52.87, 60.36, 7074], ["3_4", 52.22, 14.04, 1645]]},
-    china:{patch:"16.20", chk:"22 Oct 2026", rows:[["4_14", 53.1, 16.46, null], ["4_6", 52.49, 10.63, null], ["3_4", 52.09, 39.93, null], ["4_12", 49.46, 29.5, null]]},
+    china:{patch:"16.21", chk:"23 Oct 2026", rows:[["4_6", 56.65, 10.98, null], ["4_12", 52.48, 28.17, null], ["3_4", 52.02, 39.28, null], ["4_14", 51.64, 17.45, null]]},
     korea:{patch:"16.20", chk:"16 Oct 2026", rows:[["3_4", 55.15, 20.62, 660], ["4_6", 52.84, 9.34, 299], ["4_12", 52.05, 61.7, 1975], ["4_14", 47.59, 5.84, 187]]}
   };
   // === SPELLS LIVE END ===
@@ -4226,6 +4304,22 @@ var TDM = {
     // Build of the day: an off-meta first item (Terminus, Guinsoo's Rageblade, Statikk Shiv, Kraken Slayer) from the best win rate matchup paths. Falls back to the usual core build when the data has none.
     (function(){
       var box = document.getElementById("botd"), OFF = {3302: 1, 3124: 1, 3087: 1, 6672: 1};
+      // One-day showcase (23 Oct 2026, Europe/Berlin): China build Terminus > Guinsoo's Rageblade > The Collector. Other days use the normal pick below.
+      var today = ""; try{ today = new Date().toLocaleDateString("sv-SE", {timeZone: "Europe/Berlin"}); }catch(e){}
+      if(box && today === "2026-10-23" && ITI[3302] && ITI[3124] && ITI[6676]){
+        var sInner = el("div", ""), sTag = el("span", "dtag", "Build of the day"), sT = el("div", "bt");
+        sT.appendChild(el("b", "", "Terminus, Guinsoo's Rageblade and The Collector"));
+        sT.appendChild(el("span", "", "Showcase build from the China server"));
+        var sIc = el("div", "bi");
+        [3302, 3124, 6676].forEach(function(id, i){ if(i) sIc.appendChild(el("span", "barr", "›")); sIc.appendChild(sbIcon(id, false)); });
+        var sGo = el("button", "bgo", "Open China builds"); sGo.type = "button";
+        sGo.addEventListener("click", function(){
+          var tb = document.querySelector('.btab[data-r="china"]'); if(tb) tb.click();
+          var pn = document.getElementById("bpanel"); if(pn) pn.scrollIntoView({behavior: "smooth", block: "start"});
+        });
+        sInner.appendChild(sTag); sInner.appendChild(sT); box.innerHTML = ""; box.appendChild(sInner); box.appendChild(sIc); box.appendChild(sGo); box.hidden = false;
+        return;
+      }
       var pick = function(min){ return slugs.filter(function(k){ var c = L[k].iw && L[k].iw.c; return c && c.length >= 3 && OFF[c[0].i] && ITN[c[0].i] && ITI[c[0].i] && c[0].n >= min; }).sort(); };
       var pool = pick(20); if(!pool.length) pool = pick(10);
       if(!box || !pool.length){ oldBotd(); return; }
