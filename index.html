@@ -2465,7 +2465,7 @@ var AV = {tz:"Europe/Berlin", from:11, last:23, step:30, days:14, lead:12};
       if(CONFIG.googleForm){
         // The page sandbox blocks every direct request to Google, so the details are handed to the Google Form through a prefilled link.
         // Nothing is sent until the visitor presses Send in that form, so the page says exactly that.
-        var G = CONFIG.googleForm, pre = {}; pre[G.tier] = tier + ", " + price + (pk ? " | Wanted start: " + pk.berlin + " Berlin time (" + pk.mine + (pk.tz ? ", " + pk.tz : "") + ") " + pk.iso : ""); pre[G.discord] = v.discord; pre[G.league] = v.league; pre[G.email] = v.email; pre[G.opgg] = v.opgg;
+        var G = CONFIG.googleForm, pre = {}; pre[G.tier] = pk ? ((tier.match(/Level \d+/) || [tier])[0] + " | " + pk.berlin + " Berlin time | visitor time: " + pk.mine + (pk.tz ? ", " + pk.tz : "") + " | " + pk.iso) : tier + ", " + price; pre[G.discord] = v.discord; pre[G.league] = v.league; pre[G.email] = v.email; pre[G.opgg] = v.opgg;
         var pq = new URLSearchParams(pre); pq.append("usp", "pp_url");
         done(t, f, "Your details are ready. Press the button, check them and press Send in the form that opens. I only get your request once you press Send there.");
         t.querySelector(".rqok h4").textContent = "One last step";
