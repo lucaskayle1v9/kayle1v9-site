@@ -1957,7 +1957,7 @@ section[data-off] *,section[data-off] *::before,section[data-off] *::after,.hero
     if(done) return;
     var e = it[2], dark = e > 0 ? "linear-gradient(rgba(8,14,30," + e + "),rgba(8,14,30," + e + ")),": "";
     bg.style.backgroundImage = dark + "linear-gradient(90deg,rgba(8,14,30,.72),rgba(8,14,30,.12) 78%),linear-gradient(rgba(15,26,51,.25),rgba(15,26,51,.52)),url(hero/" + it[0] + ".webp)";
-    bg.style.backgroundPosition = it[1] + "% 25%";
+    bg.style.backgroundPosition = it[1] + "% 25%"; bg.style.backgroundSize = "cover"; bg.style.backgroundRepeat = "no-repeat";
     requestAnimationFrame(function(){ requestAnimationFrame(show); });
   };
   im.onerror = show;
