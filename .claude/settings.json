@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 -I /tmp/k/repo/tools/kayle_update.py:*)",
+      "Bash(python3 /tmp/k/repo/make_site.py:*)",
+      "Bash(python3 -I /tmp/k/repo/make_site.py:*)"
+    ]
+  }
+}
