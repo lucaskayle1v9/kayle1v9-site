@@ -241,6 +241,33 @@ a.shop .newdot{position:absolute;top:-7px;right:-12px;padding:2px 6px;border-rad
 .msub::before{content:"";width:4px;height:1.1em;border-radius:2px;background:var(--gold)}
 @media (max-width:640px){.wd-range::-webkit-slider-thumb{height:22px}.wdc{flex-basis:62%}.wd-cta{width:100%;text-align:center}.wd-tabs{-webkit-mask:none;mask:none;flex-wrap:nowrap}}
 @media (prefers-reduced-motion:reduce){.wd-snow,.wdpill .sf{display:none}.wd-kick b,.wdrop h3,.wdc.pop{animation:none}.wdrop h3{color:#fff;background:none}.wd-track{scroll-behavior:auto}}
+/* 3D skin viewer (modelviewer.lol embed) */
+.skacts{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.sk3d{margin-top:6px;display:inline-flex;align-items:center;gap:6px;font:inherit;font-weight:700;font-size:.82rem;padding:6px 14px;border-radius:999px;border:2px solid var(--gold);background:var(--gold);color:#0F1A33;cursor:pointer;transition:transform .35s cubic-bezier(.34,1.56,.64,1),box-shadow .25s}
+.sk3d[hidden]{display:none}
+.sk3d svg{width:16px;height:16px}
+.sk3d:hover{transform:translateY(-2px);box-shadow:0 6px 18px -4px rgba(240,185,75,.7)}
+.sk3d:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.v3d{position:fixed;inset:0;z-index:2000;display:flex;align-items:center;justify-content:center;padding:clamp(0px,3vw,40px);background:rgba(5,9,22,.78);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);opacity:0;transition:opacity .25s}
+.v3d.on{opacity:1}
+.v3d[hidden]{display:none}
+.v3d-box{position:relative;display:flex;flex-direction:column;width:min(1100px,100%);height:min(780px,100%);border-radius:20px;overflow:hidden;border:2px solid var(--gold);background:#0B1226;box-shadow:0 30px 80px -20px rgba(0,0,0,.8),0 0 40px -10px rgba(240,185,75,.4);transform:translateY(16px) scale(.97);transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.v3d.on .v3d-box{transform:none}
+.v3d-top{display:flex;align-items:center;gap:12px;padding:10px 12px 10px 18px;border-bottom:1px solid var(--line);background:var(--panel)}
+.v3d-top b{font-size:1.05rem;font-weight:800;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.v3d-top b small{display:block;font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+.v3d-top a{color:var(--muted);font-size:.8rem;text-decoration:none;white-space:nowrap}
+.v3d-top a:hover{color:var(--gold)}
+.v3d-x{flex:none;width:38px;height:38px;border-radius:50%;border:0;background:var(--gold);color:#0F1A33;font-size:1.5rem;line-height:1;cursor:pointer}
+.v3d-x:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.v3d-stage{position:relative;flex:1;background:#0B1226}
+.v3d-stage iframe{position:absolute;inset:0;width:100%;height:100%;border:0;opacity:0;transition:opacity .4s}
+.v3d-stage.ok iframe{opacity:1}
+.v3d-load{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:var(--muted);font-size:.9rem}
+.v3d-load i{width:42px;height:42px;border-radius:50%;border:3px solid rgba(240,185,75,.25);border-top-color:var(--gold);animation:v3spin .8s linear infinite}
+.v3d-stage.ok .v3d-load{display:none}
+@keyframes v3spin{to{transform:rotate(360deg)}}
+@media (max-width:640px){.v3d{padding:0}.v3d-box{border-radius:0;border-width:0;height:100%}.v3d-top a{display:none}}
 /* merch: coupon ticket, 3D carousel cards, glow */
 #merch{position:relative;isolation:isolate;overflow-x:clip}
 .mglow{position:absolute;inset:-40px 0;z-index:-1;pointer-events:none;background:radial-gradient(46% 42% at 26% 40%,rgba(240,185,75,.17),transparent 70%),radial-gradient(40% 40% at 80% 66%,rgba(77,163,255,.10),transparent 70%)}
@@ -2055,7 +2082,7 @@ section[data-off] *,section[data-off] *::before,section[data-off] *::after,.hero
         <div class="srdd" id="srlist" role="listbox" aria-label="Search results" hidden></div>
       </form>
 </nav>
-    <div class="lvrow"><div class="lvwrap" id="lvwrap"><div class="level" id="level" aria-label="Level 16"><span id="lt">Level 16</span></div><div class="lvtip" id="lvtip" aria-hidden="true"><svg viewBox="0 0 38 26" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M36 20C26 22 12 18 5 6"/><path d="M4 14L5 5l9 2"/></svg><span id="lvtxt">Hover me!</span></div></div><div class="skinwrap" id="skinwrap"><button type="button" class="skinbtn" id="skinbtn" aria-expanded="false" aria-controls="skincard"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4.5" fill="none" stroke="currentColor" stroke-width="2"/><g fill="currentColor"><circle cx="8.2" cy="8.2" r="1.6"/><circle cx="15.8" cy="8.2" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="8.2" cy="15.8" r="1.6"/><circle cx="15.8" cy="15.8" r="1.6"/></g></svg><span>Pick me a skin</span></button><div class="sndbox" id="sndbox"><button type="button" class="sndbtn" id="sndbtn" aria-label="Sound settings" aria-expanded="false" aria-controls="sndpanel" title="Sound settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5v5h4l5 4v-13l-5 4z" fill="currentColor"/><g class="skw"><path d="M16.5 9a4.2 4.2 0 0 1 0 6"/><path d="M19 6.5a8 8 0 0 1 0 11"/></g><path class="skxx" d="M17 9.5l5 5M22 9.5l-5 5"/></svg></button><div class="sndpanel" id="sndpanel"><button type="button" class="sndmute" id="sndmute" aria-label="Mute sounds" aria-pressed="false" title="Mute"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5v5h4l5 4v-13l-5 4z" fill="currentColor"/><g class="skw"><path d="M16.5 9a4.2 4.2 0 0 1 0 6"/><path d="M19 6.5a8 8 0 0 1 0 11"/></g><path class="skxx" d="M17 9.5l5 5M22 9.5l-5 5"/></svg></button><input type="range" id="sndrange" class="sndrange" min="0" max="100" step="1" value="50" aria-label="Volume"><output id="sndval" for="sndrange">50</output></div></div><div class="skincard" id="skincard" role="dialog" aria-label="Your skin for the next game" hidden><button type="button" class="skm" id="skm" aria-label="Mute sounds" aria-pressed="false" title="Sound on/off"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5v5h4l5 4v-13l-5 4z" fill="currentColor"/><g class="skw"><path d="M16.5 9a4.2 4.2 0 0 1 0 6"/><path d="M19 6.5a8 8 0 0 1 0 11"/></g><path class="skxx" d="M17 9.5l5 5M22 9.5l-5 5"/></svg></button><button type="button" class="skx" id="skx" aria-label="Close">&times;</button><div class="skreel" id="skreel" aria-hidden="true"><div class="skstrip" id="skstrip"></div><i class="skmark"></i></div><div class="skart"><img id="skimg" alt="" width="120" height="218"></div><div class="skbody"><span class="skkick">Your next game</span><b id="skname">Kayle</b><span class="sksub" id="sksub"></span><button type="button" class="skagain" id="skagain">Roll again</button></div></div></div><a class="gamesbtn" id="gamesbtn" href="#games" title="Jump to the minigames"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="7" width="19" height="11" rx="5.5"/><path d="M8 10.5v4M6 12.5h4"/><circle cx="15.5" cy="11.5" r=".9" fill="currentColor"/><circle cx="18" cy="13.7" r=".9" fill="currentColor"/></svg><span>More minigames</span></a></div>
+    <div class="lvrow"><div class="lvwrap" id="lvwrap"><div class="level" id="level" aria-label="Level 16"><span id="lt">Level 16</span></div><div class="lvtip" id="lvtip" aria-hidden="true"><svg viewBox="0 0 38 26" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M36 20C26 22 12 18 5 6"/><path d="M4 14L5 5l9 2"/></svg><span id="lvtxt">Hover me!</span></div></div><div class="skinwrap" id="skinwrap"><button type="button" class="skinbtn" id="skinbtn" aria-expanded="false" aria-controls="skincard"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4.5" fill="none" stroke="currentColor" stroke-width="2"/><g fill="currentColor"><circle cx="8.2" cy="8.2" r="1.6"/><circle cx="15.8" cy="8.2" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="8.2" cy="15.8" r="1.6"/><circle cx="15.8" cy="15.8" r="1.6"/></g></svg><span>Pick me a skin</span></button><div class="sndbox" id="sndbox"><button type="button" class="sndbtn" id="sndbtn" aria-label="Sound settings" aria-expanded="false" aria-controls="sndpanel" title="Sound settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5v5h4l5 4v-13l-5 4z" fill="currentColor"/><g class="skw"><path d="M16.5 9a4.2 4.2 0 0 1 0 6"/><path d="M19 6.5a8 8 0 0 1 0 11"/></g><path class="skxx" d="M17 9.5l5 5M22 9.5l-5 5"/></svg></button><div class="sndpanel" id="sndpanel"><button type="button" class="sndmute" id="sndmute" aria-label="Mute sounds" aria-pressed="false" title="Mute"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5v5h4l5 4v-13l-5 4z" fill="currentColor"/><g class="skw"><path d="M16.5 9a4.2 4.2 0 0 1 0 6"/><path d="M19 6.5a8 8 0 0 1 0 11"/></g><path class="skxx" d="M17 9.5l5 5M22 9.5l-5 5"/></svg></button><input type="range" id="sndrange" class="sndrange" min="0" max="100" step="1" value="50" aria-label="Volume"><output id="sndval" for="sndrange">50</output></div></div><div class="skincard" id="skincard" role="dialog" aria-label="Your skin for the next game" hidden><button type="button" class="skm" id="skm" aria-label="Mute sounds" aria-pressed="false" title="Sound on/off"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5v5h4l5 4v-13l-5 4z" fill="currentColor"/><g class="skw"><path d="M16.5 9a4.2 4.2 0 0 1 0 6"/><path d="M19 6.5a8 8 0 0 1 0 11"/></g><path class="skxx" d="M17 9.5l5 5M22 9.5l-5 5"/></svg></button><button type="button" class="skx" id="skx" aria-label="Close">&times;</button><div class="skreel" id="skreel" aria-hidden="true"><div class="skstrip" id="skstrip"></div><i class="skmark"></i></div><div class="skart"><img id="skimg" alt="" width="120" height="218"></div><div class="skbody"><span class="skkick">Your next game</span><b id="skname">Kayle</b><span class="sksub" id="sksub"></span><span class="skacts"><button type="button" class="skagain" id="skagain">Roll again</button><button type="button" class="sk3d" id="sk3d" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.8 20 7.3v9.4l-8 4.5-8-4.5V7.3z"/><path d="M4 7.3l8 4.5 8-4.5M12 11.8v9.4"/></svg>View in 3D</button></span></div></div></div><a class="gamesbtn" id="gamesbtn" href="#games" title="Jump to the minigames"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="7" width="19" height="11" rx="5.5"/><path d="M8 10.5v4M6 12.5h4"/><circle cx="15.5" cy="11.5" r=".9" fill="currentColor"/><circle cx="18" cy="13.7" r=".9" fill="currentColor"/></svg><span>More minigames</span></a></div>
     <a class="wdpill" href="#wdrop"><b>New</b><span><span class="sf" aria-hidden="true">&#10052;</span> Winter drop is live: the 1v9 Collection</span><i aria-hidden="true">&rarr;</i></a>
     <h1 id="top">Kayle 1v9</h1>
     <p>Learn to scale, survive and carry games on Kayle with the German bald prodigy.</p>
@@ -3164,7 +3191,7 @@ if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches){
   }
   document.addEventListener("pointerdown", function(e){ if(box && box.classList.contains("open") && !box.contains(e.target)) setOpen(false); });
   document.addEventListener("keydown", function(e){ if(e.key === "Escape" && box && box.classList.contains("open")){ setOpen(false); sb.focus(); } });
-  function show(i){ img.src = SKINS[i][2]; nm.textContent = SKINS[i][1]; }
+  function show(i){ img.src = SKINS[i][2]; nm.textContent = SKINS[i][1]; window.K3D && K3D.set(SKINS[i][0], SKINS[i][1]); }
   function place(){}
   // Case-opening reel: a strip of skins slides from left to right and slows down until the winner sits under the marker.
   var reel = document.getElementById("skreel"), strip = document.getElementById("skstrip"), raf = 0;
@@ -7730,5 +7757,41 @@ var CHSTAT = {subs:69600, goal:100000, videos:1292, checked:"26 Oct 2026"};
   rg.addEventListener("change", function(){ drag = false; tr.style.scrollSnapType = ""; tr.style.scrollBehavior = ""; upd(); });
   tr.addEventListener("scroll", function(){ requestAnimationFrame(upd); }, {passive: true});
   window.addEventListener("resize", upd); window.addEventListener("load", upd); upd();
+})();
+</script>
+<div class="v3d" id="v3d" role="dialog" aria-modal="true" aria-labelledby="v3dt" hidden><div class="v3d-box"><div class="v3d-top"><b id="v3dt"><small>3D view</small><span id="v3dn">Kayle</span></b><a id="v3dl" href="https://modelviewer.lol/" target="_blank" rel="noopener">Open on modelviewer.lol &#8599;</a><button type="button" class="v3d-x" id="v3dx" aria-label="Close 3D view">&times;</button></div><div class="v3d-stage" id="v3ds"><div class="v3d-load"><i></i>Loading 3D model&hellip;</div></div></div></div>
+<script>
+/* 3D skin viewer: embeds modelviewer.lol (Khada) for the rolled skin; Kayle skin ids are 10000 + skin number */
+(function(){
+  var m = document.getElementById("v3d"), st = document.getElementById("v3ds"), nmE = document.getElementById("v3dn"), ln = document.getElementById("v3dl"), x = document.getElementById("v3dx"), b = document.getElementById("sk3d");
+  if(!m || !b) return;
+  var cur = null, fr = null, back = null;
+  function url(n){ return "https://modelviewer.lol/model-viewer?id=" + (10000 + n); }
+  window.K3D = {set: function(n, name){ cur = {n: n, name: name}; b.hidden = false; b.setAttribute("aria-label", "View " + name + " in 3D"); }};
+  function open(){
+    if(!cur) return;
+    back = document.activeElement;
+    nmE.textContent = cur.name; ln.href = url(cur.n);
+    var u = url(cur.n);
+    if(!fr || fr.getAttribute("data-u") !== u){
+      if(fr) fr.remove(); st.classList.remove("ok");
+      fr = document.createElement("iframe"); fr.title = cur.name + " 3D model"; fr.setAttribute("data-u", u);
+      fr.allow = "fullscreen; xr-spatial-tracking"; fr.referrerPolicy = "strict-origin-when-cross-origin";
+      fr.onload = function(){ st.classList.add("ok"); };
+      fr.src = u; st.appendChild(fr);
+    }
+    m.hidden = false; document.documentElement.style.overflow = "hidden";
+    requestAnimationFrame(function(){ m.classList.add("on"); x.focus(); });
+  }
+  function close(){
+    m.classList.remove("on"); document.documentElement.style.overflow = "";
+    setTimeout(function(){ m.hidden = true; }, 250);
+    if(back && back.focus) back.focus();
+  }
+  b.addEventListener("click", function(e){ e.stopPropagation(); open(); });
+  x.addEventListener("click", close);
+  m.addEventListener("click", function(e){ if(e.target === m) close(); });
+  m.addEventListener("pointerdown", function(e){ e.stopPropagation(); });
+  document.addEventListener("keydown", function(e){ if(e.key === "Escape" && !m.hidden){ e.stopImmediatePropagation(); close(); } }, true);
 })();
 </script>
