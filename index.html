@@ -158,7 +158,7 @@ section h2{font-size:clamp(2.4rem,7vw,4rem);font-weight:800;margin-bottom:14px}
 .item div.t{padding:16px 18px}
 .item p{margin:2px 0 0;color:var(--muted);font-size:.95rem}
 footer{padding:36px 22px 48px;color:var(--muted);text-align:center}
-footer a{margin:0 10px}footer .imp{margin:14px auto 0;max-width:560px;text-align:center;font-size:.9rem}footer .imp p{text-align:left}footer .imp summary{cursor:pointer;display:inline-block;margin-left:0;list-style:none;text-decoration:underline}footer .imp summary::-webkit-details-marker{display:none}footer .imp p{margin:10px 0 0;line-height:1.5}footer .imp a{margin:0}
+footer a{margin:0 10px}footer .imp{margin:14px auto 0;max-width:560px;text-align:center;font-size:.9rem}footer .imp p{text-align:left}footer .imp .en{display:none}footer .imp.en .en{display:block}footer .imp.en .de{display:none}footer .imp .lsw{margin:10px 0 0}footer .imp .lsw button{font:inherit;font-size:.8rem;margin:0 3px;padding:3px 12px;border-radius:99px;border:1px solid currentColor;background:none;color:inherit;cursor:pointer;opacity:.7}footer .imp .lsw button.on{opacity:1;font-weight:700}footer .imp summary{cursor:pointer;display:inline-block;margin-left:0;list-style:none;text-decoration:underline}footer .imp summary::-webkit-details-marker{display:none}footer .imp p{margin:10px 0 0;line-height:1.5}footer .imp a{margin:0}
 @media (max-width:620px){.tier{grid-template-columns:1fr}.price{text-align:left}.tier .btn{grid-column:1;justify-self:start}nav{margin-bottom:48px}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.video{transition:none}}
 .video{aspect-ratio:auto;min-height:0;padding:0;justify-content:flex-start;background:var(--panel);color:var(--text);border:1px solid var(--line)}
@@ -2289,23 +2289,42 @@ section[data-off] *,section[data-off] *::before,section[data-off] *::after,.hero
   <a href="#gear">Gear</a>
   <a class="shop" href="#merch">Shop</a>
   <a class="book" href="#coaching">Book</a>
-  <details class="imp"><summary>Impressum</summary>
-    <p>Lucas Pauli<br>c/o Autorenglück #93225<br>Albert-Einstein-Straße 47<br>02977 Hoyerswerda<br>E-Mail: <a href="mailto:kayle1v9business@gmail.com">kayle1v9business@gmail.com</a><br>Einzelunternehmen</p>
-    <p>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV:<br>Lucas Pauli, Adresse wie oben</p>
+  <details class="imp"><summary>Impressum / Legal notice</summary>
+    <div class="lsw" role="group" aria-label="Language"><button type="button" data-l="de" class="on">Deutsch</button><button type="button" data-l="en">English</button></div>
+    <p class="de">Lucas Pauli<br>c/o Autorenglück #93225<br>Albert-Einstein-Straße 47<br>02977 Hoyerswerda<br>E-Mail: <a href="mailto:kayle1v9business@gmail.com">kayle1v9business@gmail.com</a><br>Einzelunternehmen</p>
+    <p class="de">Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV:<br>Lucas Pauli, Adresse wie oben</p>
+    <p class="en">Lucas Pauli<br>c/o Autorenglück #93225<br>Albert-Einstein-Straße 47<br>02977 Hoyerswerda, Germany<br>Email: <a href="mailto:kayle1v9business@gmail.com">kayle1v9business@gmail.com</a><br>Sole proprietorship (Einzelunternehmen)</p>
+    <p class="en">Responsible for content under § 55 (2) RStV:<br>Lucas Pauli, address as above</p>
   </details>
-  <details class="imp"><summary>Datenschutz</summary>
-    <p><b>Verantwortlicher:</b> Lucas Pauli, Adresse und E-Mail siehe Impressum.</p>
-    <p><b>Hosting / Server-Logs:</b> Diese Seite wird über GitHub Pages (GitHub Inc., USA) ausgeliefert. Beim Aufruf verarbeitet der Hoster technisch notwendige Daten (z. B. IP-Adresse, Zeitpunkt, Browser) in Server-Logs. Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO (sicherer, stabiler Betrieb der Seite).</p>
-    <p><b>Schriftarten:</b> Die Schrift „Poppins" wird von Google Fonts geladen. Dabei wird deine IP-Adresse an Google übertragen. Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO.</p>
-    <p><b>YouTube-Videos:</b> Videovorschauen werden erst nach einem Klick/Hover im erweiterten Datenschutzmodus (youtube-nocookie.com) von YouTube (Google) geladen. Erst dann werden Daten (z. B. IP-Adresse) an YouTube übertragen.</p>
-    <p><b>Coaching-Anfrage:</b> Wenn du eine Anfrage sendest, werden deine Angaben (Discord-Name, League-Name, E-Mail, OP.GG-Link, Wunschtermin, gewähltes Level) über Google Formulare bzw. dein E-Mail-Programm an mich übermittelt und nur zur Bearbeitung der Anfrage und zur Terminabsprache genutzt. Rechtsgrundlage: Art. 6 Abs. 1 lit. b DSGVO. Die Angaben werden gelöscht, sobald sie dafür nicht mehr nötig sind, soweit keine gesetzlichen Aufbewahrungspflichten bestehen.</p>
-    <p><b>Lokale Speicherung:</b> Die Seite speichert Einstellungen (z. B. Lane-Auswahl, Lautstärke, Minispiel-Fortschritt) nur lokal in deinem Browser. Es gibt kein Tracking und keine Werbe-Cookies.</p>
-    <p><b>Externe Links:</b> Für verlinkte Seiten (Twitch, YouTube, TikTok, X, Discord, Fourthwall-Shop, PayPal) sind deren Betreiber verantwortlich. Dort gelten deren Datenschutzerklärungen.</p>
-    <p><b>Deine Rechte:</b> Auskunft, Berichtigung, Löschung, Einschränkung, Datenübertragbarkeit und Widerspruch. Schreib mir dazu an die E-Mail-Adresse aus dem Impressum. Außerdem kannst du dich bei einer Datenschutzaufsichtsbehörde beschweren.</p>
+  <details class="imp"><summary>Datenschutz / Privacy</summary>
+    <div class="lsw" role="group" aria-label="Language"><button type="button" data-l="de" class="on">Deutsch</button><button type="button" data-l="en">English</button></div>
+    <p class="de"><b>Verantwortlicher:</b> Lucas Pauli, Adresse und E-Mail siehe Impressum.</p>
+    <p class="de"><b>Hosting / Server-Logs:</b> Diese Seite wird über GitHub Pages (GitHub Inc., USA) ausgeliefert. Beim Aufruf verarbeitet der Hoster technisch notwendige Daten (z. B. IP-Adresse, Zeitpunkt, Browser) in Server-Logs. Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO (sicherer, stabiler Betrieb der Seite).</p>
+    <p class="de"><b>Schriftarten:</b> Die Schrift „Poppins" wird von Google Fonts geladen. Dabei wird deine IP-Adresse an Google übertragen. Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO.</p>
+    <p class="de"><b>YouTube-Videos:</b> Videovorschauen werden erst nach einem Klick/Hover im erweiterten Datenschutzmodus (youtube-nocookie.com) von YouTube (Google) geladen. Erst dann werden Daten (z. B. IP-Adresse) an YouTube übertragen.</p>
+    <p class="de"><b>Coaching-Anfrage:</b> Wenn du eine Anfrage sendest, werden deine Angaben (Discord-Name, League-Name, E-Mail, OP.GG-Link, Wunschtermin, gewähltes Level) über Google Formulare bzw. dein E-Mail-Programm an mich übermittelt und nur zur Bearbeitung der Anfrage und zur Terminabsprache genutzt. Rechtsgrundlage: Art. 6 Abs. 1 lit. b DSGVO. Die Angaben werden gelöscht, sobald sie dafür nicht mehr nötig sind, soweit keine gesetzlichen Aufbewahrungspflichten bestehen.</p>
+    <p class="de"><b>Lokale Speicherung:</b> Die Seite speichert Einstellungen (z. B. Lane-Auswahl, Lautstärke, Minispiel-Fortschritt) nur lokal in deinem Browser. Es gibt kein Tracking und keine Werbe-Cookies.</p>
+    <p class="de"><b>Externe Links:</b> Für verlinkte Seiten (Twitch, YouTube, TikTok, X, Discord, Fourthwall-Shop, PayPal) sind deren Betreiber verantwortlich. Dort gelten deren Datenschutzerklärungen.</p>
+    <p class="de"><b>Deine Rechte:</b> Auskunft, Berichtigung, Löschung, Einschränkung, Datenübertragbarkeit und Widerspruch. Schreib mir dazu an die E-Mail-Adresse aus dem Impressum. Außerdem kannst du dich bei einer Datenschutzaufsichtsbehörde beschweren.</p>
+    <p class="en"><b>Controller:</b> Lucas Pauli, address and email see legal notice.</p>
+    <p class="en"><b>Hosting / server logs:</b> This site is delivered via GitHub Pages (GitHub Inc., USA). When you visit, the host processes technically necessary data (e.g. IP address, time, browser) in server logs. Legal basis: Art. 6(1)(f) GDPR (secure and stable operation of the site).</p>
+    <p class="en"><b>Fonts:</b> The font "Poppins" is loaded from Google Fonts. Your IP address is transmitted to Google in the process. Legal basis: Art. 6(1)(f) GDPR.</p>
+    <p class="en"><b>YouTube videos:</b> Video previews are only loaded from YouTube (Google) in extended privacy mode (youtube-nocookie.com) after you click/hover. Only then is data (e.g. your IP address) transmitted to YouTube.</p>
+    <p class="en"><b>Coaching request:</b> If you send a request, your details (Discord name, League name, email, OP.GG link, preferred time, chosen level) are transmitted to me via Google Forms or your email app and used only to handle the request and arrange the session. Legal basis: Art. 6(1)(b) GDPR. The data is deleted once it is no longer needed for this, unless statutory retention duties apply.</p>
+    <p class="en"><b>Local storage:</b> The site stores settings (e.g. lane choice, volume, minigame progress) only locally in your browser. There is no tracking and there are no advertising cookies.</p>
+    <p class="en"><b>External links:</b> The operators of linked sites (Twitch, YouTube, TikTok, X, Discord, Fourthwall shop, PayPal) are responsible for them. Their own privacy policies apply there.</p>
+    <p class="en"><b>Your rights:</b> Access, rectification, erasure, restriction, data portability and objection. Write to me at the email address in the legal notice. You may also lodge a complaint with a data protection supervisory authority.</p>
   </details>
   <p>&copy; 2026 Kayle 1v9. Not affiliated with Riot Games.</p>
 </footer>
 
+<script>
+(function(){ var ds = document.querySelectorAll("footer .imp");
+  ds.forEach(function(d){ d.addEventListener("click", function(ev){ var b = ev.target.closest(".lsw button"); if(!b) return;
+    var en = b.getAttribute("data-l") === "en"; d.classList.toggle("en", en);
+    d.querySelectorAll(".lsw button").forEach(function(x){ x.classList.toggle("on", x === b); }); }); });
+})();
+</script>
 <button type="button" class="totop" id="totop" aria-label="Back to top" title="Back to top"><svg viewBox="0 0 52 52" aria-hidden="true"><circle class="tr" id="totr" cx="26" cy="26" r="23" stroke-dasharray="144.5" stroke-dashoffset="144.5"/><path class="ta" d="M19 29l7-7 7 7"/></svg></button>
 <nav class="tnav" id="tnav" aria-label="Jump to a section"></nav>
 
