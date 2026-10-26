@@ -7489,8 +7489,9 @@ var CHSTAT = {subs:69600, goal:100000, videos:1292, checked:"26 Oct 2026"};
 .srch input{width:100%;font:inherit;font-size:.92rem;color:var(--text);background:rgba(20,32,63,.72);border:1.5px solid var(--line);border-radius:999px;padding:9px 40px 9px 38px;outline:none;-webkit-appearance:none;appearance:none;transition:border-color .2s,box-shadow .2s,background .2s}
 .srch input::placeholder{color:var(--muted);opacity:.9}
 .srch input::-webkit-search-cancel-button{-webkit-appearance:none;appearance:none;height:16px;width:16px;cursor:pointer;opacity:.7;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%239FB0CC' stroke-width='3' stroke-linecap='round'><path d='M6 6l12 12M18 6L6 18'/></svg>") center/contain no-repeat}
+.srch input{box-shadow:0 2px 4px rgba(5,10,25,.45),0 12px 24px -6px rgba(5,10,25,.7)}
 .srch input:hover{border-color:rgba(240,185,75,.55)}
-.srch input:focus{border-color:var(--gold);background:rgba(20,32,63,.95);box-shadow:0 0 0 3px rgba(240,185,75,.18)}
+.srch input:focus{border-color:var(--gold);background:rgba(20,32,63,.95);box-shadow:0 0 0 3px rgba(240,185,75,.18),0 2px 4px rgba(5,10,25,.45),0 12px 24px -6px rgba(5,10,25,.7)}
 .srk{position:absolute;right:12px;top:50%;transform:translateY(-50%);font:700 .72rem/1 inherit;font-family:inherit;color:var(--muted);border:1px solid var(--line);border-radius:6px;padding:3px 6px;pointer-events:none}
 .srch:focus-within .srk,.srch input:not(:placeholder-shown)~.srk{opacity:0}
 @media (hover:none){.srk{display:none}}
