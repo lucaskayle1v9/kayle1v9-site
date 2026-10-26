@@ -84,9 +84,9 @@ section,footer{position:relative;z-index:1}
 .video b{text-shadow:0 1px 4px rgba(0,0,0,.8)}
 #bar{position:fixed;top:0;left:0;height:3px;width:100%;background:var(--gold);transform-origin:0 50%;transform:scaleX(0);z-index:50;pointer-events:none}
 @media (prefers-reduced-motion:no-preference){
-.js .rv{opacity:0;transform:translate3d(0,80px,0) scale(.9);transition:opacity .6s ease-out,transform 1.15s cubic-bezier(.34,1.56,.64,1)}
-.js h2.rv{transform:translate3d(-70px,0,0)}
-.js .btn.rv{transform:scale(.6)}
+.js .rv{opacity:0;transform:translate3d(0,36px,0) scale(.96);transition:opacity .35s ease-out,transform .6s cubic-bezier(.34,1.4,.64,1)}
+.js h2.rv{transform:translate3d(-36px,0,0)}
+.js .btn.rv{transform:scale(.8)}
 .js .rv.in{opacity:1;transform:none}
 .item,.btn{transition:transform .4s cubic-bezier(.34,1.56,.64,1),filter .2s}
 .item:hover{transform:translateY(-8px) rotate(-1.2deg)}
@@ -3427,16 +3427,16 @@ if(!still){
       if(!e.isIntersecting) return;
       var el = e.target; obs.unobserve(el); el.classList.add("in");
       var dl = parseInt(el.style.transitionDelay) || 0;
-      setTimeout(function(){ el.classList.remove("rv","in"); el.style.transitionDelay = ""; }, 1250 + dl);
+      setTimeout(function(){ el.classList.remove("rv","in"); el.style.transitionDelay = ""; }, 700 + dl);
     });
   }
-  var io = "IntersectionObserver" in window ? new IntersectionObserver(revealCb, {threshold:.12, rootMargin:"0px 0px -6% 0px"}) : null;
+  var io = "IntersectionObserver" in window ? new IntersectionObserver(revealCb, {threshold:0, rootMargin:"0px 0px 12% 0px"}) : null;
   /* very tall blocks (the builds panel) reveal as soon as a small part is in view */
-  var ioTall = "IntersectionObserver" in window ? new IntersectionObserver(revealCb, {threshold:0, rootMargin:"0px 0px -12% 0px"}) : null;
+  var ioTall = "IntersectionObserver" in window ? new IntersectionObserver(revealCb, {threshold:0, rootMargin:"0px 0px 12% 0px"}) : null;
   els.forEach(function(el){
     el.classList.add("rv");
     var i = Array.prototype.indexOf.call(el.parentNode.children, el);
-    el.style.transitionDelay = Math.min(i*110, 550) + "ms";
+    el.style.transitionDelay = Math.min(i*50, 150) + "ms";
     if(io) (el.classList.contains("bpanel") ? ioTall : io).observe(el); else el.classList.remove("rv");
   });
   var bar = document.createElement("div"); bar.id = "bar"; document.body.appendChild(bar);
