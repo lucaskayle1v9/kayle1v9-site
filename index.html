@@ -174,6 +174,66 @@ footer a{margin:0 10px}footer .imp{margin:14px auto 0;max-width:560px;text-align
 @media (prefers-reduced-motion:no-preference){.gear{transition:transform .4s cubic-bezier(.34,1.56,.64,1),border-color .2s,box-shadow .2s}.gear:hover{transform:translateY(-6px);border-color:var(--gold);box-shadow:0 10px 24px rgba(240,185,75,.25)}}
 #merch .grid{grid-template-columns:repeat(auto-fit,minmax(250px,380px))}
 
+/* winter drop: 1v9 collection showcase */
+.wdpill{display:inline-flex;align-items:center;gap:10px;margin:0 0 16px;padding:7px 16px 7px 8px;border-radius:99px;background:rgba(11,18,38,.62);border:1px solid rgba(240,185,75,.6);color:var(--text);text-decoration:none;font-size:.9rem;font-weight:600;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);box-shadow:0 8px 26px -8px rgba(240,185,75,.45);transition:scale .35s cubic-bezier(.34,1.56,.64,1),border-color .25s}
+.wdpill b{padding:3px 10px;border-radius:99px;background:var(--gold);color:#0F1A33;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase}
+.wdpill i{font-style:normal;color:var(--gold);transition:transform .35s cubic-bezier(.34,1.56,.64,1)}
+.wdpill:hover{scale:1.04;border-color:var(--gold)}
+.wdpill:hover i{transform:translateX(4px)}
+.wdpill .sf{display:inline-block;animation:wdspin 9s linear infinite}
+a.shop{position:relative}
+a.shop .newdot{position:absolute;top:-7px;right:-12px;padding:2px 6px;border-radius:99px;background:var(--gold);color:#0F1A33;font-size:.6rem;font-weight:800;letter-spacing:.06em;line-height:1.3;box-shadow:0 0 12px rgba(240,185,75,.7)}
+.wdrop{position:relative;isolation:isolate;overflow:hidden;margin:30px 0 10px;padding:26px clamp(16px,3.6vw,34px) 22px;border-radius:24px;border:1px solid rgba(240,185,75,.45);background:radial-gradient(110% 90% at 0% 0%,rgba(240,185,75,.17),transparent 55%),radial-gradient(80% 80% at 100% 100%,rgba(110,160,235,.15),transparent 62%),linear-gradient(180deg,#17264D,#0F1A36);box-shadow:var(--drop),0 26px 60px -26px rgba(240,185,75,.45)}
+.wd-snow{position:absolute;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+.wd-snow i{position:absolute;top:-14px;left:var(--x);width:6px;height:6px;border-radius:50%;background:#fff;opacity:.55;box-shadow:0 0 8px rgba(255,255,255,.7);transform:scale(var(--s));animation:wdfall var(--t) linear var(--d) infinite}
+.wd-snow i:nth-child(3n){background:var(--gold);box-shadow:0 0 10px rgba(240,185,75,.8)}
+@keyframes wdfall{0%{translate:0 0}50%{translate:14px 260px}100%{translate:-6px 560px}}
+@keyframes wdspin{to{transform:rotate(360deg)}}
+.wd-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px 28px}
+.wd-kick{display:inline-flex;align-items:center;gap:10px;color:var(--gold);font-weight:700;font-size:.82rem;letter-spacing:.12em;text-transform:uppercase}
+.wd-kick b{padding:3px 10px;border-radius:99px;background:var(--gold);color:#0F1A33;font-size:.7rem;animation:wdpulse 2.4s ease-in-out infinite}
+@keyframes wdpulse{0%,100%{box-shadow:0 0 0 0 rgba(240,185,75,.55)}50%{box-shadow:0 0 0 8px rgba(240,185,75,0)}}
+.wdrop h3{margin:8px 0 4px;font-size:clamp(1.7rem,4vw,2.5rem);font-weight:800;line-height:1.1;background:linear-gradient(100deg,#fff 20%,#F9D88A 50%,#fff 80%);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:wdshine 6s ease-in-out infinite}
+@keyframes wdshine{0%,100%{background-position:100% 0}50%{background-position:0 0}}
+.wd-head p{margin:0;color:var(--muted);max-width:52ch}
+.wd-cta{white-space:nowrap}
+.wd-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:22px}
+.wd-tabs{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:2px;margin:-2px;-webkit-mask:linear-gradient(90deg,#000 92%,transparent);mask:linear-gradient(90deg,#000 92%,transparent)}
+.wd-tabs::-webkit-scrollbar{display:none}
+.wd-tab{flex:0 0 auto;display:inline-flex;align-items:center;gap:7px;padding:9px 15px;border-radius:99px;border:1px solid var(--line);background:rgba(20,32,63,.7);color:var(--text);font:inherit;font-size:.9rem;font-weight:600;cursor:pointer;transition:background .25s,color .25s,border-color .25s,scale .3s cubic-bezier(.34,1.56,.64,1)}
+.wd-tab small{font-size:.72rem;font-weight:700;padding:1px 7px;border-radius:99px;background:rgba(255,255,255,.08);color:var(--muted)}
+.wd-tab:hover{border-color:rgba(240,185,75,.7)}
+.wd-tab:active{scale:.95}
+.wd-tab.on{background:var(--gold);border-color:var(--gold);color:#0F1A33}
+.wd-tab.on small{background:rgba(15,26,51,.18);color:#0F1A33}
+.wd-tab:focus-visible,.wd-nav:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.wd-arrows{display:flex;gap:8px;flex:0 0 auto}
+.wd-nav{width:40px;height:40px;border-radius:50%;border:0;background:var(--gold);color:#0F1A33;font-size:1.6rem;line-height:1;padding:0 0 3px;cursor:pointer;box-shadow:0 6px 16px rgba(0,0,0,.4);transition:scale .3s cubic-bezier(.34,1.56,.64,1),opacity .25s}
+.wd-nav:hover{scale:1.1}
+.wd-nav:disabled{opacity:.3;cursor:default;scale:1}
+.wd-track{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding:18px 2px 10px;margin:0 -2px;scrollbar-width:none;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch}
+.wd-track::-webkit-scrollbar{display:none}
+.wd-track:focus-visible{outline:2px solid var(--gold);outline-offset:2px;border-radius:16px}
+.wdc{flex:0 0 clamp(190px,23%,250px);scroll-snap-align:start;display:flex;flex-direction:column;border-radius:18px;overflow:hidden;background:#101B37;border:1px solid rgba(240,185,75,.25);color:var(--text);text-decoration:none;box-shadow:var(--drop);transition:translate .4s cubic-bezier(.2,.8,.2,1),border-color .3s,box-shadow .3s}
+.wdc[hidden]{display:none}
+.wdc:hover,.wdc:focus-visible{translate:0 -6px;border-color:var(--gold);box-shadow:var(--drop),0 16px 36px -14px rgba(240,185,75,.5)}
+.wdc:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.wdc.pop{animation:wdpop .5s cubic-bezier(.2,.8,.2,1) both}
+@keyframes wdpop{from{opacity:0;translate:0 14px;scale:.96}to{opacity:1;translate:0 0;scale:1}}
+.wpic{position:relative;aspect-ratio:1/1;overflow:hidden;background:#fff}
+.wpic img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s cubic-bezier(.2,.7,.2,1)}
+.wdc:hover .wpic img{transform:scale(1.08)}
+.wnew{position:absolute;top:10px;left:10px;padding:4px 10px;border-radius:99px;background:#0B1226;border:1px solid rgba(240,185,75,.7);color:var(--gold);font-size:.66rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+.wprice{position:absolute;right:10px;bottom:10px;padding:6px 11px;border-radius:10px;background:var(--gold);color:#0F1A33;font-weight:800;font-size:.9rem;box-shadow:0 6px 14px rgba(0,0,0,.35)}
+.wbody{padding:12px 14px 14px;display:flex;flex-direction:column;gap:3px}
+.wbody b{font-size:1.05rem;font-weight:700;line-height:1.25}
+.wbody p{margin:0;color:var(--muted);font-size:.82rem;line-height:1.35}
+.wsw{display:flex;gap:5px;margin-top:8px}
+.wsw i{width:13px;height:13px;border-radius:50%;border:1px solid rgba(255,255,255,.35)}
+.msub{margin:30px 0 0;font-size:1.25rem;font-weight:700;display:flex;align-items:center;gap:10px}
+.msub::before{content:"";width:4px;height:1.1em;border-radius:2px;background:var(--gold)}
+@media (max-width:640px){.wd-arrows{display:none}.wdc{flex-basis:62%}.wd-cta{width:100%;text-align:center}.wd-tabs{-webkit-mask:none;mask:none;flex-wrap:nowrap}}
+@media (prefers-reduced-motion:reduce){.wd-snow,.wdpill .sf{display:none}.wd-kick b,.wdrop h3,.wdc.pop{animation:none}.wdrop h3{color:#fff;background:none}.wd-track{scroll-behavior:auto}}
 /* merch: coupon ticket, 3D carousel cards, glow */
 #merch{position:relative;isolation:isolate;overflow-x:clip}
 .mglow{position:absolute;inset:-40px 0;z-index:-1;pointer-events:none;background:radial-gradient(46% 42% at 26% 40%,rgba(240,185,75,.17),transparent 70%),radial-gradient(40% 40% at 80% 66%,rgba(77,163,255,.10),transparent 70%)}
@@ -1989,6 +2049,7 @@ section[data-off] *,section[data-off] *::before,section[data-off] *::after,.hero
       </form>
 </nav>
     <div class="lvrow"><div class="lvwrap" id="lvwrap"><div class="level" id="level" aria-label="Level 16"><span id="lt">Level 16</span></div><div class="lvtip" id="lvtip" aria-hidden="true"><svg viewBox="0 0 38 26" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M36 20C26 22 12 18 5 6"/><path d="M4 14L5 5l9 2"/></svg><span id="lvtxt">Hover me!</span></div></div><div class="skinwrap" id="skinwrap"><button type="button" class="skinbtn" id="skinbtn" aria-expanded="false" aria-controls="skincard"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4.5" fill="none" stroke="currentColor" stroke-width="2"/><g fill="currentColor"><circle cx="8.2" cy="8.2" r="1.6"/><circle cx="15.8" cy="8.2" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="8.2" cy="15.8" r="1.6"/><circle cx="15.8" cy="15.8" r="1.6"/></g></svg><span>Pick me a skin</span></button><div class="sndbox" id="sndbox"><button type="button" class="sndbtn" id="sndbtn" aria-label="Sound settings" aria-expanded="false" aria-controls="sndpanel" title="Sound settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5v5h4l5 4v-13l-5 4z" fill="currentColor"/><g class="skw"><path d="M16.5 9a4.2 4.2 0 0 1 0 6"/><path d="M19 6.5a8 8 0 0 1 0 11"/></g><path class="skxx" d="M17 9.5l5 5M22 9.5l-5 5"/></svg></button><div class="sndpanel" id="sndpanel"><button type="button" class="sndmute" id="sndmute" aria-label="Mute sounds" aria-pressed="false" title="Mute"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5v5h4l5 4v-13l-5 4z" fill="currentColor"/><g class="skw"><path d="M16.5 9a4.2 4.2 0 0 1 0 6"/><path d="M19 6.5a8 8 0 0 1 0 11"/></g><path class="skxx" d="M17 9.5l5 5M22 9.5l-5 5"/></svg></button><input type="range" id="sndrange" class="sndrange" min="0" max="100" step="1" value="50" aria-label="Volume"><output id="sndval" for="sndrange">50</output></div></div><div class="skincard" id="skincard" role="dialog" aria-label="Your skin for the next game" hidden><button type="button" class="skm" id="skm" aria-label="Mute sounds" aria-pressed="false" title="Sound on/off"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5v5h4l5 4v-13l-5 4z" fill="currentColor"/><g class="skw"><path d="M16.5 9a4.2 4.2 0 0 1 0 6"/><path d="M19 6.5a8 8 0 0 1 0 11"/></g><path class="skxx" d="M17 9.5l5 5M22 9.5l-5 5"/></svg></button><button type="button" class="skx" id="skx" aria-label="Close">&times;</button><div class="skreel" id="skreel" aria-hidden="true"><div class="skstrip" id="skstrip"></div><i class="skmark"></i></div><div class="skart"><img id="skimg" alt="" width="120" height="218"></div><div class="skbody"><span class="skkick">Your next game</span><b id="skname">Kayle</b><span class="sksub" id="sksub"></span><button type="button" class="skagain" id="skagain">Roll again</button></div></div></div><a class="gamesbtn" id="gamesbtn" href="#games" title="Jump to the minigames"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="7" width="19" height="11" rx="5.5"/><path d="M8 10.5v4M6 12.5h4"/><circle cx="15.5" cy="11.5" r=".9" fill="currentColor"/><circle cx="18" cy="13.7" r=".9" fill="currentColor"/></svg><span>More minigames</span></a></div>
+    <a class="wdpill" href="#wdrop"><b>New</b><span><span class="sf" aria-hidden="true">&#10052;</span> Winter drop is live: the 1v9 Collection</span><i aria-hidden="true">&rarr;</i></a>
     <h1 id="top">Kayle 1v9</h1>
     <p>Learn to scale, survive and carry games on Kayle with the German bald prodigy.</p>
     <div class="btns">
@@ -2219,27 +2280,44 @@ section[data-off] *,section[data-off] *::before,section[data-off] *::after,.hero
   <div class="mglow" aria-hidden="true"></div>
   <div class="wrap">
     <h2>Merch</h2>
-    <p class="lead">Wear the Judicator. Checkout and shipping are handled on Fourthwall.</p>
+    <p class="lead">Wear the Judicator. The winter drop is live: the new 1v9 Collection is here. Checkout and shipping are handled on Fourthwall.</p>
     <button type="button" class="mcode" id="mcode" aria-label="Copy discount code NOTBALD">
       <span class="mc-l"><b>10%</b><i>OFF</i></span>
       <span class="mc-m"><small>Your code</small><strong id="mcodeTxt">NOTBALD</strong></span>
       <span class="mc-r" id="mcodeBtn" role="status" aria-live="polite">Copy</span>
     </button>
+    <div class="wdrop" id="wdrop">
+      <div class="wd-snow" aria-hidden="true"><i style="--x:4%;--d:0.0s;--t:11.0s;--s:0.80"></i><i style="--x:12%;--d:-6.0s;--t:14.0s;--s:1.10"></i><i style="--x:21%;--d:-2.0s;--t:12.0s;--s:0.70"></i><i style="--x:30%;--d:-9.0s;--t:16.0s;--s:1.00"></i><i style="--x:39%;--d:-4.0s;--t:13.0s;--s:0.85"></i><i style="--x:48%;--d:-11.0s;--t:15.0s;--s:1.20"></i><i style="--x:57%;--d:-1.0s;--t:12.0s;--s:0.75"></i><i style="--x:66%;--d:-7.0s;--t:14.0s;--s:1.00"></i><i style="--x:75%;--d:-3.0s;--t:11.0s;--s:0.90"></i><i style="--x:84%;--d:-10.0s;--t:16.0s;--s:1.10"></i><i style="--x:93%;--d:-5.0s;--t:13.0s;--s:0.80"></i><i style="--x:17%;--d:-12.0s;--t:17.0s;--s:0.60"></i><i style="--x:61%;--d:-13.0s;--t:18.0s;--s:0.65"></i><i style="--x:88%;--d:-8.0s;--t:15.0s;--s:0.70"></i></div>
+      <div class="wd-head">
+        <div>
+          <span class="wd-kick"><b>New</b>Winter drop is live</span>
+          <h3>The 1v9 Collection</h3>
+          <p>Embroidered tees, hoodies, crewnecks, sweaters and beanies. Low-key, but you know.</p>
+        </div>
+        <a class="btn primary wd-cta" href="https://kayle-1v9-shop.fourthwall.com/en-eur/collections/new-drop" target="_blank" rel="noopener">Shop the new drop</a>
+      </div>
+      <div class="wd-bar">
+        <div class="wd-tabs" role="tablist" aria-label="Winter drop categories"><button type="button" class="wd-tab on" role="tab" aria-selected="true" data-c="all">All new<small>15</small></button><button type="button" class="wd-tab" role="tab" aria-selected="false" data-c="hoodies">Hoodies<small>2</small></button><button type="button" class="wd-tab" role="tab" aria-selected="false" data-c="tees">Tees<small>3</small></button><button type="button" class="wd-tab" role="tab" aria-selected="false" data-c="crewnecks">Crewnecks<small>3</small></button><button type="button" class="wd-tab" role="tab" aria-selected="false" data-c="sweaters">Sweaters<small>2</small></button><button type="button" class="wd-tab" role="tab" aria-selected="false" data-c="beanies">Beanies<small>5</small></button><button type="button" class="wd-tab" role="tab" aria-selected="false" data-c="emblem">Emblem<small>3</small></button></div>
+        <div class="wd-arrows"><button type="button" class="wd-nav" data-d="-1" aria-label="Scroll products left">&#8249;</button><button type="button" class="wd-nav" data-d="1" aria-label="Scroll products right">&#8250;</button></div>
+      </div>
+      <div class="wd-track" role="tabpanel" tabindex="0" aria-label="Winter drop products"><a class="wdc" data-c="hoodies" href="https://kayle-1v9-shop.fourthwall.com/en-eur/products/1v9-embroidered-hoodie" target="_blank" rel="noopener"><div class="wpic"><img src="a/10fe5b989699.webp" alt="1v9 Hoodie with gold embroidery" loading="lazy" width="720" height="720"><span class="wnew">New</span><span class="wprice">&euro;55</span></div><div class="wbody"><b>1v9 Hoodie</b><p>Gold stitch · Stanley/Stella organic</p><span class="wsw" aria-label="2 colours"><i style="background:#111214"></i><i style="background:#1E2747"></i></span></div></a><a class="wdc" data-c="tees" href="https://kayle-1v9-shop.fourthwall.com/en-eur/products/1v9-embroidered-tee" target="_blank" rel="noopener"><div class="wpic"><img src="a/83766c25dfd1.webp" alt="1v9 Tee with gold embroidery" loading="lazy" width="720" height="720"><span class="wnew">New</span><span class="wprice">&euro;29</span></div><div class="wbody"><b>1v9 Tee</b><p>Gold stitch · Comfort Colors heavyweight</p><span class="wsw" aria-label="6 colours"><i style="background:#111214"></i><i style="background:#1D2A4F"></i><i style="background:#4F4A46"></i><i style="background:#4B3A30"></i><i style="background:#2F4A45"></i><i style="background:#7A3A33"></i></span></div></a><a class="wdc" data-c="crewnecks" href="https://kayle-1v9-shop.fourthwall.com/en-eur/products/1v9-embroidered-crewneck-gold-stitch" target="_blank" rel="noopener"><div class="wpic"><img src="a/97f1faa6b593.webp" alt="1v9 Crewneck with gold embroidery" loading="lazy" width="720" height="720"><span class="wnew">New</span><span class="wprice">&euro;45</span></div><div class="wbody"><b>1v9 Crewneck</b><p>Gold stitch · Cotton Heritage premium</p><span class="wsw" aria-label="5 colours"><i style="background:#111214"></i><i style="background:#1F2840"></i><i style="background:#4A4A4F"></i><i style="background:#2D4A36"></i><i style="background:#7C2433"></i></span></div></a><a class="wdc" data-c="sweaters" href="https://kayle-1v9-shop.fourthwall.com/en-eur/products/1v9-oversized-sweater-gold-stitch" target="_blank" rel="noopener"><div class="wpic"><img src="a/9820bc649948.webp" alt="1v9 Oversized Sweater with gold embroidery" loading="lazy" width="720" height="720"><span class="wnew">New</span><span class="wprice">&euro;55</span></div><div class="wbody"><b>1v9 Oversized Sweater</b><p>Gold stitch · heavyweight, oversized fit</p><span class="wsw" aria-label="2 colours"><i style="background:#111214"></i><i style="background:#1E2747"></i></span></div></a><a class="wdc" data-c="beanies" href="https://kayle-1v9-shop.fourthwall.com/en-eur/products/1v9-ribbed-beanie-gold-stitch" target="_blank" rel="noopener"><div class="wpic"><img src="a/554f4b94f541.webp" alt="1v9 Ribbed Beanie with gold embroidery" loading="lazy" width="720" height="720"><span class="wnew">New</span><span class="wprice">&euro;25</span></div><div class="wbody"><b>1v9 Ribbed Beanie</b><p>Gold stitch · 100% organic cotton</p><span class="wsw" aria-label="3 colours"><i style="background:#111214"></i><i style="background:#222C46"></i><i style="background:#6B2433"></i></span></div></a><a class="wdc" data-c="beanies" href="https://kayle-1v9-shop.fourthwall.com/en-eur/products/1v9-fisherman-beanie-gold-stitch" target="_blank" rel="noopener"><div class="wpic"><img src="a/500fb9be1303.webp" alt="1v9 Fisherman Beanie with gold embroidery" loading="lazy" width="720" height="720"><span class="wnew">New</span><span class="wprice">&euro;25</span></div><div class="wbody"><b>1v9 Fisherman Beanie</b><p>Gold stitch · thick rib knit</p><span class="wsw" aria-label="4 colours"><i style="background:#111214"></i><i style="background:#5A4030"></i><i style="background:#2C4F5F"></i><i style="background:#3C4A3A"></i></span></div></a><a class="wdc" data-c="crewnecks emblem" href="https://kayle-1v9-shop.fourthwall.com/en-eur/products/kayle-emblem-crewneck-gold" target="_blank" rel="noopener"><div class="wpic"><img src="a/94f706f6383b.webp" alt="Emblem Crewneck with gold embroidery" loading="lazy" width="720" height="720"><span class="wnew">New</span><span class="wprice">&euro;45</span></div><div class="wbody"><b>Emblem Crewneck</b><p>Gold emblem from the caps</p><span class="wsw" aria-label="5 colours"><i style="background:#111214"></i><i style="background:#1F2840"></i><i style="background:#4A4A4F"></i><i style="background:#2D4A36"></i><i style="background:#7C2433"></i></span></div></a><a class="wdc" data-c="tees emblem" href="https://kayle-1v9-shop.fourthwall.com/en-eur/products/kayle-emblem-tee-gold" target="_blank" rel="noopener"><div class="wpic"><img src="a/bcc22a4f1231.webp" alt="Emblem Tee with gold embroidery" loading="lazy" width="720" height="720"><span class="wnew">New</span><span class="wprice">&euro;29</span></div><div class="wbody"><b>Emblem Tee</b><p>Gold emblem from the caps</p><span class="wsw" aria-label="6 colours"><i style="background:#111214"></i><i style="background:#1D2A4F"></i><i style="background:#4F4A46"></i><i style="background:#4B3A30"></i><i style="background:#2F4A45"></i><i style="background:#7A3A33"></i></span></div></a><a class="wdc" data-c="beanies emblem" href="https://kayle-1v9-shop.fourthwall.com/en-eur/products/kayle-emblem-beanie-gold" target="_blank" rel="noopener"><div class="wpic"><img src="a/63234abbb727.webp" alt="Emblem Beanie with gold embroidery" loading="lazy" width="720" height="720"><span class="wnew">New</span><span class="wprice">&euro;25</span></div><div class="wbody"><b>Emblem Beanie</b><p>Gold emblem from the caps</p><span class="wsw" aria-label="3 colours"><i style="background:#111214"></i><i style="background:#222C46"></i><i style="background:#6B2433"></i></span></div></a><a class="wdc" data-c="hoodies" href="https://kayle-1v9-shop.fourthwall.com/en-eur/products/1v9-embroidered-hoodie-navy-stitch" target="_blank" rel="noopener"><div class="wpic"><img src="a/eabca3738af6.webp" alt="1v9 Hoodie with navy embroidery" loading="lazy" width="720" height="720"><span class="wnew">New</span><span class="wprice">&euro;55</span></div><div class="wbody"><b>1v9 Hoodie</b><p>Navy stitch · light colours</p><span class="wsw" aria-label="2 colours"><i style="background:#B9B9B9"></i><i style="background:#FFFFFF"></i></span></div></a><a class="wdc" data-c="tees" href="https://kayle-1v9-shop.fourthwall.com/en-eur/products/1v9-embroidered-tee-navy-stitch" target="_blank" rel="noopener"><div class="wpic"><img src="a/ab3c13a33ab9.webp" alt="1v9 Tee with navy embroidery" loading="lazy" width="720" height="720"><span class="wnew">New</span><span class="wprice">&euro;29</span></div><div class="wbody"><b>1v9 Tee</b><p>Navy stitch · light colours</p><span class="wsw" aria-label="4 colours"><i style="background:#9A9A9A"></i><i style="background:#C2B393"></i><i style="background:#EFE8D8"></i><i style="background:#FFFFFF"></i></span></div></a><a class="wdc" data-c="crewnecks" href="https://kayle-1v9-shop.fourthwall.com/en-eur/products/1v9-embroidered-crewneck-navy-stitch" target="_blank" rel="noopener"><div class="wpic"><img src="a/d322e9738bd0.webp" alt="1v9 Crewneck with navy embroidery" loading="lazy" width="720" height="720"><span class="wnew">New</span><span class="wprice">&euro;45</span></div><div class="wbody"><b>1v9 Crewneck</b><p>Navy stitch · light colours</p><span class="wsw" aria-label="4 colours"><i style="background:#B8B4AD"></i><i style="background:#E8E1D2"></i><i style="background:#A9C7E2"></i><i style="background:#FFFFFF"></i></span></div></a><a class="wdc" data-c="sweaters" href="https://kayle-1v9-shop.fourthwall.com/en-eur/products/1v9-oversized-sweater-navy-stitch" target="_blank" rel="noopener"><div class="wpic"><img src="a/0e3ba7f51302.webp" alt="1v9 Oversized Sweater with navy embroidery" loading="lazy" width="720" height="720"><span class="wnew">New</span><span class="wprice">&euro;55</span></div><div class="wbody"><b>1v9 Oversized Sweater</b><p>Navy stitch · light colours</p><span class="wsw" aria-label="2 colours"><i style="background:#B9B9B9"></i><i style="background:#FFFFFF"></i></span></div></a><a class="wdc" data-c="beanies" href="https://kayle-1v9-shop.fourthwall.com/en-eur/products/1v9-ribbed-beanie-navy-stitch" target="_blank" rel="noopener"><div class="wpic"><img src="a/2d8a1e90779e.webp" alt="1v9 Ribbed Beanie with navy embroidery" loading="lazy" width="720" height="720"><span class="wnew">New</span><span class="wprice">&euro;25</span></div><div class="wbody"><b>1v9 Ribbed Beanie</b><p>Navy stitch · light colours</p><span class="wsw" aria-label="2 colours"><i style="background:#7FA8C9"></i><i style="background:#C9C9C9"></i></span></div></a><a class="wdc" data-c="beanies" href="https://kayle-1v9-shop.fourthwall.com/en-eur/products/1v9-fisherman-beanie-navy-stitch" target="_blank" rel="noopener"><div class="wpic"><img src="a/bcff8c9c18c3.webp" alt="1v9 Fisherman Beanie with navy embroidery" loading="lazy" width="720" height="720"><span class="wnew">New</span><span class="wprice">&euro;25</span></div><div class="wbody"><b>1v9 Fisherman Beanie</b><p>Navy stitch · light colours</p><span class="wsw" aria-label="2 colours"><i style="background:#B5B5B5"></i><i style="background:#E6DCCB"></i></span></div></a></div>
+    </div>
+    <h3 class="msub">Caps &amp; mugs</h3>
     <div class="mcar" id="mcar">
       <button type="button" class="mnav prev" aria-label="Previous product" disabled>&#8249;</button>
       <div class="mtrack" tabindex="0" role="region" aria-label="Merch products">
         <a class="mcard" href="https://kayle-1v9-shop.fourthwall.com/en-eur/collections/hats" target="_blank" rel="noopener">
-          <div class="mpic"><img src="a/7d9e79c33e73.jpg" alt="Cap with embroidered Kayle logo" loading="lazy"><span class="mlab">Embroidered</span><span class="mprice">from &euro;27.24</span></div>
+          <div class="mpic"><img src="a/7d9e79c33e73.jpg" alt="Cap with embroidered Kayle logo" loading="lazy"><span class="mlab">Embroidered</span><span class="mprice">from &euro;25</span></div>
           <div class="mbody"><em>Ascend in style.</em><b>Caps</b><p>Embroidered Kayle logo. Price plus tax.</p><span class="mgo">Shop caps <i>&rarr;</i></span></div>
           <span class="mglare" aria-hidden="true"></span>
         </a>
         <a class="mcard" href="https://kayle-1v9-shop.fourthwall.com/en-eur/collections/mugs" target="_blank" rel="noopener">
-          <div class="mpic"><img src="a/8295f844fdf8.jpg" alt="Ceramic mug with a Kayle Christmas design" loading="lazy"><span class="mlab">Seasonal</span><span class="mprice">from &euro;16.32</span></div>
+          <div class="mpic"><img src="a/8295f844fdf8.jpg" alt="Ceramic mug with a Kayle Christmas design" loading="lazy"><span class="mlab">Seasonal</span><span class="mprice">from &euro;16</span></div>
           <div class="mbody"><em>Fuel for the climb.</em><b>Mugs</b><p>Seasonal designs. Price plus tax.</p><span class="mgo">Shop mugs <i>&rarr;</i></span></div>
           <span class="mglare" aria-hidden="true"></span>
         </a>
         <a class="mcard" href="https://kayle-1v9-shop.fourthwall.com/en-eur/products/vintage-cap-logo-gold" target="_blank" rel="noopener">
-          <div class="mpic"><img src="a/b1eefe53dc24.jpg" alt="Vintage Cap with the gold Kayle logo in maroon" loading="lazy"><span class="mlab">Gold logo</span><span class="mprice">&euro;27.19</span></div>
+          <div class="mpic"><img src="a/b1eefe53dc24.jpg" alt="Vintage Cap with the gold Kayle logo in maroon" loading="lazy"><span class="mlab">Gold logo</span><span class="mprice">&euro;25</span></div>
           <div class="mbody"><em>The gold standard.</em><b>Vintage Cap</b><p>Gold Kayle logo, washed cotton twill. Price plus tax.</p><span class="mgo">Get the cap <i>&rarr;</i></span></div>
           <span class="mglare" aria-hidden="true"></span>
         </a>
@@ -2254,7 +2332,7 @@ section[data-off] *,section[data-off] *::before,section[data-off] *::after,.hero
     <div class="mdots" id="mdots"></div>
     <ul class="mtrust">
       <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 5-3 8-7 10-4-2-7-5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg>Official Kayle 1v9 merch</li>
-      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2.2 5.8L20 11l-5.8 2.2L12 19l-2.2-5.8L4 11l5.8-2.2z"/></svg>Embroidered logo on the caps</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2.2 5.8L20 11l-5.8 2.2L12 19l-2.2-5.8L4 11l5.8-2.2z"/></svg>Embroidered logos on every piece</li>
       <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h11v9H3z"/><path d="M14 10h4l3 3v3h-7z"/><circle cx="7" cy="18" r="1.8"/><circle cx="17" cy="18" r="1.8"/></svg>Checkout and shipping by Fourthwall</li>
     </ul>
     <p style="margin-top:28px"><a class="btn primary shop" href="#merch">Open the shop</a></p>
@@ -2287,7 +2365,7 @@ section[data-off] *,section[data-off] *::before,section[data-off] *::after,.hero
   <a href="https://x.com/kayle_1v9" target="_blank" rel="noopener">X</a>
   <a href="https://discord.com/invite/eX2xMdv" target="_blank" rel="noopener">Discord</a>
   <a href="#gear">Gear</a>
-  <a class="shop" href="#merch">Shop</a>
+  <a class="shop" href="#merch">Shop<span class="newdot" aria-hidden="true">NEW</span></a>
   <a class="book" href="#coaching">Book</a>
   <details class="imp"><summary>Impressum / Legal notice</summary>
     <div class="lsw" role="group" aria-label="Language"><button type="button" data-l="de" class="on">Deutsch</button><button type="button" data-l="en">English</button></div>
@@ -3335,7 +3413,7 @@ document.documentElement.classList.add("js");
 var hero = document.querySelector(".hero");
 var still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 if(!still){
-  var els = document.querySelectorAll("section h2, section .lead, .tier, .tz, .video, .item, .mcode, .mcar, .mtrust, .btn.shop, .gear, .btabs, .btiers, .bjump, .bpanel");
+  var els = document.querySelectorAll("section h2, section .lead, .tier, .tz, .video, .item, .mcode, .wdrop, .mcar, .mtrust, .btn.shop, .gear, .btabs, .btiers, .bjump, .bpanel");
   function revealCb(es, obs){
     es.forEach(function(e){
       if(!e.isIntersecting) return;
@@ -3398,7 +3476,7 @@ if(!still){
 }
 if(!still){
   if("IntersectionObserver" in window){ var offIO = new IntersectionObserver(function(es){ es.forEach(function(e){ e.target.toggleAttribute("data-off", !e.isIntersecting); }); }, {rootMargin: "160px 0px"}); document.querySelectorAll("section, .hero").forEach(function(sc){ offIO.observe(sc); }); }
-  var fo = document.querySelectorAll("section h2, section .lead, .tier, .tz, .video, .item, .mcode, .mcar, .mtrust, .btn.shop, .gear, .btabs, .btiers, .bjump, .bpanel"), ft = false;
+  var fo = document.querySelectorAll("section h2, section .lead, .tier, .tz, .video, .item, .mcode, .wdrop, .mcar, .mtrust, .btn.shop, .gear, .btabs, .btiers, .bjump, .bpanel"), ft = false;
   var fcur = [], sp = window.scrollY, lastY = sp, up = false;
   for(var q = 0; q < fo.length; q++) fcur.push(1);
   var fRun = true, fMoving = false;
@@ -3406,7 +3484,7 @@ if(!still){
   window.addEventListener("scroll", fkick, {passive:true}); window.addEventListener("resize", fkick); window.addEventListener("load", fkick); setInterval(fkick, 1000);
   var fb = new Array(fo.length), fwr = [], fmode = [], lastP = -1, lastB = -1;
   /* how each element takes the slide: 2 = via --fy (its float animation reads it), 1 = translate directly, 0 = no slide. Setting --fy on big blocks made every descendant recalculate its style. */
-  for(var q2 = 0; q2 < fo.length; q2++){ fwr.push(-1); fmode.push(fo[q2].matches(".video,.item,.gear") ? 2 : (fo[q2].matches("section h2,section .lead,.tier,.tz,.btn.shop,.mcode,.mcar,.mtrust,.bpanel") ? 1 : 0)); }
+  for(var q2 = 0; q2 < fo.length; q2++){ fwr.push(-1); fmode.push(fo[q2].matches(".video,.item,.gear") ? 2 : (fo[q2].matches("section h2,section .lead,.tier,.tz,.btn.shop,.mcode,.wdrop,.mcar,.mtrust,.bpanel") ? 1 : 0)); }
   function fadeOut(){
     fMoving = false;
     sp += (window.scrollY - sp)*.1;
@@ -7212,7 +7290,7 @@ var CHSTAT = {subs:69600, goal:100000, videos:1292, checked:"26 Oct 2026"};
   });
 })();
 </script>
-<script>(function(){var u=["a/7d9e79c33e73.jpg", "a/8295f844fdf8.jpg", "a/b1eefe53dc24.jpg", "a/845c493e964a.png", "a/b9d7b6029e1c.png", "a/136bbddb3794.jpg", "a/d4261614717d.jpg", "a/5d6a1a39303a.jpg", "a/2b36c9279166.jpg", "a/ff2f26232242.jpg", "a/337496d58b46.jpg", "a/eab3686e2984.jpg", "a/0d7490e802f3.webp", "a/ae5f6763994a.webp", "a/52d489a6298d.webp", "a/a8dad65f3ba1.webp", "a/9b765a33120d.webp", "a/7d636f2aaa9a.webp", "a/fae5bd43cc6b.webp", "a/598aabf8942d.webp", "a/fb045cb1e6fd.webp", "a/6596885159a0.webp", "a/af7859ad0a46.webp", "a/12d0751f1112.webp", "a/d4e9bbc821ff.webp", "a/3f240bafdbc0.webp", "a/04a5ebe195b0.webp", "a/723bdf169ff7.webp", "a/0c9cc49cacde.webp", "a/9cbbeeaf2419.webp", "a/9c03a4f9c360.webp", "a/db88f805c2fc.webp", "a/e3b5c70f52d8.webp", "a/7b915d9f9425.webp", "a/93624a552f30.webp", "a/570564c421c4.webp", "a/03e58a59b33f.webp"];function go(){var i=0;(function n(){if(i>=u.length)return;var im=new Image();im.decoding="async";im.onload=im.onerror=function(){setTimeout(n,60)};im.src=u[i++]})()}function idle(){(window.requestIdleCallback||function(f){setTimeout(f,400)})(go,{timeout:4000})}if(document.readyState==="complete")setTimeout(idle,1200);else addEventListener("load",function(){setTimeout(idle,1200)})})();</script>
+<script>(function(){var u=["a/10fe5b989699.webp", "a/83766c25dfd1.webp", "a/97f1faa6b593.webp", "a/9820bc649948.webp", "a/554f4b94f541.webp", "a/500fb9be1303.webp", "a/94f706f6383b.webp", "a/bcc22a4f1231.webp", "a/63234abbb727.webp", "a/eabca3738af6.webp", "a/ab3c13a33ab9.webp", "a/d322e9738bd0.webp", "a/0e3ba7f51302.webp", "a/2d8a1e90779e.webp", "a/bcff8c9c18c3.webp", "a/7d9e79c33e73.jpg", "a/8295f844fdf8.jpg", "a/b1eefe53dc24.jpg", "a/845c493e964a.png", "a/b9d7b6029e1c.png", "a/136bbddb3794.jpg", "a/d4261614717d.jpg", "a/5d6a1a39303a.jpg", "a/2b36c9279166.jpg", "a/ff2f26232242.jpg", "a/337496d58b46.jpg", "a/eab3686e2984.jpg", "a/0d7490e802f3.webp", "a/ae5f6763994a.webp", "a/52d489a6298d.webp", "a/a8dad65f3ba1.webp", "a/9b765a33120d.webp", "a/7d636f2aaa9a.webp", "a/fae5bd43cc6b.webp", "a/598aabf8942d.webp", "a/fb045cb1e6fd.webp", "a/6596885159a0.webp", "a/af7859ad0a46.webp", "a/12d0751f1112.webp", "a/d4e9bbc821ff.webp", "a/3f240bafdbc0.webp", "a/04a5ebe195b0.webp", "a/723bdf169ff7.webp", "a/0c9cc49cacde.webp", "a/9cbbeeaf2419.webp", "a/9c03a4f9c360.webp", "a/db88f805c2fc.webp", "a/e3b5c70f52d8.webp", "a/7b915d9f9425.webp", "a/93624a552f30.webp", "a/570564c421c4.webp", "a/03e58a59b33f.webp"];function go(){var i=0;(function n(){if(i>=u.length)return;var im=new Image();im.decoding="async";im.onload=im.onerror=function(){setTimeout(n,60)};im.src=u[i++]})()}function idle(){(window.requestIdleCallback||function(f){setTimeout(f,400)})(go,{timeout:4000})}if(document.readyState==="complete")setTimeout(idle,1200);else addEventListener("load",function(){setTimeout(idle,1200)})})();</script>
 </body>
 </html>
 
@@ -7489,7 +7567,7 @@ var CHSTAT = {subs:69600, goal:100000, videos:1292, checked:"26 Oct 2026"};
       });
     });
     // Merch
-    Array.prototype.forEach.call(document.querySelectorAll("#merch .mcard"), function(c){
+    Array.prototype.forEach.call(document.querySelectorAll("#merch .mcard, #merch .wdc"), function(c){
       var b = c.querySelector("b"), p = c.querySelector("p"); if(!b) return;
       add("Merch", b.textContent.trim(), "Merch" + (p ? " · " + p.textContent.trim() : ""), "shop merch store", "◆", function(){
         scrollTo($("merch"), "start"); later(function(){ scrollTo(c, "center"); flash(c); }, 450);
@@ -7601,5 +7679,39 @@ var CHSTAT = {subs:69600, goal:100000, videos:1292, checked:"26 Oct 2026"};
     window.scrollTo({top: 0, behavior: reduce ? "auto" : "smooth"});
     inp.focus({preventScroll: true});
   });
+})();
+</script>
+<script>
+/* winter drop: category tabs + arrows */
+(function(){
+  var w = document.getElementById("wdrop"); if(!w) return;
+  var still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var tabs = [].slice.call(w.querySelectorAll(".wd-tab")), cards = [].slice.call(w.querySelectorAll(".wdc")), tr = w.querySelector(".wd-track"), navs = [].slice.call(w.querySelectorAll(".wd-nav"));
+  function upd(){ var max = tr.scrollWidth - tr.clientWidth; navs[0].disabled = tr.scrollLeft <= 2; navs[1].disabled = tr.scrollLeft >= max - 2; }
+  function sel(t, focus){
+    var c = t.getAttribute("data-c");
+    tabs.forEach(function(b){ var on = b === t; b.classList.toggle("on", on); b.setAttribute("aria-selected", on ? "true" : "false"); b.tabIndex = on ? 0 : -1; });
+    var n = 0;
+    cards.forEach(function(k){
+      var show = c === "all" || (" " + k.getAttribute("data-c") + " ").indexOf(" " + c + " ") >= 0;
+      k.hidden = !show; k.classList.remove("pop");
+      if(show && !still){ void k.offsetWidth; k.style.animationDelay = Math.min(n * 60, 360) + "ms"; k.classList.add("pop"); }
+      if(show) n++;
+    });
+    tr.scrollLeft = 0; upd();
+    if(focus) t.focus();
+    t.scrollIntoView({block: "nearest", inline: "nearest", behavior: still ? "auto" : "smooth"});
+  }
+  tabs.forEach(function(b, i){
+    b.tabIndex = b.classList.contains("on") ? 0 : -1;
+    b.addEventListener("click", function(){ sel(b); });
+    b.addEventListener("keydown", function(e){
+      var j = e.key === "ArrowRight" ? i + 1 : e.key === "ArrowLeft" ? i - 1 : e.key === "Home" ? 0 : e.key === "End" ? tabs.length - 1 : -2;
+      if(j === -2) return; e.preventDefault(); sel(tabs[(j + tabs.length) % tabs.length], true);
+    });
+  });
+  navs.forEach(function(b){ b.addEventListener("click", function(){ var d = +b.getAttribute("data-d"); tr.scrollBy({left: d * Math.max(tr.clientWidth * .8, 200), behavior: still ? "auto" : "smooth"}); }); });
+  tr.addEventListener("scroll", function(){ requestAnimationFrame(upd); }, {passive: true});
+  window.addEventListener("resize", upd); upd();
 })();
 </script>
