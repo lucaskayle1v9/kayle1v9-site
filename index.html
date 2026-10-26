@@ -7826,3 +7826,42 @@ var CHSTAT = {subs:69600, goal:100000, videos:1292, checked:"26 Oct 2026"};
   document.addEventListener("keydown", function(e){ if(e.key === "Escape" && !m.hidden){ e.stopImmediatePropagation(); close(); } }, true);
 })();
 </script>
+<script>
+/* Analytics: Umami Cloud (cookieless). Set the website ID below; until then nothing is loaded or sent. */
+(function(){
+  var K1V9_UMAMI = "87053560-45e6-41b7-96cd-e9c85fbc3210"; // Umami website ID, e.g. "a1b2c3d4-..."
+  if(!K1V9_UMAMI || /^(localhost|127\.|file:)/.test(location.hostname || "file:") || location.protocol === "file:") return;
+  var sc = document.createElement("script"); sc.defer = true; sc.src = "https://cloud.umami.is/script.js"; sc.setAttribute("data-website-id", K1V9_UMAMI); sc.setAttribute("data-domains", "kayle1v9.com,www.kayle1v9.com");
+  document.head.appendChild(sc);
+  var q = [];
+  function track(name, data){ if(window.umami && umami.track){ umami.track(name, data); } else { q.push([name, data]); } }
+  sc.onload = function(){ q.splice(0).forEach(function(e){ umami.track(e[0], e[1]); }); };
+  window.K1V9T = track;
+  function sec(el){ var s = el.closest("section,header,nav,footer"); return s ? (s.id || s.className.split(" ")[0] || s.tagName.toLowerCase()) : "page"; }
+  document.addEventListener("click", function(e){
+    var el = e.target.closest("a,button"); if(!el) return;
+    var href = el.getAttribute("href") || "";
+    if(/fourthwall\.com/.test(href)){
+      var m = href.match(/\/(products|collections)\/([^/?#]+)/);
+      track("shop-click", {item: m ? m[2] : "shop", type: m ? m[1] : "home", from: el.classList.contains("wdc") ? "winter-drop" : el.classList.contains("mcard") ? "merch-carousel" : sec(el)});
+      return;
+    }
+    if(el.matches(".btn.book,.hero .book")) return track("cta-book-coaching", {from: sec(el)});
+    if(el.matches("a.shop,.btn.shop")) return track("cta-shop", {from: sec(el)});
+    if(el.id === "mcode") return track("coupon-copy", {code: "NOTBALD"});
+    if(el.id === "sk3d") return track("skin-3d-view", {skin: (document.getElementById("skname") || {}).textContent || ""});
+    if(el.id === "skinbtn" || el.id === "skagain") return track("skin-roll");
+    if(el.classList.contains("wd-tab")) return track("drop-tab", {tab: el.getAttribute("data-c")});
+    if(el.matches(".rqpp,.rqwp,.rqpay")) return track("coaching-pay-click", {method: el.classList.contains("rqpp") ? "paypal" : el.classList.contains("rqwp") ? "wise" : "other", tier: tierName(el)});
+    if(/youtube\.com|youtu\.be|twitch\.tv|discord\.(gg|com)|tiktok\.com|x\.com|twitter\.com|instagram\.com/.test(href)) return track("social-click", {to: (href.match(/\/\/(?:www\.)?([^/]+)/) || [])[1] || href});
+  }, true);
+  function tierName(el){ var t = el.closest(".tier"); var h = t && t.querySelector("h3,h4,b"); return h ? h.textContent.trim().slice(0, 40) : ""; }
+  document.addEventListener("submit", function(e){ if(e.target.closest(".tier")) track("coaching-request", {tier: tierName(e.target)}); }, true);
+  /* how far people scroll: one event per section the first time it is seen */
+  if("IntersectionObserver" in window){
+    var seen = {};
+    var io = new IntersectionObserver(function(es){ es.forEach(function(en){ var id = en.target.id; if(en.isIntersecting && !seen[id]){ seen[id] = 1; track("section-view", {section: id}); io.unobserve(en.target); } }); }, {threshold: .35});
+    ["coaching", "builds", "matchups", "videos", "merch", "wdrop", "games"].forEach(function(id){ var el = document.getElementById(id); if(el) io.observe(el); });
+  }
+})();
+</script>
