@@ -4477,9 +4477,9 @@ var PATCHM = "16.21", PREVM = "16.20", CHECKEDM = "27 Oct 2026";
     // Build of the day: an off-meta first item (Terminus, Guinsoo's Rageblade, Statikk Shiv, Kraken Slayer) from the best win rate matchup paths. Falls back to the usual core build when the data has none.
     (function(){
       var box = document.getElementById("botd"), OFF = {3302: 1, 3124: 1, 3087: 1, 6672: 1};
-      // One-day showcase (23 Oct 2026, Europe/Berlin): China build Terminus > Guinsoo's Rageblade > The Collector. Other days use the normal pick below.
+      // One-day showcase (27 Oct 2026, Europe/Berlin): China build Terminus > Guinsoo's Rageblade > The Collector. Other days use the normal pick below.
       var today = ""; try{ today = new Date().toLocaleDateString("sv-SE", {timeZone: "Europe/Berlin"}); }catch(e){}
-      if(box && today === "2026-10-23" && ITI[3302] && ITI[3124] && ITI[6676]){
+      if(box && today === "2026-10-27" && ITI[3302] && ITI[3124] && ITI[6676]){
         var sInner = el("div", ""), sTag = el("span", "dtag", "Build of the day"), sT = el("div", "bt");
         sT.appendChild(el("b", "", "Terminus, Guinsoo's Rageblade and The Collector"));
         sT.appendChild(el("span", "", "Showcase build from the China server"));
