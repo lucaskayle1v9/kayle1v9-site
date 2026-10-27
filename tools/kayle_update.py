@@ -986,7 +986,7 @@ def matchups_part(h, lane, P, chi_keys=None):
         new[slug] = e
         refreshed += 1
         patches.add(d['hd']['patch'])
-    need = 40 if top else 25
+    need = 40 if top else 20
     if refreshed < need:
         kept(P, 'Matchups komplett alt: nur %d aktualisiert (mindestens %d nötig), Fehler: %s' % (refreshed, need, errs[:10]))
         return h
