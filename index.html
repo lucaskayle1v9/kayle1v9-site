@@ -2092,6 +2092,7 @@ section[data-off] *,section[data-off] *::before,section[data-off] *::after,.hero
 #settings .stile b kbd{font-size:1.1rem}
 #settings .snote{margin-top:14px;color:var(--muted);font-size:.85rem}
 #settings .stile[hidden]{display:none}
+#settings .bddi>.stiles{margin-top:6px}
 </style>
 
 
@@ -2486,8 +2487,9 @@ section[data-off] *,section[data-off] *::before,section[data-off] *::after,.hero
 
 <section id="settings">
   <div class="wrap">
-    <h2>My settings</h2>
-    <p class="lead">The settings I play Kayle with, taken straight from my League config. Copy what you like.</p>
+    <h2 class="bsech"><button type="button" class="bdd bsecbtn" id="setbtn" aria-expanded="false" aria-controls="setbody"><span>My settings</span><span class="bddc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span></button></h2>
+    <p class="lead">DPI 2600, in-game mouse speed 60, quick cast, 255 FPS. Open for all keybinds, video and interface settings.</p>
+    <div class="bddb" id="setbody" inert><div class="bddi">
     <div class="stiles">
       <div class="stile hot" id="sdpi" hidden><span>Mouse DPI</span><b id="sdpiv">&mdash;</b><small id="sdpis"></small></div>
       <div class="stile hot"><span>Display</span><b>255 FPS</b><small>2560&times;1440, 260 Hz monitor</small></div>
@@ -2558,6 +2560,7 @@ section[data-off] *,section[data-off] *::before,section[data-off] *::after,.hero
       </div>
     </div>
     <p class="snote">From my League config files and in-game options, checked 28 Oct 2026, patch 16.21.</p>
+    </div></div>
   </div>
   <script>
   // === SETUP START (mouse and display, filled by hand) ===
@@ -2567,6 +2570,8 @@ section[data-off] *,section[data-off] *::before,section[data-off] *::after,.hero
     document.getElementById("sdpiv").textContent = String(s.dpi);
     document.getElementById("sdpis").textContent = [s.mouse, s.hz ? s.hz + " Hz polling" : ""].filter(Boolean).join(", ");
     t.hidden = false; })();
+  (function(){ var b = document.getElementById("setbtn"), d = document.getElementById("setbody"); if(!b || !d) return;
+    b.addEventListener("click", function(){ var o = b.getAttribute("aria-expanded") !== "true"; b.setAttribute("aria-expanded", o ? "true" : "false"); d.classList.toggle("open", o); if(o) d.removeAttribute("inert"); else d.setAttribute("inert", ""); if(o && window.K1V9T) try{ K1V9T("settings-open"); }catch(e){} }); })();
   </script>
 </section>
 
