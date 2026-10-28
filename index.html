@@ -2069,10 +2069,13 @@ section[data-off] *,section[data-off] *::before,section[data-off] *::after,.hero
 #support .spfill{height:100%;width:0;min-width:10px;border-radius:999px;background:linear-gradient(90deg,#d9982f,var(--gold));box-shadow:0 0 12px rgba(240,185,75,.55);transition:width 1.2s cubic-bezier(.2,.8,.2,1)}
 #support .spmeta{margin-top:8px;color:var(--muted);font-size:.8rem}
 #support .spbtns{display:flex;flex-wrap:wrap;gap:10px;flex-basis:100%}
-#support .spbtns a{display:inline-flex;align-items:center;gap:8px;padding:11px 22px;border-radius:999px;border:2px solid var(--gold);color:var(--text);text-decoration:none;font-weight:700;font-size:.95rem;transition:background .25s,color .25s}
-#support .spbtns a:hover,#support .spbtns a:focus-visible{background:var(--gold);color:#0F1A33;outline:none}
-#support .spbtns a.pp{background:var(--gold);color:#0F1A33}
-#support .spbtns a.pp:hover{filter:brightness(1.08)}
+#support .spbtns a{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:46px;padding:10px 22px;border-radius:999px;border:0;text-decoration:none;font-weight:700;font-size:.95rem;transition:background .2s,transform .2s}
+#support .spbtns a:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+#support .spbtns a.sppp{background:#0070BA;color:#fff}
+#support .spbtns a.sppp:hover{background:#005EA6}
+#support .spbtns a.spwp{background:#9FE870;color:#163300}
+#support .spbtns a.spwp:hover{background:#8AD95C}
+#support .spbtns .pal{height:20px;width:auto;display:block}
 </style>
 
 
@@ -2497,8 +2500,8 @@ section[data-off] *,section[data-off] *::before,section[data-off] *::after,.hero
         <div class="spmeta" id="spmeta"></div>
       </div>
       <div class="spbtns">
-        <a class="pp" data-sp="paypal" href="https://www.paypal.com/biz/profile/kayiebot" target="_blank" rel="noopener">Support via PayPal</a>
-        <a data-sp="wise" href="https://wise.com/pay/me/lucasp3226" target="_blank" rel="noopener">Support via Wise</a>
+        <a class="sppp" data-sp="paypal" href="https://www.paypal.com/biz/profile/kayiebot" target="_blank" rel="noopener" aria-label="Support with PayPal"><span>Support with</span><b class="splogo">PayPal</b></a>
+        <a class="spwp" data-sp="wise" href="https://wise.com/pay/me/lucasp3226" target="_blank" rel="noopener" aria-label="Support with Wise"><span>Support with</span><b class="splogo">Wise</b></a>
       </div>
     </div>
   </div>
@@ -2515,6 +2518,10 @@ section[data-off] *,section[data-off] *::before,section[data-off] *::after,.hero
     if(m) m.textContent = (S.raised >= S.goal ? "Goal reached, thank you! " : "") + "Updated " + S.updated + ".";
     if(f){ var go = function(){ f.style.width = pct + "%"; };
       if("IntersectionObserver" in window){ var io = new IntersectionObserver(function(e){ if(e[0].isIntersecting){ go(); io.disconnect(); } }); io.observe(f); } else go(); }
+    var logo = function(){ var L = window.PAYLOGO; if(!L) return;
+      document.querySelectorAll("#support .splogo").forEach(function(b){ var a = b.closest("a"), k = a && a.classList.contains("sppp") ? "pp" : "ws"; if(!L[k]) return;
+        var i = document.createElement("img"); i.src = L[k]; i.alt = b.textContent; i.className = "pal"; b.replaceWith(i); }); };
+    if(document.readyState === "loading") document.addEventListener("DOMContentLoaded", logo); else setTimeout(logo, 0);
     document.querySelectorAll("#support [data-sp]").forEach(function(a){ a.addEventListener("click", function(){ if(window.K1V9T) try{ K1V9T("support-click", {via: a.getAttribute("data-sp")}); }catch(e){} }); });
   })();
   </script>
@@ -2663,7 +2670,7 @@ var AV = {tz:"Europe/Berlin", from:11, last:23, step:30, days:14, lead:12};
   var btns = document.querySelectorAll(".tbtn");
   function close(t){ var b = t.querySelector(".tbtn"); b.setAttribute("aria-expanded", "false"); t.querySelector(".rq").classList.remove("open"); }
   function setErr(f, msg, inp){ var e = f.querySelector(".rqe"); e.textContent = msg; e.hidden = !msg; if(inp){ inp.classList.remove("bad"); void inp.offsetWidth; inp.classList.add("bad"); inp.focus(); } }
-  var PAYLOGO = {pp: "a/845c493e964a.png", ws: "a/b9d7b6029e1c.png"};
+  var PAYLOGO = {pp: "a/845c493e964a.png", ws: "a/b9d7b6029e1c.png"}; window.PAYLOGO = PAYLOGO;
   function payBtn(a, name, amt, logo){ a.textContent = ""; a.setAttribute("aria-label", "Pay with " + name + " (\u20AC" + amt + ")"); var s = document.createElement("span"); s.textContent = "Pay \u20AC" + amt + " with"; var i = document.createElement("img"); i.src = logo; i.alt = name; i.className = "pal"; a.appendChild(s); a.appendChild(i); }
   function done(t, f, msg){
     var ok = t.querySelector(".rqok"); f.hidden = true; ok.hidden = false; ok.querySelector(".rqm").textContent = msg;
