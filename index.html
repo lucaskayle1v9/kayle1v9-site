@@ -2057,6 +2057,22 @@ section[data-off] *,section[data-off] *::before,section[data-off] *::after,.hero
 #patch .pcard li s{color:var(--muted)}
 #patch .psrc{font-size:.82rem;color:var(--muted);margin-top:6px}
 #patch .psrc a{color:var(--gold)}
+#support .spcard{display:flex;flex-wrap:wrap;gap:22px 34px;align-items:center;padding:26px 28px;border-radius:18px;background:var(--panel);border:1.5px solid rgba(240,185,75,.55);box-shadow:var(--drop,0 10px 30px rgba(0,0,0,.35))}
+#support .sptx{flex:1 1 320px;min-width:0}
+#support .sptx h2{margin:0 0 8px}
+#support .sptx p{margin:0;color:var(--muted);max-width:58ch}
+#support .spbar{flex:1 1 300px;min-width:0}
+#support .sphd{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:8px;font-variant-numeric:tabular-nums}
+#support .sphd b{font-size:1.35rem;color:var(--text)}
+#support .sphd span{color:var(--muted);font-size:.9rem}
+#support .sptrack{height:14px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid var(--line);overflow:hidden}
+#support .spfill{height:100%;width:0;min-width:10px;border-radius:999px;background:linear-gradient(90deg,#d9982f,var(--gold));box-shadow:0 0 12px rgba(240,185,75,.55);transition:width 1.2s cubic-bezier(.2,.8,.2,1)}
+#support .spmeta{margin-top:8px;color:var(--muted);font-size:.8rem}
+#support .spbtns{display:flex;flex-wrap:wrap;gap:10px;flex-basis:100%}
+#support .spbtns a{display:inline-flex;align-items:center;gap:8px;padding:11px 22px;border-radius:999px;border:2px solid var(--gold);color:var(--text);text-decoration:none;font-weight:700;font-size:.95rem;transition:background .25s,color .25s}
+#support .spbtns a:hover,#support .spbtns a:focus-visible{background:var(--gold);color:#0F1A33;outline:none}
+#support .spbtns a.pp{background:var(--gold);color:#0F1A33}
+#support .spbtns a.pp:hover{filter:brightness(1.08)}
 </style>
 
 
@@ -2468,6 +2484,42 @@ section[data-off] *,section[data-off] *::before,section[data-off] *::after,.hero
   </div>
 </section>
 
+<section id="support">
+  <div class="wrap">
+    <div class="spcard">
+      <div class="sptx">
+        <h2>Support the site</h2>
+        <p>kayle1v9.com is free and updates every night: builds, matchups and win rates from three servers. Hosting, data and tools cost money every month. If the site helps you climb, you can chip in to cover the costs. Every euro counts, no pressure.</p>
+      </div>
+      <div class="spbar">
+        <div class="sphd"><b id="spraised">&euro;0</b><span id="spgoal">of &euro;100 goal</span></div>
+        <div class="sptrack" role="progressbar" aria-label="Monthly support goal" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="sptrack"><div class="spfill" id="spfill"></div></div>
+        <div class="spmeta" id="spmeta"></div>
+      </div>
+      <div class="spbtns">
+        <a class="pp" data-sp="paypal" href="https://www.paypal.com/biz/profile/kayiebot" target="_blank" rel="noopener">Support via PayPal</a>
+        <a data-sp="wise" href="https://wise.com/pay/me/lucasp3226" target="_blank" rel="noopener">Support via Wise</a>
+      </div>
+    </div>
+  </div>
+  <script>
+  // === SUPPORT START (monthly goal, update raised and updated) ===
+  var SUPPORT = {month:"November 2026", raised:0, goal:100, updated:"28 Oct 2026"};
+  // === SUPPORT END ===
+  (function(){
+    var S = SUPPORT, pct = Math.max(0, Math.min(100, S.goal ? S.raised / S.goal * 100 : 0));
+    var r = document.getElementById("spraised"), g = document.getElementById("spgoal"), f = document.getElementById("spfill"), tr = document.getElementById("sptrack"), m = document.getElementById("spmeta");
+    if(r) r.textContent = "\u20ac" + S.raised;
+    if(g) g.textContent = "of \u20ac" + S.goal + " goal for " + S.month;
+    if(tr) tr.setAttribute("aria-valuenow", String(Math.round(pct)));
+    if(m) m.textContent = (S.raised >= S.goal ? "Goal reached, thank you! " : "") + "Updated " + S.updated + ".";
+    if(f){ var go = function(){ f.style.width = pct + "%"; };
+      if("IntersectionObserver" in window){ var io = new IntersectionObserver(function(e){ if(e[0].isIntersecting){ go(); io.disconnect(); } }); io.observe(f); } else go(); }
+    document.querySelectorAll("#support [data-sp]").forEach(function(a){ a.addEventListener("click", function(){ if(window.K1V9T) try{ K1V9T("support-click", {via: a.getAttribute("data-sp")}); }catch(e){} }); });
+  })();
+  </script>
+</section>
+
 <footer>
   <a class="yt" href="https://youtube.com/channel/UC3Ng3LyLTJrjFMsrcxltLKQ">YouTube</a>
   <a href="https://www.twitch.tv/kayle_1v9" target="_blank" rel="noopener">Twitch</a>
@@ -2821,7 +2873,7 @@ if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches){
   window.addEventListener("scroll", function(){ if(!busy){ busy = true; requestAnimationFrame(upd); } }, {passive:true});
   window.addEventListener("resize", upd);
   var menu = document.getElementById("tnav"), touch = window.matchMedia && matchMedia("(hover: none)").matches, closeT = 0;
-  var SECS = [["Top", ""], ["Coaching", "coaching"], ["Patch changes", "patch"], ["Best builds", "builds"], ["Build-Finder", "finder"], ["Matchups", "matchups"], ["Top players", "leaderboard"], ["Minigames", "games"], ["Trophy room", "trophies"], ["Videos", "videos"], ["About", "about"], ["Merch", "merch"], ["Gear", "gear"]], links = [];
+  var SECS = [["Top", ""], ["Coaching", "coaching"], ["Patch changes", "patch"], ["Best builds", "builds"], ["Build-Finder", "finder"], ["Matchups", "matchups"], ["Top players", "leaderboard"], ["Minigames", "games"], ["Trophy room", "trophies"], ["Videos", "videos"], ["About", "about"], ["Merch", "merch"], ["Gear", "gear"], ["Support", "support"]], links = [];
   function setOpen(o){
     clearTimeout(closeT);
     if(!menu) return;
