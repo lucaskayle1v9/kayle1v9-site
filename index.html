@@ -2076,6 +2076,22 @@ section[data-off] *,section[data-off] *::before,section[data-off] *::after,.hero
 #support .spbtns a.spwp{background:#9FE870;color:#163300}
 #support .spbtns a.spwp:hover{background:#8AD95C}
 #support .spbtns .pal{height:20px;width:auto;display:block}
+#settings .stiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr));gap:14px;margin-bottom:18px}
+#settings .stile{padding:16px 18px;border-radius:16px;background:var(--panel);border:1.5px solid var(--line);box-shadow:var(--drop,0 10px 30px rgba(0,0,0,.35))}
+#settings .stile.hot{border-color:rgba(240,185,75,.7)}
+#settings .stile span{display:block;color:var(--muted);font-size:.8rem;letter-spacing:.04em;text-transform:uppercase}
+#settings .stile b{display:block;font-size:1.5rem;margin-top:4px;font-variant-numeric:tabular-nums}
+#settings .stile small{display:block;color:var(--muted);font-size:.82rem;margin-top:2px}
+#settings .sgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:14px}
+#settings .scard{padding:20px 22px;border-radius:16px;background:var(--panel);border:1.5px solid var(--line);min-width:0}
+#settings .scard h3{margin:0 0 10px;font-size:1.05rem}
+#settings .scard dl{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px 14px;margin:0}
+#settings .scard dt{color:var(--muted);font-size:.92rem}
+#settings .scard dd{margin:0;text-align:right;white-space:nowrap;font-weight:600;font-size:.92rem}
+#settings kbd{display:inline-block;min-width:1.6em;padding:2px 7px;border-radius:6px;border:1px solid var(--line);border-bottom-width:2px;background:rgba(255,255,255,.05);font-family:inherit;font-weight:600;font-size:.82rem;line-height:1.4;text-align:center;color:var(--text)}
+#settings .stile b kbd{font-size:1.1rem}
+#settings .snote{margin-top:14px;color:var(--muted);font-size:.85rem}
+#settings .stile[hidden]{display:none}
 </style>
 
 
@@ -2466,6 +2482,75 @@ section[data-off] *,section[data-off] *::before,section[data-off] *::after,.hero
     </ul>
     <p style="margin-top:28px"><a class="btn primary shop" href="#merch">Open the shop</a></p>
   </div>
+</section>
+
+<section id="settings">
+  <div class="wrap">
+    <h2>My settings</h2>
+    <p class="lead">The settings I play Kayle with, taken straight from my League config. Copy what you like.</p>
+    <div class="stiles">
+      <div class="stile hot" id="sdpi" hidden><span>Mouse DPI</span><b id="sdpiv">&mdash;</b><small id="sdpis"></small></div>
+      <div class="stile hot"><span>In-game mouse speed</span><b>12</b><small>Slider from 0 to 100</small></div>
+      <div class="stile"><span>Spells</span><b>Quick cast</b><small>Q, W, E, R, D, F and items</small></div>
+      <div class="stile"><span>Attack move</span><b><kbd>A</kbd></b><small>Targeted attack move on</small></div>
+      <div class="stile"><span>Camera</span><b>Unlocked</b><small><kbd>Space</kbd> snap, <kbd>Y</kbd> lock toggle</small></div>
+    </div>
+    <div class="sgrid">
+      <div class="scard">
+        <h3>Keybinds</h3>
+        <dl>
+          <dt>Spells</dt><dd><kbd>Q</kbd> <kbd>W</kbd> <kbd>E</kbd> <kbd>R</kbd></dd>
+          <dt>With indicator</dt><dd><kbd>Shift</kbd> + <kbd>Q</kbd> &hellip; <kbd>R</kbd></dd>
+          <dt>Self cast Q / W / E</dt><dd><kbd>Alt</kbd> + <kbd>Q</kbd> / <kbd>W</kbd> / <kbd>E</kbd></dd>
+          <dt>Self cast R</dt><dd><kbd>Mouse 5</kbd></dd>
+          <dt>Summoner spells</dt><dd><kbd>D</kbd> <kbd>F</kbd></dd>
+          <dt>Level up spells</dt><dd><kbd>Ctrl</kbd> + <kbd>Q</kbd> &hellip; <kbd>R</kbd></dd>
+          <dt>Items</dt><dd><kbd>1</kbd> <kbd>2</kbd> <kbd>3</kbd> <kbd>5</kbd> <kbd>6</kbd> <kbd>7</kbd></dd>
+          <dt>Ward</dt><dd><kbd>4</kbd></dd>
+          <dt>Recall</dt><dd><kbd>B</kbd></dd>
+          <dt>Shop / Scoreboard</dt><dd><kbd>I</kbd> / <kbd>O</kbd></dd>
+          <dt>Ping "area is warded"</dt><dd><kbd>Mouse 4</kbd></dd>
+        </dl>
+      </div>
+      <div class="scard">
+        <h3>Gameplay</h3>
+        <dl>
+          <dt>Target champions only</dt><dd>Toggle</dd>
+          <dt>Auto attack</dt><dd>On</dd>
+          <dt>Attack move on cursor</dt><dd>On</dd>
+          <dt>Left click attack move</dt><dd>Off</dd>
+          <dt>Show attack range</dt><dd>Off</dd>
+          <dt>Show turret range</dt><dd>Off</dd>
+          <dt>Predict movement</dt><dd>Off</dd>
+          <dt>Relative team colors</dt><dd>On</dd>
+          <dt>Camera snap on respawn</dt><dd>Off</dd>
+        </dl>
+      </div>
+      <div class="scard">
+        <h3>Interface</h3>
+        <dl>
+          <dt>HUD scale</dt><dd>1</dd>
+          <dt>Chat scale</dt><dd>50</dd>
+          <dt>Cursor size</dt><dd>124</dd>
+          <dt>Map scroll speed</dt><dd>61</dd>
+          <dt>Minimap</dt><dd>Right, all timers</dd>
+          <dt>Chat timestamps</dt><dd>On</dd>
+          <dt>Spell costs</dt><dd>Shown</dd>
+          <dt>Team frames</dt><dd>Right</dd>
+        </dl>
+      </div>
+    </div>
+    <p class="snote">From my League config files, checked 28 Oct 2026, patch 16.21.</p>
+  </div>
+  <script>
+  // === SETUP START (mouse and display, filled by hand) ===
+  var SETUP = {dpi: null, hz: null, mouse: ""};
+  // === SETUP END ===
+  (function(){ var s = SETUP, t = document.getElementById("sdpi"); if(!t || !s.dpi) return;
+    document.getElementById("sdpiv").textContent = String(s.dpi);
+    document.getElementById("sdpis").textContent = [s.mouse, s.hz ? s.hz + " Hz polling" : ""].filter(Boolean).join(", ");
+    t.hidden = false; })();
+  </script>
 </section>
 
 <section id="gear">
@@ -2880,7 +2965,7 @@ if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches){
   window.addEventListener("scroll", function(){ if(!busy){ busy = true; requestAnimationFrame(upd); } }, {passive:true});
   window.addEventListener("resize", upd);
   var menu = document.getElementById("tnav"), touch = window.matchMedia && matchMedia("(hover: none)").matches, closeT = 0;
-  var SECS = [["Top", ""], ["Coaching", "coaching"], ["Patch changes", "patch"], ["Best builds", "builds"], ["Build-Finder", "finder"], ["Matchups", "matchups"], ["Top players", "leaderboard"], ["Minigames", "games"], ["Trophy room", "trophies"], ["Videos", "videos"], ["About", "about"], ["Merch", "merch"], ["Gear", "gear"], ["Support", "support"]], links = [];
+  var SECS = [["Top", ""], ["Coaching", "coaching"], ["Patch changes", "patch"], ["Best builds", "builds"], ["Build-Finder", "finder"], ["Matchups", "matchups"], ["Top players", "leaderboard"], ["Minigames", "games"], ["Trophy room", "trophies"], ["Videos", "videos"], ["About", "about"], ["Merch", "merch"], ["Settings", "settings"], ["Gear", "gear"], ["Support", "support"]], links = [];
   function setOpen(o){
     clearTimeout(closeT);
     if(!menu) return;
