@@ -2703,12 +2703,12 @@ var CONFIG = {
   reviews: [],       // real player quotes, for example {name:"Name", rank:"Gold 4 to Platinum 3", text:"What they said"}. The section stays hidden while this is empty.
   channelUrl: "https://youtube.com/channel/UC3Ng3LyLTJrjFMsrcxltLKQ",
   videos: [
+    {id:"Xx-BsReu3Ok", thumb:"collector", title:"I Tried The NEW Chinese Collector Kayle Build!", note:"Watch on YouTube"},
     {id:"SrKEj5L3dtk", thumb:"firststrike", title:"First Strike Kayle is INSANE!", note:"Watch on YouTube"},
     {id:"P2aDWKZ_8SM", thumb:"braindead", title:"How I Accidentally Created The Most BRAINDEAD Kayle Build EVER!", note:"Watch on YouTube"},
     {id:"trNrANQHjm0", thumb:"winlane", title:"How I Turned Kayle Into The STRONGEST Early Champion!", note:"Watch on YouTube"},
     {id:"8XOO9DupxgY", thumb:"wtf", title:"I Am ADDICTED To Chinese Manamune Kayle!", note:"Watch on YouTube"},
-    {id:"Vfl8tsMrWp8", thumb:"crazy", title:"Why This Kayle Build is Taking over Chinese SoloQ!", note:"Watch on YouTube"},
-    {id:"VRJs3_04SPI", thumb:"buffs", title:"I Tried The New BUFFED Korean Stormrazor Kayle Build!", note:"Watch on YouTube"}
+    {id:"Vfl8tsMrWp8", thumb:"crazy", title:"Why This Kayle Build is Taking over Chinese SoloQ!", note:"Watch on YouTube"}
   ]
 };
 function setLinks(sel, url){ if(!url) return; document.querySelectorAll(sel).forEach(function(a){ a.href = url; a.target = "_blank"; a.rel = "noopener"; }); }
@@ -2852,7 +2852,7 @@ var AV = {tz:"Europe/Berlin", from:11, last:23, step:30, days:14, lead:12};
 })();
 
 // Thumbnails: change the thumb key of a video above to swap its image.
-var THUMBS = {"firststrike": "a/136bbddb3794.jpg", "buffs": "a/d4261614717d.jpg", "trythis": "a/5d6a1a39303a.jpg", "braindead": "a/2b36c9279166.jpg", "winlane": "a/ff2f26232242.jpg", "wtf": "a/337496d58b46.jpg", "crazy": "a/eab3686e2984.jpg"};
+var THUMBS = {"collector": "https://i.ytimg.com/vi/Xx-BsReu3Ok/hqdefault.jpg", "firststrike": "a/136bbddb3794.jpg", "buffs": "a/d4261614717d.jpg", "trythis": "a/5d6a1a39303a.jpg", "braindead": "a/2b36c9279166.jpg", "winlane": "a/ff2f26232242.jpg", "wtf": "a/337496d58b46.jpg", "crazy": "a/eab3686e2984.jpg"};
 var g = document.getElementById("vgrid");
 var vids = CONFIG.videos.length ? CONFIG.videos : [
   {title:"Watch every Kayle video", note:"Open the channel on YouTube", url:CONFIG.channelUrl},
