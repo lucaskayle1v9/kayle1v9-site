@@ -1132,6 +1132,26 @@ nav .logo img{animation-duration:6.5s}
   .lbr .its{grid-column:3;justify-content:flex-end}
 }
 .botd .bt span.dtag,.motd .bt span.dtag{color:var(--gold);font-size:.7rem}
+/* featured build of the day: animated gold frame, shimmer, sparkles */
+@property --bang{syntax:"<angle>";initial-value:0deg;inherits:false}
+.botd.hot{position:relative;isolation:isolate;overflow:hidden;border-color:transparent;background:radial-gradient(120% 140% at 0% 0%,rgba(240,185,75,.28),rgba(20,32,63,.92) 50%),linear-gradient(135deg,rgba(130,90,255,.18),rgba(20,32,63,.9) 60%);padding:20px 22px}
+.botd.hot::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:2px;background:conic-gradient(from var(--bang),#F0B94B,#FFF1C2,#8F6BFF,#F0B94B,#FFE08A,#F0B94B);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:bspin 4s linear infinite;z-index:-1;pointer-events:none}
+.botd.hot::after{content:"";position:absolute;top:0;bottom:0;left:-40%;width:35%;background:linear-gradient(100deg,transparent,rgba(255,240,200,.16),transparent);transform:skewX(-18deg);animation:bshine 4.5s ease-in-out infinite;pointer-events:none;z-index:-1}
+@keyframes bspin{to{--bang:360deg}}
+@keyframes bshine{0%,55%{left:-40%}100%{left:130%}}
+.botd.hot .bt b{font-size:1.32rem;background:linear-gradient(90deg,#FFE7A3,#F0B94B 40%,#FFF6DA 60%,#F0B94B);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:btxt 5s linear infinite}
+@keyframes btxt{to{background-position:-200% 0}}
+.botd.hot .bnew{display:inline-block;margin-left:8px;padding:2px 8px;border-radius:99px;background:linear-gradient(90deg,#8F6BFF,#F0B94B);color:#0F1A33;font-size:.62rem;font-weight:800;letter-spacing:.1em;vertical-align:2px;animation:bpulse 1.8s ease-in-out infinite;-webkit-text-fill-color:#0F1A33}
+@keyframes bpulse{50%{transform:scale(1.08);box-shadow:0 0 14px rgba(240,185,75,.7)}}
+.botd.hot .bi img{width:50px;height:50px;border-color:#F0B94B;opacity:0;animation:bpop .55s cubic-bezier(.34,1.56,.64,1) forwards,bfloat 3s ease-in-out infinite;transition:transform .25s}
+.botd.hot .bi img:hover{transform:translateY(-4px) scale(1.12)}
+@keyframes bpop{from{opacity:0;transform:scale(.4) rotate(-12deg)}to{opacity:1;transform:none}}
+@keyframes bfloat{50%{translate:0 -3px;box-shadow:0 0 22px rgba(240,185,75,.7)}}
+.botd.hot .spk{position:absolute;width:6px;height:6px;border-radius:50%;background:#FFF1C2;box-shadow:0 0 10px 3px rgba(240,185,75,.8);opacity:0;animation:btw 2.6s ease-in-out infinite;pointer-events:none}
+@keyframes btw{0%,100%{opacity:0;transform:scale(.3)}50%{opacity:1;transform:scale(1)}}
+.botd.hot .bgo{background:var(--gold);color:#0F1A33;box-shadow:0 0 18px rgba(240,185,75,.55)}
+@media (max-width:640px){.botd.hot{padding:18px 16px}.botd.hot .bi{gap:5px}.botd.hot .bi img{width:40px;height:40px}.botd.hot .bi .barr{font-size:1.1rem}}
+@media (prefers-reduced-motion:reduce){.botd.hot::before,.botd.hot::after,.botd.hot .bt b,.botd.hot .bnew,.botd.hot .bi img,.botd.hot .spk{animation:none!important;opacity:1}.botd.hot .spk{display:none}}
 @keyframes dglow{0%,100%{box-shadow:0 0 0 1px rgba(240,185,75,.22),0 0 14px rgba(240,185,75,.24),0 0 36px rgba(240,185,75,.1),var(--drop)}50%{box-shadow:0 0 0 1px rgba(240,185,75,.4),0 0 24px rgba(240,185,75,.5),0 0 56px rgba(240,185,75,.22),var(--drop)}}
 .skcol{display:flex;align-items:center;justify-content:center;gap:10px;min-height:20px;font-size:.74rem;font-weight:700;letter-spacing:.04em;color:var(--muted)}
 .skcol .skn{color:var(--gold)}
@@ -4714,7 +4734,7 @@ var PATCHM = "16.21", PREVM = "16.20", CHECKEDM = "30 Oct 2026";
       var today = ""; try{ today = new Date().toLocaleDateString("sv-SE", {timeZone: "Europe/Berlin"}); }catch(e){}
       if(box && today === "2026-10-30" && SHOW.every(function(id){ return ITI[id]; })){
         var sInner = el("div", ""), sTag = el("span", "dtag", "Build of the day"), sT = el("div", "bt");
-        sT.appendChild(el("b", "", "Chinese Double Tear build"));
+        var sB = el("b", "", "Updated Chinese Manamune Build"); sB.appendChild(el("span", "bnew", "UPDATED")); sT.appendChild(sB);
         sT.appendChild(el("span", "", "Statikk Shiv, Manamune, Terminus, Shadowflame and Archangel's Staff · showcase build from the China server"));
         var sIc = el("div", "bi");
         SHOW.forEach(function(id, i){ if(i) sIc.appendChild(el("span", "barr", "›")); sIc.appendChild(sbIcon(id, false)); });
@@ -4724,6 +4744,9 @@ var PATCHM = "16.21", PREVM = "16.20", CHECKEDM = "30 Oct 2026";
           var pn = document.getElementById("bpanel"); if(pn) pn.scrollIntoView({behavior: "smooth", block: "start"});
         });
         sInner.appendChild(sTag); sInner.appendChild(sT); box.innerHTML = ""; box.appendChild(sInner); box.appendChild(sIc); box.appendChild(sGo); box.hidden = false;
+        box.classList.add("hot"); sTag.textContent = "Build of the day \u00b7 Featured";
+        [[6,12,0],[38,8,.9],[71,18,1.7],[90,70,.4],[55,85,1.3],[18,78,2.1]].forEach(function(s){ var sp = el("span", "spk"); sp.style.left = s[0] + "%"; sp.style.top = s[1] + "%"; sp.style.animationDelay = s[2] + "s"; box.appendChild(sp); });
+        Array.prototype.forEach.call(sIc.querySelectorAll("img"), function(im, i){ im.style.animationDelay = (i * 0.12) + "s, " + (0.6 + i * 0.25) + "s"; });
         return;
       }
       var pick = function(min){ return slugs.filter(function(k){ var c = L[k].iw && L[k].iw.c; return c && c.length >= 3 && OFF[c[0].i] && ITN[c[0].i] && ITI[c[0].i] && c[0].n >= min; }).sort(); };
