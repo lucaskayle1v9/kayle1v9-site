@@ -1156,6 +1156,8 @@ nav .logo img{animation-duration:6.5s}
 .botd.hot .bor.bboots{margin-left:14px;border-color:rgba(159,180,255,.7);background:rgba(143,107,255,.08);animation-delay:1.2s}
 .botd.hot .bor.bboots .borlbl{background:linear-gradient(90deg,#9FB4FF,#8F6BFF);color:#0F1A33}
 .botd.hot .bor.bboots .bortx{color:#9FB4FF}
+.botd.hot .bgo.bcnf{display:inline-flex;align-items:center;gap:9px}
+.botd.hot .bgo.bcnf .cnflag{width:24px;height:16px;flex:none;border-radius:3px;box-shadow:0 0 0 1px rgba(15,26,51,.35),0 2px 6px rgba(0,0,0,.35)}
 @keyframes borg{50%{border-color:#FFE7A3;box-shadow:0 0 16px rgba(240,185,75,.45)}}
 .botd.hot .bxtra{flex-basis:100%;display:flex;flex-wrap:wrap;gap:12px 14px;margin-top:4px;padding-top:14px;border-top:1px solid rgba(240,185,75,.25)}
 .botd.hot .bxgrp{display:flex;flex-direction:column;gap:6px;min-width:0}
@@ -4779,7 +4781,8 @@ var PATCHM = "16.21", PREVM = "16.20", CHECKEDM = "30 Oct 2026";
         var gK = grp("Skill order", "sko");
         ["Q", "E", "W"].forEach(function(k, i){ if(i) gK.appendChild(el("span", "barr", "›")); gK.appendChild(el("span", "bxkey", k)); });
         var rr = el("span", "bxult"); rr.appendChild(el("span", "bxkey r", "R")); rr.appendChild(el("span", "", "at 6 · 11 · 16")); gK.appendChild(rr);
-        var sGo = el("button", "bgo", "Open China builds"); sGo.type = "button";
+        var sGo = el("button", "bgo bcnf"); sGo.type = "button";
+        sGo.innerHTML = '<svg class="cnflag" viewBox="0 0 30 20" aria-hidden="true"><rect width="30" height="20" fill="#EE1C25"/><g fill="#FFFF00"><path id="cnst" d="M0,-1 0.588,0.809 -0.951,-0.309 0.951,-0.309 -0.588,0.809Z" transform="translate(5,5) scale(3)"/><use href="#cnst" transform="translate(10,2) rotate(23.04) scale(1)"/><use href="#cnst" transform="translate(12,4) rotate(45.87) scale(1)"/><use href="#cnst" transform="translate(12,7) rotate(69.95) scale(1)"/><use href="#cnst" transform="translate(10,9) rotate(20.66) scale(1)"/></g></svg><span>Open China builds</span>';
         sGo.addEventListener("click", function(){
           var tb = document.querySelector('.btab[data-r="china"]'); if(tb) tb.click();
           var pn = document.getElementById("bpanel"); if(pn) pn.scrollIntoView({behavior: "smooth", block: "start"});
