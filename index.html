@@ -1158,6 +1158,8 @@ nav .logo img{animation-duration:6.5s}
 .botd.hot .bor.bboots .bortx{color:#9FB4FF}
 .botd.hot .bgo.bcnf{display:inline-flex;align-items:center;gap:9px}
 .botd.hot .bgo.bcnf .cnflag{width:24px;height:16px;flex:none;border-radius:3px;box-shadow:0 0 0 1px rgba(15,26,51,.35),0 2px 6px rgba(0,0,0,.35)}
+.botd.hot .bsrc{align-self:flex-start;margin-top:4px;padding:3px 10px;border-radius:99px;border:1px solid rgba(0,174,236,.55);background:rgba(0,174,236,.1);color:#7FD7F7;font-size:.74rem;font-weight:700;text-decoration:none;transition:background .2s,color .2s}
+.botd.hot .bsrc:hover{background:#00AEEC;color:#0F1A33}
 @keyframes borg{50%{border-color:#FFE7A3;box-shadow:0 0 16px rgba(240,185,75,.45)}}
 .botd.hot .bxtra{flex-basis:100%;display:flex;flex-wrap:wrap;gap:12px 14px;margin-top:4px;padding-top:14px;border-top:1px solid rgba(240,185,75,.25)}
 .botd.hot .bxgrp{display:flex;flex-direction:column;gap:6px;min-width:0}
@@ -4759,6 +4761,7 @@ var PATCHM = "16.21", PREVM = "16.20", CHECKEDM = "30 Oct 2026";
         var sInner = el("div", ""), sTag = el("span", "dtag", "Build of the day"), sT = el("div", "bt");
         var sB = el("b", "", "Updated Chinese Manamune Build"); sB.appendChild(el("span", "bnew", "UPDATED")); sT.appendChild(sB);
         sT.appendChild(el("span", "", "Statikk Shiv, Manamune, Terminus, Shadowflame, then Archangel's Staff or Hextech Gunblade · showcase build from the China server"));
+        var sSrc = el("a", "bsrc"); sSrc.href = "https://www.bilibili.com/video/BV1Kcso6KEwy"; sSrc.target = "_blank"; sSrc.rel = "noopener"; sSrc.textContent = "Source: Bilibili video \u2197"; sT.appendChild(sSrc);
         var sIc = el("div", "bi");
         SHOW.forEach(function(id, i){ if(i) sIc.appendChild(el("span", "barr", "›")); sIc.appendChild(sbIcon(id, false)); });
         sIc.appendChild(el("span", "barr", "›"));
