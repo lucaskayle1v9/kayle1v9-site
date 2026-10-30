@@ -4781,7 +4781,7 @@ var PATCHM = "16.21", PREVM = "16.20", CHECKEDM = "30 Oct 2026";
           var pn = document.getElementById("bpanel"); if(pn) pn.scrollIntoView({behavior: "smooth", block: "start"});
         });
         sInner.appendChild(sTag); sInner.appendChild(sT); box.innerHTML = ""; box.appendChild(sInner); box.appendChild(sIc); box.appendChild(sGo); box.appendChild(sX); box.hidden = false;
-        box.classList.add("hot"); sTag.textContent = "Build of the day \u00b7 Featured";
+        box.classList.add("hot"); sTag.textContent = "Build of the week \u00b7 Featured";
         [[6,12,0],[38,8,.9],[71,18,1.7],[90,70,.4],[55,85,1.3],[18,78,2.1]].forEach(function(s){ var sp = el("span", "spk"); sp.style.left = s[0] + "%"; sp.style.top = s[1] + "%"; sp.style.animationDelay = s[2] + "s"; box.appendChild(sp); });
         Array.prototype.forEach.call(sIc.querySelectorAll("img"), function(im, i){ im.style.animationDelay = (i * 0.12) + "s, " + (0.6 + i * 0.25) + "s"; });
         return;
