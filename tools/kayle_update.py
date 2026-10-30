@@ -314,7 +314,8 @@ BOOTS_NAMES = {"Berserker's Greaves": 3006, "Gluttonous Greaves": 3008, "Boots o
 ITEM_NAMES_TOP = {"Nashor's Tooth": 3115, "Dusk and Dawn": 2510, "Rabadon's Deathcap": 3089,
                   "Shadowflame": 4645, "Void Staff": 3135, "Rylai's Crystal Scepter": 3116,
                   "Zhonya's Hourglass": 3157, "Infinity Edge": 3031,
-                  "Phantom Dancer": 3046, "Kaenic Rookern": 2504}
+                  "Phantom Dancer": 3046, "Kaenic Rookern": 2504,
+                  "Runaan's Hurricane": 3085}
 ITEM_NAMES_MID = dict(ITEM_NAMES_TOP, **{"Lich Bane": 3100, "Banshee's Veil": 3102,
                                          "Mejai's Soulstealer": 3041})
 START_IDS = {1001, 1054, 1055, 1056, 1083, 1086, 1120, 2003, 2031}
@@ -329,7 +330,7 @@ SORC = [8224, 8226, 8275, 8210, 8234, 8233, 8237, 8232, 8236]
 RESO = [8446, 8463, 8401, 8429, 8444, 8473, 8451, 8453, 8242]
 MU_ITEMS = {1054, 1055, 1056, 1083, 1086, 1120, 2003, 2031, 2510, 3006, 3008, 3009, 3020, 3047,
             3072, 3087, 3089, 3091, 3100, 3102, 3111, 3115, 3116, 3124, 3135, 3139, 3146, 3153,
-            3157, 3158, 3165, 3302, 4645, 6672, 6676, 3031, 3046, 2504}
+            3157, 3158, 3165, 3302, 4645, 6672, 6676, 3031, 3046, 2504, 3085}
 MU_ITEMS_MID = MU_ITEMS | {3041}
 MU_RUNES = {5001, 5005, 5008, 5010, 5011, 5013, 8000, 8005, 8008, 8009, 8014, 8017, 8021, 8200,
             8234, 8236, 8237, 8242, 8275, 8299, 8400, 8429, 8444, 8446, 8451, 8453, 8473, 9101, 9104,
