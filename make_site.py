@@ -80,6 +80,17 @@ _prev_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'index.htm
 _prev = open(_prev_path, encoding='utf-8').read() if os.path.exists(_prev_path) else None
 s = uxpass.apply(s, _prev)
 
+# --- Polish pass (matchup banner, sparklines, spotlight, cards, micro-feedback) -------------------
+import polish, subprocess
+_repo = os.path.dirname(os.path.abspath(__file__))
+_hist_path = os.path.join(_repo, 'data', 'rates_history.json')
+try:
+    subprocess.run([sys.executable, os.path.join(_repo, 'tools', 'rates_history.py'), _repo, _hist_path], check=True, timeout=300)
+except Exception as _e:
+    print('rates_history skipped:', _e)
+_hist = json.load(open(_hist_path)) if os.path.exists(_hist_path) else None
+s = polish.apply(s, _hist)
+
 # --- Move big inline images (jpeg/webp/png data URIs) into files under a/ -------------------------
 # The artifact keeps every image inline (one file). For the real site the big ones become separate,
 # cacheable files with content-hash names, so the HTML is much smaller and parses faster.
