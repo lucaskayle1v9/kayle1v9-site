@@ -107,7 +107,7 @@ def apply(html, prev_html=None, preview=False):
         "Chair": '<path d="M7 4h10v8H7zM7 12v8M17 12v8M5 12h14"/>',
         "Stream Deck": '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7 9h2M11 9h2M15 9h2M7 13h2M11 13h2M15 13h2"/>',
     }
-    GEAR_SPEC = {"Monitor": "2560×1440 · 260 Hz", "Mouse": "2600 DPI · 1000 Hz", "Microphone": "What you hear on stream", "Headphones": "Daily driver", "Camera": "Facecam", "Lens": "For the facecam", "Chair": "Long sessions", "Stream Deck": "Scene switching", "Keyboard": "Main keyboard", "Mousepad": "Low sens surface"}
+    GEAR_SPEC = {"Microphone": "Shure SM7B", "Mouse": "Razer Viper V4 Pro \u00b7 2600 DPI", "Mousepad": "Razer Gigantus V2 XXL", "Keyboard": "Razer Huntsman V3 Pro TKL", "Headphones": "beyerdynamic DT 770 Pro", "Monitor": "ASUS TUF VG27AQML1A \u00b7 1440p 260 Hz", "Camera": "Panasonic Lumix G70", "Lens": "Sigma 16mm f/1.4", "Chair": "AutoFull M6 Ultra 2.0", "Stream Deck": "Elgato Stream Deck MK.2"}
     def gear_tile(m):
         name = m.group(2)
         ic = GEAR_ICON.get(name, '<circle cx="12" cy="12" r="8"/>')
