@@ -2180,7 +2180,8 @@ section[data-off] *,section[data-off] *::before,section[data-off] *::after,.hero
         <span class="brandtip" id="brandtip" aria-hidden="true"><svg viewBox="0 0 38 26" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M37 8C28 4 14 8 6 18"/><path d="M5 10l1 9 9-1"/></svg><span>My socials!</span></span>
         <ul class="social" id="socialmenu" aria-label="Social links">    <li class="sh" aria-hidden="true">Find me on</li>    <li><a data-p="twitch" href="https://www.twitch.tv/kayle_1v9" target="_blank" rel="noopener">Twitch</a></li>    <li><a data-p="youtube" class="yt" href="https://youtube.com/channel/UC3Ng3LyLTJrjFMsrcxltLKQ" target="_blank" rel="noopener">YouTube</a></li>    <li><a data-p="tiktok" href="https://www.tiktok.com/@kayle_1v9" target="_blank" rel="noopener">TikTok</a></li>    <li><a data-p="x" href="https://x.com/kayle_1v9" target="_blank" rel="noopener">X</a></li>    <li><a data-p="discord" href="https://discord.com/invite/eX2xMdv" target="_blank" rel="noopener">Discord</a></li>    <li><a data-p="gear" href="#gear">Gear</a></li>  </ul>
       </div>
-      <ul>
+      <button type="button" class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="mainnav"><i></i><i></i><i></i></button>
+      <ul id="mainnav">
         <li><a href="#coaching">Coaching</a></li>
         <li><a href="#patch">Patch</a></li>
         <li><a href="#builds">Builds</a></li>
@@ -2197,8 +2198,9 @@ section[data-off] *,section[data-off] *::before,section[data-off] *::after,.hero
         <div class="srdd" id="srlist" role="listbox" aria-label="Search results" hidden></div>
       </form>
 </nav>
-    <div class="lvrow"><div class="lvwrap" id="lvwrap"><div class="level" id="level" aria-label="Level 16"><span id="lt">Level 16</span></div><div class="lvtip" id="lvtip" aria-hidden="true"><svg viewBox="0 0 38 26" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M36 20C26 22 12 18 5 6"/><path d="M4 14L5 5l9 2"/></svg><span id="lvtxt">Hover me!</span></div></div><div class="skinwrap" id="skinwrap"><button type="button" class="skinbtn" id="skinbtn" aria-expanded="false" aria-controls="skincard"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4.5" fill="none" stroke="currentColor" stroke-width="2"/><g fill="currentColor"><circle cx="8.2" cy="8.2" r="1.6"/><circle cx="15.8" cy="8.2" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="8.2" cy="15.8" r="1.6"/><circle cx="15.8" cy="15.8" r="1.6"/></g></svg><span>Pick me a skin</span></button><div class="sndbox" id="sndbox"><button type="button" class="sndbtn" id="sndbtn" aria-label="Sound settings" aria-expanded="false" aria-controls="sndpanel" title="Sound settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5v5h4l5 4v-13l-5 4z" fill="currentColor"/><g class="skw"><path d="M16.5 9a4.2 4.2 0 0 1 0 6"/><path d="M19 6.5a8 8 0 0 1 0 11"/></g><path class="skxx" d="M17 9.5l5 5M22 9.5l-5 5"/></svg></button><div class="sndpanel" id="sndpanel"><button type="button" class="sndmute" id="sndmute" aria-label="Mute sounds" aria-pressed="false" title="Mute"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5v5h4l5 4v-13l-5 4z" fill="currentColor"/><g class="skw"><path d="M16.5 9a4.2 4.2 0 0 1 0 6"/><path d="M19 6.5a8 8 0 0 1 0 11"/></g><path class="skxx" d="M17 9.5l5 5M22 9.5l-5 5"/></svg></button><input type="range" id="sndrange" class="sndrange" min="0" max="100" step="1" value="50" aria-label="Volume"><output id="sndval" for="sndrange">50</output></div></div><div class="skincard" id="skincard" role="dialog" aria-label="Your skin for the next game" hidden><button type="button" class="skm" id="skm" aria-label="Mute sounds" aria-pressed="false" title="Sound on/off"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5v5h4l5 4v-13l-5 4z" fill="currentColor"/><g class="skw"><path d="M16.5 9a4.2 4.2 0 0 1 0 6"/><path d="M19 6.5a8 8 0 0 1 0 11"/></g><path class="skxx" d="M17 9.5l5 5M22 9.5l-5 5"/></svg></button><button type="button" class="skx" id="skx" aria-label="Close">&times;</button><div class="skreel" id="skreel" aria-hidden="true"><div class="skstrip" id="skstrip"></div><i class="skmark"></i></div><div class="skart"><img id="skimg" alt="" width="120" height="218"></div><div class="skbody"><span class="skkick">Your next game</span><b id="skname">Kayle</b><span class="sksub" id="sksub"></span><span class="skacts"><button type="button" class="skagain" id="skagain">Roll again</button><button type="button" class="sk3d" id="sk3d" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.8 20 7.3v9.4l-8 4.5-8-4.5V7.3z"/><path d="M4 7.3l8 4.5 8-4.5M12 11.8v9.4"/></svg>View in 3D</button></span></div></div></div><a class="gamesbtn" id="gamesbtn" href="#games" title="Jump to the minigames"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="7" width="19" height="11" rx="5.5"/><path d="M8 10.5v4M6 12.5h4"/><circle cx="15.5" cy="11.5" r=".9" fill="currentColor"/><circle cx="18" cy="13.7" r=".9" fill="currentColor"/></svg><span>More minigames</span></a></div>
-    <a class="wdpill" href="#wdrop"><b>New</b><span><span class="sf" aria-hidden="true">&#10052;</span> Winter drop is live: free stickers over &euro;40 or free shipping over &euro;100</span><i aria-hidden="true">&rarr;</i></a>
+    <button type="button" class="playbtn" id="playbtn" aria-expanded="false" aria-controls="lvrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="7" width="19" height="11" rx="5.5"/><path d="M8 10.5v4M6 12.5h4"/><circle cx="15.5" cy="11.5" r=".9" fill="currentColor"/><circle cx="18" cy="13.7" r=".9" fill="currentColor"/></svg><span>Play</span><small>level up, skins, minigames</small></button>
+    <div class="lvrow" id="lvrow"><div class="lvwrap" id="lvwrap"><div class="level" id="level" aria-label="Level 16"><span id="lt">Level 16</span></div><div class="lvtip" id="lvtip" aria-hidden="true"><svg viewBox="0 0 38 26" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M36 20C26 22 12 18 5 6"/><path d="M4 14L5 5l9 2"/></svg><span id="lvtxt">Hover me!</span></div></div><div class="skinwrap" id="skinwrap"><button type="button" class="skinbtn" id="skinbtn" aria-expanded="false" aria-controls="skincard"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4.5" fill="none" stroke="currentColor" stroke-width="2"/><g fill="currentColor"><circle cx="8.2" cy="8.2" r="1.6"/><circle cx="15.8" cy="8.2" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="8.2" cy="15.8" r="1.6"/><circle cx="15.8" cy="15.8" r="1.6"/></g></svg><span>Pick me a skin</span></button><div class="sndbox" id="sndbox"><button type="button" class="sndbtn" id="sndbtn" aria-label="Sound settings" aria-expanded="false" aria-controls="sndpanel" title="Sound settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5v5h4l5 4v-13l-5 4z" fill="currentColor"/><g class="skw"><path d="M16.5 9a4.2 4.2 0 0 1 0 6"/><path d="M19 6.5a8 8 0 0 1 0 11"/></g><path class="skxx" d="M17 9.5l5 5M22 9.5l-5 5"/></svg></button><div class="sndpanel" id="sndpanel"><button type="button" class="sndmute" id="sndmute" aria-label="Mute sounds" aria-pressed="false" title="Mute"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5v5h4l5 4v-13l-5 4z" fill="currentColor"/><g class="skw"><path d="M16.5 9a4.2 4.2 0 0 1 0 6"/><path d="M19 6.5a8 8 0 0 1 0 11"/></g><path class="skxx" d="M17 9.5l5 5M22 9.5l-5 5"/></svg></button><input type="range" id="sndrange" class="sndrange" min="0" max="100" step="1" value="50" aria-label="Volume"><output id="sndval" for="sndrange">50</output></div></div><div class="skincard" id="skincard" role="dialog" aria-label="Your skin for the next game" hidden><button type="button" class="skm" id="skm" aria-label="Mute sounds" aria-pressed="false" title="Sound on/off"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5v5h4l5 4v-13l-5 4z" fill="currentColor"/><g class="skw"><path d="M16.5 9a4.2 4.2 0 0 1 0 6"/><path d="M19 6.5a8 8 0 0 1 0 11"/></g><path class="skxx" d="M17 9.5l5 5M22 9.5l-5 5"/></svg></button><button type="button" class="skx" id="skx" aria-label="Close">&times;</button><div class="skreel" id="skreel" aria-hidden="true"><div class="skstrip" id="skstrip"></div><i class="skmark"></i></div><div class="skart"><img id="skimg" alt="" width="120" height="218"></div><div class="skbody"><span class="skkick">Your next game</span><b id="skname">Kayle</b><span class="sksub" id="sksub"></span><span class="skacts"><button type="button" class="skagain" id="skagain">Roll again</button><button type="button" class="sk3d" id="sk3d" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.8 20 7.3v9.4l-8 4.5-8-4.5V7.3z"/><path d="M4 7.3l8 4.5 8-4.5M12 11.8v9.4"/></svg>View in 3D</button></span></div></div></div><a class="gamesbtn" id="gamesbtn" href="#games" title="Jump to the minigames"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="7" width="19" height="11" rx="5.5"/><path d="M8 10.5v4M6 12.5h4"/><circle cx="15.5" cy="11.5" r=".9" fill="currentColor"/><circle cx="18" cy="13.7" r=".9" fill="currentColor"/></svg><span>More minigames</span></a></div>
+    <a class="wdpill" href="#wdrop"><b>New</b><span class="lg"><span class="sf" aria-hidden="true">&#10052;</span> Winter drop is live: free stickers over &euro;40 or free shipping over &euro;100</span><span class="sh">Free stickers over &euro;40</span><i aria-hidden="true">&rarr;</i></a>
     <h1 id="top">Kayle 1v9</h1>
     <p>Learn to scale, survive and carry games on Kayle with the German bald prodigy.</p>
     <div class="btns">
@@ -2215,8 +2217,10 @@ section[data-off] *,section[data-off] *::before,section[data-off] *::after,.hero
     <h2>Coaching</h2>
     <p class="lead">One-on-one sessions in English, over Discord. Pick the level that matches where you are, then choose a time that works in your time zone.</p>
     <div class="cq" id="cq"></div>
-    <div class="tier">
-      <div><h3>Level 6 Review</h3><p>I watch one of your games and send a recorded breakdown: wave management, itemization and the moments you lost the game.</p></div>
+    <div class="tiers">
+    <div class="tier tc" data-lv="6">
+      <div class="tart"><img src="img/lv6.webp" alt="" width="600" height="1000" decoding="async"><span class="tkick"><span class="tpips"><i class="on"></i><i class=""></i><i class=""></i></span>Power spike · Level 6</span></div>
+      <div class="tbody"><div><h3>Level 6 Review</h3><p>I watch one of your games and send a recorded breakdown: wave management, itemization and the moments you lost the game.</p></div>
       <div class="price">€25<small>per review</small></div>
       <button type="button" class="btn tbtn" data-tier="review" aria-expanded="false" aria-controls="rq-review">Book review</button>
       <div class="rq" id="rq-review"><div class="rqi"><form class="rqf" novalidate>
@@ -2232,9 +2236,11 @@ section[data-off] *,section[data-off] *::before,section[data-off] *::after,.hero
         <p class="rqe" role="alert" hidden></p>
         <div class="rqa"><button type="submit" class="btn rqs">Send request</button><button type="button" class="rqc">Cancel</button></div>
       </form><div class="rqok" hidden><h4>Request received</h4><p class="rqm"></p><a class="btn rqb" hidden>Pick a time</a><a class="btn rqg2" hidden target="_blank" rel="noopener">Open form and send</a><p class="rqpn" hidden>Payment: pay now to lock in your session. Your time slot is reserved once I have both your request and your payment, so please send the request first and add your Discord name to the payment note.</p><a class="btn rqpp" hidden target="_blank" rel="noopener">Pay with PayPal</a><a class="btn rqwp" hidden target="_blank" rel="noopener">Pay with Wise</a><p class="rqwn" hidden>Paying with Wise? Message me your Discord name and the name on your Wise account, so I can match your payment to your request.</p><a class="btn rqpay" hidden target="_blank" rel="noopener">Pay with StreamElements</a></div></div></div>
+      </div>
     </div>
-    <div class="tier">
-      <div><h3>Level 11 Session</h3><p>Ninety minutes live. We play or review together and fix your laning, your build path and your fight timing as they come up.</p></div>
+    <div class="tier tc" data-lv="11">
+      <div class="tart"><img src="img/lv11.webp" alt="" loading="lazy" decoding="async" style="object-position:72% 0"><span class="tbadge">Most booked</span><span class="tkick"><span class="tpips"><i class="on"></i><i class="on"></i><i class=""></i></span>Power spike · Level 11</span></div>
+      <div class="tbody"><div><h3>Level 11 Session</h3><p>Ninety minutes live. We play or review together and fix your laning, your build path and your fight timing as they come up.</p></div>
       <div class="price">€35<small>90 minutes</small></div>
       <button type="button" class="btn tbtn" data-tier="session" aria-expanded="false" aria-controls="rq-session">Book session</button>
       <div class="rq" id="rq-session"><div class="rqi"><form class="rqf" novalidate>
@@ -2250,9 +2256,11 @@ section[data-off] *,section[data-off] *::before,section[data-off] *::after,.hero
         <p class="rqe" role="alert" hidden></p>
         <div class="rqa"><button type="submit" class="btn rqs">Send request</button><button type="button" class="rqc">Cancel</button></div>
       </form><div class="rqok" hidden><h4>Request received</h4><p class="rqm"></p><a class="btn rqb" hidden>Pick a time</a><a class="btn rqg2" hidden target="_blank" rel="noopener">Open form and send</a><p class="rqpn" hidden>Payment: pay now to lock in your session. Your time slot is reserved once I have both your request and your payment, so please send the request first and add your Discord name to the payment note.</p><a class="btn rqpp" hidden target="_blank" rel="noopener">Pay with PayPal</a><a class="btn rqwp" hidden target="_blank" rel="noopener">Pay with Wise</a><p class="rqwn" hidden>Paying with Wise? Message me your Discord name and the name on your Wise account, so I can match your payment to your request.</p><a class="btn rqpay" hidden target="_blank" rel="noopener">Pay with StreamElements</a></div></div></div>
+      </div>
     </div>
-    <div class="tier">
-      <div><h3>Level 16 Program</h3><p>Four weekly sessions with homework and a written plan. Built for players who want a rank climb, not a single tip.</p></div>
+    <div class="tier tc" data-lv="16">
+      <div class="tart"><img src="img/lv16.webp" alt="" width="600" height="1000" decoding="async"><span class="tkick"><span class="tpips"><i class="on"></i><i class="on"></i><i class="on"></i></span>Power spike · Level 16</span></div>
+      <div class="tbody"><div><h3>Level 16 Program</h3><p>Four weekly sessions with homework and a written plan. Built for players who want a rank climb, not a single tip.</p></div>
       <div class="price">€150<small>four sessions</small></div>
       <button type="button" class="btn tbtn" data-tier="program" aria-expanded="false" aria-controls="rq-program">Start program</button>
       <div class="rq" id="rq-program"><div class="rqi"><form class="rqf" novalidate>
@@ -2268,6 +2276,8 @@ section[data-off] *,section[data-off] *::before,section[data-off] *::after,.hero
         <p class="rqe" role="alert" hidden></p>
         <div class="rqa"><button type="submit" class="btn rqs">Send request</button><button type="button" class="rqc">Cancel</button></div>
       </form><div class="rqok" hidden><h4>Request received</h4><p class="rqm"></p><a class="btn rqb" hidden>Pick a time</a><a class="btn rqg2" hidden target="_blank" rel="noopener">Open form and send</a><p class="rqpn" hidden>Payment: pay now to lock in your session. Your time slot is reserved once I have both your request and your payment, so please send the request first and add your Discord name to the payment note.</p><a class="btn rqpp" hidden target="_blank" rel="noopener">Pay with PayPal</a><a class="btn rqwp" hidden target="_blank" rel="noopener">Pay with Wise</a><p class="rqwn" hidden>Paying with Wise? Message me your Discord name and the name on your Wise account, so I can match your payment to your request.</p><a class="btn rqpay" hidden target="_blank" rel="noopener">Pay with StreamElements</a></div></div></div>
+      </div>
+    </div>
     </div>
     <p class="tz">Your time zone is <b id="tz">detecting</b>. The times in the picker are already converted to your time zone (<b id="off"></b>). Sessions can start any day between 11:00 and 23:00 Berlin time.</p>
   </div>
@@ -2831,12 +2841,12 @@ var AV = {tz:"Europe/Berlin", from:11, last:23, step:30, days:14, lead:12,
 // Coaching request form: one panel per level.
 (function(){
   var btns = document.querySelectorAll(".tbtn");
-  function close(t){ var b = t.querySelector(".tbtn"); b.setAttribute("aria-expanded", "false"); t.querySelector(".rq").classList.remove("open"); }
+  function close(t){ var b = t.querySelector(".tbtn"); b.setAttribute("aria-expanded", "false"); (t._rq || t.querySelector(".rq")).classList.remove("open"); t.classList.remove("rqon"); }
   function setErr(f, msg, inp){ var e = f.querySelector(".rqe"); e.textContent = msg; e.hidden = !msg; if(inp){ inp.classList.remove("bad"); void inp.offsetWidth; inp.classList.add("bad"); inp.focus(); } }
   var PAYLOGO = {pp: "a/845c493e964a.png", ws: "a/b9d7b6029e1c.png"}; window.PAYLOGO = PAYLOGO;
   function payBtn(a, name, amt, logo){ a.textContent = ""; a.setAttribute("aria-label", "Pay with " + name + " (\u20AC" + amt + ")"); var s = document.createElement("span"); s.textContent = "Pay \u20AC" + amt + " with"; var i = document.createElement("img"); i.src = logo; i.alt = name; i.className = "pal"; a.appendChild(s); a.appendChild(i); }
   function done(t, f, msg){
-    var ok = t.querySelector(".rqok"); f.hidden = true; ok.hidden = false; ok.querySelector(".rqm").textContent = msg;
+    var ok = (t._rq || t).querySelector(".rqok"); f.hidden = true; ok.hidden = false; ok.querySelector(".rqm").textContent = msg;
     var a = ok.querySelector(".rqb");
     var pn = ok.querySelector(".rqpn");
     var amt = Math.round(parseFloat(((t.querySelector(".price").firstChild || {}).textContent || "").replace(/[^0-9.]/g, ""))), plink = CONFIG.paypalLinks && CONFIG.paypalLinks[amt];
@@ -2845,16 +2855,16 @@ var AV = {tz:"Europe/Berlin", from:11, last:23, step:30, days:14, lead:12,
     if(wlink){ var ww = ok.querySelector(".rqwp"); ww.hidden = false; pn.hidden = false; ww.href = wlink; payBtn(ww, "Wise", amt, PAYLOGO.ws); var wn = ok.querySelector(".rqwn"); if(wn) wn.hidden = false; }
     if(CONFIG.payUrl){ var pa = ok.querySelector(".rqpay"); pa.hidden = false; pn.hidden = false; pa.href = CONFIG.payUrl; }
     if(CONFIG.bookingUrl){ a.hidden = false; a.href = CONFIG.bookingUrl; a.target = "_blank"; a.rel = "noopener"; }
-    requestAnimationFrame(function(){ t.querySelector(".rq").classList.add("open"); });
+    requestAnimationFrame(function(){ (t._rq || t.querySelector(".rq")).classList.add("open"); });
   }
   btns.forEach(function(b){
-    var t = b.closest(".tier"), rq = t.querySelector(".rq"), f = t.querySelector("form");
+    var t = b.closest(".tier"), rq = t.querySelector(".rq"), f = t.querySelector("form"); t._rq = rq; rq._tier = t;
     if(window.KPICK) KPICK.init(f);
     b.addEventListener("click", function(){
       var open = b.getAttribute("aria-expanded") === "true";
       document.querySelectorAll(".tier").forEach(function(o){ if(o !== t) close(o); });
       if(open){ close(t); return; }
-      b.setAttribute("aria-expanded", "true"); rq.classList.add("open");
+      b.setAttribute("aria-expanded", "true"); if(window.RQDRAWER) RQDRAWER(t, rq); rq.classList.add("open"); t.classList.add("rqon");
       setTimeout(function(){ if(!f.hidden){ var i = f.querySelector("input"); if(i) i.focus({preventScroll:true}); } }, 450);
     });
     t.querySelector(".rqc").addEventListener("click", function(){ close(t); b.focus(); });
@@ -3089,7 +3099,10 @@ if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches){
 (function(){
   var br = document.getElementById("brand"), bb = document.getElementById("brandbtn"), still0 = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
   if(br && bb){
-    var bt = document.getElementById("brandtip"); if(bt) setTimeout(function(){ bt.classList.add("show"); }, still0 ? 0 : 2300);
+    var bt = document.getElementById("brandtip"), lvEl = document.getElementById("level"), btShown = false;
+    function btShow(){ if(btShown || !bt) return; btShown = true; setTimeout(function(){ bt.classList.add("show"); }, 700); }
+    if(lvEl){ ["pointerenter", "focus", "click"].forEach(function(ev){ lvEl.addEventListener(ev, btShow, {once:true}); }); }
+    setTimeout(btShow, still0 ? 0 : 12000);
     function setB(o){ br.classList.toggle("open", o); bb.setAttribute("aria-expanded", o ? "true" : "false"); }
     bb.addEventListener("click", function(){ setB(!br.classList.contains("open")); });
     document.addEventListener("pointerdown", function(e){ if(br.classList.contains("open") && !br.contains(e.target)) setB(false); });
@@ -4064,7 +4077,7 @@ var PATCHM = "16.21", PREVM = "16.20", CHECKEDM = "30 Oct 2026";
     var o = new IntersectionObserver(function(en){ if(en[0].isIntersecting){ o.disconnect(); go(); } }, {threshold: 0.3});
     o.observe(node);
   }
-  var DD = {chart:true, runes:true, sb:true, boots:true, items:true, sp:true};
+  var DD = {chart:true, runes:true, sb:false, boots:false, items:true, sp:false};
   var CHEV = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>';
   function dropdown(key, title, onOpen, onClose){
     var hdr = el("button", "bdd"); hdr.type = "button";
@@ -4383,14 +4396,14 @@ var PATCHM = "16.21", PREVM = "16.20", CHECKEDM = "30 Oct 2026";
     function count(){
       var id = ++cnt, nums = [].slice.call(w.querySelectorAll(".sbnum b")), t0 = performance.now();
       if(reduce){ nums.forEach(function(n){ n.textContent = parseFloat(n.dataset.v).toFixed(2) + "%"; }); return; }
-      nums.forEach(function(n){ n.textContent = "0.00%"; });
+      nums.forEach(function(n){ n.textContent = (parseFloat(n.dataset.v) * .5).toFixed(2) + "%"; });
       (function tick(now){
         if(id !== cnt) return;
         var any = false;
         nums.forEach(function(n){
-          var li = n.closest("li"), delay = parseFloat(li.style.getPropertyValue("--i")) * 110 + parseFloat(li.style.getPropertyValue("--c")) * 220 + 300;
-          var q = Math.min(1, Math.max(0, (now - t0 - delay) / 1100)), e = 1 - Math.pow(1 - q, 3);
-          n.textContent = (parseFloat(n.dataset.v) * e).toFixed(2) + "%"; if(q < 1) any = true;
+          var li = n.closest("li"), delay = parseFloat(li.style.getPropertyValue("--i")) * 60 + parseFloat(li.style.getPropertyValue("--c")) * 120 + 60;
+          var q = Math.min(1, Math.max(0, (now - t0 - delay) / 900)), e = 1 - Math.pow(1 - q, 3);
+          n.textContent = (parseFloat(n.dataset.v) * (.5 + .5 * e)).toFixed(2) + "%"; if(q < 1) any = true;
         });
         if(any) requestAnimationFrame(tick);
       })(t0);
@@ -7653,7 +7666,136 @@ var CHSTAT = {subs:69600, goal:100000, videos:1295, checked:"30 Oct 2026"};
 })();
 </script>
 <script>(function(){var u=["a/44db36e54e63.webp", "a/9820bc649948.webp", "a/5585aac38793.webp", "a/500fb9be1303.webp", "a/b49fe5743f33.webp", "a/3e31c9f64cc0.webp", "a/0e3ba7f51302.webp", "a/04a88ff365cd.webp", "a/2d8a1e90779e.webp", "a/10fe5b989699.webp", "a/eabca3738af6.webp", "a/94f706f6383b.webp", "a/bcff8c9c18c3.webp", "a/83766c25dfd1.webp", "a/97f1faa6b593.webp", "a/554f4b94f541.webp", "a/bcc22a4f1231.webp", "a/63234abbb727.webp", "a/7d9e79c33e73.jpg", "a/8295f844fdf8.jpg", "a/b1eefe53dc24.jpg", "a/845c493e964a.png", "a/b9d7b6029e1c.png", "a/d075e8bf19bc.jpg", "a/136bbddb3794.jpg", "a/d4261614717d.jpg", "a/5d6a1a39303a.jpg", "a/2b36c9279166.jpg", "a/ff2f26232242.jpg", "a/337496d58b46.jpg", "a/eab3686e2984.jpg", "a/0d7490e802f3.webp", "a/ae5f6763994a.webp", "a/52d489a6298d.webp", "a/a8dad65f3ba1.webp", "a/9b765a33120d.webp", "a/7d636f2aaa9a.webp", "a/fae5bd43cc6b.webp", "a/598aabf8942d.webp", "a/fb045cb1e6fd.webp", "a/6596885159a0.webp", "a/af7859ad0a46.webp", "a/12d0751f1112.webp", "a/d4e9bbc821ff.webp", "a/3f240bafdbc0.webp", "a/04a5ebe195b0.webp", "a/723bdf169ff7.webp", "a/0c9cc49cacde.webp", "a/9cbbeeaf2419.webp", "a/9c03a4f9c360.webp", "a/db88f805c2fc.webp", "a/e3b5c70f52d8.webp", "a/7b915d9f9425.webp", "a/93624a552f30.webp", "a/570564c421c4.webp", "a/03e58a59b33f.webp"];function go(){var i=0;(function n(){if(i>=u.length)return;var im=new Image();im.decoding="async";im.onload=im.onerror=function(){setTimeout(n,60)};im.src=u[i++]})()}function idle(){(window.requestIdleCallback||function(f){setTimeout(f,400)})(go,{timeout:4000})}if(document.readyState==="complete")setTimeout(idle,1200);else addEventListener("load",function(){setTimeout(idle,1200)})})();</script>
-</body>
+
+    <style id="rd">
+    /* --- 3. tighter rhythm --- */
+    .hero{padding-bottom:110px}
+    .hero::after{height:300px;background:linear-gradient(to bottom,rgba(11,18,38,0) 0%,rgba(11,18,38,.45) 45%,rgba(11,18,38,.85) 75%,var(--bg) 100%)}
+    section{padding:56px 22px}
+    .lead{margin-bottom:26px}
+    @media (max-width:720px){.hero{padding-bottom:64px}.hero::after{height:200px}section{padding:44px 18px}nav{margin-bottom:22px}}
+
+    /* --- 1. coaching cards --- */
+    .tiers{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:6px}
+    .tier.tc{display:flex;flex-direction:column;align-items:stretch;gap:0;padding:0;border:1px solid var(--line);border-radius:20px;overflow:hidden;background:linear-gradient(180deg,#16244A,#0F1A33);box-shadow:var(--drop);transition:transform .45s cubic-bezier(.22,1,.36,1),box-shadow .45s,border-color .3s}
+    .tier.tc:last-of-type{border-bottom:1px solid var(--line)}
+    .tier.tc:hover,.tier.tc.rqon{border-color:rgba(240,185,75,.7);box-shadow:0 24px 50px -22px rgba(0,0,0,.8),0 0 0 1px rgba(240,185,75,.35),0 0 40px -10px rgba(240,185,75,.35)}
+    .tart{position:relative;width:100%;height:0;padding-top:75%;overflow:hidden;background:#16244A;margin-bottom:-1px}
+    .tart img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 12%;display:block}
+    .tart::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(240,185,75,.22),rgba(240,185,75,0) 70%);opacity:0;transition:opacity .5s ease;pointer-events:none}
+    .tier.tc:hover .tart::before,.tier.tc.rqon .tart::before{opacity:1}
+    .tart::after{content:"";position:absolute;inset:0 0 -2px;background:linear-gradient(180deg,rgba(11,18,38,0) 40%,rgba(15,26,51,.92) 100%)}
+    .tkick{position:absolute;left:18px;bottom:14px;z-index:1;display:flex;align-items:center;gap:10px;font-size:.7rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);text-shadow:0 2px 6px rgba(0,0,0,.6)}
+    .tpips{display:inline-flex;gap:4px}
+    .tpips i{width:9px;height:9px;transform:rotate(45deg);border:1px solid var(--gold);background:transparent}
+    .tpips i.on{background:var(--gold);box-shadow:0 0 8px rgba(240,185,75,.7)}
+    .tbadge{position:absolute;top:14px;left:14px;z-index:1;padding:5px 11px;border-radius:99px;background:var(--gold);color:#0F1A33;font-size:.72rem;font-weight:800;letter-spacing:.04em;box-shadow:0 6px 18px rgba(0,0,0,.45)}
+    .tier.tc[data-lv="11"]{border-color:rgba(240,185,75,.55)}
+    .tbody{display:flex;flex-direction:column;gap:12px;padding:18px 20px 20px;flex:1}
+    .tier.tc h3{font-size:1.35rem;font-weight:700;margin:0}
+    .tier.tc .tbody>div:first-child p{margin:6px 0 0;font-size:.93rem;line-height:1.5;color:var(--muted);max-width:none}
+    .tier.tc .price{display:flex;align-items:baseline;gap:8px;text-align:left;font-size:2rem;margin-top:auto}
+    .tier.tc .price small{display:inline;font-size:.85rem}
+    .tier.tc .btn.tbtn{grid-column:auto;justify-self:auto;width:100%;text-align:center;padding:13px 18px;border-radius:12px}
+    .tier.tc .rq{grid-column:auto}
+    /* the request form opens in a drawer under the row, the cards keep their place */
+    .rqhost{grid-column:1/-1;position:relative;display:grid;grid-template-rows:0fr;margin-top:-18px;transition:grid-template-rows .6s cubic-bezier(.22,1,.36,1),margin .45s cubic-bezier(.22,1,.36,1)}
+    .rqhost.open{grid-template-rows:1fr;margin-top:0}
+    .rqhost>div{min-height:0;overflow:hidden}
+    .rqhost .rq{display:block}
+    .rqhost .rqi{padding:14px 2px 6px}
+    .rqhost .rqf,.rqhost .rqok{margin-top:0;opacity:0;transform:translateY(8px);transition:opacity .35s ease,transform .45s cubic-bezier(.22,1,.36,1)}
+    .rqhost.open .rqf,.rqhost.open .rqok{opacity:1;transform:none;transition-delay:.18s}
+    .rqhost::before{content:"";position:absolute;left:var(--px,50%);top:6px;width:18px;height:18px;transform:translateX(-50%) rotate(45deg);border-left:2px solid var(--gold);border-top:2px solid var(--gold);background:var(--panel);opacity:0;transition:opacity .3s .25s,left .45s cubic-bezier(.22,1,.36,1);z-index:1}
+    .rqhost.open::before{opacity:1}
+    .tier.tc .tbody>.rq{display:none}
+    @media (max-width:860px){.tiers{grid-template-columns:1fr 1fr}.tier.tc[data-lv="16"]{grid-column:1/-1}.tier.tc[data-lv="16"] .tart{padding-top:43.75%}.tier.tc[data-lv="16"] .tart img{object-position:50% 18%}}
+    @media (max-width:620px){.tiers{grid-template-columns:1fr;gap:14px}.tier.tc .tart,.tier.tc[data-lv="16"] .tart{padding-top:50%}}
+
+    /* --- 2. mobile hero --- */
+    .burger{display:none}
+    .playbtn{display:none}
+    .wdpill .sh{display:none}
+    @media (max-width:720px){
+      .hero .wrap{display:flex;flex-direction:column}
+      .hero .wrap>nav{order:0}.hero .wrap>#top{order:1;margin-top:6px}.hero .wrap>h1+p{order:2;margin:14px 0 20px;font-size:1.08rem}.hero .wrap>.btns{order:3}
+      .hero .wrap>.wdpill{order:4;margin:22px 0 0;align-self:flex-start;max-width:100%}
+      .hero .wrap>.playbtn{order:5;margin-top:12px}.hero .wrap>.lvrow{order:6;margin-top:14px}
+      .wdpill .lg{display:none}.wdpill .sh{display:inline}
+      .wdpill{font-size:.86rem;padding:6px 14px 6px 6px}
+      nav{flex-wrap:nowrap;gap:12px;margin-bottom:22px}
+      nav ul#mainnav li.srli{padding:4px 6px 10px}
+  nav ul#mainnav li.srli .srch{display:block;flex:none;width:100%;max-width:none;margin:0;order:0}
+  nav ul#mainnav li.srli .srch input{width:100%}
+  nav ul#mainnav li.srli .srk{display:none}
+      .burger{display:grid;gap:5px;width:44px;height:44px;place-content:center;margin-left:auto;border:1px solid rgba(240,185,75,.55);border-radius:12px;background:rgba(11,18,38,.72);cursor:pointer;z-index:12}
+      .burger i{display:block;width:20px;height:2px;border-radius:2px;background:var(--gold);transition:transform .3s,opacity .3s}
+      .burger[aria-expanded="true"] i:nth-child(1){transform:translateY(7px) rotate(45deg)}.burger[aria-expanded="true"] i:nth-child(2){opacity:0}.burger[aria-expanded="true"] i:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+      nav ul#mainnav{position:absolute;top:calc(100% + 10px);left:0;right:0;z-index:11;flex-direction:column;gap:0;padding:8px;border-radius:16px;border:1px solid rgba(240,185,75,.4);background:rgba(11,18,38,.96);box-shadow:0 24px 50px -16px rgba(0,0,0,.9);opacity:0;transform:translateY(-8px);pointer-events:none;transition:opacity .25s,transform .3s cubic-bezier(.22,1,.36,1)}
+      nav ul#mainnav.open{opacity:1;transform:none;pointer-events:auto}
+      nav ul#mainnav li a{display:block;padding:13px 16px;border-radius:10px;font-size:1.05rem;font-weight:600;opacity:1}
+      nav ul#mainnav li a:active{background:rgba(240,185,75,.15)}
+      .playbtn{display:inline-flex;align-items:center;gap:10px;align-self:flex-start;padding:9px 16px 9px 12px;border-radius:99px;border:2px solid var(--gold);background:rgba(11,18,38,.62);color:var(--gold);font:inherit;font-weight:700;cursor:pointer}
+      .playbtn svg{width:22px;height:22px}
+      .playbtn small{font-weight:500;font-size:.78rem;color:var(--text);opacity:.85}
+      .playbtn[aria-expanded="true"] small{display:none}
+      .lvrow{display:none}
+      .lvrow.show{display:flex}
+      .lvwrap .lvtip{display:none}
+    }
+
+    /* --- 5. section moods --- */
+    #coaching,#patch,#builds,#finder,#matchups,#videos,#merch{position:relative;isolation:isolate}
+    #coaching::before,#patch::before,#matchups::before,#finder::before,#videos::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none}
+    #coaching::before{background:url(img/lv16.webp) right -8% top 8%/min(720px,90vw) auto no-repeat;opacity:.11;filter:grayscale(.6) saturate(.8);-webkit-mask-image:radial-gradient(70% 70% at 78% 30%,#000 20%,transparent 75%);mask-image:radial-gradient(70% 70% at 78% 30%,#000 20%,transparent 75%)}
+    #patch::before{background:repeating-linear-gradient(180deg,transparent 0 34px,rgba(240,185,75,.055) 34px 35px),linear-gradient(90deg,rgba(255,122,122,.0),rgba(240,185,75,.06) 1px,transparent 1px) 72px 0/100% 100% no-repeat;-webkit-mask-image:linear-gradient(180deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(180deg,transparent,#000 12%,#000 88%,transparent);opacity:.9}
+    #matchups::before{background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800'><g fill='none' stroke='%23F0B94B' stroke-width='3' opacity='.55'><path d='M80 740 L1120 60'/><path d='M80 740 Q200 380 600 380 T1120 60' stroke-dasharray='10 14' opacity='.6'/><path d='M80 740 L80 60 L1120 60 L1120 740 Z' opacity='.4'/><circle cx='80' cy='740' r='54'/><circle cx='1120' cy='60' r='54'/><circle cx='600' cy='400' r='34' stroke-dasharray='6 8'/></g></svg>") center/min(1100px,100%) auto no-repeat;opacity:.11}
+    #finder::before{background:radial-gradient(circle at 20% 30%,rgba(240,185,75,.14),transparent 40%),radial-gradient(circle at 80% 70%,rgba(74,222,128,.08),transparent 40%)}
+    #videos::before{background:repeating-linear-gradient(90deg,rgba(255,255,255,.035) 0 2px,transparent 2px 46px);-webkit-mask-image:linear-gradient(180deg,#000,transparent 70%);mask-image:linear-gradient(180deg,#000,transparent 70%)}
+    @media (max-width:720px){#coaching::before{background-size:120vw auto;background-position:right -30% top 0;opacity:.09}}
+
+    /* --- 6. motion polish --- */
+    .bsbcard,.mucard,.video,.gcard,.scard,.mcard{transition:transform .4s cubic-bezier(.22,1,.36,1),box-shadow .4s,border-color .3s}
+    .bsbcard:hover,.mucard:hover,.gcard:hover,.scard:hover{transform:translateY(-4px);box-shadow:0 22px 44px -20px rgba(0,0,0,.85),0 0 0 1px rgba(240,185,75,.22)}
+    .video:hover{transform:translateY(-5px) scale(1.01)}
+    @media (prefers-reduced-motion:reduce){.tier.tc,.bsbcard,.mucard,.video,.gcard,.scard,.mcard,.tart img{transition:none!important}.tier.tc:hover,.bsbcard:hover,.mucard:hover,.video:hover,.gcard:hover,.scard:hover{transform:none}}
+    @media (hover:none){.tier.tc:hover,.bsbcard:hover,.mucard:hover,.video:hover,.gcard:hover,.scard:hover{transform:none}}
+    </style>
+    <script>
+    (function(){
+      var bg = document.getElementById("burger"), ul = document.getElementById("mainnav");
+      if(bg && ul){
+        function set(o){ ul.classList.toggle("open", o); bg.setAttribute("aria-expanded", o ? "true" : "false"); }
+        bg.addEventListener("click", function(){ set(!ul.classList.contains("open")); });
+        ul.addEventListener("click", function(e){ if(e.target.closest("a")) set(false); });
+        document.addEventListener("pointerdown", function(e){ if(ul.classList.contains("open") && !ul.contains(e.target) && !bg.contains(e.target)) set(false); });
+        document.addEventListener("keydown", function(e){ if(e.key === "Escape") set(false); });
+      }
+      // phone: the search box moves into the menu
+  var srf = document.getElementById("srch"), srHome = srf && srf.parentNode, srNext = srf && srf.nextSibling, mq = window.matchMedia("(max-width:720px)");
+  function placeSearch(){ if(!srf || !ul) return; if(mq.matches){ var li = ul.querySelector("li.srli"); if(!li){ li = document.createElement("li"); li.className = "srli"; ul.insertBefore(li, ul.firstChild); } if(srf.parentNode !== li) li.appendChild(srf); } else if(srf.parentNode !== srHome){ srHome.insertBefore(srf, srNext); var li2 = ul.querySelector("li.srli"); if(li2) li2.remove(); } }
+  placeSearch(); if(mq.addEventListener) mq.addEventListener("change", placeSearch); else mq.addListener(placeSearch);
+  var pb = document.getElementById("playbtn"), lr = document.getElementById("lvrow");
+      if(pb && lr){ pb.addEventListener("click", function(){ var o = !lr.classList.contains("show"); lr.classList.toggle("show", o); pb.setAttribute("aria-expanded", o ? "true" : "false"); if(o){ var lv = document.getElementById("level"); if(lv) lv.classList.remove("idle"); } }); }
+      // request drawer: one shared panel under the three cards
+      var tiersEl = document.querySelector(".tiers");
+      if(tiersEl){
+        var host = document.createElement("div"); host.className = "rqhost"; var hostIn = document.createElement("div"); host.appendChild(hostIn); tiersEl.appendChild(host);
+        function place(t){ var tr = t.getBoundingClientRect(), hr = host.getBoundingClientRect(); host.style.setProperty("--px", Math.round(tr.left - hr.left + tr.width / 2) + "px"); }
+        window.RQDRAWER = function(t, rq){
+          var cur = hostIn.firstElementChild;
+          if(cur && cur !== rq){ cur.classList.remove("open"); if(cur._tier){ cur._tier.classList.remove("rqon"); cur._tier.querySelector(".tbody").appendChild(cur); } }
+          if(cur !== rq) hostIn.appendChild(rq);
+          place(t); host.classList.add("open");
+        };
+        new MutationObserver(function(){ var rq = hostIn.firstElementChild; var open = rq && rq.classList.contains("open"); host.classList.toggle("open", !!open); if(open && rq._tier) place(rq._tier); }).observe(hostIn, {attributes:true, subtree:true, attributeFilter:["class"], childList:true});
+        window.addEventListener("resize", function(){ var rq = hostIn.firstElementChild; if(rq && rq._tier) place(rq._tier); });
+      }
+      // the open drawer scrolls into view once it has grown
+      document.querySelectorAll(".tier.tc .tbtn").forEach(function(b){ b.addEventListener("click", function(){ setTimeout(function(){ if(b.getAttribute("aria-expanded") === "true"){ var h = document.querySelector(".rqhost"); if(h){ var r = h.getBoundingClientRect(); if(r.bottom > innerHeight - 40 || r.top < 0) h.scrollIntoView({behavior:"smooth", block:"nearest"}); } } }, 500); }); });
+    })();
+    </script>
+    </body>
 </html>
 
 <script>
@@ -8168,8 +8310,8 @@ var CHSTAT = {subs:69600, goal:100000, videos:1295, checked:"30 Oct 2026"};
     if(el.matches(".rqpp,.rqwp,.rqpay")) return track("coaching-pay-click", {method: el.classList.contains("rqpp") ? "paypal" : el.classList.contains("rqwp") ? "wise" : "other", tier: tierName(el)});
     if(/youtube\.com|youtu\.be|twitch\.tv|discord\.(gg|com)|tiktok\.com|x\.com|twitter\.com|instagram\.com/.test(href)) return track("social-click", {to: (href.match(/\/\/(?:www\.)?([^/]+)/) || [])[1] || href});
   }, true);
-  function tierName(el){ var t = el.closest(".tier"); var h = t && t.querySelector("h3,h4,b"); return h ? h.textContent.trim().slice(0, 40) : ""; }
-  document.addEventListener("submit", function(e){ if(e.target.closest(".tier")) track("coaching-request", {tier: tierName(e.target)}); }, true);
+  function tierName(el){ var rqx = el.closest(".rq"); var t = (rqx && rqx._tier) || el.closest(".tier"); var h = t && t.querySelector("h3,h4,b"); return h ? h.textContent.trim().slice(0, 40) : ""; }
+  document.addEventListener("submit", function(e){ if(e.target.closest(".tier,.rq")) track("coaching-request", {tier: tierName(e.target)}); }, true);
   /* how far people scroll: one event per section the first time it is seen */
   if("IntersectionObserver" in window){
     var seen = {};

@@ -71,6 +71,11 @@ for _v in reversed(_vd):
     s = s[:_vs] + '\n'.join(_rows) + s[_ve:]
 os.makedirs(out, exist_ok=True)
 
+# --- Redesign pass (coaching cards, mobile hero, spacing, backdrops, motion) --------------------
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import redesign
+s = redesign.apply(s)
+
 # --- Move big inline images (jpeg/webp/png data URIs) into files under a/ -------------------------
 # The artifact keeps every image inline (one file). For the real site the big ones become separate,
 # cacheable files with content-hash names, so the HTML is much smaller and parses faster.
