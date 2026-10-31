@@ -941,7 +941,7 @@ def matchups_part(h, lane, P, chi_keys=None):
     known_items = MU_ITEMS if top else MU_ITEMS_MID
     a, b, raw = find_var(h, blk, var)
     old = json.loads(raw)
-    champs = {v['c'] for v in old['list'].values()} if top else chi_keys
+    champs = chi_keys if chi_keys else {v['c'] for v in old['list'].values()}
     try:
         data, errs, total = mu_fetch(lane)
     except Exception as ex:  # noqa: BLE001
@@ -1032,8 +1032,7 @@ def lane_parts(h, lane, P):
     except Exception as ex:  # noqa: BLE001
         kept(P, 'spells: %s' % ex)
     chi = None
-    if lane != 'top':
-        a, b, raw = find_var(h, 'MATCHUPS LIVE', 'MULIVE')  # noqa: F841
+    if True:  # both lanes: a matchup needs a champion icon in CHI
         m = re.search(r'var CHI = \{', h)
         chi = {int(k) for k in re.findall(r'"(\d+)":\s*"data:', h[m.end() - 1:m.end() - 1 + 3000000].split('};')[0])}
     try:
