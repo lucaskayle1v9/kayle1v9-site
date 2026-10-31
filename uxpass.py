@@ -130,7 +130,7 @@ def apply(html, prev_html=None, preview=False):
       <div class="qstop">
         <div class="qstitle"><span class="dtag">Quick start</span><div class="qsh" id="qsh" role="heading" aria-level="2">Who are you against?</div><p id="qsnote"></p></div>
         <div class="tdpick" role="group" aria-label="Your profile">
-          <div class="tdg" id="tdlane"><span class="btl">Lane</span><button type="button" data-v="top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h7v12M3 3l7 6"/></svg>Top</button><button type="button" data-v="mid"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M4 20 20 4M9 15l6-6"/></svg>Mid</button></div>
+          <div class="tdg" id="tdlane"><span class="btl">Lane</span><button type="button" data-v="top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3.5" stroke-width="1.6" opacity=".38"/><path d="M4.5 19.5L19.5 4.5" stroke-width="1.6" opacity=".38"/><path d="M6.5 18V6.5H18" stroke-width="3.2"/></svg>Top</button><button type="button" data-v="mid"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3.5" stroke-width="1.6" opacity=".38"/><path d="M4.5 19.5L19.5 4.5" stroke-width="1.6" opacity=".38"/><path d="M8 16L16 8" stroke-width="3.4"/></svg>Mid</button></div>
           <div class="tdg" id="tdserver"><span class="btl">Server</span><button type="button" data-v="eu"><i class="qsf" data-f="eu"></i>EU</button><button type="button" data-v="china"><i class="qsf" data-f="china"></i>China</button><button type="button" data-v="korea"><i class="qsf" data-f="korea"></i>Korea</button></div>
           <div class="tdg" id="tdtier"><span class="btl">Rank</span><button type="button" data-v="emerald">Emerald+</button><button type="button" data-v="diamond">Diamond+</button><button type="button" data-v="master">Master+</button><button type="button" data-v="all">All</button></div>
         </div>
@@ -161,7 +161,7 @@ def apply(html, prev_html=None, preview=False):
 .tdg{display:inline-flex;align-items:center;gap:3px;padding:4px;border-radius:999px;border:1px solid rgba(255,255,255,.1);background:rgba(11,18,38,.75);box-shadow:inset 0 1px 0 rgba(255,255,255,.04)}
 .tdg .btl{margin:0 8px 0 10px;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
 .tdg button{display:inline-flex;align-items:center;gap:7px;font:inherit;font-size:.86rem;font-weight:600;padding:7px 13px;border:0;border-radius:999px;background:transparent;color:var(--text);cursor:pointer;transition:background .2s,color .2s,transform .25s cubic-bezier(.34,1.56,.64,1)}
-.tdg button svg{width:16px;height:16px;opacity:.8}
+.tdg button svg{width:17px;height:17px}
 .tdg button:hover{background:rgba(240,185,75,.14)}
 .tdg button.on{background:var(--gold);color:#0F1A33;box-shadow:0 4px 14px -4px rgba(240,185,75,.8)}
 .tdg button.on svg{opacity:1}
