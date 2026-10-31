@@ -5,7 +5,32 @@ Usage as a script: redesign.py <in.html> <out.html> [--preview]"""
 import sys, re
 h = ""
 
+PEEK_ANCHOR = r"""    var dd = dropdown(o.dd, o.title, function(){ setTimeout(function(){ if(DD[o.dd]) an.go(); }, 260); }, function(){ if(!DD[o.dd]) an.stop(); });
+    w.appendChild(dd.hdr); w.appendChild(dd.body);"""
+PEEK_NEW = r"""    var dd = dropdown(o.dd, o.title, function(){ setTimeout(function(){ if(DD[o.dd]) an.go(); }, 260); }, function(){ if(!DD[o.dd]) an.stop(); });
+    w.appendChild(dd.hdr); w.appendChild(dd.body);
+    (function(){ // closed card: show the most picked option(s) as small icons in the header
+      var rows = (o.rows(d) || []).slice().sort(function(a, b){ return (b[2] || 0) - (a[2] || 0); });
+      var take = o.dd === "sb" ? 2 : 1, pv = el("span", "bddpv"), names = [];
+      rows.slice(0, take).forEach(function(r, n){
+        var ids = o.isSet ? String(r[0]).split("_").filter(function(x, k, a){ return x && a.indexOf(x) === k && x !== "2003"; }) : [r[0]];
+        if(n) pv.appendChild(el("i", "bddor", "or"));
+        ids.forEach(function(id){ var im = o.opt && o.opt.icon ? o.opt.icon(id) : sbIcon(id); im.width = im.height = 30; pv.appendChild(im); });
+        names.push(o.isSet ? (o.opt && o.opt.name ? o.opt.name(r[0]) : sbName(r[0])) : (ITN[r[0]] || ""));
+      });
+      if(!pv.childNodes.length) return;
+      pv.title = "Most picked: " + names.join(" or "); pv.setAttribute("aria-hidden", "true");
+      var ch = dd.hdr.querySelector(".bddc"); dd.hdr.insertBefore(pv, ch);
+    })();"""
 RAIL = r"""<style id="rail">
+/* closed data cards preview their most picked option */
+.bddpv{display:flex;align-items:center;gap:6px;margin-left:auto;transition:opacity .3s ease,transform .35s cubic-bezier(.22,1,.36,1)}
+.bddpv img{width:30px;height:30px;border-radius:8px;border:1.5px solid rgba(240,185,75,.7);box-shadow:0 3px 8px -3px rgba(0,0,0,.6);object-fit:cover}
+.bddpv .bddor{font-style:normal;font-size:.72rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin:0 2px}
+.bdd .bddpv+.bddc{margin-left:10px}
+.bdd[aria-expanded="true"] .bddpv{opacity:0;transform:translateX(8px);pointer-events:none}
+@media (max-width:420px){.bddpv img{width:26px;height:26px}.bddpv{gap:4px}}
+
 /* section rail: where am I on the page */
 .srail{position:fixed;left:max(22px,calc((100vw - 1000px) / 2 - 190px));top:50%;z-index:40;transform:translate(-12px,-50%);opacity:0;pointer-events:none;transition:opacity .35s ease,transform .45s cubic-bezier(.22,1,.36,1)}
 .srail.show{opacity:1;transform:translate(0,-50%);pointer-events:auto}
@@ -286,6 +311,7 @@ def apply(html, preview=False):
     })();
     </script>
     '''
+    R(PEEK_ANCHOR, PEEK_NEW)
     CSS += RAIL
     if preview:
         CSS += '<div style="position:fixed;left:14px;bottom:14px;z-index:2147482000;padding:6px 12px;border-radius:99px;background:linear-gradient(90deg,#0AC8B9,#0397AB);color:#012;font:600 .76rem Poppins,system-ui,sans-serif;box-shadow:0 6px 20px rgba(0,0,0,.4)">Preview · redesign · not live</div>\n'
