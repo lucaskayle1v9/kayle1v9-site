@@ -47,6 +47,28 @@ if 'function isBooked(t)' not in s:
         '          if(isBooked(t)){ var o = document.createElement("option"); o.value = ""; o.disabled = true; o.className = "booked"; o.textContent = timeLbl(t) + " \\u00b7 booked"; ssel.appendChild(o); }\n'
         '          else opt(ssel, String(t), timeLbl(t));\n'
         '        });'), 1)
+
+import base64
+# --- Newest videos -------------------------------------------------------------------------------
+# videos.json (next to this script) lists new videos for the YouTube tab, newest first:
+# [{"id": "...", "title": "...", "thumb": "thumbs/<id>.webp"}]. A video that the artifact already lists is
+# skipped. Each added video goes to the top of the list and the oldest one drops off, so the tab keeps its size.
+_vd_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'videos.json')
+_vd = json.load(open(_vd_path)) if os.path.exists(_vd_path) else []
+for _v in reversed(_vd):
+    if ('id:"%s"' % _v['id']) in s:
+        continue
+    _key = 'v' + re.sub(r'[^A-Za-z0-9]', '', _v['id'])
+    _img = base64.b64encode(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), _v['thumb']), 'rb').read()).decode()
+    assert s.count('THUMBS = {') == 1, 'THUMBS not found'
+    s = s.replace('THUMBS = {', 'THUMBS = {"%s": "data:image/webp;base64,%s", ' % (_key, _img), 1)
+    _vs = s.index('  videos: [\n') + len('  videos: [\n')
+    _ve = s.index('\n  ]', _vs)
+    _rows = s[_vs:_ve].split('\n')
+    _new = '    {id:"%s", thumb:"%s", title:%s, note:"Watch on YouTube"},' % (_v['id'], _key, json.dumps(_v['title']))
+    _rows = [_new] + _rows[:-1]
+    _rows[-1] = _rows[-1].rstrip(',')
+    s = s[:_vs] + '\n'.join(_rows) + s[_ve:]
 os.makedirs(out, exist_ok=True)
 
 # --- Move big inline images (jpeg/webp/png data URIs) into files under a/ -------------------------
