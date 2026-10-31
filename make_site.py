@@ -15,6 +15,38 @@ extra = ('<link rel="canonical" href="%s">\n<meta property="og:url" content="%s"
          '<meta property="og:site_name" content="Kayle 1v9">\n<link rel="icon" href="favicon.png" type="image/png">\n<link rel="apple-touch-icon" href="apple-touch-icon.png">\n') % (site, site, site, site)
 s = s.replace('<meta name="twitter:card" content="summary_large_image">', '<meta name="twitter:card" content="summary_large_image">\n' + extra, 1)
 assert 'og-image.png' in s, 'meta anchor not found'
+
+# --- Booked coaching slots -----------------------------------------------------------------------
+# bookings.json (next to this script) lists booked sessions in Berlin time: [["YYYY-MM-DD", "HH:MM", minutes], ...].
+# They are written into the booking form on every build, so the nightly sync from the artifact keeps them
+# even when the artifact itself does not have them. The form greys out each booking and the hour before it.
+import json
+_bk_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'bookings.json')
+_bk = json.load(open(_bk_path)) if os.path.exists(_bk_path) else []
+_bk_js = json.dumps(_bk, separators=(', ', ': '))
+_av_plain = 'var AV = {tz:"Europe/Berlin", from:11, last:23, step:30, days:14, lead:12};'
+if _av_plain in s:
+    s = s.replace(_av_plain, 'var AV = {tz:"Europe/Berlin", from:11, last:23, step:30, days:14, lead:12,\n  booked:%s};  // booked sessions in Berlin time: [day, start, minutes]; their slots show greyed out as "booked"' % _bk_js, 1)
+else:
+    s, _n = re.subn(r'(var AV = \{[^\n]*lead:12,\n  booked:)\[.*?\](\};)', lambda m: m.group(1) + _bk_js + m.group(2), s, count=1)
+    assert _n == 1, 'booking config not found'
+if 'function isBooked(t)' not in s:
+    _k = '  function key(ms){ var d = new Date(ms);'
+    assert s.count(_k) == 1, 'booking anchor key() not found'
+    s = s.replace(_k, (
+        '  function isBooked(t){\n'
+        '    return (AV.booked || []).some(function(b){\n'
+        '      var d = b[0].split("-"), hm = b[1].split(":"), s = wall(+d[0], +d[1] - 1, +d[2], +hm[0], +hm[1]);\n'
+        '      return t >= s - 60 * 60000 && t < s + (b[2] || 60) * 60000;  // also the hour before, so no new session runs into a booked one\n'
+        '    });\n'
+        '  }\n') + _k, 1)
+    _f = '        g.forEach(function(t){ opt(ssel, String(t), timeLbl(t)); });'
+    assert s.count(_f) == 1, 'booking anchor fillSlots not found'
+    s = s.replace(_f, (
+        '        g.forEach(function(t){\n'
+        '          if(isBooked(t)){ var o = document.createElement("option"); o.value = ""; o.disabled = true; o.className = "booked"; o.textContent = timeLbl(t) + " \\u00b7 booked"; ssel.appendChild(o); }\n'
+        '          else opt(ssel, String(t), timeLbl(t));\n'
+        '        });'), 1)
 os.makedirs(out, exist_ok=True)
 
 # --- Move big inline images (jpeg/webp/png data URIs) into files under a/ -------------------------
