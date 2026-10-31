@@ -26,7 +26,7 @@ def apply(html, preview=False):
         if not m: raise RuntimeError("redesign: tier " + lv + " not found")
         pipsh = "".join('<i class="%s"></i>' % ("on" if i < pips else "") for i in range(3))
         new = ('    <div class="tier tc" data-lv="%s">\n'
-               '      <div class="tart"><img src="%s" alt="" width="600" height="1000" decoding="async">%s'
+               '      <div class="tart"><img src="%s" alt="" width="960" height="720" decoding="async">%s'
                '<span class="tkick"><span class="tpips">%s</span>%s</span></div>\n'
                '      <div class="tbody"><div><h3>%s</h3>') % (lv, art, badge, pipsh, kick, m.group(1))
         h = h[:m.start()] + new + h[m.end():]
@@ -37,7 +37,6 @@ def apply(html, preview=False):
     R('    <div class="cq" id="cq"></div>\n    <div class="tier tc"', '    <div class="cq" id="cq"></div>\n    <div class="tiers">\n    <div class="tier tc"')
     R('    <p class="tz">Your time zone is', '    </div>\n    <p class="tz">Your time zone is')
     # level 11 art focus: the Transcended splash sits right of centre
-    h = h.replace('<img src="img/lv11.webp" alt="" width="600" height="1000" decoding="async">', '<img src="img/lv11.webp" alt="" loading="lazy" decoding="async" style="object-position:72% 0">')
 
     # ---------- 2. mobile hero: burger menu, one Play button, short promo ----------
     R('      <ul>\n        <li><a href="#coaching">Coaching</a></li>',
@@ -98,7 +97,7 @@ def apply(html, preview=False):
     .tier.tc:last-of-type{border-bottom:1px solid var(--line)}
     .tier.tc:hover,.tier.tc.rqon{border-color:rgba(240,185,75,.7);box-shadow:0 24px 50px -22px rgba(0,0,0,.8),0 0 0 1px rgba(240,185,75,.35),0 0 40px -10px rgba(240,185,75,.35)}
     .tart{position:relative;width:100%;height:0;padding-top:75%;overflow:hidden;background:#16244A;margin-bottom:-1px}
-    .tart img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 12%;display:block}
+    .tart img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 50%;display:block}
     .tart::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(240,185,75,.22),rgba(240,185,75,0) 70%);opacity:0;transition:opacity .5s ease;pointer-events:none}
     .tier.tc:hover .tart::before,.tier.tc.rqon .tart::before{opacity:1}
     .tart::after{content:"";position:absolute;inset:0 0 -2px;background:linear-gradient(180deg,rgba(11,18,38,0) 40%,rgba(15,26,51,.92) 100%)}
@@ -126,8 +125,8 @@ def apply(html, preview=False):
     .rqhost::before{content:"";position:absolute;left:var(--px,50%);top:6px;width:18px;height:18px;transform:translateX(-50%) rotate(45deg);border-left:2px solid var(--gold);border-top:2px solid var(--gold);background:var(--panel);opacity:0;transition:opacity .3s .25s,left .45s cubic-bezier(.22,1,.36,1);z-index:1}
     .rqhost.open::before{opacity:1}
     .tier.tc .tbody>.rq{display:none}
-    @media (max-width:860px){.tiers{grid-template-columns:1fr 1fr}.tier.tc[data-lv="16"]{grid-column:1/-1}.tier.tc[data-lv="16"] .tart{padding-top:43.75%}.tier.tc[data-lv="16"] .tart img{object-position:50% 18%}}
-    @media (max-width:620px){.tiers{grid-template-columns:1fr;gap:14px}.tier.tc .tart,.tier.tc[data-lv="16"] .tart{padding-top:50%}}
+    @media (max-width:860px){.tiers{grid-template-columns:1fr 1fr}.tier.tc[data-lv="16"]{grid-column:1/-1}.tier.tc[data-lv="16"] .tart{padding-top:43.75%}.tier.tc[data-lv="16"] .tart img{object-position:50% 30%}.tier.tc[data-lv="16"] .tart img{object-position:50% 18%}}
+    @media (max-width:620px){.tiers{grid-template-columns:1fr;gap:14px}.tier.tc .tart,.tier.tc[data-lv="16"] .tart{padding-top:50%}.tier.tc .tart img,.tier.tc[data-lv="16"] .tart img{object-position:50% 30%}}
 
     /* --- 2. mobile hero --- */
     .burger{display:none}

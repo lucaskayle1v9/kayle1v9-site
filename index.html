@@ -2219,7 +2219,7 @@ section[data-off] *,section[data-off] *::before,section[data-off] *::after,.hero
     <div class="cq" id="cq"></div>
     <div class="tiers">
     <div class="tier tc" data-lv="6">
-      <div class="tart"><img src="img/lv6.webp" alt="" width="600" height="1000" decoding="async"><span class="tkick"><span class="tpips"><i class="on"></i><i class=""></i><i class=""></i></span>Power spike · Level 6</span></div>
+      <div class="tart"><img src="img/lv6.webp" alt="" width="960" height="720" decoding="async"><span class="tkick"><span class="tpips"><i class="on"></i><i class=""></i><i class=""></i></span>Power spike · Level 6</span></div>
       <div class="tbody"><div><h3>Level 6 Review</h3><p>I watch one of your games and send a recorded breakdown: wave management, itemization and the moments you lost the game.</p></div>
       <div class="price">€25<small>per review</small></div>
       <button type="button" class="btn tbtn" data-tier="review" aria-expanded="false" aria-controls="rq-review">Book review</button>
@@ -2239,7 +2239,7 @@ section[data-off] *,section[data-off] *::before,section[data-off] *::after,.hero
       </div>
     </div>
     <div class="tier tc" data-lv="11">
-      <div class="tart"><img src="img/lv11.webp" alt="" loading="lazy" decoding="async" style="object-position:72% 0"><span class="tbadge">Most booked</span><span class="tkick"><span class="tpips"><i class="on"></i><i class="on"></i><i class=""></i></span>Power spike · Level 11</span></div>
+      <div class="tart"><img src="img/lv11.webp" alt="" width="960" height="720" decoding="async"><span class="tbadge">Most booked</span><span class="tkick"><span class="tpips"><i class="on"></i><i class="on"></i><i class=""></i></span>Power spike · Level 11</span></div>
       <div class="tbody"><div><h3>Level 11 Session</h3><p>Ninety minutes live. We play or review together and fix your laning, your build path and your fight timing as they come up.</p></div>
       <div class="price">€35<small>90 minutes</small></div>
       <button type="button" class="btn tbtn" data-tier="session" aria-expanded="false" aria-controls="rq-session">Book session</button>
@@ -2259,7 +2259,7 @@ section[data-off] *,section[data-off] *::before,section[data-off] *::after,.hero
       </div>
     </div>
     <div class="tier tc" data-lv="16">
-      <div class="tart"><img src="img/lv16.webp" alt="" width="600" height="1000" decoding="async"><span class="tkick"><span class="tpips"><i class="on"></i><i class="on"></i><i class="on"></i></span>Power spike · Level 16</span></div>
+      <div class="tart"><img src="img/lv16.webp" alt="" width="960" height="720" decoding="async"><span class="tkick"><span class="tpips"><i class="on"></i><i class="on"></i><i class="on"></i></span>Power spike · Level 16</span></div>
       <div class="tbody"><div><h3>Level 16 Program</h3><p>Four weekly sessions with homework and a written plan. Built for players who want a rank climb, not a single tip.</p></div>
       <div class="price">€150<small>four sessions</small></div>
       <button type="button" class="btn tbtn" data-tier="program" aria-expanded="false" aria-controls="rq-program">Start program</button>
@@ -7681,7 +7681,7 @@ var CHSTAT = {subs:69600, goal:100000, videos:1295, checked:"30 Oct 2026"};
     .tier.tc:last-of-type{border-bottom:1px solid var(--line)}
     .tier.tc:hover,.tier.tc.rqon{border-color:rgba(240,185,75,.7);box-shadow:0 24px 50px -22px rgba(0,0,0,.8),0 0 0 1px rgba(240,185,75,.35),0 0 40px -10px rgba(240,185,75,.35)}
     .tart{position:relative;width:100%;height:0;padding-top:75%;overflow:hidden;background:#16244A;margin-bottom:-1px}
-    .tart img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 12%;display:block}
+    .tart img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 50%;display:block}
     .tart::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(240,185,75,.22),rgba(240,185,75,0) 70%);opacity:0;transition:opacity .5s ease;pointer-events:none}
     .tier.tc:hover .tart::before,.tier.tc.rqon .tart::before{opacity:1}
     .tart::after{content:"";position:absolute;inset:0 0 -2px;background:linear-gradient(180deg,rgba(11,18,38,0) 40%,rgba(15,26,51,.92) 100%)}
@@ -7709,8 +7709,8 @@ var CHSTAT = {subs:69600, goal:100000, videos:1295, checked:"30 Oct 2026"};
     .rqhost::before{content:"";position:absolute;left:var(--px,50%);top:6px;width:18px;height:18px;transform:translateX(-50%) rotate(45deg);border-left:2px solid var(--gold);border-top:2px solid var(--gold);background:var(--panel);opacity:0;transition:opacity .3s .25s,left .45s cubic-bezier(.22,1,.36,1);z-index:1}
     .rqhost.open::before{opacity:1}
     .tier.tc .tbody>.rq{display:none}
-    @media (max-width:860px){.tiers{grid-template-columns:1fr 1fr}.tier.tc[data-lv="16"]{grid-column:1/-1}.tier.tc[data-lv="16"] .tart{padding-top:43.75%}.tier.tc[data-lv="16"] .tart img{object-position:50% 18%}}
-    @media (max-width:620px){.tiers{grid-template-columns:1fr;gap:14px}.tier.tc .tart,.tier.tc[data-lv="16"] .tart{padding-top:50%}}
+    @media (max-width:860px){.tiers{grid-template-columns:1fr 1fr}.tier.tc[data-lv="16"]{grid-column:1/-1}.tier.tc[data-lv="16"] .tart{padding-top:43.75%}.tier.tc[data-lv="16"] .tart img{object-position:50% 30%}.tier.tc[data-lv="16"] .tart img{object-position:50% 18%}}
+    @media (max-width:620px){.tiers{grid-template-columns:1fr;gap:14px}.tier.tc .tart,.tier.tc[data-lv="16"] .tart{padding-top:50%}.tier.tc .tart img,.tier.tc[data-lv="16"] .tart img{object-position:50% 30%}}
 
     /* --- 2. mobile hero --- */
     .burger{display:none}
