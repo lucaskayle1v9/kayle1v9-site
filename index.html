@@ -2183,10 +2183,9 @@ section[data-off] *,section[data-off] *::before,section[data-off] *::after,.hero
       <button type="button" class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="mainnav"><i></i><i></i><i></i></button>
       <ul id="mainnav">
         <li><a href="#coaching">Coaching</a></li>
-        <li><a href="#patch">Patch</a></li>
         <li><a href="#builds">Builds</a></li>
-        <li><a href="#finder">Finder</a></li>
         <li><a href="#matchups">Matchups</a></li>
+        <li><a href="#patch">Patch</a></li>
         <li><a href="#videos">Videos</a></li>
         <li><a href="#merch">Merch</a></li>
       </ul>
@@ -2211,6 +2210,26 @@ section[data-off] *,section[data-off] *::before,section[data-off] *::after,.hero
     </div>
   </div>
 </header>
+<section id="start" class="qstart" aria-label="Quick start">
+  <div class="wrap">
+    <div class="qscard" id="qscard">
+      <div class="qsglow" aria-hidden="true"></div>
+      <div class="qstop">
+        <div class="qstitle"><span class="dtag">Quick start</span><div class="qsh" id="qsh" role="heading" aria-level="2">Who are you against?</div><p id="qsnote"></p></div>
+        <div class="tdpick" role="group" aria-label="Your profile">
+          <div class="tdg" id="tdlane"><span class="btl">Lane</span><button type="button" data-v="top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h7v12M3 3l7 6"/></svg>Top</button><button type="button" data-v="mid"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M4 20 20 4M9 15l6-6"/></svg>Mid</button></div>
+          <div class="tdg" id="tdserver"><span class="btl">Server</span><button type="button" data-v="eu"><i class="qsf" data-f="eu"></i>EU</button><button type="button" data-v="china"><i class="qsf" data-f="china"></i>China</button><button type="button" data-v="korea"><i class="qsf" data-f="korea"></i>Korea</button></div>
+          <div class="tdg" id="tdtier"><span class="btl">Rank</span><button type="button" data-v="emerald">Emerald+</button><button type="button" data-v="diamond">Diamond+</button><button type="button" data-v="master">Master+</button><button type="button" data-v="all">All</button></div>
+        </div>
+      </div>
+      <div class="qsrow">
+        <div class="muqw qsw"><svg class="qsi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/></svg><input type="search" class="musearch muq" id="qsq" placeholder="Type a champion, e.g. Darius" autocomplete="off" aria-label="Search an opponent"><kbd class="qsk" aria-hidden="true">Enter</kbd><ul class="musug" id="qssug" role="listbox" hidden></ul></div>
+        <div class="qsvs" aria-hidden="true"><img class="qskayle" src="a/9497fbaee003.jpg" alt=""><span>vs</span></div>
+      </div>
+      <div class="muqc qschips" id="qschips"><span class="btl">Most played</span></div>
+    </div>
+  </div>
+</section>
 
 <section id="coaching">
   <div class="wrap">
@@ -2291,46 +2310,6 @@ section[data-off] *,section[data-off] *::before,section[data-off] *::after,.hero
   </div>
 </section>
 
-<section id="patch">
-  <div class="wrap">
-    <h2>Patch changes</h2>
-    <p class="lead">What Riot is changing for Kayle, the upcoming patch and the latest ones before it.</p>
-    <div class="ptabs" role="tablist" aria-label="Patch changes">
-      <button type="button" class="ptab on" role="tab" aria-selected="true" data-p="next">Next patch</button>
-      <button type="button" class="ptab" role="tab" aria-selected="false" data-p="past">Latest changes</button>
-    </div>
-    <div class="pp" data-p="next" role="tabpanel">
-      <div class="pcard hot">
-        <div class="phd"><span class="pver">Patch 26.22</span><span class="pbadge buff">Buff</span><span class="pdate">expected Nov 4, 2026</span></div>
-        <p>Kayle is getting buffed in the next patch, the first buff for her in a long time.</p>
-        <ul>
-          <li>Radiant Blast (Q) cooldown: 10-8 seconds <s>(was 12-8)</s></li>
-          <li>Divine Judgment (R) cooldown: 140-80 seconds <s>(was 160-80)</s></li>
-        </ul>
-        <p class="psrc">Source: <a href="https://x.com/Spideraxe30/status/2115186298827002294" target="_blank" rel="noopener">Spideraxe on X</a>, <a href="https://hexgate.app/patch-notes/26-22/" target="_blank" rel="noopener">Patch 26.22 preview</a>. These are planned changes and can still be adjusted before release. I will update this once the official patch notes are out.</p>
-      </div>
-    </div>
-    <div class="pp" data-p="past" role="tabpanel" hidden>
-      <div class="pcard">
-        <div class="phd"><span class="pver">Patch 26.4</span><span class="pbadge nerf">Nerf</span><span class="pdate">Feb 18, 2026</span></div>
-        <ul><li>Radiant Blast (Q) base damage: 60/90/120/150/180 <s>(was 60/100/140/180/220)</s></li></ul>
-      </div>
-      <div class="pcard">
-        <div class="phd"><span class="pver">Patch 26.1</span><span class="pbadge nerf">Nerf</span><span class="pdate">Jan 7, 2026</span></div>
-        <ul>
-          <li>Divine Ascent (passive): removed the bonus attack speed from AP (1% per 100 AP per stack)</li>
-          <li>Radiant Blast (Q) mana cost: 60/70/80/90/100 <s>(was 70/75/80/85/90)</s></li>
-          <li>Radiant Blast (Q) slow: 25/30/35/40/45% <s>(was 26/32/38/44/50%)</s></li>
-        </ul>
-      </div>
-      <p class="psrc">Source: <a href="https://www.riftpatchnotes.com/lol/champion/kayle" target="_blank" rel="noopener">Kayle patch history</a></p>
-    </div>
-  </div>
-  <script>
-  (function(){var s=document.getElementById("patch");if(!s)return;var tabs=s.querySelectorAll(".ptab"),ps=s.querySelectorAll(".pp");
-  tabs.forEach(function(b){b.addEventListener("click",function(){var k=b.getAttribute("data-p");tabs.forEach(function(x){var on=x===b;x.classList.toggle("on",on);x.setAttribute("aria-selected",on?"true":"false")});ps.forEach(function(x){x.hidden=x.getAttribute("data-p")!==k});if(window.K1V9T)try{K1V9T("patch-tab",{tab:k})}catch(e){}})});})();
-  </script>
-</section>
 <section id="builds">
   <div class="wrap">
     <h2 class="bsech"><button type="button" class="bdd bsecbtn" id="bsecbtn" aria-expanded="true" aria-controls="bsecbody"><span>Best builds</span><span class="bddc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span></button></h2>
@@ -2361,14 +2340,6 @@ section[data-off] *,section[data-off] *::before,section[data-off] *::after,.hero
     </div>
     <div class="bpanel grid" id="bpanel" role="tabpanel" aria-live="polite"></div>
     </div></div>
-  </div>
-</section>
-
-<section id="finder">
-  <div class="wrap">
-    <h2>Build-Finder</h2>
-    <p class="lead">Three taps to your build. Pick your lane, your opponent and how you want to play, and get runes, spells and items on one card.</p>
-    <div class="fnd" id="fndbox"></div>
   </div>
 </section>
 
@@ -2409,6 +2380,14 @@ section[data-off] *,section[data-off] *::before,section[data-off] *::after,.hero
   </div>
 </section>
 
+<section id="finder" hidden>
+  <div class="wrap">
+    <h2>Build-Finder</h2>
+    <p class="lead">Three taps to your build. Pick your lane, your opponent and how you want to play, and get runes, spells and items on one card.</p>
+    <div class="fnd" id="fndbox"></div>
+  </div>
+</section>
+
 <section id="leaderboard" hidden>
   <div class="wrap">
     <h2>Top Kayle players</h2>
@@ -2421,36 +2400,46 @@ section[data-off] *,section[data-off] *::before,section[data-off] *::after,.hero
   </div>
 </section>
 
-<section id="games">
+<section id="patch">
   <div class="wrap">
-    <h2>Minigames</h2>
-    <p class="lead">Short breaks between the builds. Swipe or use the arrows to pick a game. Your best scores are saved in your browser, and what you unlock lands in the <a href="#trophies">trophy room</a>.</p>
-    <div class="gtabs" id="gtabs" role="tablist" aria-label="Choose a minigame">
-      <button type="button" class="gtab on fav" role="tab" aria-selected="true" style="--c:#2DD4BF"><i></i>Fishing<span class="fvb">Fan favorite</span></button>
-      <button type="button" class="gtab" role="tab" aria-selected="false" style="--c:#4DA3FF"><i></i>Higher or Lower</button>
-      <button type="button" class="gtab" role="tab" aria-selected="false" style="--c:#FF7A45"><i></i>Ult Timing</button>
-      <button type="button" class="gtab" role="tab" aria-selected="false" style="--c:#4ADE80"><i></i>CS Challenge</button>
-      <button type="button" class="gtab" role="tab" aria-selected="false" style="--c:#B66DFF"><i></i>Silhouette</button>
+    <h2>Patch changes</h2>
+    <p class="lead">What Riot is changing for Kayle, the upcoming patch and the latest ones before it.</p>
+    <div class="ptabs" role="tablist" aria-label="Patch changes">
+      <button type="button" class="ptab on" role="tab" aria-selected="true" data-p="next">Next patch</button>
+      <button type="button" class="ptab" role="tab" aria-selected="false" data-p="past">Latest changes</button>
     </div>
-    <div class="gcar">
-      <button type="button" class="gnav prev" aria-label="Previous game"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
-      <div class="ggrid gtrack" id="gtrack" tabindex="0" aria-label="Minigames, swipe sideways">
-      <article class="gcard gwide" id="gfish" aria-label="Fishing: catch components and treasure"></article>
-      <article class="gcard" id="ghl" aria-label="Higher or Lower: matchups"></article>
-      <article class="gcard" id="gri" aria-label="Ult Timing: save your ally with Kayle's ultimate"></article>
-      <article class="gcard" id="gcs" aria-label="CS Challenge"></article>
-      <article class="gcard" id="gsil" aria-label="Silhouette: guess the skin or item"></article>
+    <div class="pp" data-p="next" role="tabpanel">
+      <p class="plive" id="plive" hidden></p>
+      <div class="pcard hot">
+        <div class="phd"><span class="pver">Patch 26.22</span><span class="pbadge buff">Buff</span><span class="pdate">expected Nov 4, 2026</span></div>
+        <p>Kayle is getting buffed in the next patch, the first buff for her in a long time.</p>
+        <ul>
+          <li>Radiant Blast (Q) cooldown: 10-8 seconds <s>(was 12-8)</s></li>
+          <li>Divine Judgment (R) cooldown: 140-80 seconds <s>(was 160-80)</s></li>
+        </ul>
+        <p class="psrc">Source: <a href="https://x.com/Spideraxe30/status/2115186298827002294" target="_blank" rel="noopener">Spideraxe on X</a>, <a href="https://hexgate.app/patch-notes/26-22/" target="_blank" rel="noopener">Patch 26.22 preview</a>. These are planned changes and can still be adjusted before release. I will update this once the official patch notes are out.</p>
+      </div>
     </div>
-      <button type="button" class="gnav next" aria-label="Next game"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+    <div class="pp" data-p="past" role="tabpanel" hidden>
+      <div class="pcard">
+        <div class="phd"><span class="pver">Patch 26.4</span><span class="pbadge nerf">Nerf</span><span class="pdate">Feb 18, 2026</span></div>
+        <ul><li>Radiant Blast (Q) base damage: 60/90/120/150/180 <s>(was 60/100/140/180/220)</s></li></ul>
+      </div>
+      <div class="pcard">
+        <div class="phd"><span class="pver">Patch 26.1</span><span class="pbadge nerf">Nerf</span><span class="pdate">Jan 7, 2026</span></div>
+        <ul>
+          <li>Divine Ascent (passive): removed the bonus attack speed from AP (1% per 100 AP per stack)</li>
+          <li>Radiant Blast (Q) mana cost: 60/70/80/90/100 <s>(was 70/75/80/85/90)</s></li>
+          <li>Radiant Blast (Q) slow: 25/30/35/40/45% <s>(was 26/32/38/44/50%)</s></li>
+        </ul>
+      </div>
+      <p class="psrc">Source: <a href="https://www.riftpatchnotes.com/lol/champion/kayle" target="_blank" rel="noopener">Kayle patch history</a></p>
     </div>
   </div>
-</section>
-
-<section id="trophies">
-  <div class="wrap">
-    <h2>Trophy room</h2>
-    <p class="lead">Everything you unlock on this site ends up here: skins, minigames, the daily puzzle and a few hidden things. Saved in your browser.</p>
-  </div>
+  <script>
+  (function(){var s=document.getElementById("patch");if(!s)return;var tabs=s.querySelectorAll(".ptab"),ps=s.querySelectorAll(".pp");
+  tabs.forEach(function(b){b.addEventListener("click",function(){var k=b.getAttribute("data-p");tabs.forEach(function(x){var on=x===b;x.classList.toggle("on",on);x.setAttribute("aria-selected",on?"true":"false")});ps.forEach(function(x){x.hidden=x.getAttribute("data-p")!==k});if(window.K1V9T)try{K1V9T("patch-tab",{tab:k})}catch(e){}})});})();
+  </script>
 </section>
 
 <section id="videos">
@@ -2540,9 +2529,41 @@ section[data-off] *,section[data-off] *::before,section[data-off] *::after,.hero
   </div>
 </section>
 
+<section id="games">
+  <div class="wrap">
+    <h2>Minigames</h2>
+    <p class="lead">Short breaks between the builds. Swipe or use the arrows to pick a game. Your best scores are saved in your browser, and what you unlock lands in the <a href="#trophies">trophy room</a>.</p>
+    <div class="gtabs" id="gtabs" role="tablist" aria-label="Choose a minigame">
+      <button type="button" class="gtab on fav" role="tab" aria-selected="true" style="--c:#2DD4BF"><i></i>Fishing<span class="fvb">Fan favorite</span></button>
+      <button type="button" class="gtab" role="tab" aria-selected="false" style="--c:#4DA3FF"><i></i>Higher or Lower</button>
+      <button type="button" class="gtab" role="tab" aria-selected="false" style="--c:#FF7A45"><i></i>Ult Timing</button>
+      <button type="button" class="gtab" role="tab" aria-selected="false" style="--c:#4ADE80"><i></i>CS Challenge</button>
+      <button type="button" class="gtab" role="tab" aria-selected="false" style="--c:#B66DFF"><i></i>Silhouette</button>
+    </div>
+    <div class="gcar">
+      <button type="button" class="gnav prev" aria-label="Previous game"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+      <div class="ggrid gtrack" id="gtrack" tabindex="0" aria-label="Minigames, swipe sideways">
+      <article class="gcard gwide" id="gfish" aria-label="Fishing: catch components and treasure"></article>
+      <article class="gcard" id="ghl" aria-label="Higher or Lower: matchups"></article>
+      <article class="gcard" id="gri" aria-label="Ult Timing: save your ally with Kayle's ultimate"></article>
+      <article class="gcard" id="gcs" aria-label="CS Challenge"></article>
+      <article class="gcard" id="gsil" aria-label="Silhouette: guess the skin or item"></article>
+    </div>
+      <button type="button" class="gnav next" aria-label="Next game"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+    </div>
+  </div>
+</section>
+
+<section id="trophies" class="subsec">
+  <div class="wrap">
+    <h2>Trophy room</h2>
+    <p class="lead">Everything you unlock on this site ends up here: skins, minigames, the daily puzzle and a few hidden things. Saved in your browser.</p>
+  </div>
+</section>
+
 <section id="settings">
   <div class="wrap">
-    <h2 class="bsech"><button type="button" class="bdd bsecbtn" id="setbtn" aria-expanded="false" aria-controls="setbody"><span>My settings</span><span class="bddc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span></button></h2>
+    <h2 class="bsech"><button type="button" class="bdd bsecbtn" id="setbtn" aria-expanded="false" aria-controls="setbody"><span>My setup</span><span class="bddc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span></button></h2>
     <p class="lead">DPI 2600, in-game mouse speed 60, quick cast, 255 FPS. Open for all keybinds, video and interface settings.</p>
     <div class="bddb" id="setbody" inert><div class="bddi">
     <div class="stiles">
@@ -2631,21 +2652,21 @@ section[data-off] *,section[data-off] *::before,section[data-off] *::after,.hero
   </script>
 </section>
 
-<section id="gear">
+<section id="gear" class="subsec">
   <div class="wrap">
     <h2>Gear</h2>
     <p class="lead">What I use to play, record and stream. These are affiliate links: if you buy through them I may earn a commission, at no extra cost to you.</p>
     <div class="gear-grid">
-      <a class="gear" href="https://link.amazon/B07UvD6od" target="_blank" rel="sponsored noopener">Microphone<span>View on Amazon</span></a>
-      <a class="gear" href="https://link.amazon/B02dQ6xIt" target="_blank" rel="sponsored noopener">Mouse<span>View on Amazon</span></a>
-      <a class="gear" href="https://link.amazon/B0jfOFCFG" target="_blank" rel="sponsored noopener">Mousepad<span>View on Amazon</span></a>
-      <a class="gear" href="https://link.amazon/B0i9L9yum" target="_blank" rel="sponsored noopener">Keyboard<span>View on Amazon</span></a>
-      <a class="gear" href="https://link.amazon/B0g4EAFKT" target="_blank" rel="sponsored noopener">Headphones<span>View on Amazon</span></a>
-      <a class="gear" href="https://link.amazon/B0dYTVZKb" target="_blank" rel="sponsored noopener">Monitor<span>View on Amazon</span></a>
-      <a class="gear" href="https://link.amazon/B01u0KPx7" target="_blank" rel="sponsored noopener">Camera<span>View on Amazon</span></a>
-      <a class="gear" href="https://link.amazon/B0ee74e6D" target="_blank" rel="sponsored noopener">Lens<span>View on Amazon</span></a>
-      <a class="gear" href="https://link.amazon/B0fxURJSk" target="_blank" rel="sponsored noopener">Chair<span>View on Amazon</span></a>
-      <a class="gear" href="https://link.amazon/B0iYbc5U3" target="_blank" rel="sponsored noopener">Stream Deck<span>View on Amazon</span></a>
+      <a class="gear" href="https://link.amazon/B07UvD6od" target="_blank" rel="sponsored noopener"><i class="gic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a3 3 0 0 1 3 3v6a3 3 0 0 1-6 0V6a3 3 0 0 1 3-3z"/><path d="M19 11a7 7 0 0 1-14 0M12 18v3M8 21h8"/></svg></i><b>Microphone</b><span>What you hear on stream</span><em>View on Amazon ↗</em></a>
+      <a class="gear" href="https://link.amazon/B02dQ6xIt" target="_blank" rel="sponsored noopener"><i class="gic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="3" width="12" height="18" rx="6"/><path d="M12 3v6"/></svg></i><b>Mouse</b><span>2600 DPI · 1000 Hz</span><em>View on Amazon ↗</em></a>
+      <a class="gear" href="https://link.amazon/B0jfOFCFG" target="_blank" rel="sponsored noopener"><i class="gic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M7 12h10"/></svg></i><b>Mousepad</b><span>Low sens surface</span><em>View on Amazon ↗</em></a>
+      <a class="gear" href="https://link.amazon/B0i9L9yum" target="_blank" rel="sponsored noopener"><i class="gic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="7" width="20" height="10" rx="2"/><path d="M6 11h.01M10 11h.01M14 11h.01M18 11h.01M8 14h8"/></svg></i><b>Keyboard</b><span>Main keyboard</span><em>View on Amazon ↗</em></a>
+      <a class="gear" href="https://link.amazon/B0g4EAFKT" target="_blank" rel="sponsored noopener"><i class="gic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="3" y="14" width="4" height="6" rx="1.5"/><rect x="17" y="14" width="4" height="6" rx="1.5"/></svg></i><b>Headphones</b><span>Daily driver</span><em>View on Amazon ↗</em></a>
+      <a class="gear" href="https://link.amazon/B0dYTVZKb" target="_blank" rel="sponsored noopener"><i class="gic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg></i><b>Monitor</b><span>2560×1440 · 260 Hz</span><em>View on Amazon ↗</em></a>
+      <a class="gear" href="https://link.amazon/B01u0KPx7" target="_blank" rel="sponsored noopener"><i class="gic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7l1.5-3h5L16 7"/><circle cx="12" cy="13.5" r="3.5"/></svg></i><b>Camera</b><span>Facecam</span><em>View on Amazon ↗</em></a>
+      <a class="gear" href="https://link.amazon/B0ee74e6D" target="_blank" rel="sponsored noopener"><i class="gic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/></svg></i><b>Lens</b><span>For the facecam</span><em>View on Amazon ↗</em></a>
+      <a class="gear" href="https://link.amazon/B0fxURJSk" target="_blank" rel="sponsored noopener"><i class="gic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 4h10v8H7zM7 12v8M17 12v8M5 12h14"/></svg></i><b>Chair</b><span>Long sessions</span><em>View on Amazon ↗</em></a>
+      <a class="gear" href="https://link.amazon/B0iYbc5U3" target="_blank" rel="sponsored noopener"><i class="gic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7 9h2M11 9h2M15 9h2M7 13h2M11 13h2M15 13h2"/></svg></i><b>Stream Deck</b><span>Scene switching</span><em>View on Amazon ↗</em></a>
     </div>
   </div>
 </section>
@@ -4386,6 +4407,8 @@ var PATCHM = "16.21", PREVM = "16.20", CHECKEDM = "30 Oct 2026";
       if(parts.length) m.appendChild(el("span", "sbmeta", parts.join(" · ")));
       var tr = el("span", "sbtrack"); tr.appendChild(document.createElement("i")); m.appendChild(tr); li.appendChild(m);
       var nm = el("span", "sbnum"), b = el("b", "", "0%"); b.dataset.v = r[1]; wrTint(b, r[1]); nm.appendChild(b);
+      (function(){ var P = window.KPREV && KPREV[LANE] && KPREV[LANE][curR], pv = P && P[title + "|" + r[0]]; if(pv == null) return; var d = r[1] - pv; if(Math.abs(d) < 0.05) return;
+        var dl = el("small", "sbd " + (d > 0 ? "up" : "down"), (d > 0 ? "+" : "\u2212") + Math.abs(d).toFixed(1)); dl.title = (d > 0 ? "Up " : "Down ") + Math.abs(d).toFixed(2) + " points since yesterday (" + pv.toFixed(2) + "%)"; nm.appendChild(dl); })();
       li.appendChild(nm); ul.appendChild(li);
       if(opt.click){ li.classList.add("snd"); li.addEventListener("click", function(){ opt.click(r[0]); }); }
     });
@@ -4560,6 +4583,7 @@ var PATCHM = "16.21", PREVM = "16.20", CHECKEDM = "30 Oct 2026";
     panel.appendChild(dataCard(r));
     if(chartEl) drawChart(chartEl);
     B[r].forEach(function(id){ var c = card(id); if(c) panel.appendChild(c); });
+    document.dispatchEvent(new CustomEvent("k1v9:builds"));
   }
   tabs.forEach(function(t){
     t.addEventListener("click", function(){
@@ -4653,6 +4677,9 @@ var PATCHM = "16.21", PREVM = "16.20", CHECKEDM = "30 Oct 2026";
   var START_LANE = "top";
   try{ if(localStorage.getItem("k1v9lane") === "mid") START_LANE = "mid"; }catch(e){}
   setLane(START_LANE, true);
+  window.KB = {get:function(){ return {lane:LANE, r:curR, tier:TIER, IB:IBLIVE, SB:SBLIVE, RL:RLIVE, SP:SPLIVE, servers:SERVERS, patch:PATCH, where:(RMETA[curR] || {}).where || curR}; },
+    ITI:ITI, ITN:ITN, RN:RN, SPI:SPI, SPN:SPN, runeIcon:runeIcon, sbIcon:sbIcon, switchLane:switchLane, tabs:tabs, tierBtns:tierBtns, LANES:LANES, FLAGS:FLAGS, flagUri:flagUri, RANKI:RANKI};
+  document.dispatchEvent(new CustomEvent("k1v9:builds"));
   (function(){
     var btn = document.getElementById("bsecbtn"), body = document.getElementById("bsecbody");
     if(!btn || !body) return;
@@ -4773,6 +4800,30 @@ var PATCHM = "16.21", PREVM = "16.20", CHECKEDM = "30 Oct 2026";
     bar.appendChild(row); bar.appendChild(pan);
     var guideBox = el("div", "mugb");
     host.appendChild(bar); host.appendChild(guideBox);
+    (function(){ // quick search: type a name or tap one of the most played opponents
+      var q = el("div", "muquick"), lab = el("label", "muql", "Who are you against?"), wrap = el("div", "muqw"), inp2 = el("input", "musearch muq"), sug = el("ul", "musug");
+      inp2.type = "search"; inp2.placeholder = "Type a champion, e.g. Darius"; inp2.autocomplete = "off"; inp2.id = "muq"; lab.htmlFor = "muq"; inp2.setAttribute("aria-label", "Search an opponent");
+      sug.setAttribute("role", "listbox"); sug.hidden = true;
+      wrap.appendChild(inp2); wrap.appendChild(sug); q.appendChild(lab); q.appendChild(wrap);
+      var chips = el("div", "muqc"), top = slugs.slice().sort(function(a, b){ return L[b].n - L[a].n; }).slice(0, 5);
+      chips.appendChild(el("span", "btl", "Most played"));
+      top.forEach(function(k){ var d = L[k], c = el("button", "muqchip"); c.type = "button"; c.appendChild(chIcon(d.c, 28)); c.appendChild(el("span", "", d.nm)); c.appendChild(wrTint(el("small", "", d.w.toFixed(1) + "%"), d.w)); c.title = "Kayle vs " + d.nm + ": " + d.w.toFixed(1) + "% in " + d.n.toLocaleString("en-US") + " games"; c.addEventListener("click", function(){ pick(k); }); chips.appendChild(c); });
+      q.appendChild(chips);
+      function pick(k){ sug.hidden = true; inp2.value = ""; choose(k); setTimeout(function(){ var g = host.querySelector(".mugb"); if(g) g.scrollIntoView({behavior:"smooth", block:"start"}); }, 80); }
+      function fill(){
+        var s = inp2.value.trim().toLowerCase(); sug.innerHTML = "";
+        if(!s){ sug.hidden = true; return; }
+        var a = slugs.filter(function(k){ return L[k].nm.toLowerCase().indexOf(s) === 0; }).concat(slugs.filter(function(k){ var n = L[k].nm.toLowerCase(); return n.indexOf(s) > 0; })).slice(0, 6);
+        if(!a.length){ var li0 = el("li", "muqe", "No opponent called \u201c" + inp2.value.trim() + "\u201d"); sug.appendChild(li0); sug.hidden = false; return; }
+        a.forEach(function(k){ var d = L[k], li = el("li"), b = el("button", "muqrow"); b.type = "button"; b.setAttribute("role", "option"); b.appendChild(chIcon(d.c, 30)); b.appendChild(el("span", "", d.nm)); b.appendChild(wrTint(el("small", "", d.w.toFixed(1) + "%"), d.w)); b.addEventListener("click", function(){ pick(k); }); li.appendChild(b); sug.appendChild(li); });
+        sug.hidden = false;
+      }
+      inp2.addEventListener("input", fill); inp2.addEventListener("focus", fill);
+      inp2.addEventListener("keydown", function(e){ if(e.key === "Enter"){ var f = sug.querySelector(".muqrow"); if(f) f.click(); e.preventDefault(); } if(e.key === "Escape"){ sug.hidden = true; } });
+      muOn("click", function(e){ if(!wrap.contains(e.target)) sug.hidden = true; });
+      var isr = document.getElementById("isr"); if(isr && isr.parentNode === host.parentNode) host.parentNode.insertBefore(q, isr); else host.insertBefore(q, bar);
+      window.KMUQ = {choose:choose, L:L, slugs:slugs}; window.KCHI = CHI; document.dispatchEvent(new CustomEvent("k1v9:mu"));
+    })();
     (function(){
       var pool = slugs.filter(function(k){ return L[k].n >= 300; }); if(!pool.length) return;
       var d = new Date(), dn = Math.floor(new Date(d.getFullYear(), d.getMonth(), d.getDate()).getTime() / 864e5);
@@ -7847,7 +7898,7 @@ var CHSTAT = {subs:69600, goal:100000, videos:1295, checked:"30 Oct 2026"};
 </style>
 <script>
 (function(){
-  var NAMES = {coaching:"Coaching", patch:"Patch", builds:"Builds", finder:"Finder", matchups:"Matchups", leaderboard:"Leaderboard", games:"Minigames", trophies:"Trophies", videos:"Videos", about:"About", merch:"Merch", settings:"Settings", gear:"Gear", support:"Support"};
+  var NAMES = {coaching:"Coaching", builds:"Builds", matchups:"Matchups", leaderboard:"Leaderboard", patch:"Patch", videos:"Videos", about:"About", merch:"Merch", games:"Minigames", settings:"My setup", support:"Support"};
   var secs = [].filter.call(document.querySelectorAll("section[id]"), function(s){ return NAMES[s.id]; });
   if(!secs.length) return;
   var rail = document.createElement("nav"); rail.className = "srail"; rail.setAttribute("aria-label", "Sections"); var ol = document.createElement("ol"); rail.appendChild(ol);
@@ -7886,6 +7937,145 @@ var CHSTAT = {subs:69600, goal:100000, videos:1295, checked:"30 Oct 2026"};
   function kick(){ if(!q){ q = true; requestAnimationFrame(update); } }
   addEventListener("scroll", kick, {passive:true}); addEventListener("resize", kick); addEventListener("load", kick);
   setInterval(kick, 2000); kick();
+})();
+</script>
+<script>window.KPREV = {"top":{"eu":{"Starting items|1083_2003":55.37,"Starting items|1120_2003":54.22,"Starting items|1055_2003":54.19,"Starting items|1086_2003_2003":52.76,"Best boots|3009":54.06,"Best boots|3047":52.41,"Best boots|3006":51.65,"Fifth item|4645":68.22,"Fifth item|3135":63.21,"Fifth item|3157":64.64,"Sixth item|3135":69.95,"Sixth item|3157":65.63,"Sixth item|4645":71.84,"Best pairs|3_4":55.59,"Best pairs|4_14":55.28,"Best pairs|4_6":53.88,"Best pairs|4_12":52.43},"china":{"Starting items|1055_2003":54.6,"Starting items|1120_2003":51.81,"Starting items|1086_2003_2003":51.69,"Starting items|1083_2003":48.84,"Best boots|3047":55.75,"Best boots|3009":53.76,"Best boots|3008":53.41,"Best boots|3006":51.12,"Fifth item|4645":66.67,"Fifth item|3157":71.33,"Fifth item|3135":68.75,"Sixth item|4645":70.27,"Sixth item|3157":57.58,"Sixth item|3135":67.74,"Best pairs|4_21":54.65,"Best pairs|4_14":54.56,"Best pairs|4_6":54.4,"Best pairs|3_4":53.01},"korea":{"Starting items|1120_2003":54.98,"Starting items|1055_2003":53.22,"Starting items|1086_2003_2003":51.87,"Starting items|1054_2003":49.6,"Best boots|3047":62.72,"Best boots|3009":53.42,"Best boots|3006":52.9,"Fifth item|4645":66.67,"Fifth item|3116":70.3,"Fifth item|3135":58.82,"Sixth item|3135":70.97,"Sixth item|4645":63.16,"Sixth item|3157":81.25,"Best pairs|4_14":54.75,"Best pairs|4_12":52.8,"Best pairs|3_4":50.92,"Best pairs|4_6":50.44}},"mid":{"eu":{"Starting items|1055_2003":52.82,"Starting items|1054_2003":49.58,"Starting items|1086_2003_2003":49.52,"Starting items|1056_2003_2003":47.13,"Best boots|3020":63.08,"Best boots|3009":50.67,"Best boots|3006":50.32,"Fifth item|4645":69.88,"Fifth item|3135":67.0,"Fifth item|3116":72.41,"Sixth item|3135":77.63,"Sixth item|4645":75.0,"Sixth item|3157":73.33,"Best pairs|4_21":60.0,"Best pairs|4_6":56.44,"Best pairs|3_4":52.54,"Best pairs|4_12":49.76},"korea":{"Starting items|1055_2003":54.84,"Starting items|1054_2003":47.93,"Best boots|3020":57.84,"Best boots|3009":51.19,"Fifth item|4645":59.57,"Fifth item|3135":68.66,"Fifth item|3102":54.55,"Sixth item|3135":54.55,"Sixth item|4645":66.67,"Sixth item|3046":44.44,"Best pairs|3_4":58.33,"Best pairs|4_6":51.69,"Best pairs|4_12":48.1,"Best pairs|1_4":43.86}}};</script>
+
+<style id="ux">
+/* --- Quick start --- */
+.qstart{position:relative;z-index:3;padding-top:0;margin-top:-40px}
+.qscard{position:relative;isolation:isolate;overflow:hidden;padding:26px 26px 22px;border-radius:24px;border:1px solid rgba(240,185,75,.5);background:linear-gradient(135deg,rgba(240,185,75,.12),rgba(20,32,63,.94) 45%,rgba(11,18,38,.98));box-shadow:0 30px 70px -30px rgba(0,0,0,.9),inset 0 1px 0 rgba(255,255,255,.08)}
+.qscard::before{content:"";position:absolute;inset:0;z-index:-2;background:var(--qsflag,none) right -60px top -10px/330px auto no-repeat;opacity:.07;filter:saturate(1.3);-webkit-mask-image:radial-gradient(45% 70% at 92% 25%,#000,transparent 75%);mask-image:radial-gradient(45% 70% at 92% 25%,#000,transparent 75%);transition:opacity .5s}
+.qsglow{position:absolute;z-index:-1;right:-120px;top:-160px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(240,185,75,.22),transparent 65%);pointer-events:none}
+.qstop{display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:14px 28px;margin-bottom:18px}
+.qstitle .dtag{display:block;margin:0 0 4px}
+.qstitle .qsh{font-size:clamp(1.6rem,3.6vw,2.3rem);font-weight:800;margin:0 0 6px;line-height:1.05;color:#fff}
+.qstitle p{margin:0;color:var(--muted);font-size:.86rem}
+.qstitle p b{color:var(--text)}
+.tdpick{display:flex;flex-wrap:wrap;gap:8px 12px}
+.tdg{display:inline-flex;align-items:center;gap:3px;padding:4px;border-radius:999px;border:1px solid rgba(255,255,255,.1);background:rgba(11,18,38,.75);box-shadow:inset 0 1px 0 rgba(255,255,255,.04)}
+.tdg .btl{margin:0 8px 0 10px;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.tdg button{display:inline-flex;align-items:center;gap:7px;font:inherit;font-size:.86rem;font-weight:600;padding:7px 13px;border:0;border-radius:999px;background:transparent;color:var(--text);cursor:pointer;transition:background .2s,color .2s,transform .25s cubic-bezier(.34,1.56,.64,1)}
+.tdg button svg{width:16px;height:16px;opacity:.8}
+.tdg button:hover{background:rgba(240,185,75,.14)}
+.tdg button.on{background:var(--gold);color:#0F1A33;box-shadow:0 4px 14px -4px rgba(240,185,75,.8)}
+.tdg button.on svg{opacity:1}
+.tdg button[disabled]{opacity:.35;cursor:not-allowed}
+.qsrk{display:inline-flex;align-items:center;height:20px;margin:-3px 0;flex:none}
+.qsrk img{display:block;width:22px;height:22px;filter:drop-shadow(0 1px 1px rgba(0,0,0,.4))}
+.qsrk.multi img{width:18px;height:18px}
+.qsrk.multi img+img{margin-left:-7px}
+.qsf{display:inline-block;width:21px;height:14px;border-radius:3px;background:var(--fl) center/cover no-repeat;box-shadow:0 0 0 1px rgba(0,0,0,.35);flex:none}
+.tdg button.on .qsf{box-shadow:0 0 0 1px rgba(15,26,51,.5)}
+.qsrow{display:flex;align-items:center;gap:18px}
+.qsw{flex:1;max-width:none}
+.qsi{position:absolute;left:16px;top:50%;width:20px;height:20px;transform:translateY(-50%);color:var(--gold);pointer-events:none}
+.qsbox .muq,.qsw .muq{min-height:58px;font-size:1.08rem;padding-left:48px;padding-right:72px;border:2px solid rgba(240,185,75,.45);background:rgba(8,14,32,.8);box-shadow:inset 0 2px 8px rgba(0,0,0,.4)}
+.qsw .muq:focus{border-color:var(--gold);box-shadow:inset 0 2px 8px rgba(0,0,0,.4),0 0 0 4px rgba(240,185,75,.22)}
+.qsk{position:absolute;right:14px;top:50%;transform:translateY(-50%);font:600 .7rem Poppins,system-ui,sans-serif;color:var(--muted);padding:3px 7px;border-radius:6px;border:1px solid rgba(255,255,255,.18);pointer-events:none}
+.qsvs{display:flex;align-items:center;gap:10px;flex:none;color:var(--gold);font-weight:800;font-size:1.1rem;letter-spacing:.06em;text-transform:uppercase}
+.qskayle{width:52px;height:52px;border-radius:50%;border:2px solid var(--gold);box-shadow:0 0 0 4px rgba(240,185,75,.15),0 8px 20px -6px rgba(0,0,0,.8);object-fit:cover}
+.qschips{margin-top:14px}
+.qschips .btl{margin-right:4px}
+.qschips .muqchip{background:rgba(11,18,38,.8);border-color:rgba(255,255,255,.12)}
+.qschips .muqchip:hover{border-color:var(--gold);background:rgba(240,185,75,.1)}
+.qschips .muqchip img{width:30px;height:30px;border:1.5px solid rgba(240,185,75,.6)}
+.musug .muqrow img{border:1.5px solid rgba(240,185,75,.5)}
+@media (max-width:860px){.qsvs span{display:none}}
+@media (max-width:720px){.qstart{margin-top:-20px}.qscard{padding:18px 16px 16px;border-radius:20px}.qstop{gap:12px}.qsrow{gap:12px}.qsvs{display:none}.qsw .muq{min-height:54px;font-size:1rem;padding-right:16px}.qsk{display:none}.tdpick{flex-direction:column;align-items:stretch;gap:8px;max-width:100%}.tdg{flex-wrap:nowrap;overflow-x:auto;max-width:100%;scrollbar-width:none;-webkit-overflow-scrolling:touch}.tdg::-webkit-scrollbar{display:none}.tdg button{flex:none;padding:7px 11px;font-size:.82rem}.tdg .btl{flex:none}}
+
+/* --- merged sections --- */
+section.subsec{padding-top:0;margin-top:-30px}
+section.subsec h2{font-size:clamp(1.4rem,3vw,1.9rem);margin-bottom:8px}
+section.subsec .lead{margin-bottom:18px}
+/* --- matchups quick search --- */
+.muquick{margin:0 0 18px}
+.muql{display:block;font-weight:700;margin:0 0 8px}
+.muqw{position:relative;max-width:520px}
+.muq{width:100%;min-height:50px;font-size:1.02rem}
+.musug{position:absolute;left:0;right:0;top:calc(100% + 6px);z-index:30;list-style:none;margin:0;padding:6px;border-radius:14px;border:1px solid rgba(240,185,75,.5);background:rgba(11,18,38,.98);box-shadow:0 24px 50px -16px rgba(0,0,0,.9)}
+.musug[hidden]{display:none}
+.muqrow{display:flex;align-items:center;gap:10px;width:100%;padding:8px 10px;border:0;border-radius:10px;background:transparent;color:var(--text);font:inherit;font-weight:600;text-align:left;cursor:pointer}
+.muqrow:hover,.muqrow:focus-visible{background:rgba(240,185,75,.14);outline:none}
+.muqrow img{width:30px;height:30px;border-radius:50%}
+.muqrow small{margin-left:auto;font-weight:700}
+.muqe{padding:10px 12px;color:var(--muted);font-size:.9rem}
+.muqc{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:12px}
+.muqc .btl{margin-right:4px}
+.muqchip{display:inline-flex;align-items:center;gap:8px;min-height:40px;padding:4px 12px 4px 5px;border-radius:999px;border:1.5px solid var(--line);background:var(--panel);color:var(--text);font:inherit;font-size:.88rem;font-weight:600;cursor:pointer;transition:border-color .2s,transform .25s}
+.muqchip:hover{border-color:var(--gold);transform:translateY(-2px)}
+.muqchip img{width:28px;height:28px;border-radius:50%}
+.muqchip small{font-weight:700}
+/* --- deltas --- */
+.sbd{display:inline-block;margin-left:6px;font-size:.72rem;font-weight:800;padding:1px 6px;border-radius:99px;vertical-align:middle}
+.sbd.up{color:#4ADE80;background:rgba(74,222,128,.12)}
+.sbd.down{color:#FF7A7A;background:rgba(255,122,122,.12)}
+/* --- gear --- */
+.gear{display:grid;grid-template-columns:auto 1fr;grid-template-rows:auto auto;gap:2px 14px;align-items:center}
+.gear .gic{grid-row:1/3;display:grid;place-items:center;width:44px;height:44px;border-radius:12px;background:rgba(240,185,75,.12);color:var(--gold)}
+.gear .gic svg{width:24px;height:24px}
+.gear b{font-size:1rem}
+.gear span{color:var(--muted);font-size:.84rem}
+.gear em{grid-column:2;font-style:normal;font-size:.78rem;color:var(--gold);margin-top:4px}
+/* --- patch live line --- */
+.plive{margin:0 0 12px;padding:10px 14px;border-radius:12px;border:1px solid rgba(74,222,128,.35);background:rgba(74,222,128,.07);font-size:.92rem}
+.plive b{color:#4ADE80}
+.plive[hidden]{display:none}
+</style>
+<script>
+(function(){
+  var KB = window.KB; if(!KB) return;
+  var gl = document.getElementById("tdlane"), gs = document.getElementById("tdserver"), gt = document.getElementById("tdtier");
+  var KEY = "k1v9prof", el = function(t, c, x){ var n = document.createElement(t); if(c) n.className = c; if(x != null) n.textContent = x; return n; };
+  var NAMES = {eu:"EUW", china:"China", korea:"Korea", top:"Top", mid:"Mid", emerald:"Emerald+", diamond:"Diamond+", master:"Master+", all:"All ranks"};
+  function pressed(group, v, avail){ [].forEach.call(group.querySelectorAll("button"), function(b){ b.classList.toggle("on", b.dataset.v === v); b.disabled = !!(avail && avail.indexOf(b.dataset.v) < 0); }); }
+  function mostPicked(rows){ return (rows || []).slice().sort(function(a, b){ return (b[2] || 0) - (a[2] || 0); })[0]; }
+  function copyText(S){
+    var r = S.RL[S.r].common, P = KB.RN; if(!r) return "";
+    return "Kayle · " + NAMES[S.lane] + " · " + S.where + " · patch " + S.patch + "\nRunes: " + [r.key].concat(r.main).map(function(i){ return P[i] || i; }).join(", ") + " | " + r.sec.map(function(i){ return P[i] || i; }).join(", ") + " | shards: " + r.shards.map(function(i){ return P[i] || i; }).join(", ");
+  }
+  [].forEach.call(document.querySelectorAll(".qsf"), function(f){ if(KB.flagUri) f.style.setProperty("--fl", KB.flagUri(f.dataset.f)); });
+  (function(){ var map = {emerald:["emerald"], diamond:["diamond"], master:["master"], all:["iron", "gold", "challenger"]}, RI = KB.RANKI || {};
+    [].forEach.call(gt.querySelectorAll("button"), function(b){ var ks = map[b.dataset.v]; if(!ks) return; var f = el("span", "qsrk" + (ks.length > 1 ? " multi" : "")); f.setAttribute("aria-hidden", "true");
+      ks.forEach(function(k){ if(!RI[k]) return; var im = new Image(); im.alt = ""; im.decoding = "async"; im.src = RI[k]; f.appendChild(im); }); if(f.childNodes.length) b.insertBefore(f, b.firstChild); }); })();
+  var card = document.getElementById("qscard");
+  var note = document.getElementById("qsnote"), chips = document.getElementById("qschips"), qsq = document.getElementById("qsq"), qssug = document.getElementById("qssug");
+  function fillChips(){
+    var M = window.KMUQ; if(!M) return; [].forEach.call(chips.querySelectorAll(".muqchip"), function(c){ c.remove(); });
+    var L = M.L, top = M.slugs.slice().sort(function(a, b){ return L[b].n - L[a].n; }).slice(0, 5);
+    top.forEach(function(k){ var d = L[k], c = el("button", "muqchip"); c.type = "button"; var im = new Image(); im.width = im.height = 28; im.alt = ""; im.src = (window.KCHI && KCHI[d.c]) || ""; c.appendChild(im); c.appendChild(el("span", "", d.nm)); var sm = el("small", "", d.w.toFixed(1) + "%"); sm.className = "wr"; sm.style.setProperty("--wh", d.w <= 44 ? 0 : d.w <= 50 ? Math.round((d.w - 44) / 6 * 34) : d.w <= 56 ? Math.round(34 + (d.w - 50) / 6 * 96) : 130); c.appendChild(sm); c.title = "Kayle vs " + d.nm + ": " + d.w.toFixed(1) + "% in " + d.n.toLocaleString("en-US") + " games"; c.addEventListener("click", function(){ go(k); }); chips.appendChild(c); });
+  }
+  function go(k){ var M = window.KMUQ; if(!M) return; qssug.hidden = true; qsq.value = ""; M.choose(k); setTimeout(function(){ var g = document.querySelector("#mu .mugb"); if(g) g.scrollIntoView({behavior:"smooth", block:"start"}); }, 80); }
+  function fillSug(){
+    var M = window.KMUQ; if(!M) return; var L = M.L, s = qsq.value.trim().toLowerCase(); qssug.innerHTML = "";
+    if(!s){ qssug.hidden = true; return; }
+    var a = M.slugs.filter(function(k){ return L[k].nm.toLowerCase().indexOf(s) === 0; }).concat(M.slugs.filter(function(k){ return L[k].nm.toLowerCase().indexOf(s) > 0; })).slice(0, 6);
+    if(!a.length){ qssug.appendChild(el("li", "muqe", "No opponent called “" + qsq.value.trim() + "” in this lane")); qssug.hidden = false; return; }
+    a.forEach(function(k){ var d = L[k], li = el("li"), b = el("button", "muqrow"); b.type = "button"; b.setAttribute("role", "option"); var im = new Image(); im.width = im.height = 30; im.alt = ""; im.src = (window.KCHI && KCHI[d.c]) || ""; b.appendChild(im); b.appendChild(el("span", "", d.nm)); b.appendChild(el("small", "", d.w.toFixed(1) + "%")); b.addEventListener("click", function(){ go(k); }); li.appendChild(b); qssug.appendChild(li); });
+    qssug.hidden = false;
+  }
+  qsq.addEventListener("input", fillSug); qsq.addEventListener("focus", fillSug);
+  qsq.addEventListener("keydown", function(e){ if(e.key === "Enter"){ var f = qssug.querySelector(".muqrow"); if(f) f.click(); e.preventDefault(); } if(e.key === "Escape") qssug.hidden = true; });
+  document.addEventListener("click", function(e){ if(!qsq.parentNode.contains(e.target)) qssug.hidden = true; });
+  function draw(){
+    var S = KB.get();
+    pressed(gl, S.lane); pressed(gs, S.r, S.servers); pressed(gt, S.tier);
+    note.innerHTML = "Pick your opponent and get runes, spells and items for <b>" + NAMES[S.lane] + " \u00b7 " + S.where + " \u00b7 " + NAMES[S.tier] + "</b>, patch " + S.patch + ". Remembered on this device.";
+    if(card && KB.flagUri) card.style.setProperty("--qsflag", KB.flagUri(S.r));
+    fillChips();
+    try{ localStorage.setItem(KEY, JSON.stringify({lane:S.lane, r:S.r, tier:S.tier})); }catch(e){}
+  }
+  function clickIn(list, attr, v){ for(var i = 0; i < list.length; i++){ if(list[i].dataset[attr] === v){ if(!list[i].classList.contains("on") && !list[i].hidden) list[i].click(); return; } } }
+  gl.addEventListener("click", function(e){ var b = e.target.closest("button"); if(b) KB.switchLane(b.dataset.v); });
+  gs.addEventListener("click", function(e){ var b = e.target.closest("button"); if(b && !b.disabled) clickIn(KB.tabs, "r", b.dataset.v); });
+  gt.addEventListener("click", function(e){ var b = e.target.closest("button"); if(b) clickIn(KB.tierBtns, "t", b.dataset.v); });
+  document.addEventListener("k1v9:builds", draw); document.addEventListener("k1v9:mu", fillChips);
+  // restore the saved profile once (lane is restored by the page itself)
+  try{ var p = JSON.parse(localStorage.getItem(KEY) || "null"); if(p){ var S0 = KB.get(); if(p.tier && p.tier !== S0.tier) clickIn(KB.tierBtns, "t", p.tier); if(p.r && p.r !== S0.r && S0.servers.indexOf(p.r) >= 0) clickIn(KB.tabs, "r", p.r); } }catch(e){}
+  draw();
+  // patch section: what the live numbers say right now
+  (function(){ var pl = document.getElementById("plive"); if(!pl) return; var S = KB.get(), LT = KB.LANES.top, a = LT.TD && LT.TD.eu && LT.TD.eu.emerald; if(!a) return; var d = a[0] - a[3], s = (d >= 0 ? "+" : "−") + Math.abs(d).toFixed(1);
+    pl.innerHTML = "Live right now: Kayle top lane on EU (Emerald+) sits at <b>" + a[0].toFixed(1) + "% win rate</b>, " + s + " points against the previous patch. Updated every night from the ladder."; pl.hidden = false; })();
 })();
 </script>
 </body>

@@ -75,6 +75,10 @@ os.makedirs(out, exist_ok=True)
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import redesign
 s = redesign.apply(s)
+import uxpass
+_prev_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'index.html')
+_prev = open(_prev_path, encoding='utf-8').read() if os.path.exists(_prev_path) else None
+s = uxpass.apply(s, _prev)
 
 # --- Move big inline images (jpeg/webp/png data URIs) into files under a/ -------------------------
 # The artifact keeps every image inline (one file). For the real site the big ones become separate,
