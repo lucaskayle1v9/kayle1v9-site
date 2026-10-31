@@ -7795,7 +7795,79 @@ var CHSTAT = {subs:69600, goal:100000, videos:1295, checked:"30 Oct 2026"};
       document.querySelectorAll(".tier.tc .tbtn").forEach(function(b){ b.addEventListener("click", function(){ setTimeout(function(){ if(b.getAttribute("aria-expanded") === "true"){ var h = document.querySelector(".rqhost"); if(h){ var r = h.getBoundingClientRect(); if(r.bottom > innerHeight - 40 || r.top < 0) h.scrollIntoView({behavior:"smooth", block:"nearest"}); } } }, 500); }); });
     })();
     </script>
-    </body>
+    <style id="rail">
+/* section rail: where am I on the page */
+.srail{position:fixed;left:max(22px,calc((100vw - 1000px) / 2 - 190px));top:50%;z-index:40;transform:translate(-12px,-50%);opacity:0;pointer-events:none;transition:opacity .35s ease,transform .45s cubic-bezier(.22,1,.36,1)}
+.srail.show{opacity:1;transform:translate(0,-50%);pointer-events:auto}
+.srail ol{position:relative;list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:14px}
+.srail ol::before,.srail ol::after{content:"";position:absolute;left:5px;top:6px;width:2px;border-radius:2px}
+.srail ol::before{bottom:6px;background:rgba(255,255,255,.12)}
+.srail ol::after{height:var(--fill,0px);background:linear-gradient(180deg,rgba(240,185,75,.35),var(--gold));transition:height .45s cubic-bezier(.22,1,.36,1)}
+.srail a{position:relative;z-index:1;display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--muted);font-size:.8rem;font-weight:600;line-height:1;white-space:nowrap}
+.srail a i{flex:none;width:12px;height:12px;border-radius:50%;background:var(--bg);border:2px solid rgba(255,255,255,.25);transition:border-color .3s,background .3s,box-shadow .3s,transform .3s}
+.srail a span{opacity:0;transform:translateX(-6px);transition:opacity .25s,transform .3s,color .2s}
+.srail a.done i{border-color:rgba(240,185,75,.6);background:rgba(240,185,75,.35)}
+.srail a.on i{border-color:var(--gold);background:var(--gold);box-shadow:0 0 0 4px rgba(240,185,75,.18),0 0 14px rgba(240,185,75,.6);transform:scale(1.15)}
+.srail a.on span{opacity:1;transform:none;color:var(--gold);font-size:.86rem}
+.srail:hover a span,.srail:focus-within a span{opacity:1;transform:none}
+.srail a:hover span,.srail a:focus-visible span{color:var(--text)}
+.srail a:focus-visible{outline:none}.srail a:focus-visible i{box-shadow:0 0 0 3px rgba(255,255,255,.5)}
+/* phones and narrow windows: a slim progress line on the left edge and a small chip with the current section */
+.sline{display:none}
+@media (max-width:1279px){
+  .srail{display:none}
+  .sline{display:block;position:fixed;left:0;top:0;bottom:0;z-index:40;width:3px;pointer-events:none;opacity:0;transition:opacity .3s}
+  .sline.show{opacity:1}
+  .sline b{position:absolute;left:0;top:0;width:3px;height:var(--fill,0%);background:linear-gradient(180deg,rgba(240,185,75,.25),var(--gold));border-radius:0 2px 2px 0;transition:height .35s cubic-bezier(.22,1,.36,1)}
+  .sline span{position:absolute;left:10px;top:var(--chip,50%);transform:translateY(-50%);padding:5px 11px 5px 9px;border-radius:99px;background:rgba(11,18,38,.9);border:1px solid rgba(240,185,75,.55);color:var(--gold);font-size:.74rem;font-weight:700;white-space:nowrap;box-shadow:0 6px 18px rgba(0,0,0,.45);opacity:0;transition:opacity .3s,top .35s cubic-bezier(.22,1,.36,1)}
+  .sline.talk span{opacity:1}
+}
+@media (prefers-reduced-motion:reduce){.srail,.srail ol::after,.sline b,.sline span{transition:none}}
+</style>
+<script>
+(function(){
+  var NAMES = {coaching:"Coaching", patch:"Patch", builds:"Builds", finder:"Finder", matchups:"Matchups", leaderboard:"Leaderboard", games:"Minigames", trophies:"Trophies", videos:"Videos", about:"About", merch:"Merch", settings:"Settings", gear:"Gear", support:"Support"};
+  var secs = [].filter.call(document.querySelectorAll("section[id]"), function(s){ return NAMES[s.id]; });
+  if(!secs.length) return;
+  var rail = document.createElement("nav"); rail.className = "srail"; rail.setAttribute("aria-label", "Sections"); var ol = document.createElement("ol"); rail.appendChild(ol);
+  var line = document.createElement("div"); line.className = "sline"; line.setAttribute("aria-hidden", "true"); var fill = document.createElement("b"), chip = document.createElement("span"); line.appendChild(fill); line.appendChild(chip);
+  var links = {};
+  secs.forEach(function(s){
+    var li = document.createElement("li"), a = document.createElement("a"); a.href = "#" + s.id;
+    a.innerHTML = "<i></i><span></span>"; a.querySelector("span").textContent = NAMES[s.id];
+    li.appendChild(a); ol.appendChild(li); links[s.id] = {a:a, li:li, s:s};
+  });
+  document.body.appendChild(rail); document.body.appendChild(line);
+  var cur = "", talkT = 0, q = false;
+  function update(){
+    q = false;
+    var vis = secs.filter(function(s){ return !s.hidden && s.offsetHeight > 0; });
+    secs.forEach(function(s){ links[s.id].li.hidden = vis.indexOf(s) < 0; });
+    var mark = innerHeight * .35, act = null;
+    vis.forEach(function(s){ if(s.getBoundingClientRect().top <= mark) act = s; });
+    var first = vis[0], last = vis[vis.length - 1];
+    var started = first && first.getBoundingClientRect().top < innerHeight * .6;
+    var ended = last && last.getBoundingClientRect().bottom < innerHeight * .25;
+    var on = started && !ended && act;
+    rail.classList.toggle("show", !!on); line.classList.toggle("show", !!on);
+    if(!on) return;
+    var idx = vis.indexOf(act);
+    vis.forEach(function(s, i){ var a = links[s.id].a; a.classList.toggle("on", i === idx); a.classList.toggle("done", i < idx); if(i === idx) a.setAttribute("aria-current", "true"); else a.removeAttribute("aria-current"); });
+    var dot = links[act.id].a.querySelector("i"), olr = ol.getBoundingClientRect(), dr = dot.getBoundingClientRect();
+    ol.style.setProperty("--fill", Math.max(0, dr.top + dr.height / 2 - olr.top - 6) + "px");
+    var top = first.getBoundingClientRect().top + scrollY, bot = last.getBoundingClientRect().bottom + scrollY;
+    var p = Math.min(1, Math.max(0, (scrollY + innerHeight * .35 - top) / (bot - top)));
+    line.style.setProperty("--fill", (p * 100).toFixed(2) + "%");
+    if(act.id !== cur){ cur = act.id; chip.textContent = NAMES[cur]; }
+    line.style.setProperty("--chip", Math.min(innerHeight - 30, Math.max(70, p * innerHeight)) + "px");
+    line.classList.add("talk"); clearTimeout(talkT); talkT = setTimeout(function(){ line.classList.remove("talk"); }, 1400);
+  }
+  function kick(){ if(!q){ q = true; requestAnimationFrame(update); } }
+  addEventListener("scroll", kick, {passive:true}); addEventListener("resize", kick); addEventListener("load", kick);
+  setInterval(kick, 2000); kick();
+})();
+</script>
+</body>
 </html>
 
 <script>
