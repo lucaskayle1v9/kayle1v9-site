@@ -11,7 +11,75 @@ fs.mkdirSync(out, { recursive: true });
 
 function git(args) { return cp.execFileSync("git", ["-C", repo].concat(args), { maxBuffer: 1 << 30 }).toString(); }
 
-// Pull "var NAME = <value>" out of the page and evaluate the value (object, array, string or number).
+// Parse a JS object/array literal as data, without executing anything.
+// Supports what the page uses: quoted or bare (identifier/number) keys, ' or " strings,
+// numbers, true/false/null, // and /* */ comments, trailing commas. Anything else throws.
+function parseLiteral(src) {
+  let i = 0;
+  const err = m => { throw new Error(m + " at " + i); };
+  const ws = () => {
+    for (;;) {
+      const c = src[i];
+      if (c === " " || c === "\t" || c === "\n" || c === "\r") i++;
+      else if (c === "/" && src[i + 1] === "/") { while (i < src.length && src[i] !== "\n") i++; }
+      else if (c === "/" && src[i + 1] === "*") { const j = src.indexOf("*/", i + 2); if (j < 0) err("comment"); i = j + 2; }
+      else return;
+    }
+  };
+  const str = () => {
+    const q = src[i++]; let s = "";
+    while (i < src.length && src[i] !== q) {
+      let c = src[i++];
+      if (c === "\\") {
+        c = src[i++];
+        if (c === "n") s += "\n"; else if (c === "t") s += "\t"; else if (c === "r") s += "\r";
+        else if (c === "b") s += "\b"; else if (c === "f") s += "\f";
+        else if (c === "u") { s += String.fromCharCode(parseInt(src.substr(i, 4), 16)); i += 4; }
+        else if (c === "\n") { /* line continuation */ }
+        else s += c;
+      } else s += c;
+    }
+    if (src[i] !== q) err("unterminated string");
+    i++; return s;
+  };
+  const num = () => {
+    const m = /^[-+]?(?:0[xX][0-9a-fA-F]+|(?:\d+\.?\d*|\.\d+)(?:[eE][-+]?\d+)?)/.exec(src.slice(i));
+    if (!m) err("number"); i += m[0].length; return Number(m[0]);
+  };
+  const word = () => { const m = /^[A-Za-z_$][\w$]*/.exec(src.slice(i)); if (!m) err("token"); i += m[0].length; return m[0]; };
+  const val = () => {
+    ws(); const c = src[i];
+    if (c === "{") {
+      i++; const o = {};
+      for (;;) {
+        ws(); if (src[i] === "}") { i++; return o; }
+        let k; const d = src[i];
+        if (d === '"' || d === "'") k = str(); else if (/[-+\d.]/.test(d)) k = String(num()); else k = word();
+        ws(); if (src[i] !== ":") err("expected :"); i++;
+        Object.defineProperty(o, k, { value: val(), enumerable: true, writable: true, configurable: true });
+        ws(); if (src[i] === ",") { i++; continue; } if (src[i] === "}") { i++; return o; } err("expected , or }");
+      }
+    }
+    if (c === "[") {
+      i++; const a = [];
+      for (;;) {
+        ws(); if (src[i] === "]") { i++; return a; }
+        a.push(val());
+        ws(); if (src[i] === ",") { i++; continue; } if (src[i] === "]") { i++; return a; } err("expected , or ]");
+      }
+    }
+    if (c === '"' || c === "'") return str();
+    if (/[-+\d.]/.test(c)) return num();
+    const w = word();
+    if (w === "true") return true; if (w === "false") return false; if (w === "null") return null;
+    if (w === "undefined") return undefined; if (w === "NaN") return NaN; if (w === "Infinity") return Infinity;
+    err("unexpected " + w);
+  };
+  const v = val(); ws(); if (i !== src.length) err("trailing data");
+  return v;
+}
+
+// Pull "var NAME = <value>" out of the page and parse the value (object, array, string or number) as data.
 function grab(html, name) {
   const re = new RegExp("(?:var |,\\s*)" + name + " = ");
   const m = re.exec(html); if (!m) return undefined;
@@ -26,7 +94,7 @@ function grab(html, name) {
     if (ch === "{" || ch === "[") depth++;
     else if (ch === "}" || ch === "]") { depth--; if (depth === 0) break; }
   }
-  try { return Function('"use strict";return (' + html.slice(i, j + 1) + ")")(); } catch (e) { return undefined; }
+  try { return parseLiteral(html.slice(i, j + 1)); } catch (e) { return undefined; }
 }
 function load(html) {
   const d = {};
