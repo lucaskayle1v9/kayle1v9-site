@@ -131,7 +131,7 @@ def apply(html, prev_html=None, preview=False):
         <div class="qstitle"><span class="dtag">Quick start</span><div class="qsh" id="qsh" role="heading" aria-level="2">Who are you against?</div><p id="qsnote"></p></div>
         <div class="tdpick" role="group" aria-label="Your profile">
           <div class="tdg" id="tdlane"><span class="btl">Lane</span><button type="button" data-v="top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3.5" stroke-width="1.6" opacity=".38"/><path d="M4.5 19.5L19.5 4.5" stroke-width="1.6" opacity=".38"/><path d="M6.5 18V6.5H18" stroke-width="3.2"/></svg>Top</button><button type="button" data-v="mid"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3.5" stroke-width="1.6" opacity=".38"/><path d="M4.5 19.5L19.5 4.5" stroke-width="1.6" opacity=".38"/><path d="M8 16L16 8" stroke-width="3.4"/></svg>Mid</button></div>
-          <div class="tdg" id="tdserver"><span class="btl">Server</span><button type="button" data-v="eu"><i class="qsf" data-f="eu"></i>EU</button><button type="button" data-v="china"><i class="qsf" data-f="china"></i>China</button><button type="button" data-v="korea"><i class="qsf" data-f="korea"></i>Korea</button></div>
+          <div class="tdg" id="tdserver"><span class="btl">Server</span><button type="button" data-v="eu"><i class="qsf" data-f="eu"></i>EU</button><button type="button" data-v="na"><i class="qsf" data-f="na"></i>NA</button><button type="button" data-v="china"><i class="qsf" data-f="china"></i>China</button><button type="button" data-v="korea"><i class="qsf" data-f="korea"></i>Korea</button></div>
           <div class="tdg" id="tdtier"><span class="btl">Rank</span><button type="button" data-v="emerald">Emerald+</button><button type="button" data-v="diamond">Diamond+</button><button type="button" data-v="master">Master+</button><button type="button" data-v="all">All</button></div>
         </div>
       </div>
@@ -232,8 +232,8 @@ section.subsec .lead{margin-bottom:18px}
   var KB = window.KB; if(!KB) return;
   var gl = document.getElementById("tdlane"), gs = document.getElementById("tdserver"), gt = document.getElementById("tdtier");
   var KEY = "k1v9prof", el = function(t, c, x){ var n = document.createElement(t); if(c) n.className = c; if(x != null) n.textContent = x; return n; };
-  var NAMES = {eu:"EUW", china:"China", korea:"Korea", top:"Top", mid:"Mid", emerald:"Emerald+", diamond:"Diamond+", master:"Master+", all:"All ranks"};
-  function pressed(group, v, avail){ [].forEach.call(group.querySelectorAll("button"), function(b){ b.classList.toggle("on", b.dataset.v === v); b.disabled = !!(avail && avail.indexOf(b.dataset.v) < 0); }); }
+  var NAMES = {eu:"EUW", na:"NA", china:"China", korea:"Korea", top:"Top", mid:"Mid", emerald:"Emerald+", diamond:"Diamond+", master:"Master+", all:"All ranks"};
+  function pressed(group, v, avail){ [].forEach.call(group.querySelectorAll("button"), function(b){ b.classList.toggle("on", b.dataset.v === v); b.disabled = !!(avail && avail.indexOf(b.dataset.v) < 0); b.hidden = !!(avail && b.dataset.v === "na" && avail.indexOf("na") < 0); }); }
   function mostPicked(rows){ return (rows || []).slice().sort(function(a, b){ return (b[2] || 0) - (a[2] || 0); })[0]; }
   function copyText(S){
     var r = S.RL[S.r].common, P = KB.RN; if(!r) return "";

@@ -49,7 +49,7 @@ const diff = (a, b) => (a == null || b == null) ? null : r2(a - b);
 const itn = id => (cur.ITN && cur.ITN[id]) || (P.ITN && P.ITN[id]) || ("Item " + id);
 const rn = id => (cur.RN && cur.RN[id]) || ("Rune " + id);
 const spn = ids => ids.split("_").map(i => (cur.SPN && cur.SPN[i]) || ("Spell " + i)).join(" + ");
-const REG = { eu: "EU", china: "China", korea: "Korea" };
+const REG = { eu: "EU", na: "NA", china: "China", korea: "Korea" };
 const LANES = [
   { k: "top", name: "Top", td: "TD", r: "RLIVE", ib: "IBLIVE", sp: "SPLIVE", mu: "MULIVE", patch: "PATCH" },
   { k: "mid", name: "Mid", td: "TDM", r: "RLIVEM", ib: "IBLIVEM", sp: "SPLIVEM", mu: "MULIVEM", patch: "PATCHM" }

@@ -254,6 +254,20 @@ def china(endpoint, version, itier=26):
     return v or None
 
 
+# LoLalytics/OP.GG region code per server key. NA (North America) was added later: its entries
+# are created on the first successful run and kept complete-or-absent (see na_consistency).
+REGION = {'eu': 'euw', 'korea': 'kr', 'na': 'na'}
+NEW_SRV = 'na'
+
+
+def seed(D, tmpl):
+    """Add an empty NA entry to a server dict if it is missing; returns True when it was created."""
+    if NEW_SRV in D:
+        return False
+    D[NEW_SRV] = json.loads(json.dumps(tmpl))
+    return True
+
+
 def split_hash(s):
     return [x for x in (s or '').split('#') if x]
 
@@ -414,7 +428,11 @@ def rates_part(h, lane, P):
     lo, hi = (40, 65) if top else (35, 65)
     plo = 0.1 if top else 0.05
     changed = False
-    for region, srv in [('euw', 'eu'), ('kr', 'korea')]:
+    na_new = NEW_SRV not in td
+    if na_new:
+        td[NEW_SRV] = {key: [None] * 6 for _, key in tiers}
+    na_fail = False
+    for region, srv in [('euw', 'eu'), ('kr', 'korea'), ('na', NEW_SRV)]:
         for tier, key in tiers:
             arr = list(td[srv][key])
             ok = True
@@ -437,11 +455,19 @@ def rates_part(h, lane, P):
                 except Exception as ex:  # noqa: BLE001
                     ok = False
                     kept(P, 'Raten %s %s %s: %s' % (srv, key, p, ex))
+            if srv == NEW_SRV and na_new and not ok:
+                na_fail = True
+                continue
             if patch != old_patch and not ok:
                 continue
             if arr != td[srv][key]:
                 changed = True
             td[srv][key] = arr
+    if na_new and na_fail:
+        del td[NEW_SRV]
+        kept(P, 'Raten na: noch nicht vollständig, NA bleibt vorerst weg')
+    elif na_new:
+        note(P, 'NA neu hinzugefügt')
     if top:
         for p_i, p in enumerate([patch, prev]):
             try:
@@ -475,6 +501,8 @@ def runes_part(h, lane, patch, P, builds):
     blk, var = ('RUNES LIVE', 'RLIVE') if top else ('RUNES LIVE MID', 'RLIVEM')
     known = RUNE_TOP if top else RUNE_MID
     R = get_var(h, blk, var)
+    na_new = seed(R, {'patch': None, 'chk': None, 'common': {}, 'best': {}})
+    na_done = set()
     for srv in R:
         refreshed = False
         if srv == 'china':
@@ -538,10 +566,13 @@ def runes_part(h, lane, patch, P, builds):
                         note(P, 'Runen %s %s geändert' % (srv, k))
                     R[srv][k] = pg
                     refreshed = True
+                    na_done.add(k)
             except Exception as ex:  # noqa: BLE001
                 kept(P, 'Runen %s: %s' % (srv, ex))
         if refreshed:
             R[srv]['patch'], R[srv]['chk'] = patch, TODAY
+    if na_new and not (R[NEW_SRV]['common'] and R[NEW_SRV]['best']):
+        del R[NEW_SRV]
     return set_var(h, blk, var, R, pretty_servers)
 
 
@@ -552,6 +583,7 @@ def starters_part(h, lane, patch, P, builds):
     blk, var = ('STARTERS LIVE', 'SBLIVE') if top else ('STARTERS LIVE MID', 'SBLIVEM')
     ming = 100 if top else 50
     S = get_var(h, blk, var)
+    na_new = seed(S, {'patch': None, 'chk': None, 'start': [], 'boots': []})
 
     def start_ok(r):
         ids = [int(x) for x in str(r[0]).split('_') if x]
@@ -607,6 +639,8 @@ def starters_part(h, lane, patch, P, builds):
             kept(P, 'Startitems/Stiefel %s: %s' % (srv, ex))
         if refreshed:
             S[srv]['patch'], S[srv]['chk'] = patch, TODAY
+    if na_new and not (S[NEW_SRV]['start'] and S[NEW_SRV]['boots']):
+        del S[NEW_SRV]
     return set_var(h, blk, var, S, pretty_servers)
 
 
@@ -653,6 +687,7 @@ def items_part(h, lane, patch, P):
     names = ITEM_NAMES_TOP if top else ITEM_NAMES_MID
     known = set(names.values())
     I = get_var(h, blk, var)
+    na_new = seed(I, {'patch': None, 'chk': None, 'core': {'ids': []}, 'fifth': [], 'sixth': []})
     for srv in I:
         refreshed = False
         try:
@@ -671,7 +706,7 @@ def items_part(h, lane, patch, P):
                     return out
                 fifth, sixth = chopts('fifth_details'), chopts('sixth_details')
             else:
-                region = 'euw' if srv == 'eu' else 'kr'
+                region = REGION[srv]
                 c, f, x = opgg_items(lane, region, patch, names)
                 if any(n not in names for n in c['names']):
                     core = {'unknown': [n for n in c['names'] if n not in names]}
@@ -715,6 +750,8 @@ def items_part(h, lane, patch, P):
             kept(P, 'Items %s: %s' % (srv, ex))
         if refreshed:
             I[srv]['patch'], I[srv]['chk'] = patch, TODAY
+    if na_new and not (I[NEW_SRV]['core']['ids'] and len(I[NEW_SRV]['fifth']) == 3 and len(I[NEW_SRV]['sixth']) == 3):
+        del I[NEW_SRV]
     return set_var(h, blk, var, I, pretty_servers)
 
 
@@ -725,6 +762,7 @@ def spells_part(h, lane, patch, P, builds):
     blk, var = ('SPELLS LIVE', 'SPLIVE') if top else ('SPELLS LIVE MID', 'SPLIVEM')
     ming = 100 if top else 50
     S = get_var(h, blk, var)
+    na_new = seed(S, {'patch': None, 'chk': None, 'rows': []})
 
     def ok(r):
         ids = [int(x) for x in r[0].split('_')]
@@ -763,6 +801,8 @@ def spells_part(h, lane, patch, P, builds):
             S[srv]['patch'], S[srv]['chk'] = patch, TODAY
         except Exception as ex:  # noqa: BLE001
             kept(P, 'Spells %s: %s' % (srv, ex))
+    if na_new and not S[NEW_SRV]['rows']:
+        del S[NEW_SRV]
     return set_var(h, blk, var, S, pretty_servers)
 
 
@@ -1015,6 +1055,11 @@ def lane_parts(h, lane, P):
         builds['korea'] = {'patch': None}
         kept(P, 'LoLalytics Korea: %s' % ex)
     try:
+        builds['na'] = lola_build(lane, 'na', 'emerald_plus', patch)
+    except Exception as ex:  # noqa: BLE001
+        builds['na'] = {'patch': None}
+        kept(P, 'LoLalytics NA: %s' % ex)
+    try:
         builds['eu'] = lola_build(lane, 'euw', 'emerald_plus', patch)
     except Exception:  # noqa: BLE001
         pass
@@ -1039,6 +1084,25 @@ def lane_parts(h, lane, P):
         h = matchups_part(h, lane, P, chi)
     except Exception as ex:  # noqa: BLE001
         kept(P, 'matchups: %s' % ex)
+    return na_consistency(h, lane, P)
+
+
+def na_consistency(h, lane, P):
+    """NA is shown only when every block of the lane has it; otherwise remove it from all of them."""
+    top = lane == 'top'
+    sfx = '' if top else ' MID'
+    vs = [('LIVE DATA' + sfx, 'TD' if top else 'TDM', pretty_td)] + [
+        (b + sfx, v + ('' if top else 'M'), pretty_servers)
+        for b, v in (('RUNES LIVE', 'RLIVE'), ('STARTERS LIVE', 'SBLIVE'), ('ITEMS LIVE', 'IBLIVE'), ('SPELLS LIVE', 'SPLIVE'))]
+    have = [NEW_SRV in get_var(h, b, v) for b, v, _ in vs]
+    if all(have) or not any(have):
+        return h
+    for (b, v, pr), x in zip(vs, have):
+        if x:
+            D = get_var(h, b, v)
+            del D[NEW_SRV]
+            h = set_var(h, b, v, D, pr)
+    kept(P, 'NA unvollständig (%s), NA bleibt vorerst weg' % ', '.join(v for (b, v, _), x in zip(vs, have) if not x))
     return h
 
 
