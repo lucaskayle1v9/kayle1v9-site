@@ -28,7 +28,7 @@ def apply(html, history=None, preview=False):
       '''      var card = el("div", "mucard" + (animate ? " fresh" : ""));
       (function(){ // loading-screen banner: Kayle vs the opponent
         var vd0 = verdict(d.w), bn = el("div", "mubn " + vd0[1]), L0 = el("div", "mubl"), R0 = el("div", "mubr"), M0 = el("div", "mubm");
-        var kay = new Image(); kay.alt = ""; kay.decoding = "async"; kay.src = (window.KHERO || "a/572b4b283d60.jpg"); L0.appendChild(kay);
+        var kay = new Image(); kay.alt = ""; kay.decoding = "async"; kay.src = "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Kayle_0.jpg"; kay.onerror = function(){ kay.onerror = null; kay.src = window.KHERO || "a/572b4b283d60.jpg"; }; L0.appendChild(kay);
         var opp = new Image(); opp.alt = ""; opp.decoding = "async"; opp.src = "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/" + ddKey(d.nm) + "_0.jpg";
         opp.onerror = function(){ R0.classList.add("noart"); opp.remove(); var ic = chIcon(d.c, 120); ic.className = "mubic"; R0.appendChild(ic); };
         R0.appendChild(opp);
