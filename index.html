@@ -2919,8 +2919,8 @@ var AV = {tz:"Europe/Berlin", from:11, last:23, step:30, days:14, lead:12,
         var G = CONFIG.googleForm, pre = {}; pre[G.tier] = pk ? ((tier.match(/Level \d+/) || [tier])[0] + " | " + pk.berlin + " Berlin time | visitor time: " + pk.mine + (pk.tz ? ", " + pk.tz : "") + " | " + pk.iso) : tier + ", " + price; pre[G.discord] = v.discord; pre[G.league] = v.league; pre[G.email] = v.email; pre[G.opgg] = v.opgg;
         var pq = new URLSearchParams(pre); pq.append("usp", "pp_url");
         done(t, f, "Your details are ready. Press the button, check them and press Send in the form that opens. I only get your request once you press Send there.");
-        t.querySelector(".rqok h4").textContent = "One last step";
-        var g2 = t.querySelector(".rqg2"); g2.hidden = false; g2.href = G.url.replace("formResponse", "viewform") + "?" + pq.toString();
+        (t._rq || t).querySelector(".rqok h4").textContent = "One last step";
+        var g2 = (t._rq || t).querySelector(".rqg2"); g2.hidden = false; g2.href = G.url.replace("formResponse", "viewform") + "?" + pq.toString();
         setTimeout(function(){ try{ g2.focus({preventScroll:true}); }catch(x){} }, 500);
       } else if(CONFIG.requestEndpoint){
         var sb = f.querySelector(".rqs"); sb.disabled = true; sb.textContent = "Sending";

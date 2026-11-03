@@ -155,6 +155,9 @@ def apply(html, preview=False):
       '  function close(t){ var b = t.querySelector(".tbtn"); b.setAttribute("aria-expanded", "false"); (t._rq || t.querySelector(".rq")).classList.remove("open"); t.classList.remove("rqon"); }')
     R('    var ok = t.querySelector(".rqok"); f.hidden = true; ok.hidden = false;', '    var ok = (t._rq || t).querySelector(".rqok"); f.hidden = true; ok.hidden = false;')
     R('    requestAnimationFrame(function(){ t.querySelector(".rq").classList.add("open"); });', '    requestAnimationFrame(function(){ (t._rq || t.querySelector(".rq")).classList.add("open"); });')
+    # the "one last step" title and the Google Form button live in the drawer too (bug since the drawer: href never set)
+    R('        t.querySelector(".rqok h4").textContent = "One last step";', '        (t._rq || t).querySelector(".rqok h4").textContent = "One last step";')
+    R('        var g2 = t.querySelector(".rqg2"); g2.hidden = false;', '        var g2 = (t._rq || t).querySelector(".rqg2"); g2.hidden = false;')
     R('    var t = b.closest(".tier"), rq = t.querySelector(".rq"), f = t.querySelector("form");\n    if(window.KPICK) KPICK.init(f);',
       '    var t = b.closest(".tier"), rq = t.querySelector(".rq"), f = t.querySelector("form"); t._rq = rq; rq._tier = t;\n    if(window.KPICK) KPICK.init(f);')
     R('      b.setAttribute("aria-expanded", "true"); rq.classList.add("open");',
