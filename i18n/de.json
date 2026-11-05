@@ -1478,5 +1478,8 @@
 ". These are planned changes and can still be adjusted before release. I will update this once the official patch notes are out.": ". Das sind geplante Änderungen, die sich vor dem Release noch ändern können. Ich aktualisiere das, sobald die offiziellen Patchnotes da sind.",
 "to go. Help me get there.": "fehlen noch. Hilf mir, dahin zu kommen.",
 "% win rate": "% Winrate",
-"of €{n0} goal": "von €{n0} Ziel"
+"of €{n0} goal": "von €{n0} Ziel",
+"Nov {n0}, {n1}": "{n0}. Nov. {n1}",
+"Kayle got buffed in this patch, her first buff in a long time.": "Kayle wurde in diesem Patch gebufft, der erste Buff für sie seit langer Zeit.",
+"No Kayle changes have been announced for this patch yet. I will add them here as soon as the preview is out.": "Für diesen Patch sind noch keine Kayle-Änderungen angekündigt. Ich trage sie hier ein, sobald die Vorschau raus ist."
 }

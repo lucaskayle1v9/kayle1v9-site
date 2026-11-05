@@ -117,8 +117,8 @@ def apply(html, prev_html=None, preview=False):
     if n < 5: raise RuntimeError("gear tiles not found")
 
     # ---------- 7. patch: live line under the next-patch card ----------
-    R('      <div class="pcard hot">\n        <div class="phd"><span class="pver">Patch 26.22</span>',
-      '      <p class="plive" id="plive" hidden></p>\n      <div class="pcard hot">\n        <div class="phd"><span class="pver">Patch 26.22</span>')
+    R('<div class="pp" data-p="next" role="tabpanel">\n',
+      '<div class="pp" data-p="next" role="tabpanel">\n      <p class="plive" id="plive" hidden></p>\n')
 
     # ---------- 2. quick start under the hero ----------
     R('</header>\n',
