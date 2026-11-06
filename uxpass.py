@@ -61,6 +61,7 @@ def apply(html, prev_html=None, preview=False):
       inp2.addEventListener("input", fill); inp2.addEventListener("focus", fill);
       inp2.addEventListener("keydown", function(e){ if(e.key === "Enter"){ var f = sug.querySelector(".muqrow"); if(f) f.click(); e.preventDefault(); } if(e.key === "Escape"){ sug.hidden = true; } });
       muOn("click", function(e){ if(!wrap.contains(e.target)) sug.hidden = true; });
+      [].slice.call(document.querySelectorAll(".muquick")).forEach(function(o){ if(o.parentNode) o.parentNode.removeChild(o); }); // one picker only: re-rendering (lane switch) must not stack a second one
       var isr = document.getElementById("isr"); if(isr && isr.parentNode === host.parentNode) host.parentNode.insertBefore(q, isr); else host.insertBefore(q, bar);
       window.KMUQ = {choose:choose, L:L, slugs:slugs}; window.KCHI = CHI; document.dispatchEvent(new CustomEvent("k1v9:mu"));
     })();
