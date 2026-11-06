@@ -57,11 +57,17 @@ _vd_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'videos.json
 _vd = json.load(open(_vd_path)) if os.path.exists(_vd_path) else []
 for _v in reversed(_vd):
     if ('id:"%s"' % _v['id']) in s:
+        # already listed: keep its title in step with YouTube (videos get renamed after upload)
+        s = re.sub(r'(\{id:"%s", thumb:"[^"]*", title:)"(?:[^"\\]|\\.)*"' % re.escape(_v['id']),
+                   lambda m: m.group(1) + json.dumps(_v['title']), s)
         continue
     _key = 'v' + re.sub(r'[^A-Za-z0-9]', '', _v['id'])
-    _img = base64.b64encode(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), _v['thumb']), 'rb').read()).decode()
+    if _v['thumb'].startswith('http'):
+        _src = _v['thumb']   # e.g. YouTube's own thumbnail URL
+    else:
+        _src = 'data:image/webp;base64,' + base64.b64encode(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), _v['thumb']), 'rb').read()).decode()
     assert s.count('THUMBS = {') == 1, 'THUMBS not found'
-    s = s.replace('THUMBS = {', 'THUMBS = {"%s": "data:image/webp;base64,%s", ' % (_key, _img), 1)
+    s = s.replace('THUMBS = {', 'THUMBS = {"%s": "%s", ' % (_key, _src), 1)
     _vs = s.index('  videos: [\n') + len('  videos: [\n')
     _ve = s.index('\n  ]', _vs)
     _rows = s[_vs:_ve].split('\n')
