@@ -1,4 +1,4 @@
-"""Language switch for kayle1v9.com: English (source), German, Spanish, Portuguese.
+"""Language switch for kayle1v9.com: English (source) plus DE, ES, PT, FR, TR, KO, ZH (simplified), JA.
 
 The page stays written in English. At runtime every visible text node and the attributes
 placeholder / aria-label / title are looked up in a dictionary and swapped, also for text the
@@ -7,7 +7,8 @@ summoner spells) are cut out as placeholders before the lookup, so "Kayle vs Dar
 and "Kayle vs Garen: 57.5%" share one entry ("Kayle vs {p0}: {n0}") and game names stay English.
 
 Usage in make_site.py:  s = i18n.apply(s, i18n.load(repo_dir))
-Dictionaries: i18n/de.json, i18n/es.json, i18n/pt.json  ({template: translation}).
+Dictionaries: i18n/<code>.json ({template: translation}). They are not inlined: the page fetches only
+the dictionary of the language it shows (i18n/<code>.json?v=<hash>), English needs none.
 Collect mode for building the dictionaries: open the page with ?i18n=collect, every template the
 page shows is gathered in window.__I18N_SEEN.
 """
@@ -15,7 +16,8 @@ import json
 import os
 import re
 
-LANGS = [("en", "English"), ("de", "Deutsch"), ("es", "Español"), ("pt", "Português")]
+LANGS = [("en", "English"), ("de", "Deutsch"), ("es", "Español"), ("pt", "Português"), ("fr", "Français"),
+         ("tr", "Türkçe"), ("ko", "한국어"), ("zh", "简体中文"), ("ja", "日本語")]
 
 
 def load(repo):
@@ -48,14 +50,17 @@ def game_names(html):
 
 HEAD = r"""<script>
 (function(){
-  var L = ["en", "de", "es", "pt"], l = null;
+  var L = __CODES__, l = null;
   try{ var q = new URLSearchParams(location.search).get("lang"); if(L.indexOf(q) >= 0) l = q; }catch(e){}
   if(!l){ try{ var s = localStorage.getItem("k1v9lang"); if(L.indexOf(s) >= 0) l = s; }catch(e){} }
   if(!l){ var n = (navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || "en"]); for(var i = 0; i < n.length && !l; i++){ var c = String(n[i]).slice(0, 2).toLowerCase(); if(L.indexOf(c) >= 0) l = c; } }
   l = l || "en";
   window.K_LANG = l;
   document.documentElement.lang = l;
-  if(l !== "en"){ document.documentElement.classList.add("i18n-wait"); setTimeout(function(){ document.documentElement.classList.remove("i18n-wait"); }, 2500); }
+  if(l !== "en"){
+    document.documentElement.classList.add("i18n-wait"); setTimeout(function(){ document.documentElement.classList.remove("i18n-wait"); }, 2500);
+    try{ window.K_DICTP = fetch("i18n/" + l + ".json?v=__VER__").then(function(r){ if(!r.ok) throw 0; return r.json(); }); window.K_DICTP.catch(function(){}); }catch(e){}
+  }
 })();
 </script>
 <style>html.i18n-wait body{opacity:0}</style>
@@ -74,11 +79,14 @@ CSS = r"""
 .lgm button b{display:inline-block;min-width:2em;font-size:.78rem;letter-spacing:.06em;color:var(--gold,#F0B94B)}
 .lgm button:hover,.lgm button:focus-visible{background:rgba(240,185,75,.12)}
 .lgm button.on{background:rgba(240,185,75,.2)}
+html:lang(ko) body{word-break:keep-all;overflow-wrap:anywhere}
+html:lang(ja) body,html:lang(zh) body{line-break:strict;overflow-wrap:anywhere}
+html:lang(ko) h1,html:lang(ko) h2,html:lang(ko) h3,html:lang(ja) h1,html:lang(ja) h2,html:lang(ja) h3,html:lang(zh) h1,html:lang(zh) h2,html:lang(zh) h3{letter-spacing:0}
 @media (max-width:720px){
   nav ul#mainnav li.lgli{display:block;padding:8px 6px 6px;margin-top:4px;border-top:1px solid rgba(240,185,75,.18)}
   nav ul#mainnav li.lgli .lgw{display:block}
   nav ul#mainnav li.lgli .lgb{display:none}
-  nav ul#mainnav li.lgli .lgm{position:static;display:grid;grid-template-columns:repeat(4,1fr);gap:6px;min-width:0;padding:0;border:0;background:none;box-shadow:none;opacity:1;transform:none;pointer-events:auto}
+  nav ul#mainnav li.lgli .lgm{position:static;display:grid;grid-template-columns:repeat(3,1fr);gap:6px;min-width:0;padding:0;border:0;background:none;box-shadow:none;opacity:1;transform:none;pointer-events:auto}
   nav ul#mainnav li.lgli .lgm button{flex-direction:column;justify-content:center;gap:2px;padding:9px 4px;border:1px solid rgba(240,185,75,.35);border-radius:12px;font-size:.78rem;text-align:center}
   nav ul#mainnav li.lgli .lgm button b{min-width:0;font-size:.9rem}
   nav ul#mainnav li.lgli .lgm button.on{background:var(--gold,#F0B94B);color:#0F1A33;border-color:var(--gold,#F0B94B)}
@@ -88,12 +96,22 @@ CSS = r"""
 
 RUNTIME = r"""
 (function(){
-  var DICT = __DICT__, NAMES = __NAMES__, LABELS = __LABELS__;
+  var DICT = {}, NAMES = __NAMES__, LABELS = __LABELS__, VER = "__VER__";
   var lang = window.K_LANG || "en", collect = /[?&]i18n=collect/.test(location.search);
   var SEEN = window.__I18N_SEEN = collect ? {} : null;
   var MON = {de:{Jan:"Jan.",Feb:"Feb.",Mar:"März",Apr:"Apr.",May:"Mai",Jun:"Juni",Jul:"Juli",Aug:"Aug.",Sep:"Sep.",Oct:"Okt.",Nov:"Nov.",Dec:"Dez."},
              es:{Jan:"ene",Feb:"feb",Mar:"mar",Apr:"abr",May:"may",Jun:"jun",Jul:"jul",Aug:"ago",Sep:"sept",Oct:"oct",Nov:"nov",Dec:"dic"},
-             pt:{Jan:"jan",Feb:"fev",Mar:"mar",Apr:"abr",May:"mai",Jun:"jun",Jul:"jul",Aug:"ago",Sep:"set",Oct:"out",Nov:"nov",Dec:"dez"}};
+             pt:{Jan:"jan",Feb:"fev",Mar:"mar",Apr:"abr",May:"mai",Jun:"jun",Jul:"jul",Aug:"ago",Sep:"set",Oct:"out",Nov:"nov",Dec:"dez"},
+             fr:{Jan:"janv.",Feb:"févr.",Mar:"mars",Apr:"avr.",May:"mai",Jun:"juin",Jul:"juil.",Aug:"août",Sep:"sept.",Oct:"oct.",Nov:"nov.",Dec:"déc."},
+             tr:{Jan:"Oca",Feb:"Şub",Mar:"Mar",Apr:"Nis",May:"May",Jun:"Haz",Jul:"Tem",Aug:"Ağu",Sep:"Eyl",Oct:"Eki",Nov:"Kas",Dec:"Ara"}};
+  var MNUM = {Jan:1,Feb:2,Mar:3,Apr:4,May:5,Jun:6,Jul:7,Aug:8,Sep:9,Oct:10,Nov:11,Dec:12};
+  function date(x){
+    var q = x.split(" "), m = MNUM[q[1]];
+    if(lang === "ko") return q[2] + "년 " + m + "월 " + q[0] + "일";
+    if(lang === "zh" || lang === "ja") return q[2] + "年" + m + "月" + q[0] + "日";
+    if(lang === "de") return q[0] + ". " + (MON.de[q[1]] || q[1]) + " " + q[2];
+    return MON[lang] ? q[0] + " " + (MON[lang][q[1]] || q[1]) + " " + q[2] : x;
+  }
   function esc(s){ return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); }
   var TOK = new RegExp("(\\d{1,2} (?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \\d{4})|(" + (NAMES.length ? NAMES.map(esc).join("|") : "\\u0000") + ")(?![A-Za-z'])|([+\\u2212-]?\\d+(?:[.,:]\\d+)*%?)", "g");
   function tmpl(s){
@@ -106,7 +124,7 @@ RUNTIME = r"""
     v.forEach(function(x){ by[x[0]].push(x[1]); });
     return tr.replace(/\{([dpn])(\d+)\}/g, function(m, t, n){
       var x = by[t][+n]; if(x == null) return m;
-      if(t === "d" && MON[lang]){ var q = x.split(" "); x = lang === "de" ? q[0] + ". " + (MON.de[q[1]] || q[1]) + " " + q[2] : q[0] + " " + (MON[lang][q[1]] || q[1]) + " " + q[2]; }
+      if(t === "d" && lang !== "en") x = date(x);
       return x;
     });
   }
@@ -196,8 +214,18 @@ RUNTIME = r"""
     document.querySelectorAll(".lgb .lgc").forEach(function(c){ c.textContent = lang.toUpperCase(); });
     document.querySelectorAll(".lgm button").forEach(function(b){ var on = b.dataset.lang === lang; b.classList.toggle("on", on); b.setAttribute("aria-checked", on ? "true" : "false"); });
   }
+  // dictionaries come as separate files, fetched once per language
+  function need(l, cb){
+    if(l === "en" || DICT[l]) return cb();
+    var p = (l === window.K_LANG && window.K_DICTP) || fetch("i18n/" + l + ".json?v=" + VER).then(function(r){ if(!r.ok) throw 0; return r.json(); });
+    p.then(function(d){ DICT[l] = d; cb(); }, function(){ cb(); });
+  }
   function setLang(l){
     if(CODES.indexOf(l) < 0 || l === lang) return;
+    need(l, function(){ apply(l); });
+  }
+  function apply(l){
+    if(l === lang) return;
     lang = window.K_LANG = l;
     try{ localStorage.setItem("k1v9lang", l); }catch(e){}
     try{ var u = new URL(location.href); if(u.searchParams.has("lang")){ u.searchParams.set("lang", l); history.replaceState(null, "", u); } }catch(e){}
@@ -225,9 +253,11 @@ RUNTIME = r"""
     var li = document.createElement("li"); li.className = "lgli"; li.appendChild(w); nav.appendChild(li);
   }
   function start(){
-    build();
-    busy = true; try{ run(); if(lang !== "en") legal(); }finally{ busy = false; }
-    mo.observe(document.body, {subtree:true, childList:true, characterData:true, attributes:true, attributeFilter:ATTRS});
+    build(); paint();
+    need(lang, function(){
+      busy = true; try{ run(); if(lang !== "en") legal(); }finally{ busy = false; }
+      mo.observe(document.body, {subtree:true, childList:true, characterData:true, attributes:true, attributeFilter:ATTRS});
+    });
   }
   if(document.readyState === "loading") document.addEventListener("DOMContentLoaded", start); else start();
 })();
@@ -251,10 +281,12 @@ def apply(html, dicts=None, preview=False):
         else:
             print('i18n: page hook not found, skipped:', a[:60])
     names = game_names(html)
-    head = HEAD
+    import hashlib
+    ver = hashlib.sha1(json.dumps(dicts, sort_keys=True, ensure_ascii=False).encode()).hexdigest()[:10]
+    head = HEAD.replace("__CODES__", json.dumps([c for c, _ in LANGS])).replace("__VER__", ver)
     assert "<head>" in html
     html = html.replace("<head>", "<head>\n" + head, 1)
-    js = (RUNTIME.replace("__DICT__", json.dumps(dicts, ensure_ascii=False, separators=(",", ":")))
+    js = (RUNTIME.replace("__VER__", ver)
                  .replace("__NAMES__", json.dumps(names, ensure_ascii=False))
                  .replace("__LABELS__", json.dumps(LANGS, ensure_ascii=False)))
     block = "<style>" + CSS + "</style>\n<script>" + js + "</script>\n"

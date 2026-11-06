@@ -97,7 +97,7 @@ except Exception as _e:
 _hist = json.load(open(_hist_path)) if os.path.exists(_hist_path) else None
 s = polish.apply(s, _hist)
 
-# --- Language switch (EN source + i18n/de|es|pt.json) ---------------------------------------------
+# --- Language switch (EN source + i18n/<code>.json, fetched per language) -----------------------------
 import i18n
 s = i18n.apply(s, i18n.load(_repo))
 

@@ -1481,5 +1481,18 @@
 "of €{n0} goal": "von €{n0} Ziel",
 "Nov {n0}, {n1}": "{n0}. Nov. {n1}",
 "Kayle got buffed in this patch, her first buff in a long time.": "Kayle wurde in diesem Patch gebufft, der erste Buff für sie seit langer Zeit.",
-"No Kayle changes have been announced for this patch yet. I will add them here as soon as the preview is out.": "Für diesen Patch sind noch keine Kayle-Änderungen angekündigt. Ich trage sie hier ein, sobald die Vorschau raus ist."
+"No Kayle changes have been announced for this patch yet. I will add them here as soon as the preview is out.": "Für diesen Patch sind noch keine Kayle-Änderungen angekündigt. Ich trage sie hier ein, sobald die Vorschau raus ist.",
+"(was {n0}/{n1}/{n2}/{n3}/{n4})": "(vorher {n0}/{n1}/{n2}/{n3}/{n4})",
+"(was {n0}{n1})": "(vorher {n0}{n1})",
+"Choose a server, or compare all of them. Every metric has its own scale. The dashed line is a {n0} win rate. Arrows show the change since patch {n1}, in percentage points.": "Wähl einen Server oder vergleiche alle. Jede Kennzahl hat ihre eigene Skala. Die gestrichelte Linie ist eine Winrate von {n0}. Pfeile zeigen die Veränderung seit Patch {n1} in Prozentpunkten.",
+"Daily #{n0}: today's shadow is an item. One puzzle a day, the same for everyone.": "Tägliches Rätsel #{n0}: Der Schatten heute ist ein Item. Ein Rätsel pro Tag, für alle gleich.",
+"Europe (EUW): ban rate {n0}": "Europa (EUW): Banrate {n0}",
+"Europe (EUW): pick rate {n0}": "Europa (EUW): Pickrate {n0}",
+"Europe (EUW): win rate {n0}": "Europa (EUW): Winrate {n0}",
+"Join (members)": "Mitglied werden",
+"North America: ban rate {n0}": "Nordamerika: Banrate {n0}",
+"North America: pick rate {n0}": "Nordamerika: Pickrate {n0}",
+"North America: win rate {n0}": "Nordamerika: Winrate {n0}",
+"{n0} win rate with it as the first item · {n1} games · patch {n2}": "{n0} Winrate als erstes Item · {n1} Spiele · Patch {n2}",
+"{p0} first vs {p1}": "{p0} zuerst gegen {p1}"
 }
