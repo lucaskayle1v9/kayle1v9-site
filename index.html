@@ -2801,12 +2801,12 @@ var CONFIG = {
   reviews: [],       // real player quotes, for example {name:"Name", rank:"Gold 4 to Platinum 3", text:"What they said"}. The section stays hidden while this is empty.
   channelUrl: "https://youtube.com/channel/UC3Ng3LyLTJrjFMsrcxltLKQ",
   videos: [
+    {id:"rTMrQTSRUZU", thumb:"vrTMrQTSRUZU", title:"I Tried This Korean Kayle Rune And It\u2019s INSANE!", note:"Watch on YouTube"},
     {id:"eabo3t-1Kq0", thumb:"veabo3t1Kq0", title:"Riot, This Kayle Buff Was a MISTAKE!", note:"Watch on YouTube"},
     {id:"VferxNffgho", thumb:"vVferxNffgho", title:"I Tried The UPDATED Chinese Manamune Kayle Build", note:"Watch on YouTube"},
     {id:"Xx-BsReu3Ok", thumb:"collector", title:"I Tried The NEW Chinese Collector Kayle Build!", note:"Watch on YouTube"},
     {id:"SrKEj5L3dtk", thumb:"firststrike", title:"First Strike Kayle is INSANE!", note:"Watch on YouTube"},
-    {id:"P2aDWKZ_8SM", thumb:"braindead", title:"How I Accidentally Created The Most BRAINDEAD Kayle Build EVER!", note:"Watch on YouTube"},
-    {id:"trNrANQHjm0", thumb:"winlane", title:"How I Turned Kayle Into The STRONGEST Early Champion!", note:"Watch on YouTube"}
+    {id:"P2aDWKZ_8SM", thumb:"braindead", title:"How I Accidentally Created The Most BRAINDEAD Kayle Build EVER!", note:"Watch on YouTube"}
   ]
 };
 function setLinks(sel, url){ if(!url) return; document.querySelectorAll(sel).forEach(function(a){ a.href = url; a.target = "_blank"; a.rel = "noopener"; }); }
@@ -2960,7 +2960,7 @@ var AV = {tz:"Europe/Berlin", from:11, last:23, step:30, days:14, lead:12,
 })();
 
 // Thumbnails: change the thumb key of a video above to swap its image.
-var THUMBS = {"veabo3t1Kq0": "https://i.ytimg.com/vi/eabo3t-1Kq0/maxresdefault.jpg", "vVferxNffgho": "thumbs/VferxNffgho.webp", "collector": "a/d075e8bf19bc.jpg", "firststrike": "a/136bbddb3794.jpg", "buffs": "a/d4261614717d.jpg", "trythis": "a/5d6a1a39303a.jpg", "braindead": "a/2b36c9279166.jpg", "winlane": "a/ff2f26232242.jpg", "wtf": "a/337496d58b46.jpg", "crazy": "a/eab3686e2984.jpg"};
+var THUMBS = {"vrTMrQTSRUZU": "https://i.ytimg.com/vi/rTMrQTSRUZU/maxresdefault.jpg", "veabo3t1Kq0": "https://i.ytimg.com/vi/eabo3t-1Kq0/maxresdefault.jpg", "vVferxNffgho": "thumbs/VferxNffgho.webp", "collector": "a/d075e8bf19bc.jpg", "firststrike": "a/136bbddb3794.jpg", "buffs": "a/d4261614717d.jpg", "trythis": "a/5d6a1a39303a.jpg", "braindead": "a/2b36c9279166.jpg", "winlane": "a/ff2f26232242.jpg", "wtf": "a/337496d58b46.jpg", "crazy": "a/eab3686e2984.jpg"};
 var g = document.getElementById("vgrid");
 var vids = CONFIG.videos.length ? CONFIG.videos : [
   {title:"Watch every Kayle video", note:"Open the channel on YouTube", url:CONFIG.channelUrl},
@@ -4917,7 +4917,7 @@ var PATCHM = "16.22", PREVM = "16.21", CHECKEDM = "10 Nov 2026";
       if(!RIMG[8226]) RIMG[8226] = "data:image/webp;base64,UklGRm4FAABXRUJQVlA4WAoAAAAQAAAAPwAAPwAAQUxQSIYAAAABDzD/ERGCUWxbbdKzjASkIA2kISUSWKa/xX8vXUBE/xm5bRuJPe4z9iuKszF5EoHaZMCZDQgGAEo6miaS6ekOWjgZT5fRxsOAbwRKFVmdWD+yQWXm1MT8tY2F+w6G/3n+vff/0/X/vP7fmoPmcp2X5Ki5as6au/ZAe6E9kd5oj7RXJz0rAFZQOCDCBAAAMBYAnQEqQABAAD45FIhDIiEhGfzOqCADhLUATplCO0fYPyI/G75BKm/g9pNnbyx+Z+cBtvPM/5W/Sq9T16O3lrezJgDW0n4a/bMljtwwT/1/C3LFYWadqdX/yPN3DtfkpuFvpMctUG0kEg+75mLtkka1h1Pj9b776lTIqJka9xN4SKgp2CtxiDv8Z46LiNjVQm1wKX5PYjbWnE9PRHaWBxX0Ozzqv7EQgi+1b3NDZEbyN//BBV/m+GYAAP79IesKEkHZy5T4VZosO3sRDW2fN3Oe6+d2UGl0LaG5+2HAY0/2H2TVPVbF6Oe79HcYC/XyozbdRcEOLZdVyelcBxguAhC6KPjzaUMwtHGNKD2FXzTajdZ5Phjl8ly+/8RfO+E/MfCHbA9TAByM3ECnsRULPOPWBpIWFsajou9wWtzLkXaliRQyc9gYUWv0Y5YxpQw4/C7nfN2BlvKxOjxMBVO8z0f2RQm69mL0zh2IacBAPb3z4TGQf0+jtLH+JDaPvettfoDLxrX3q6bUsWeaU6Q1RGC+sfoNi3qG5bvgaqU3VzjGkgNjvBIr+X0tQP8Ab3QfAXtmXWXLZH3HcqCCDzUC+hvrjHYNOxbbdq54cWCrKbgc0By/ZcVEENJ/loJrGlRepubsMPhrw08zi7Yqvke9qEYyH/8a9CcQ3MVPz+xRc/SZa3dreX8mFlYvv8CGP7g+cVv/ofj6l+iIfUYK/Qb2xZfVWyDvJGanrE5AY4uNqUxKKxkLfPzF6wEfBkFkRY/sjrz0sJK9JY6nqZ39R3C9CXlTCrUTf/A/SqrJCth7cmB1H5TYyETN3vf+RV42snxFbbkSXsH7nFfByK5PGbTqSR1P36+m2wS01ujOC+Fn2jO5mxk8z56g1g4UzpTNJXDwPGwJQEpPgXFNzxqBE9jivbYb3vYaGhHEYaZy5yN3bDUR3uzoIGhNbUUJ9G+gHbkiRF5rdjdybs7pWmnoSW4d6MqeH/GvV3J52GP7YOO6sgvkIBYCHPIiNQMadEaejfsXtkNZCbJeRt9J+U8/yXZBA1uPCCe1tdQrIUECnPlldABvo0KtjH7X/NNiI3EdXW7ppO7fuvqusvNUlK8r/MLcoNQ6HIR8XzsyjxFresWufYvV5DtoT/sAetV3gZoGE3PNQY53Ms7kiyngzgzAs9jBmL9G/7TfDoAfug2H2cYKzJcyZnFUiu6DM89LbSd3LKZFJDCjR9mnM1am7uz4zdD2F7fcjLiWM6XptFttECgPA2qDjlHXgEbfqde2SE2KX0t07mCt06gRvFBtNUOIDT8RSrGYrVIWcd83Cp6Qw904iVzji2JXoKT0nanUUSmWxoMFBCxgT/2GrbRb3T8eLrDa73jGOyP0rxemgyGlB2WY+l9+4G1cbFoTbnGwfjh2g5En5wBXkfgYIQpTtAmRCtGF8EW23qG3YQzwN43vrjKJL8pMJQBAVtE8oU3gwwglxl42H0OXQzzKWaxv4JwTaaJtUfTfWOLxq+AGj37kzBkea+UsaI4O2ZQeIJvsM46/4Xxjxcd+enduZtLbZ31a86JGA7m1PKJHT+L53x2ABthjOKE9BbxmENHhGZT2Nz+TqVAHjlkyR0b/ohJvHMXN4zQnKQAA";
       if(!RN[8214]) RN[8214] = "Summon Aery";
       if(!RN[8226]) RN[8226] = "Manaflow Band";
-      var KA_VID = "", kaDay = ""; try{ kaDay = new Date().toLocaleDateString("sv-SE", {timeZone: "Europe/Berlin"}); }catch(e){}
+      var KA_VID = "rTMrQTSRUZU", kaDay = ""; try{ kaDay = new Date().toLocaleDateString("sv-SE", {timeZone: "Europe/Berlin"}); }catch(e){}
       var KA_SHOW = [3009, 3115, 2510, 3089], KA_FLEX = [4645, 3135];
       if(box && kaDay >= "2026-11-10" && kaDay <= "2026-11-17" && KA_SHOW.concat(KA_FLEX, [1056, 2003, 1083, 1043]).every(function(id){ return ITI[id]; })){
         var kInner = el("div", ""), kTag = el("span", "dtag", "Build of the week · Featured"), kT = el("div", "bt");
