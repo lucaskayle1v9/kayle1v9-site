@@ -2816,7 +2816,7 @@ setLinks(".yt", CONFIG.channelUrl);
 
 // Time picker: slots are fixed in Berlin time and shown in the visitor's own time zone.
 var AV = {tz:"Europe/Berlin", from:11, last:23, step:30, days:14, lead:12,
-  booked:[["2026-11-01", "18:30", 90]]};  // booked sessions in Berlin time: [day, start, minutes]; their slots show greyed out as "booked"
+  booked:[["2026-11-01", "18:30", 90], ["2026-11-14", "15:00", 90]]};  // booked sessions in Berlin time: [day, start, minutes]; their slots show greyed out as "booked"
 (function(){
   var DF = {};
   function fmt(tz, o){ var k = tz + JSON.stringify(o); return DF[k] || (DF[k] = new Intl.DateTimeFormat("en-GB", Object.assign({timeZone: tz}, o))); }
