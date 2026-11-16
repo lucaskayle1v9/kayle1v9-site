@@ -1,4 +1,4 @@
-"""Language switch for kayle1v9.com: English (source) plus DE, ES, PT, FR, TR, KO, ZH (simplified), JA.
+"""Language switch for kayle1v9.com: English (source) plus DE, ES, PT, FR, TR, KO, ZH (simplified), JA, RU.
 
 The page stays written in English. At runtime every visible text node and the attributes
 placeholder / aria-label / title are looked up in a dictionary and swapped, also for text the
@@ -17,7 +17,7 @@ import os
 import re
 
 LANGS = [("en", "English"), ("de", "Deutsch"), ("es", "Español"), ("pt", "Português"), ("fr", "Français"),
-         ("tr", "Türkçe"), ("ko", "한국어"), ("zh", "简体中文"), ("ja", "日本語")]
+         ("tr", "Türkçe"), ("ko", "한국어"), ("zh", "简体中文"), ("ja", "日本語"), ("ru", "Русский")]
 
 
 def load(repo):
@@ -86,8 +86,8 @@ html:lang(ko) h1,html:lang(ko) h2,html:lang(ko) h3,html:lang(ja) h1,html:lang(ja
   nav ul#mainnav li.lgli{display:block;padding:8px 6px 6px;margin-top:4px;border-top:1px solid rgba(240,185,75,.18)}
   nav ul#mainnav li.lgli .lgw{display:block}
   nav ul#mainnav li.lgli .lgb{display:none}
-  nav ul#mainnav li.lgli .lgm{position:static;display:grid;grid-template-columns:repeat(3,1fr);gap:6px;min-width:0;padding:0;border:0;background:none;box-shadow:none;opacity:1;transform:none;pointer-events:auto}
-  nav ul#mainnav li.lgli .lgm button{flex-direction:column;justify-content:center;gap:2px;padding:9px 4px;border:1px solid rgba(240,185,75,.35);border-radius:12px;font-size:.78rem;text-align:center}
+  nav ul#mainnav li.lgli .lgm{position:static;display:grid;grid-template-columns:repeat(5,1fr);gap:5px;min-width:0;padding:0;border:0;background:none;box-shadow:none;opacity:1;transform:none;pointer-events:auto}
+  nav ul#mainnav li.lgli .lgm button{flex-direction:column;justify-content:center;gap:2px;padding:8px 2px;border:1px solid rgba(240,185,75,.35);border-radius:12px;font-size:.66rem;text-align:center;min-width:0;overflow:hidden;text-overflow:ellipsis}
   nav ul#mainnav li.lgli .lgm button b{min-width:0;font-size:.9rem}
   nav ul#mainnav li.lgli .lgm button.on{background:var(--gold,#F0B94B);color:#0F1A33;border-color:var(--gold,#F0B94B)}
   nav ul#mainnav li.lgli .lgm button.on b{color:#0F1A33}
@@ -103,7 +103,8 @@ RUNTIME = r"""
              es:{Jan:"ene",Feb:"feb",Mar:"mar",Apr:"abr",May:"may",Jun:"jun",Jul:"jul",Aug:"ago",Sep:"sept",Oct:"oct",Nov:"nov",Dec:"dic"},
              pt:{Jan:"jan",Feb:"fev",Mar:"mar",Apr:"abr",May:"mai",Jun:"jun",Jul:"jul",Aug:"ago",Sep:"set",Oct:"out",Nov:"nov",Dec:"dez"},
              fr:{Jan:"janv.",Feb:"févr.",Mar:"mars",Apr:"avr.",May:"mai",Jun:"juin",Jul:"juil.",Aug:"août",Sep:"sept.",Oct:"oct.",Nov:"nov.",Dec:"déc."},
-             tr:{Jan:"Oca",Feb:"Şub",Mar:"Mar",Apr:"Nis",May:"May",Jun:"Haz",Jul:"Tem",Aug:"Ağu",Sep:"Eyl",Oct:"Eki",Nov:"Kas",Dec:"Ara"}};
+             tr:{Jan:"Oca",Feb:"Şub",Mar:"Mar",Apr:"Nis",May:"May",Jun:"Haz",Jul:"Tem",Aug:"Ağu",Sep:"Eyl",Oct:"Eki",Nov:"Kas",Dec:"Ara"},
+             ru:{Jan:"янв.",Feb:"февр.",Mar:"мар.",Apr:"апр.",May:"мая",Jun:"июн.",Jul:"июл.",Aug:"авг.",Sep:"сент.",Oct:"окт.",Nov:"нояб.",Dec:"дек."}};
   var MNUM = {Jan:1,Feb:2,Mar:3,Apr:4,May:5,Jun:6,Jul:7,Aug:8,Sep:9,Oct:10,Nov:11,Dec:12};
   function date(x){
     var q = x.split(" "), m = MNUM[q[1]];
