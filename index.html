@@ -2693,45 +2693,6 @@ section[data-off] *,section[data-off] *::before,section[data-off] *::after,.hero
   </div>
 </section>
 
-<section id="support">
-  <div class="wrap">
-    <div class="spcard">
-      <div class="sptx">
-        <h2>Support the site</h2>
-        <p>kayle1v9.com is free and updates every night: builds, matchups and win rates from three servers. Hosting, data and tools cost money every month. If the site helps you climb, you can chip in to cover the costs. Every euro counts, no pressure.</p>
-      </div>
-      <div class="spbar">
-        <div class="sphd"><b id="spraised">&euro;0</b><span id="spgoal">of &euro;100 goal</span></div>
-        <div class="sptrack" role="progressbar" aria-label="Monthly support goal" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="sptrack"><div class="spfill" id="spfill"></div></div>
-        <div class="spmeta" id="spmeta"></div>
-      </div>
-      <div class="spbtns">
-        <a class="sppp" data-sp="paypal" href="https://www.paypal.com/biz/profile/kayiebot" target="_blank" rel="noopener" aria-label="Support with PayPal"><span>Support with</span><b class="splogo">PayPal</b></a>
-        <a class="spwp" data-sp="wise" href="https://wise.com/pay/me/lucasp3226" target="_blank" rel="noopener" aria-label="Support with Wise"><span>Support with</span><b class="splogo">Wise</b></a>
-      </div>
-    </div>
-  </div>
-  <script>
-  // === SUPPORT START (monthly goal, update raised and updated) ===
-  var SUPPORT = {month:"November 2026", raised:5, goal:100, updated:"1 Nov 2026"};
-  // === SUPPORT END ===
-  (function(){
-    var S = SUPPORT, pct = Math.max(0, Math.min(100, S.goal ? S.raised / S.goal * 100 : 0));
-    var r = document.getElementById("spraised"), g = document.getElementById("spgoal"), f = document.getElementById("spfill"), tr = document.getElementById("sptrack"), m = document.getElementById("spmeta");
-    if(r) r.textContent = "\u20ac" + S.raised;
-    if(g) g.textContent = "of \u20ac" + S.goal + " goal for " + S.month;
-    if(tr) tr.setAttribute("aria-valuenow", String(Math.round(pct)));
-    if(m) m.textContent = (S.raised >= S.goal ? "Goal reached, thank you! " : "") + "Updated " + S.updated + ".";
-    if(f){ var go = function(){ f.style.width = pct + "%"; };
-      if("IntersectionObserver" in window){ var io = new IntersectionObserver(function(e){ if(e[0].isIntersecting){ go(); io.disconnect(); } }); io.observe(f); } else go(); }
-    var logo = function(){ var L = window.PAYLOGO; if(!L) return;
-      document.querySelectorAll("#support .splogo").forEach(function(b){ var a = b.closest("a"), k = a && a.classList.contains("sppp") ? "pp" : "ws"; if(!L[k]) return;
-        var i = document.createElement("img"); i.src = L[k]; i.alt = b.textContent; i.className = "pal"; b.replaceWith(i); }); };
-    if(document.readyState === "loading") document.addEventListener("DOMContentLoaded", logo); else setTimeout(logo, 0);
-    document.querySelectorAll("#support [data-sp]").forEach(function(a){ a.addEventListener("click", function(){ if(window.K1V9T) try{ K1V9T("support-click", {via: a.getAttribute("data-sp")}); }catch(e){} }); });
-  })();
-  </script>
-</section>
 
 <footer>
   <a class="yt" href="https://youtube.com/channel/UC3Ng3LyLTJrjFMsrcxltLKQ">YouTube</a>
@@ -3107,7 +3068,7 @@ if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches){
   function mark(){
     var cur = "", line = window.innerHeight * 0.35;
     SECS.forEach(function(x){ if(!x[1]) return; var e = document.getElementById(x[1]); if(e && !e.hidden && e.getBoundingClientRect().top <= line) cur = x[1]; });
-    links.forEach(function(l){ var te = l.id && document.getElementById(l.id); l.a.hidden = !!(te && te.hidden); l.a.classList.toggle("on", l.id === cur); });
+    links.forEach(function(l){ var te = l.id && document.getElementById(l.id); l.a.hidden = !!l.id && (!te || te.hidden); l.a.classList.toggle("on", l.id === cur); });
   }
   if(menu){
     tt.setAttribute("aria-haspopup", "true"); tt.setAttribute("aria-expanded", "false"); tt.setAttribute("aria-controls", "tnav");

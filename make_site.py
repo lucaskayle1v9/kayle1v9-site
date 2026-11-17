@@ -49,6 +49,14 @@ if 'function isBooked(t)' not in s:
         '        });'), 1)
 
 import base64
+# --- Support section switched off (18 Nov 2026) ----------------------------------------------------
+# The artifact still has <section id="support"> (donation bar with PayPal/Wise). Lucas wants it off the site,
+# so it is cut out on every build. Delete these lines to show it again.
+s, _n = re.subn(r'\n<section id="support">.*?</section>\n', '\n', s, count=1, flags=re.S)
+print('support section removed' if _n else 'support section not found (already gone)')
+# the back-to-top section menu (#tnav) lists Support too: hide menu entries whose section is not on the page
+s = s.replace('l.a.hidden = !!(te && te.hidden);', 'l.a.hidden = !!l.id && (!te || te.hidden);', 1)
+
 # --- Newest videos -------------------------------------------------------------------------------
 # videos.json (next to this script) lists new videos for the YouTube tab, newest first:
 # [{"id": "...", "title": "...", "thumb": "thumbs/<id>.webp"}]. A video that the artifact already lists is
