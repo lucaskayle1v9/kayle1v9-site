@@ -74,6 +74,8 @@ def apply(html, prev_html=None, preview=False):
         if not m: raise RuntimeError("section " + sid)
         s = m.group(0); h = h[:m.start()] + "\n" + h[m.end():]; return s.strip("\n") + "\n"
     order = ["coaching", "reviews", "builds", "matchups", "finder", "leaderboard", "patch", "videos", "about", "merch", "games", "trophies", "settings", "gear", "support"]
+    # support may already be cut out by make_site.py (section switched off on the site)
+    order = [sid for sid in order if sid != "support" or re.search(r'\n<section id="support"', h)]
     blocks = {sid: cut(sid) for sid in order}
     # finder folds into matchups: keep the markup (scripts reference it) but hide it
     blocks["finder"] = blocks["finder"].replace('<section id="finder">', '<section id="finder" hidden>', 1)

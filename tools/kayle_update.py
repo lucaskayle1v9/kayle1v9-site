@@ -333,7 +333,8 @@ ITEM_NAMES_TOP = {"Nashor's Tooth": 3115, "Dusk and Dawn": 2510, "Rabadon's Deat
                   "Mejai's Soulstealer": 3041, "Rapid Firecannon": 3094,
                   "Mercurial Scimitar": 3139, "Jak'Sho, The Protean": 6665,
                   "Terminus": 3302, "Hextech Gunblade": 3146, "Lord Dominik's Regards": 3036,
-                  "Manamune": 3004, "Guardian Angel": 3026}
+                  "Manamune": 3004, "Guardian Angel": 3026,
+                  "Banshee's Veil": 3102, "Guinsoo's Rageblade": 3124}
 ITEM_NAMES_MID = dict(ITEM_NAMES_TOP, **{"Lich Bane": 3100, "Banshee's Veil": 3102,
                                          "Mejai's Soulstealer": 3041})
 START_IDS = {1001, 1054, 1055, 1056, 1083, 1086, 1120, 2003, 2031}
