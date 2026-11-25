@@ -1504,5 +1504,11 @@
 "Last item: pick one": "Dernier item : choisis-en un",
 "Open Korea builds": "Ouvrir les builds Corée",
 "First back": "Premier retour en base",
-"Start E, then W, then Q": "Commence par E, puis W, puis Q"
+"Start E, then W, then Q": "Commence par E, puis W, puis Q",
+"{n0} off all coaching until Dec {n1}": "{n0} de réduction sur tout le coaching jusqu'au {n1} déc.",
+"{n0} off coaching": "{n0} de réduction sur le coaching",
+"{n0} off all coaching": "{n0} de réduction sur tout le coaching",
+"Book and pay by Dec {n0}. Your session can take place any time until Jan {n1}.": "Réserve et paie avant le {n0} déc. Ta session peut avoir lieu à tout moment jusqu'au {n1} janv.",
+"Ends in": "Se termine dans",
+"Spots left": "Places restantes"
 }
