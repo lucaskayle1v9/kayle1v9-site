@@ -112,6 +112,12 @@ blackfriday.add_translations(_repo)
 s = blackfriday.apply(s)
 print('black friday:', 'on' if blackfriday.config().get('enabled') else 'off')
 
+# --- Featured "Build of the week" card at the top of the builds section (botw.py: CARD, date window) -----
+# Outside its date window the page shows the automatic "Build of the day" again.
+import botw
+botw.add_translations(_repo)
+s = botw.apply(s)
+
 # --- Language switch (EN source + i18n/<code>.json, fetched per language) -----------------------------
 import i18n
 s = i18n.apply(s, i18n.load(_repo))

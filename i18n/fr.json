@@ -1510,5 +1510,9 @@
 "{n0} off all coaching": "{n0} de réduction sur tout le coaching",
 "Book and pay by Dec {n0}. Your session can take place any time until Jan {n1}.": "Réserve et paie avant le {n0} déc. Ta session peut avoir lieu à tout moment jusqu'au {n1} janv.",
 "Ends in": "Se termine dans",
-"Spots left": "Places restantes"
+"Spots left": "Places restantes",
+"Rageblade Kayle Mid": "Kayle Rageblade mid",
+"{p0} first with {p1} and {p2} · the build of an EUW Master one-trick with a {n0} win rate over {n1} games": "{p0} en premier, avec {p1} et {p2} · le build d'un one-trick Master EUW avec {n0} de winrate sur {n1} parties",
+"Start E, then Q, then W": "Commence par E, puis Q, puis W",
+"Open EU builds": "Ouvrir les builds EU"
 }

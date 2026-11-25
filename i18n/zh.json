@@ -1510,5 +1510,9 @@
 "{n0} off all coaching": "所有教练课程优惠{n0}",
 "Book and pay by Dec {n0}. Your session can take place any time until Jan {n1}.": "请在12月{n0}日前预约并付款。课程可在1月{n1}日前任意时间进行。",
 "Ends in": "剩余时间",
-"Spots left": "剩余名额"
+"Spots left": "剩余名额",
+"Rageblade Kayle Mid": "Rageblade 中单凯尔",
+"{p0} first with {p1} and {p2} · the build of an EUW Master one-trick with a {n0} win rate over {n1} games": "先出 {p0}，搭配 {p1} 和 {p2} · 欧服大师专精玩家的出装，{n1} 场胜率 {n0}",
+"Start E, then Q, then W": "先 E，再 Q，然后 W",
+"Open EU builds": "打开欧服出装"
 }

@@ -1510,5 +1510,9 @@
 "{n0} off all coaching": "Скидка {n0} на весь коучинг",
 "Book and pay by Dec {n0}. Your session can take place any time until Jan {n1}.": "Забронируй и оплати до {n0} дек. Сессию можно провести в любое время до {n1} янв.",
 "Ends in": "До конца",
-"Spots left": "Осталось мест"
+"Spots left": "Осталось мест",
+"Rageblade Kayle Mid": "Rageblade Кейл на миде",
+"{p0} first with {p1} and {p2} · the build of an EUW Master one-trick with a {n0} win rate over {n1} games": "Сначала {p0}, с {p1} и {p2} · сборка мастера-уантрика с EUW с винрейтом {n0} за {n1} игр",
+"Start E, then Q, then W": "Сначала E, потом Q, потом W",
+"Open EU builds": "Открыть сборки EU"
 }

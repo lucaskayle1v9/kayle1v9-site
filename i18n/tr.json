@@ -1510,5 +1510,9 @@
 "{n0} off all coaching": "Tüm koçluklarda {n0} indirim",
 "Book and pay by Dec {n0}. Your session can take place any time until Jan {n1}.": "{n0} Aralık'a kadar rezervasyon yap ve öde. Seansın {n1} Ocak'a kadar istediğin zaman olabilir.",
 "Ends in": "Kalan süre",
-"Spots left": "Kalan yer"
+"Spots left": "Kalan yer",
+"Rageblade Kayle Mid": "Rageblade Kayle Mid",
+"{p0} first with {p1} and {p2} · the build of an EUW Master one-trick with a {n0} win rate over {n1} games": "Önce {p0}, {p1} ve {p2} ile · {n1} maçta {n0} winrate'li bir EUW Master one-trick'in buildi",
+"Start E, then Q, then W": "Önce E, sonra Q, sonra W",
+"Open EU builds": "EU buildlerini aç"
 }

@@ -1510,5 +1510,9 @@
 "{n0} off all coaching": "모든 코칭 {n0} 할인",
 "Book and pay by Dec {n0}. Your session can take place any time until Jan {n1}.": "12월 {n0}일까지 예약하고 결제하세요. 세션은 1월 {n1}일까지 언제든 진행할 수 있습니다.",
 "Ends in": "남은 시간",
-"Spots left": "남은 자리"
+"Spots left": "남은 자리",
+"Rageblade Kayle Mid": "Rageblade 미드 케일",
+"{p0} first with {p1} and {p2} · the build of an EUW Master one-trick with a {n0} win rate over {n1} games": "{p0} 선템에 {p1}, {p2} · {n1}판 승률 {n0}의 EUW 마스터 원챔 빌드",
+"Start E, then Q, then W": "E 먼저, 다음 Q, 그다음 W",
+"Open EU builds": "유럽 빌드 열기"
 }

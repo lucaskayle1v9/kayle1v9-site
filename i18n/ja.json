@@ -1510,5 +1510,9 @@
 "{n0} off all coaching": "全コーチング{n0}オフ",
 "Book and pay by Dec {n0}. Your session can take place any time until Jan {n1}.": "12月{n0}日までに予約と支払いを。セッションは1月{n1}日までいつでも受けられます。",
 "Ends in": "終了まで",
-"Spots left": "残り枠"
+"Spots left": "残り枠",
+"Rageblade Kayle Mid": "Rageblade ミッドケイル",
+"{p0} first with {p1} and {p2} · the build of an EUW Master one-trick with a {n0} win rate over {n1} games": "{p0}を最初に、{p1}と{p2} · {n1}試合で勝率{n0}のEUWマスターOTPのビルド",
+"Start E, then Q, then W": "E→Q→Wの順に取る",
+"Open EU builds": "EUビルドを開く"
 }
