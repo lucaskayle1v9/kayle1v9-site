@@ -1504,5 +1504,11 @@
 "Last item: pick one": "마지막 아이템: 하나 선택",
 "Open Korea builds": "한국 빌드 열기",
 "First back": "첫 귀환",
-"Start E, then W, then Q": "E 먼저, 다음 W, 그다음 Q"
+"Start E, then W, then Q": "E 먼저, 다음 W, 그다음 Q",
+"{n0} off all coaching until Dec {n1}": "12월 {n1}일까지 모든 코칭 {n0} 할인",
+"{n0} off coaching": "코칭 {n0} 할인",
+"{n0} off all coaching": "모든 코칭 {n0} 할인",
+"Book and pay by Dec {n0}. Your session can take place any time until Jan {n1}.": "12월 {n0}일까지 예약하고 결제하세요. 세션은 1월 {n1}일까지 언제든 진행할 수 있습니다.",
+"Ends in": "남은 시간",
+"Spots left": "남은 자리"
 }

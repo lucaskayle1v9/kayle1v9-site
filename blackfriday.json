@@ -1,0 +1,12 @@
+{
+  "enabled": true,
+  "ends": "2026-12-02T00:00:00+01:00",
+  "until_day": 1,
+  "redeem_day": 31,
+  "percent": 33,
+  "total": 10,
+  "left": 10,
+  "prices": {"25": 17, "35": 23, "150": 99},
+  "paypal": {"17": "https://www.paypal.com/ncp/payment/JSUXXMLA8TE9N", "23": "https://www.paypal.com/ncp/payment/BE4AN8CD7H8L2", "99": "https://www.paypal.com/ncp/payment/DUCEV323QW8VL"},
+  "wise": {"17": "https://wise.com/pay/r/augwF15JnaoHuOI", "23": "https://wise.com/pay/r/HUSqWK0M815DzS0", "99": "https://wise.com/pay/r/r0T4yG2PLejXNvI"}
+}

@@ -1504,5 +1504,11 @@
 "Last item: pick one": "最後のアイテム：1つ選択",
 "Open Korea builds": "韓国ビルドを開く",
 "First back": "初回リコール",
-"Start E, then W, then Q": "E→W→Qの順に取る"
+"Start E, then W, then Q": "E→W→Qの順に取る",
+"{n0} off all coaching until Dec {n1}": "12月{n1}日まで全コーチング{n0}オフ",
+"{n0} off coaching": "コーチング{n0}オフ",
+"{n0} off all coaching": "全コーチング{n0}オフ",
+"Book and pay by Dec {n0}. Your session can take place any time until Jan {n1}.": "12月{n0}日までに予約と支払いを。セッションは1月{n1}日までいつでも受けられます。",
+"Ends in": "終了まで",
+"Spots left": "残り枠"
 }

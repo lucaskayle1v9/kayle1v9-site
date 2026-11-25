@@ -12,7 +12,7 @@
   document.documentElement.lang = l;
   if(l !== "en"){
     document.documentElement.classList.add("i18n-wait"); setTimeout(function(){ document.documentElement.classList.remove("i18n-wait"); }, 2500);
-    try{ window.K_DICTP = fetch("i18n/" + l + ".json?v=09190d4f03").then(function(r){ if(!r.ok) throw 0; return r.json(); }); window.K_DICTP.catch(function(){}); }catch(e){}
+    try{ window.K_DICTP = fetch("i18n/" + l + ".json?v=ce410d27a3").then(function(r){ if(!r.ok) throw 0; return r.json(); }); window.K_DICTP.catch(function(){}); }catch(e){}
   }
 })();
 </script>
@@ -8307,7 +8307,7 @@ html:lang(ko) h1,html:lang(ko) h2,html:lang(ko) h3,html:lang(ja) h1,html:lang(ja
 </style>
 <script>
 (function(){
-  var DICT = {}, NAMES = ["Blade of the Ruined King", "Ionian Boots of Lucidity", "Tenacity and Slow Resist", "Rylai's Crystal Scepter", "Lord Dominik's Regards", "Jak'Sho, The Protean", "Berserker's Greaves", "Guinsoo's Rageblade", "Mejai's Soulstealer", "Boots of Swiftness", "Gluttonous Greaves", "Mercurial Scimitar", "Rabadon's Deathcap", "Runaan's Hurricane", "Zhonya's Hourglass", "Legend: Bloodline", "Refillable Potion", "Hextech Gunblade", "Legend: Alacrity", "Mercury's Treads", "Plated Steelcaps", "Presence of Mind", "Press the Attack", "Rapid Firecannon", "Sorcerer's Shoes", "Gathering Storm", "Absolute Focus", "Adaptive Force", "Banshee's Veil", "Doran's Shield", "Fleet Footwork", "Guardian Angel", "Health Scaling", "Kaenic Rookern", "Morellonomicon", "Nashor's Tooth", "Phantom Dancer", "Bloodthirster", "Coup de Grace", "Doran's Blade", "Dusk and Dawn", "Health Potion", "Infinity Edge", "Kraken Slayer", "Legend: Haste", "The Collector", "Attack Speed", "Aurelion Sol", "Bone Plating", "Conditioning", "Doran's Helm", "Doran's Ring", "Font of Life", "Heimerdinger", "Lethal Tempo", "Nimbus Cloak", "Statikk Shiv", "Triple Tonic", "Twisted Fate", "Absorb Life", "Doran's Bow", "Inspiration", "Mordekaiser", "Second Wind", "Shadowflame", "Shield Bash", "Unflinching", "Cassiopeia", "Last Stand", "Move Speed", "Overgrowth", "Revitalize", "Tahm Kench", "Tryndamere", "Void Staff", "Cash Back", "Dr. Mundo", "Gangplank", "Lich Bane", "Lissandra", "Master Yi", "Precision", "Wit's End", "Celerity", "Cho'Gath", "Cut Down", "Demolish", "Kassadin", "Katarina", "Malphite", "Malzahar", "Manamune", "Pantheon", "Renekton", "Teleport", "Terminus", "Tristana", "Vladimir", "Volibear", "Xin Zhao", "Ambessa", "Barrier", "Camille", "Cleanse", "Exhaust", "K'Sante", "LeBlanc", "Naafiri", "Orianna", "Resolve", "Sorcery", "Taliyah", "Triumph", "Trundle", "Vel'Koz", "Warwick", "Aatrox", "Akshan", "Anivia", "Aurora", "Darius", "Gragas", "Health", "Ignite", "Illaoi", "Irelia", "Kennen", "Maokai", "Qiyana", "Rumble", "Scorch", "Singed", "Syndra", "Veigar", "Viktor", "Wukong", "Xerath", "Yorick", "Zaahen", "Akali", "Annie", "Boots", "Corki", "Diana", "Fiora", "Flash", "Galio", "Garen", "Ghost", "Jayce", "Locke", "Nasus", "Poppy", "Quinn", "Riven", "Smite", "Swain", "Sylas", "Talon", "Teemo", "Urgot", "Varus", "Vayne", "Yasuo", "Ahri", "Azir", "Cull", "Ekko", "Fizz", "Gnar", "Gwen", "Heal", "Hwei", "Kled", "Olaf", "Ornn", "Ryze", "Sett", "Shen", "Sion", "Udyr", "Yone", "Jax", "Lux", "Mel", "Vex", "Zac", "Zed", "Zoe"], LABELS = [["en", "English"], ["de", "Deutsch"], ["es", "Español"], ["pt", "Português"], ["fr", "Français"], ["tr", "Türkçe"], ["ko", "한국어"], ["zh", "简体中文"], ["ja", "日本語"], ["ru", "Русский"]], VER = "09190d4f03";
+  var DICT = {}, NAMES = ["Blade of the Ruined King", "Ionian Boots of Lucidity", "Tenacity and Slow Resist", "Rylai's Crystal Scepter", "Lord Dominik's Regards", "Jak'Sho, The Protean", "Berserker's Greaves", "Guinsoo's Rageblade", "Mejai's Soulstealer", "Boots of Swiftness", "Gluttonous Greaves", "Mercurial Scimitar", "Rabadon's Deathcap", "Runaan's Hurricane", "Zhonya's Hourglass", "Legend: Bloodline", "Refillable Potion", "Hextech Gunblade", "Legend: Alacrity", "Mercury's Treads", "Plated Steelcaps", "Presence of Mind", "Press the Attack", "Rapid Firecannon", "Sorcerer's Shoes", "Gathering Storm", "Absolute Focus", "Adaptive Force", "Banshee's Veil", "Doran's Shield", "Fleet Footwork", "Guardian Angel", "Health Scaling", "Kaenic Rookern", "Morellonomicon", "Nashor's Tooth", "Phantom Dancer", "Bloodthirster", "Coup de Grace", "Doran's Blade", "Dusk and Dawn", "Health Potion", "Infinity Edge", "Kraken Slayer", "Legend: Haste", "The Collector", "Attack Speed", "Aurelion Sol", "Bone Plating", "Conditioning", "Doran's Helm", "Doran's Ring", "Font of Life", "Heimerdinger", "Lethal Tempo", "Nimbus Cloak", "Statikk Shiv", "Triple Tonic", "Twisted Fate", "Absorb Life", "Doran's Bow", "Inspiration", "Mordekaiser", "Second Wind", "Shadowflame", "Shield Bash", "Unflinching", "Cassiopeia", "Last Stand", "Move Speed", "Overgrowth", "Revitalize", "Tahm Kench", "Tryndamere", "Void Staff", "Cash Back", "Dr. Mundo", "Gangplank", "Lich Bane", "Lissandra", "Master Yi", "Precision", "Wit's End", "Celerity", "Cho'Gath", "Cut Down", "Demolish", "Kassadin", "Katarina", "Malphite", "Malzahar", "Manamune", "Pantheon", "Renekton", "Teleport", "Terminus", "Tristana", "Vladimir", "Volibear", "Xin Zhao", "Ambessa", "Barrier", "Camille", "Cleanse", "Exhaust", "K'Sante", "LeBlanc", "Naafiri", "Orianna", "Resolve", "Sorcery", "Taliyah", "Triumph", "Trundle", "Vel'Koz", "Warwick", "Aatrox", "Akshan", "Anivia", "Aurora", "Darius", "Gragas", "Health", "Ignite", "Illaoi", "Irelia", "Kennen", "Maokai", "Qiyana", "Rumble", "Scorch", "Singed", "Syndra", "Veigar", "Viktor", "Wukong", "Xerath", "Yorick", "Zaahen", "Akali", "Annie", "Boots", "Corki", "Diana", "Fiora", "Flash", "Galio", "Garen", "Ghost", "Jayce", "Locke", "Nasus", "Poppy", "Quinn", "Riven", "Smite", "Swain", "Sylas", "Talon", "Teemo", "Urgot", "Varus", "Vayne", "Yasuo", "Ahri", "Azir", "Cull", "Ekko", "Fizz", "Gnar", "Gwen", "Heal", "Hwei", "Kled", "Olaf", "Ornn", "Ryze", "Sett", "Shen", "Sion", "Udyr", "Yone", "Jax", "Lux", "Mel", "Vex", "Zac", "Zed", "Zoe"], LABELS = [["en", "English"], ["de", "Deutsch"], ["es", "Español"], ["pt", "Português"], ["fr", "Français"], ["tr", "Türkçe"], ["ko", "한국어"], ["zh", "简体中文"], ["ja", "日本語"], ["ru", "Русский"]], VER = "ce410d27a3";
   var lang = window.K_LANG || "en", collect = /[?&]i18n=collect/.test(location.search);
   var SEEN = window.__I18N_SEEN = collect ? {} : null;
   var MON = {de:{Jan:"Jan.",Feb:"Feb.",Mar:"März",Apr:"Apr.",May:"Mai",Jun:"Juni",Jul:"Juli",Aug:"Aug.",Sep:"Sep.",Oct:"Okt.",Nov:"Nov.",Dec:"Dez."},
@@ -8475,6 +8475,79 @@ html:lang(ko) h1,html:lang(ko) h2,html:lang(ko) h3,html:lang(ja) h1,html:lang(ja
 })();
 </script>
 <script>(function(){var u=["a/9820bc649948.webp", "a/5585aac38793.webp", "a/500fb9be1303.webp", "a/b49fe5743f33.webp", "a/0e3ba7f51302.webp", "a/04a88ff365cd.webp", "a/2d8a1e90779e.webp", "a/10fe5b989699.webp", "a/eabca3738af6.webp", "a/94f706f6383b.webp", "a/bcff8c9c18c3.webp", "a/97f1faa6b593.webp", "a/554f4b94f541.webp", "a/63234abbb727.webp", "a/7d9e79c33e73.jpg", "a/8295f844fdf8.jpg", "a/b1eefe53dc24.jpg", "a/845c493e964a.png", "a/b9d7b6029e1c.png", "a/d075e8bf19bc.jpg", "a/136bbddb3794.jpg", "a/d4261614717d.jpg", "a/5d6a1a39303a.jpg", "a/2b36c9279166.jpg", "a/ff2f26232242.jpg", "a/337496d58b46.jpg", "a/eab3686e2984.jpg", "a/0d7490e802f3.webp", "a/ae5f6763994a.webp", "a/52d489a6298d.webp", "a/a8dad65f3ba1.webp", "a/9b765a33120d.webp", "a/7d636f2aaa9a.webp", "a/fae5bd43cc6b.webp", "a/598aabf8942d.webp", "a/fb045cb1e6fd.webp", "a/6596885159a0.webp", "a/af7859ad0a46.webp", "a/12d0751f1112.webp", "a/d4e9bbc821ff.webp", "a/3f240bafdbc0.webp", "a/04a5ebe195b0.webp", "a/723bdf169ff7.webp", "a/0c9cc49cacde.webp", "a/9cbbeeaf2419.webp", "a/9c03a4f9c360.webp", "a/1b6178e642d2.webp", "a/db88f805c2fc.webp", "a/e3b5c70f52d8.webp", "a/7b915d9f9425.webp", "a/93624a552f30.webp", "a/570564c421c4.webp", "a/03e58a59b33f.webp"];function go(){var i=0;(function n(){if(i>=u.length)return;var im=new Image();im.decoding="async";im.onload=im.onerror=function(){setTimeout(n,60)};im.src=u[i++]})()}function idle(){(window.requestIdleCallback||function(f){setTimeout(f,400)})(go,{timeout:4000})}if(document.readyState==="complete")setTimeout(idle,1200);else addEventListener("load",function(){setTimeout(idle,1200)})})();</script>
+<!--BF:start--><style>
+.bfpill{display:flex;width:max-content;max-width:100%;margin-bottom:10px}
+.bfc{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px 28px;margin:0 0 18px;padding:18px 22px;border:1px solid rgba(240,185,75,.6);border-radius:18px;background:linear-gradient(135deg,rgba(240,185,75,.2),rgba(240,185,75,0) 62%),var(--panel);box-shadow:0 14px 34px rgba(3,7,18,.55),inset 0 1px 0 rgba(255,255,255,.1)}
+.bfc .bfk{display:block;font-size:.72rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+.bfc h3{margin:4px 0 0;font-size:1.6rem;font-weight:800;line-height:1.15}
+.bfc>div:first-child{flex:1 1 320px;min-width:0}
+.bfc p{margin:6px 0 0;color:var(--muted);font-size:.93rem;line-height:1.45}
+.bfc .bfs{display:flex;gap:12px}
+.bfc .bfb{min-width:132px;padding:10px 14px;border:1px solid var(--line);border-radius:14px;background:rgba(11,18,38,.6);text-align:center}
+.bfc .bfb span{display:block;font-size:.68rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.bfc .bfb b{display:block;margin-top:2px;font-size:1.25rem;font-weight:800;color:var(--gold);white-space:nowrap;font-variant-numeric:tabular-nums}
+.tier.bfon .price{color:var(--gold)}
+.tier.bfon .price s.bfold{font-size:.55em;font-weight:600;color:var(--muted);margin-left:.45em}
+@media (max-width:620px){.bfc{padding:16px}.bfc .bfs{width:100%}.bfc .bfb{flex:1;min-width:0}.bfc h3{font-size:1.35rem}}
+</style>
+<script>
+(function(){
+  var BF = {"enabled":true,"ends":"2026-12-02T00:00:00+01:00","until_day":1,"redeem_day":31,"percent":33,"total":10,"left":10,"prices":{"25":17,"35":23,"150":99},"paypal":{"17":"https://www.paypal.com/ncp/payment/JSUXXMLA8TE9N","23":"https://www.paypal.com/ncp/payment/BE4AN8CD7H8L2","99":"https://www.paypal.com/ncp/payment/DUCEV323QW8VL"},"wise":{"17":"https://wise.com/pay/r/augwF15JnaoHuOI","23":"https://wise.com/pay/r/HUSqWK0M815DzS0","99":"https://wise.com/pay/r/r0T4yG2PLejXNvI"}};
+  var end = Date.parse(BF.ends);
+  if(!BF.enabled || !(BF.left > 0) || !(Date.now() < end)) return;
+  function el(tag, cls, text){ var e = document.createElement(tag); if(cls) e.className = cls; if(text != null) e.textContent = text; return e; }
+  function start(){
+    var C = window.CONFIG, sec = document.getElementById("coaching");
+    if(!C || !sec) return;
+    C.paypalLinks = C.paypalLinks || {}; C.wiseLinks = C.wiseLinks || {};
+    var on = 0;
+    [].forEach.call(sec.querySelectorAll(".tier"), function(t){
+      var pe = t.querySelector(".price"); if(!pe || !pe.firstChild) return;
+      var old = Math.round(parseFloat((pe.firstChild.textContent || "").replace(/[^0-9.]/g, ""))), nw = BF.prices[old];
+      if(!nw) return;
+      var pp = BF.paypal[nw], ws = BF.wise[nw];
+      if(!pp && !ws) return;                                  // no payment link yet: this level keeps its normal price
+      if(pp) C.paypalLinks[nw] = pp;
+      if(ws) C.wiseLinks[nw] = ws;
+      pe.firstChild.textContent = "€" + nw;              // the booking form reads the price from this text node
+      var s = el("s", "bfold", "€" + old); s.setAttribute("data-noi18n", "");
+      pe.insertBefore(s, pe.firstChild.nextSibling);
+      t.classList.add("bfon"); on++;
+    });
+    if(!on) return;
+
+    var pill = document.querySelector(".hero .wdpill"), pct = BF.percent + "%";
+    if(pill){
+      var a = el("a", "wdpill bfpill"); a.href = "#coaching";
+      a.appendChild(el("b", "", "Black Friday"));
+      a.appendChild(el("span", "lg", pct + " off all coaching until Dec " + BF.until_day));
+      a.appendChild(el("span", "sh", pct + " off coaching"));
+      var i = el("i", "", "→"); i.setAttribute("aria-hidden", "true"); a.appendChild(i);
+      pill.parentNode.insertBefore(a, pill);
+    }
+
+    var c = el("div", "bfc"), l = el("div"), r = el("div", "bfs");
+    l.appendChild(el("span", "bfk", "Black Friday"));
+    l.appendChild(el("h3", "", pct + " off all coaching"));
+    l.appendChild(el("p", "", "Book and pay by Dec " + BF.until_day + ". Your session can take place any time until Jan " + BF.redeem_day + "."));
+    var b1 = el("div", "bfb"); b1.appendChild(el("span", "", "Ends in")); var cd = el("b"); cd.setAttribute("data-noi18n", ""); b1.appendChild(cd);
+    var b2 = el("div", "bfb"); b2.appendChild(el("span", "", "Spots left"));
+    var dots = el("b"); dots.setAttribute("data-noi18n", ""); dots.textContent = BF.left + " / " + BF.total; b2.appendChild(dots);
+    r.appendChild(b1); r.appendChild(b2); c.appendChild(l); c.appendChild(r);
+    var anchor = document.getElementById("cq") || sec.querySelector(".tiers");
+    anchor.parentNode.insertBefore(c, anchor);
+
+    function tick(){
+      var ms = end - Date.now();
+      if(ms <= 0){ location.reload(); return; }
+      var m = Math.floor(ms / 60000), d = Math.floor(m / 1440), h = Math.floor(m % 1440 / 60);
+      cd.textContent = d > 0 ? d + "d " + h + "h " + (m % 60) + "m" : h + "h " + (m % 60) + "m";
+    }
+    tick(); setInterval(tick, 20000);
+  }
+  if(document.readyState === "loading") document.addEventListener("DOMContentLoaded", start); else start();
+})();
+</script><!--BF:end-->
 </body>
 </html>
 

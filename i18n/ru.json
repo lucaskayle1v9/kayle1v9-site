@@ -1504,5 +1504,11 @@
 "Last item: pick one": "Последний предмет: выбери один",
 "Open Korea builds": "Открыть корейские сборки",
 "First back": "Первый возврат",
-"Start E, then W, then Q": "Сначала E, потом W, потом Q"
+"Start E, then W, then Q": "Сначала E, потом W, потом Q",
+"{n0} off all coaching until Dec {n1}": "Скидка {n0} на весь коучинг до {n1} дек.",
+"{n0} off coaching": "Скидка {n0} на коучинг",
+"{n0} off all coaching": "Скидка {n0} на весь коучинг",
+"Book and pay by Dec {n0}. Your session can take place any time until Jan {n1}.": "Забронируй и оплати до {n0} дек. Сессию можно провести в любое время до {n1} янв.",
+"Ends in": "До конца",
+"Spots left": "Осталось мест"
 }

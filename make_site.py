@@ -105,6 +105,13 @@ except Exception as _e:
 _hist = json.load(open(_hist_path)) if os.path.exists(_hist_path) else None
 s = polish.apply(s, _hist)
 
+# --- Black Friday coaching offer (blackfriday.json: enabled, end date, free spots, payment links) ------
+# Adds nothing while "enabled" is false. The page switches the offer off by itself at the end date.
+import blackfriday
+blackfriday.add_translations(_repo)
+s = blackfriday.apply(s)
+print('black friday:', 'on' if blackfriday.config().get('enabled') else 'off')
+
 # --- Language switch (EN source + i18n/<code>.json, fetched per language) -----------------------------
 import i18n
 s = i18n.apply(s, i18n.load(_repo))

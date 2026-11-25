@@ -1504,5 +1504,11 @@
 "Last item: pick one": "Son item: birini seç",
 "Open Korea builds": "Kore buildlerini aç",
 "First back": "İlk üsse dönüş",
-"Start E, then W, then Q": "Önce E, sonra W, sonra Q"
+"Start E, then W, then Q": "Önce E, sonra W, sonra Q",
+"{n0} off all coaching until Dec {n1}": "{n1} Aralık'a kadar tüm koçluklarda {n0} indirim",
+"{n0} off coaching": "Koçlukta {n0} indirim",
+"{n0} off all coaching": "Tüm koçluklarda {n0} indirim",
+"Book and pay by Dec {n0}. Your session can take place any time until Jan {n1}.": "{n0} Aralık'a kadar rezervasyon yap ve öde. Seansın {n1} Ocak'a kadar istediğin zaman olabilir.",
+"Ends in": "Kalan süre",
+"Spots left": "Kalan yer"
 }
